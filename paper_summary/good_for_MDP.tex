@@ -1,0 +1,96 @@
+\documentclass[10.5pt,a4j]{jsarticle}
+
+
+%Packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{bm}
+\usepackage{float}
+\usepackage[margin=3cm]{geometry}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage[dvipdfmx]{color}
+\usepackage[dvipdfmx]{hyperref}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{txfonts}
+\usepackage{ascmac, here, txfonts, txfonts}
+\usepackage{listings, jlisting}
+\usepackage{color}
+\usepackage{url}
+
+\lstset{
+     %プログラム言語(複数の言語に対応，C,C++も可)
+ 	language = c,
+ 	%枠外に行った時の自動改行
+ 	breaklines = true,
+ 	%自動改行後のインデント量(デフォルトでは20[pt])
+ 	breakindent = 10pt,
+ 	%標準の書体
+ 	basicstyle = \ttfamily\scriptsize,
+ 	%コメントの書体
+ 	commentstyle = {\itshape \color[cmyk]{1,0.4,1,0}},
+ 	%関数名等の色の設定
+ 	classoffset = 0,
+ 	%キーワード(int, ifなど)の書体
+ 	keywordstyle = {\bfseries \color[cmyk]{0,1,0,0}},
+ 	%表示する文字の書体
+ 	stringstyle = {\ttfamily \color[rgb]{0,0,1}},
+	showstringspaces=false,
+ 	%枠 "t"は上に線を記載, "T"は上に二重線を記載
+	%他オプション：leftline，topline，bottomline，lines，single，shadowbox
+ 	frame = TBrl,
+ 	%frameまでの間隔(行番号とプログラムの間)
+ 	framesep = 5pt,
+ 	%行番号の位置
+ 	numbers = left,
+	%行番号の間隔
+ 	stepnumber = 1,
+	%行番号の書体
+ 	numberstyle = \tiny,
+	%タブの大きさ
+ 	tabsize = 4,
+ 	%キャプションの場所("tb"ならば上下両方に記載)
+ 	captionpos = t
+}
+
+%
+\renewcommand{\lstlistingname}{List}
+\renewcommand{\lstlistlistingname}{Source Code}
+\renewcommand{\figurename}{Fig}
+\renewcommand{\refname}{References}
+%
+
+\newcommand{\argmax}{\mathop{\rm arg~max}\limits}
+\newcommand{\argmin}{\mathop{\rm arg~min}\limits}
+
+%タイトル・著者名・作成日
+\title{セミナー資料}
+\author{09C18707\ 知能システム学コース4年\ 大浦稜平}
+\date{2019/09/27}
+
+\begin{document}
+% 目次の表示
+% \tableofcontents
+% 表目次の表示
+% \listoftables
+% 図目次の表示
+% \listoffigures
+\maketitle
+
+\section{Outline}
+
+Theorem 1 よりsatisfaction of omega-objectiveは$M\times A$のAECの面から定式化できる．\\
+$\rightarrow$MによるAの最大充足確率は，全方策上で定義される確率の中で$M\times A$のあるrunがAECに居続ける（i.e. 到達する）最大の確率と定める．\\
+
+DBAは全ての$\omega$-objectiveを表現できない．DRAは報酬ベースで扱う際にどの受理条件に対して報酬を設定するかをあらかじめ決める必要がある（$\rightarrow$max Probを達成っできない要因になる）\\
+
+$\rightarrow$NBA（特にLDBA）を用いる．$\rightarrow$nondeterminismのせいで，理想的には同時に考えるべきだが実質パラレルに枝分かれした路から１つ適当に選択する必要がある．\\
+
+$\rightarrow$slim automata（initialからfinalへの枝分かれがせいぜい２つまでのLDBA）を考える．\\
+
+
+
+定義に従ってオートマトン\it{A}, \it{S}を構築する．このとき，\it{A}は\it{B}と同じlanguageを持ち，simulateしていて，limit-deternministicかつgood-for-MDPである．また，\it{S}は\it{A}をsimulateしていて，\it{B}と同じlanguageを持ちgood-for-MDPである．
+
+
+\end{document}

@@ -1,0 +1,95 @@
+\documentclass[10.5pt,a4j]{jsarticle}
+
+
+%Packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{bm}
+\usepackage{float}
+\usepackage[margin=3cm]{geometry}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage[dvipdfmx]{color}
+\usepackage[dvipdfmx]{hyperref}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{txfonts}
+\usepackage{ascmac, here, txfonts, txfonts}
+\usepackage{listings, jlisting}
+\usepackage{color}
+\usepackage{url}
+
+\lstset{
+     %プログラム言語(複数の言語に対応，C,C++も可)
+ 	language = c,
+ 	%枠外に行った時の自動改行
+ 	breaklines = true,
+ 	%自動改行後のインデント量(デフォルトでは20[pt])
+ 	breakindent = 10pt,
+ 	%標準の書体
+ 	basicstyle = \ttfamily\scriptsize,
+ 	%コメントの書体
+ 	commentstyle = {\itshape \color[cmyk]{1,0.4,1,0}},
+ 	%関数名等の色の設定
+ 	classoffset = 0,
+ 	%キーワード(int, ifなど)の書体
+ 	keywordstyle = {\bfseries \color[cmyk]{0,1,0,0}},
+ 	%表示する文字の書体
+ 	stringstyle = {\ttfamily \color[rgb]{0,0,1}},
+	showstringspaces=false,
+ 	%枠 "t"は上に線を記載, "T"は上に二重線を記載
+	%他オプション：leftline，topline，bottomline，lines，single，shadowbox
+ 	frame = TBrl,
+ 	%frameまでの間隔(行番号とプログラムの間)
+ 	framesep = 5pt,
+ 	%行番号の位置
+ 	numbers = left,
+	%行番号の間隔
+ 	stepnumber = 1,
+	%行番号の書体
+ 	numberstyle = \tiny,
+	%タブの大きさ
+ 	tabsize = 4,
+ 	%キャプションの場所("tb"ならば上下両方に記載)
+ 	captionpos = t
+}
+
+%
+\renewcommand{\lstlistingname}{List}
+\renewcommand{\lstlistlistingname}{Source Code}
+\renewcommand{\figurename}{Fig}
+\renewcommand{\refname}{References}
+%
+
+\newcommand{\argmax}{\mathop{\rm arg~max}\limits}
+\newcommand{\argmin}{\mathop{\rm arg~min}\limits}
+
+%タイトル・著者名・作成日
+\title{セミナー資料}
+\author{09C18707\ 知能システム学コース4年\ 大浦稜平}
+\date{2019/10/06}
+
+\begin{document}
+% 目次の表示
+% \tableofcontents
+% 表目次の表示
+% \listoftables
+% 図目次の表示
+% \listoffigures
+\maketitle
+
+\section{どんなもの？}
+
+\section{先行研究と比べてどこがすごい？批判されている理論は何？}
+
+\section{技術や手法の肝はどこ？どうやって有効だと検証した？}
+
+\section{どういう文脈・理路を辿っている？}
+
+\section{対象となる問題において網羅性・整合性はある？}
+
+\section{議論はある？}
+
+\section{考えられる課題は？}
+
+\section{次に読むべき論文は？}
+\end{document}

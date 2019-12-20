@@ -1,0 +1,133 @@
+\documentclass[10.5pt,a4j]{jsarticle}
+
+
+%Packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{bm}
+\usepackage{float}
+\usepackage[margin=3cm]{geometry}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage[dvipdfmx]{color}
+\usepackage[dvipdfmx]{hyperref}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{txfonts}
+\usepackage{ascmac, here, txfonts, txfonts}
+\usepackage{listings, jlisting}
+\usepackage{color}
+\usepackage{url}
+
+\lstset{
+     %プログラム言語(複数の言語に対応，C,C++も可)
+ 	language = c,
+ 	%枠外に行った時の自動改行
+ 	breaklines = true,
+ 	%自動改行後のインデント量(デフォルトでは20[pt])
+ 	breakindent = 10pt,
+ 	%標準の書体
+ 	basicstyle = \ttfamily\scriptsize,
+ 	%コメントの書体
+ 	commentstyle = {\itshape \color[cmyk]{1,0.4,1,0}},
+ 	%関数名等の色の設定
+ 	classoffset = 0,
+ 	%キーワード(int, ifなど)の書体
+ 	keywordstyle = {\bfseries \color[cmyk]{0,1,0,0}},
+ 	%表示する文字の書体
+ 	stringstyle = {\ttfamily \color[rgb]{0,0,1}},
+	showstringspaces=false,
+ 	%枠 "t"は上に線を記載, "T"は上に二重線を記載
+	%他オプション：leftline，topline，bottomline，lines，single，shadowbox
+ 	frame = TBrl,
+ 	%frameまでの間隔(行番号とプログラムの間)
+ 	framesep = 5pt,
+ 	%行番号の位置
+ 	numbers = left,
+	%行番号の間隔
+ 	stepnumber = 1,
+	%行番号の書体
+ 	numberstyle = \tiny,
+	%タブの大きさ
+ 	tabsize = 4,
+ 	%キャプションの場所("tb"ならば上下両方に記載)
+ 	captionpos = t
+}
+
+%
+\renewcommand{\lstlistingname}{List}
+\renewcommand{\lstlistlistingname}{Source Code}
+\renewcommand{\figurename}{Fig}
+\renewcommand{\refname}{References}
+%
+
+\newcommand{\argmax}{\mathop{\rm arg~max}\limits}
+\newcommand{\argmin}{\mathop{\rm arg~min}\limits}
+
+%タイトル・著者名・作成日
+\title{Certified Reinforcement Learning with Logic Guidance:概要}
+\author{09C18707\ 知能システム学コース4年\ 大浦稜平}
+\date{2019/10/06}
+
+\begin{document}
+% 目次の表示
+% \tableofcontents
+% 表目次の表示
+% \listoftables
+% 図目次の表示
+% \listoffigures
+\maketitle
+
+\section{どんなもの？}
+LTLからGLDBAを生成し，MDPとプロダクトを取り，このGLDBAの監視下で強化学習を用いてエージェントのMDP上での最適方策を求める．
+
+\section{先行研究と比べてどこがすごい？批判されている理論は何？}
+product MDPによる強化学習自体は2014年に提唱されたが，本研究ではDRAではなくGLDBAを用いて状態数を小さくしている（一般にDRAは状態数が大きくなり，またその受理条件の構成ゆえにreward shapingも複雑になる）．DRAを用いたSadighらの方法は遷移確率の近似に依存してしまい，それゆえに最適方策を生成する過程の正確さが制限されると批判している．\\
+↓\\
+これと比較して，提案手法は最適方策の学習と同時に，明示的にMDPのダイナミクスを獲得する．
+
+\section{技術や手法の肝はどこ？どうやって有効だと検証した？}
+集合Aをすべての受理領域の和集合で定義し，初めて訪れた領域をAから除去していき，すべて削除されたらまた初期化することを繰り返す更新則Acc，及びこれに基づく報酬関数設計．連続状態空間に対してもLTLを完全に満たすような最適方策の学習を行える．\\
+
+グリッドワールド・パックマン・モンテズーマの逆襲（有限状態），火星探査（連続状態）で実験．
+\begn{enumerate}
+\item グリッドワールド\\
+saftyを含んだ論理制約に対して良好な結果を示した．
+\item パックマン\\
+およそ20000 episode で安定した方策を獲得した．従来の方法（勝利した場合に報酬を与えるやり方）では安定した方策を獲得できなかった．
+\item モンテズーマの逆襲\\
+10000 episode でゴールに到達
+\item 火星探査\\
+LCNFQを使用．Voronoi quantizerとFVIと比較して良好な結果を得た．
+\end{enumerate}
+
+\section{どういう文脈・理路を辿っている？}
+オートマトンにGLDBAを用いる．\\
+↓\\
+複数の受理条件を公平に回らせるためにAccを導入．\\
+\\
+
+有限状態空間：\\
+Q learningをベースにした学習則を採用している．\\
+$\because$Th2より最適方策が存在すれば価値ベースでの学習で最適方策を獲得できる（LTLを満たすが価値ベースで最適でない方策の存在を仮定すると報酬が有限回しか貰えないことに反する）\\
+Def14より，最適方策が存在しない場合でも最も良い方策をQ learningで獲得できる（$\because$ 最も多数の受理領域を回るほうがより多くの報酬を獲得できる）．また，Th3より，LCQLで得た方策はLTLを満たす理論上の最大確率を得る（DPベースの価値反復で得る方策と期待割引報酬に基づくLCQLの収束により得る方策が実質同じであることが，discountを(1)係数として解釈した場合と(2)undiscountのエピソード長が指数分布に従っていると解釈した場合から言える）\\
+
+連続状態空間：\\
+\begin{enumerate}
+  \item voronoi cells に状態空間を分割する\\
+  セル中心との距離やオートマトンの状態が初登場か否かで状態を細かく分割していきながらQ learning
+  \item Fitted  Value Iterationの改良\\
+  ベルマン作用素の中の報酬項をなくして，その代わりに各状態に対する状態価値を${\mathbb A}$に状態が入っているかどうかで初期化する．また，ベルマン作用素の積分計算はRBFを用いて近似する．
+  \item MDPの事変性（定期的なもの！）を再帰的なクリプケ構造$\mathcal{K}$で表現し，LDBAを事変オートマトンとして拡張し，MDPと同期させる．学習は事変的な部分にのみ着目する（Q(s,a)の値を各$k\in \mathcal{K}$でシェアする）．これにより学習を早める
+\end{enumerate}
+
+\section{対象となる問題において網羅性・整合性はある？}
+今後，マルチエージェント系・POMDPに適用していくらしい
+
+\section{議論はある？}
+
+\section{考えられる課題は？}
+Accの更新則は異なる経路による受理領域への到達を区別できない（本来区別されるべき）\\
+連続状態空間にへの対処法の妥当性について．
+
+\section{次に読むべき論文は？}
+\end{document}

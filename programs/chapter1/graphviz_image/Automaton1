@@ -1,0 +1,9 @@
+digraph {
+	node [shape=circle]
+	x0 -> x0 [headlabel="&#172;a&&#172;b&&#172;c" headport=sw labeldistance=6 tailport=sw]
+	x0 -> x0 [label="a&&#172;b&&#172;c" color=red headport=ne tailport=ne]
+	x0 -> x0 [label="&#172;a&b&&#172;c" color=green headport=nw tailport=nw]
+	x0 -> x0 [label="a&b&&#172;c" color=yellow headport=se tailport=e]
+	x0 -> x1 [label=c color=blue]
+	x1 -> x1 [label=T]
+}

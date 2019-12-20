@@ -1,0 +1,23 @@
+digraph {
+	rankdir=LR
+	node [shape=circle]
+	s0
+	s1
+	s2
+	node [shape=polygon]
+	a00 [label=a0]
+	a01 [label=a0]
+	a10 [label=a1]
+	a12 [label=a1]
+	s0 -> a00
+	s0 -> a10
+	a00 -> s0 [label=0.2]
+	a00 -> s1 [label=0.8]
+	a10 -> s1 [label=0.3]
+	a10 -> s2 [label=0.7]
+	s1 -> a01
+	a01 -> s0 [label=0.5]
+	a01 -> s1 [label=0.5]
+	s2 -> a12
+	a12 -> s0 [label=1]
+}

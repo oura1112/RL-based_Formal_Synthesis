@@ -1,0 +1,13 @@
+digraph {
+	node [shape=circle]
+	q0 -> q0 [label=T]
+	q0 -> q1 [label="a|b"]
+	q0 -> q2 [label=c]
+	q2 -> q2 [label=c color=purple]
+	q1 -> q1 [label="!a&!b" headport=sw tailport=sw]
+	q1 -> q1 [color=red headlabel="a&!b" headport=nw tailport=nw]
+	q1 -> q1 [color=blue headlabel="!a&b" headport=ne tailport=ne]
+	q1 -> q1 [label="a&b" color=purple headport=se tailport=se]
+	q2 -> q3 [label="!c"]
+	q3 -> q3 [label=T]
+}

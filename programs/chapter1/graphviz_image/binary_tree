@@ -1,0 +1,8 @@
+digraph {
+	node [shape=circle]
+	q0 -> q0 [label="!a&!b&!c"]
+	q0 -> q0 [label="a&!b&!c" color=red]
+	q0 -> q0 [label="!a&b&!c" color=red]
+	q0 -> q0 [label="a&b&!c" color=red]
+	q0 -> q1 [label=c]
+}
