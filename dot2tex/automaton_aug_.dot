@@ -1,0 +1,34 @@
+digraph {
+    graph [layout = dot , margin = 0.2 ];
+
+    node [shape = polygon];
+
+    q1_v0 [ label = "(x0, <X<SUB>1</SUB><SUP>(1)</SUP>>)"];
+    q1_v1 [ label = "(x0, (1,0)^T)"];
+    q1_v2 [ label = "(x0, (0,1)^T)"];
+
+    q2_v0 [ label = "(x1, *)^T"];
+    //q2_v1 [ label = "(x1, (1,0))^T"];
+    //q2_v2 [ label = "(x1, (0,1))^T"];
+
+    q1_v0 -> q1_v0 [ label = "Ø" , headport = s , tailport = s];
+    q1_v0 -> q1_v0 [ label = "a&b&&#172;c" , style="bold" , color="yellow" , headport = w , tailport = w];
+    q1_v0 -> q1_v1 [ label = "a&&#172;b&&#172;c" , style="bold" , color="red"];
+    q1_v0 -> q1_v2 [ label = "&#172;a&b&&#172;c" , style="bold" , color="green"];
+    q1_v0 -> q2_v0 [ label = "c" , color="blue"];
+
+    q1_v2 -> q1_v0 [ label = "a&&#172;b&&#172;c" , style="bold" , color="red"];
+    q1_v2 -> q1_v2 [ label = "&#172;a&&#172;b&&#172;c" , headport = w , tailport = w];
+    q1_v2 -> q1_v2 [ label = "&#172;a&b&&#172;c" , headport = n , tailport = n];
+    q1_v2 -> q2_v0 [ label = "c" , color="blue" , labelfloat = true];
+
+    q1_v1 -> q1_v0 [ label = "&#172;a&b&&#172;c" , style="bold" , color="green"];
+    q1_v1 -> q1_v1 [ label = "a&&#172;b&&#172;c" , headport = s , tailport = s];
+    q1_v1 -> q1_v1 [ label = "&#172;a&&#172;b&&#172;c" , headport = e , tailport = e];
+    q1_v1 -> q2_v0 [ label = "c" , color="blue"];
+
+    q2_v0 -> q2_v0 [ label = "T"];
+
+    { rank = same; q1_v0; q1_v1; };
+    { rank = min; q1_v2; q2_v0; };
+}

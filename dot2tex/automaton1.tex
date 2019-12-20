@@ -1,0 +1,80 @@
+\documentclass{article}
+\usepackage[x11names, svgnames, rgb]{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{snakes,arrows,shapes}
+\usepackage{amsmath}
+%
+%
+
+%
+
+%
+
+\begin{document}
+\pagestyle{empty}
+%
+%
+%
+
+\enlargethispage{100cm}
+% Start of code
+% \begin{tikzpicture}[anchor=mid,>=latex',line join=bevel,]
+\begin{tikzpicture}[>=latex',line join=bevel,]
+  \pgfsetlinewidth{1bp}
+%%
+\pgfsetcolor{black}
+  % Edge: q1 -> q1
+  \draw [->] (96.5bp,89.5bp) .. controls (86.0bp,100.0bp) and (74.0bp,100.0bp)  .. (74.0bp,89.5bp) .. controls (74.0bp,81.789bp) and (80.472bp,79.741bp)  .. (96.5bp,89.5bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (40.5bp,101.5bp) node[below=0.3cm] {$\neg a \land \neg b \land \neg c$};
+  \draw (90.5bp,83.5bp) node[below=0.3cm] { };
+  % Edge: q1 -> q1
+  \pgfsetcolor{red}
+  \draw [->] (96.5bp,113.5bp) .. controls (86.0bp,124.0bp) and (74.0bp,124.0bp)  .. (74.0bp,113.5bp) .. controls (74.0bp,105.79bp) and (80.472bp,103.74bp)  .. (96.5bp,113.5bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (37.0bp,101.5bp) node[above=0.3cm] {\textcircled{\scriptsize 1}\textcircled{\scriptsize 2}\\$a \land b \land \neg c$};
+  % Edge: q1 -> q1
+  \pgfsetcolor{red}
+  \draw [->] (120.5bp,113.5bp) .. controls (129.5bp,125.0bp) and (129.5bp,139.0bp)  .. (120.5bp,139.0bp) .. controls (113.75bp,139.0bp) and (112.06bp,131.13bp)  .. (120.5bp,113.5bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (108.5bp,149.0bp) node {\textcircled{\scriptsize 1}\\$a \land \neg b \land \neg c$};
+  % Edge: q1 -> q1
+  \pgfsetcolor{red}
+  \draw [->] (125.5bp,101.5bp) .. controls (131.0bp,112.0bp) and (143.0bp,112.0bp)  .. (143.0bp,101.5bp) .. controls (143.0bp,94.609bp) and (137.83bp,92.241bp)  .. (125.5bp,101.5bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (178.5bp,101.5bp) node {\textcircled{\scriptsize 2}\\$\neg a \land b \land \neg c$};
+  % Edge: q1 -> q2
+  \draw [->] (108.5bp,84.888bp) .. controls (108.5bp,73.179bp) and (108.5bp,56.893bp)  .. (108.5bp,33.042bp);
+  \draw (116.5bp,59.0bp) node {c};
+  % Edge: q2 -> q2
+  \draw [->] (123.39bp,23.681bp) .. controls (133.33bp,25.702bp) and (143.0bp,23.309bp)  .. (143.0bp,16.5bp) .. controls (143.0bp,12.138bp) and (139.03bp,9.5884bp)  .. (123.39bp,9.3191bp);
+  \draw (152.5bp,16.5bp) node {$\top$};
+  % Node: q1
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (108.5bp,101.5bp) ellipse (16.5bp and 16.5bp);
+  \draw (108.5bp,101.5bp) node {$x_0$};
+\end{scope}
+  % Node: q2
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (108.5bp,16.5bp) ellipse (16.5bp and 16.5bp);
+  \draw (108.5bp,16.5bp) node {$x_1$};
+\end{scope}
+%
+\end{tikzpicture}
+% End of code
+
+%
+\end{document}
+%
+
+
+

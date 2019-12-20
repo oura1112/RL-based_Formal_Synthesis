@@ -1,0 +1,151 @@
+\documentclass{article}
+\usepackage[x11names, svgnames, rgb]{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{snakes,arrows,shapes}
+\usepackage{amsmath}
+%
+%
+
+%
+
+%
+
+\begin{document}
+\pagestyle{empty}
+%
+%
+%
+
+\enlargethispage{100cm}
+% Start of code
+% \begin{tikzpicture}[anchor=mid,>=latex',line join=bevel,]
+\begin{tikzpicture}[>=latex',line join=bevel,]
+  \pgfsetlinewidth{1bp}
+%%
+\begin{scope}
+  \pgfsetstrokecolor{black}
+  \definecolor{strokecol}{rgb}{1.0,1.0,1.0};
+  \pgfsetstrokecolor{strokecol}
+  \definecolor{fillcol}{rgb}{1.0,1.0,1.0};
+  \pgfsetfillcolor{fillcol}
+  \filldraw (0.0bp,0.0bp) -- (0.0bp,210.0bp) -- (435.0bp,210.0bp) -- (435.0bp,0.0bp) -- cycle;
+\end{scope}
+\begin{scope}
+  \pgfsetstrokecolor{black}
+  \definecolor{strokecol}{rgb}{1.0,1.0,1.0};
+  \pgfsetstrokecolor{strokecol}
+  \definecolor{fillcol}{rgb}{1.0,1.0,1.0};
+  \pgfsetfillcolor{fillcol}
+  \filldraw (0.0bp,0.0bp) -- (0.0bp,210.0bp) -- (435.0bp,210.0bp) -- (435.0bp,0.0bp) -- cycle;
+\end{scope}
+  \pgfsetcolor{black}
+  % Edge: q1_v0 -> q1_v0
+  \draw [->] (145.5bp,41.0bp) .. controls (154.5bp,33.333bp) and (154.5bp,18.0bp)  .. (145.5bp,18.0bp) .. controls (139.31bp,18.0bp) and (137.38bp,25.247bp)  .. (145.5bp,41.0bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (145.5bp,9.0bp) node {$\neg a \land \neg b \land \neg c$};
+  % Edge: q1_v0 -> q1_v0
+  \pgfsetcolor{red}
+  \draw [->,very thick] (107.5bp,59.0bp) .. controls (102.0bp,70.5bp) and (90.0bp,70.5bp)  .. (90.0bp,59.0bp) .. controls (90.0bp,51.273bp) and (95.417bp,48.738bp)  .. (107.5bp,59.0bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (53.0bp,59.0bp) node {\textcircled{\scriptsize 1}\textcircled{\scriptsize 2}$a \land b \land \neg c$};
+  % Edge: q1_v0 -> q1_v1
+  \pgfsetcolor{red}
+  \draw [->,very thick] (168.84bp,73.143bp) .. controls (176.02bp,76.764bp) and (184.11bp,80.155bp)  .. (192.0bp,82.0bp) .. controls (224.03bp,89.487bp) and (233.97bp,89.487bp)  .. (266.0bp,82.0bp) .. controls (270.69bp,80.904bp) and (275.44bp,79.264bp)  .. (289.16bp,73.143bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (229.0bp,98.0bp) node {\textcircled{\scriptsize 1}$a \land \neg b \land \neg c$};
+  % Edge: q1_v0 -> q1_v2
+  \pgfsetcolor{red}
+  \draw [->,very thick] (115.02bp,69.562bp) .. controls (102.99bp,74.997bp) and (90.418bp,83.151bp)  .. (83.5bp,95.0bp) .. controls (76.661bp,106.71bp) and (84.004bp,119.09bp)  .. (101.76bp,135.99bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (119.0bp,105.0bp) node {\textcircled{\scriptsize 2}$\neg a \land b \land \neg c$};
+  % Edge: q1_v0 -> q2_v0
+  \draw [->] (178.73bp,67.781bp) .. controls (196.86bp,73.223bp) and (218.92bp,81.907bp)  .. (235.5bp,95.0bp) .. controls (245.57bp,102.96bp) and (254.04bp,114.3bp)  .. (265.44bp,133.32bp);
+  \draw (261.5bp,105.0bp) node {c};
+  % Edge: q1_v1 -> q1_v0
+  \pgfsetcolor{red}
+  \draw [->,very thick] (288.36bp,44.854bp) .. controls (280.95bp,41.232bp) and (272.61bp,37.843bp)  .. (264.5bp,36.0bp) .. controls (233.73bp,29.008bp) and (224.27bp,29.008bp)  .. (193.5bp,36.0bp) .. controls (188.68bp,37.094bp) and (183.79bp,38.734bp)  .. (169.64bp,44.854bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (229.0bp,46.0bp) node {\textcircled{\scriptsize 2}$\neg a \land b \land \neg c$};
+  % Edge: q1_v1 -> q1_v0
+  \pgfsetcolor{red}
+  \draw [->,very thick] (274.76bp,59.0bp) .. controls (250.76bp,59.0bp) and (219.48bp,59.0bp)  .. (183.39bp,59.0bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (229.0bp,72.0bp) node {\textcircled{\scriptsize 1}\textcircled{\scriptsize 2}$a \land b \land \neg c$};
+  % Edge: q1_v1 -> q1_v1
+  \draw [->] (312.5bp,41.0bp) .. controls (321.5bp,33.333bp) and (321.5bp,18.0bp)  .. (312.5bp,18.0bp) .. controls (306.31bp,18.0bp) and (304.38bp,25.247bp)  .. (312.5bp,41.0bp);
+  \draw (312.5bp,9.0bp) node {$a \land \neg b \land \neg c$};
+  % Edge: q1_v1 -> q1_v1
+  \draw [->] (350.5bp,59.0bp) .. controls (356.0bp,70.5bp) and (368.0bp,70.5bp)  .. (368.0bp,59.0bp) .. controls (368.0bp,51.273bp) and (362.58bp,48.738bp)  .. (350.5bp,59.0bp);
+  \draw (401.5bp,59.0bp) node {$\neg a \land \neg b \land \neg c$};
+  % Edge: q1_v1 -> q2_v0
+  \draw [->] (306.07bp,76.981bp) .. controls (301.84bp,87.918bp) and (296.07bp,102.4bp)  .. (290.5bp,115.0bp) .. controls (289.16bp,118.03bp) and (287.71bp,121.18bp)  .. (281.87bp,133.38bp);
+  \draw (307.5bp,105.0bp) node {c};
+  % Edge: q1_v2 -> q1_v0
+  \pgfsetcolor{red}
+  \draw [->,very thick] (86.351bp,145.99bp) .. controls (44.105bp,139.84bp) and (-17.203bp,125.41bp)  .. (6.5bp,95.0bp) .. controls (17.917bp,80.351bp) and (63.276bp,70.886bp)  .. (109.41bp,64.076bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (42.0bp,105.0bp) node {\textcircled{\scriptsize 1}$a \land \neg b \land \neg c$};
+  % Edge: q1_v2 -> q1_v0
+  \pgfsetcolor{red}
+  \draw [->,very thick] (140.68bp,135.06bp) .. controls (146.21bp,129.41bp) and (151.58bp,122.52bp)  .. (154.5bp,115.0bp) .. controls (157.96bp,106.09bp) and (157.41bp,95.861bp)  .. (152.72bp,76.839bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (194.5bp,105.0bp) node {\textcircled{\scriptsize 1}\textcircled{\scriptsize 2}$a \land b \land \neg c$};
+  % Edge: q1_v2 -> q1_v2
+  \draw [->] (84.5bp,151.0bp) .. controls (79.0bp,162.5bp) and (67.0bp,162.5bp)  .. (67.0bp,151.0bp) .. controls (67.0bp,143.27bp) and (72.417bp,140.74bp)  .. (84.5bp,151.0bp);
+  \draw (33.5bp,151.0bp) node {$\neg a \land \neg b \land \neg c$};
+  % Edge: q1_v2 -> q1_v2
+  \draw [->] (122.5bp,169.0bp) .. controls (131.5bp,176.67bp) and (131.5bp,192.0bp)  .. (122.5bp,192.0bp) .. controls (116.31bp,192.0bp) and (114.38bp,184.75bp)  .. (122.5bp,169.0bp);
+  \draw (122.5bp,201.0bp) node {$\neg a \land b \land \neg c$};
+  % Edge: q1_v2 -> q2_v0
+  \draw [->] (160.21bp,151.0bp) .. controls (180.03bp,151.0bp) and (204.53bp,151.0bp)  .. (235.74bp,151.0bp);
+  \draw (198.0bp,162.0bp) node {c};
+  % Edge: q2_v0 -> q2_v0
+  \draw [->] (306.55bp,159.61bp) .. controls (318.86bp,159.89bp) and (329.0bp,157.02bp)  .. (329.0bp,151.0bp) .. controls (329.0bp,146.77bp) and (323.99bp,144.09bp)  .. (306.55bp,142.39bp);
+  \draw (338.5bp,151.0bp) node {$\top$};
+  % Node: q1_v0
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (145.5bp,59.0bp) ellipse (37.5bp and 18.0bp);
+  \draw (145.5bp,59.0bp) node {($x_0$, $(0,0)^T$)};
+\end{scope}
+  % Node: q1_v1
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (312.5bp,59.0bp) ellipse (37.5bp and 18.0bp);
+  \draw (312.5bp,59.0bp) node {($x_0$, $(1,0)^T$)};
+\end{scope}
+  % Node: q1_v2
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (122.5bp,151.0bp) ellipse (37.5bp and 18.0bp);
+  \draw (122.5bp,151.0bp) node {($x_0$, $(0,1)^T$)};
+\end{scope}
+  % Node: q2_v0
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (273.5bp,151.0bp) ellipse (37.5bp and 18.0bp);
+  \draw (273.5bp,151.0bp) node {($x_1$, $(*,*)^T$)};
+\end{scope}
+%
+\end{tikzpicture}
+% End of code
+
+%
+\end{document}
+%
+
+
+

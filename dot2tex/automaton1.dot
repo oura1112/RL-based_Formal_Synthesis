@@ -1,0 +1,16 @@
+digraph {
+    graph [layout = dot , margin = 2 ];
+    node [shape = circle, width = 0.4, height = 0.4];
+
+    q1 [ texlbl = "$x_0$"];
+
+    q2 [ texlbl = "$x_1$"];
+
+    q1 -> q1 [headlabel=" ", texlbl = "$\neg a \land \neg b \land \neg c$", lblstyle ="below=0.3cm" , headport = sw , tailport = sw];
+    q1 -> q1 [label=" ", texlbl = "\textcircled{\scriptsize 1}\textcircled{\scriptsize 2}\\$a \land b \land \neg c$" , color="red", lblstyle ="above=0.3cm" , headport = nw , tailport = nw];
+    q1 -> q1 [label=" ", texlbl = "\textcircled{\scriptsize 1}\\$a \land \neg b \land \neg c$" , color="red" , headport = ne , tailport = ne];
+    q1 -> q1 [label=" ", texlbl = "\textcircled{\scriptsize 2}\\$\neg a \land b \land \neg c$" , color="red" , headport = e , tailport = e];
+    q1 -> q2 [ label = "c" ];
+
+    q2 -> q2 [ label = " ", texlbl = "$\top$"];
+}

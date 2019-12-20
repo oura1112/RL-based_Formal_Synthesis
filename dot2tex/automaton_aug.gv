@@ -1,0 +1,32 @@
+digraph {
+    graph [layout = dot , margin = 2 ];
+
+    q1_v0 [ texlbl = "($x_0$, $(0,0)^T$)"];
+    q1_v1 [ texlbl = "($x_0$, $(1,0)^T$)"];
+    q1_v2 [ texlbl = "($x_0$, $(0,1)^T$)"];
+
+    q2_v0 [ texlbl = "($x_1$, $(*,*)^T$)"];
+
+    q1_v0 -> q1_v0 [ texlbl = "$\neg a \land \neg b \land \neg c$"  , headport = s , tailport = s];
+    q1_v0 -> q1_v0 [ texlbl = "$a \land b \land \neg c$" , style="bold" , color="yellow" , headport = w , tailport = w];
+    q1_v0 -> q1_v1 [ texlbl = "$a \land \neg b \land \neg c$" , style="bold" , color="red"];
+    q1_v0 -> q1_v2 [ label = "\\neg a \\land b \\land \\neg c" , style="bold" , color="green"];
+    q1_v0 -> q2_v0 [ label = "c" , color="blue"];
+
+    q1_v2 -> q1_v0 [ texlbl = "$a \land \neg b \land \neg c$" , style="bold" , color="red"];
+    q1_v2 -> q1_v0 [ texlbl = "$a \land b \land \neg c$" , style="bold" , color="yellow"];
+    q1_v2 -> q1_v2 [ texlbl = "$\neg a \land \neg b \land \neg c$" , headport = w , tailport = w];
+    q1_v2 -> q1_v2 [ texlbl = "$\neg a \land b \land \neg c$" , headport = n , tailport = n];
+    q1_v2 -> q2_v0 [ label = "c" , color="blue" , labelfloat = true];
+
+    q1_v1 -> q1_v0 [ texlbl = "$\neg a \land b \land \neg c$" , style="bold" , color="green"];
+    q1_v1 -> q1_v0 [ texlbl = "$a \land b \land \neg c$" , style="bold" , color="yellow"];
+    q1_v1 -> q1_v1 [ texlbl = "$a \land \neg b \land \neg c$" , headport = s , tailport = s];
+    q1_v1 -> q1_v1 [ texlbl = "$\neg a \land \neg b \land \neg c$" , headport = e , tailport = e];
+    q1_v1 -> q2_v0 [ label = "c" , color="blue"];
+
+    q2_v0 -> q2_v0 [ label = "T"];
+
+    { rank = same; q1_v0; q1_v1; };
+    { rank = min; q1_v2; q2_v0; };
+}
