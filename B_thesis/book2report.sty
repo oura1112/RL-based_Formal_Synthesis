@@ -1,0 +1,17 @@
+\@twosidefalse \@mparswitchfalse
+\@openrightfalse
+
+\let\@mkboth\@gobbletwo
+\def\@oddfoot{\mbox{}\hfil {\small \thepage}\hfil\mbox{}}
+\def\@evenfoot{\mbox{}\hfil {\small \thepage}\hfil\mbox{}}
+\let\@oddhead\@empty\let\@evenhead\@empty
+
+\renewcommand{\chapter}{%
+\if@openright\cleardoublepage\else\clearpage\fi
+\global\@topnum\z@
+\secdef\@chapter\@schapter}
+
+\setlength\footskip{2\baselineskip}
+\addtolength{\textheight}{-2\baselineskip}
+
+\setlength{\textwidth}{\fullwidth}

@@ -1,0 +1,173 @@
+
+%卒業論文用雛形
+%\documentclass[a4j,12pt,oneside,openany]{jsbook}
+% 英語なら以下を使う．
+\documentclass[a4j,12pt,oneside,openany,english]{jsbook}
+
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{latexsym}
+
+%jsbook を report っぽくするスタイルファイル
+\usepackage{book2report}
+%定理，補題，系，例題，証明などや英語用の定義がされています．
+%自分なりにいじってください．
+\usepackage{thesis}
+% 具体的には以下のように定義されています．
+% 英語の定理環境
+%  \newtheorem{theorem}{Theorem}[chapter]
+%  \newtheorem{lemma}{Lemma}[chapter]
+%  \newtheorem{proposition}{Proposition}[chapter]
+%  \newtheorem{corollary}{Corollary}[chapter]
+%  \newtheorem{definition}{Definition}[chapter]
+%  \newtheorem{example}{Example}[chapter]
+%  \newtheorem{proof}{Proof}
+% 日本語の定理環境
+%  \newtheorem{theorem}{定理}[chapter]
+%  \newtheorem{lemma}{補題}[chapter]
+%  \newtheorem{proposition}{命題}[chapter]
+%  \newtheorem{corollary}{系}[chapter]
+%  \newtheorem{definition}{定義}[chapter]
+%  \newtheorem{example}{例}[chapter]
+%  \newtheorem{proof}{証明}
+% 証明には番号をつけず，最後は Box で終わります．
+
+% 英語で，見出しのフォントが気に入らなかったら
+\renewcommand{\headfont}{\bfseries}
+
+%ページ数が少ないときはここを大きくしてごまかそう！！効果絶大！！
+\renewcommand{\baselinestretch}{1.1}
+
+\begin{document}
+%%%%%%%%%%%% 題目 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% ここも適当に変えてもいいと思う %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\thispagestyle{empty}
+\begin{center}
+\vspace*{5mm}
+{\Huge {\bf 特 \hspace{12pt} 別 \hspace{12pt} 研 \hspace{12pt} 究 \hspace{12pt} 報 \hspace{12pt} 告}}\\
+\vspace{2cm}
+{\Large 題\hspace{8mm}目}\\
+\vspace{1cm}
+\underline{\LARGE{This Is}} \\
+\vspace{0.5cm}
+\underline{\LARGE{My Bachelor Thesis}} \\
+\vspace{12mm}
+{\large 指 導 教 員}\\
+\vspace{6mm}
+\underline{\Large Professor Jane Doe}\\
+　\\
+\underline{\Large Associate Professor Joe Smith}\\
+\vspace{8mm}
+{\large 報 告 者}\\
+\vspace{6mm}
+\underline{\Large John Doe}\\
+\vspace{10mm}
+{\Large 平成28年2月吉日}\\
+\vspace{14mm}
+{\Large 大阪大学基礎工学部システム科学科\\知能システム学コース}\\
+\end{center}
+\clearpage
+\setcounter{page}{0}
+\pagenumbering{roman}
+
+%%%%%%%%%%%% 概要 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+  This is abstruct.
+\end{abstract}
+
+
+%%%%%%%%%%%% 目次 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\tableofcontents
+\clearpage
+\setcounter{page}{0}
+\pagenumbering{arabic}
+
+%%%%%%%%%%%% 1章 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Introduction}
+Test of Theorem.
+
+\section{First of All}
+
+\begin{theorem}[First Theorem]
+This is Theorem.
+\end{theorem}
+
+\begin{lemma}[First Lemma]
+This is Lemma.
+\end{lemma}
+
+\begin{proposition}[First Proposition]
+This is Proposition.
+\end{proposition}
+
+\begin{corollary}[First Corollary]
+This is Corollary.
+\end{corollary}
+
+\begin{proof}
+This is true, obviously.
+\end{proof}
+
+\begin{definition}[First Definition]
+We call this ``That''.
+\end{definition}
+
+\begin{example}[First Example]
+This is an example.
+\end{example}
+
+\section{Next of First of All}
+\subsection{First Subsection}
+\subsubsection{First Subsubsection}
+
+Test of Equation.
+\begin{equation}
+	a = b + c
+\end{equation}
+
+\begin{table}
+	\caption{Test of Table Caption}
+\end{table}
+
+\begin{figure}
+	\caption{Test of Figure Caption}
+\end{figure}
+
+
+%%%%%%%%%%%% 2nd Chapter %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{2nd Chapter}
+
+%%%%%%%%%%%% 3rd Chapter %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{3rd Chapter}
+
+%%%%%%%%%%%% 4th Chapter %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{4th Chapter}
+
+%%%%%%%%%%%% 5th Chapter %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Conclusions}
+
+%%%%%%%%%%%% Appendix %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\appendix
+%%%%%%%%%%%% Appendix A %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Proofs}
+
+%%%%%%%%%%%% 謝辞 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{acknowledgement}
+	I would like to express my deep sense of gratitude to my adviser Professor
+	Toshimitsu Ushio, Graduate School of Engineering Science, Osaka University,
+	for his invaluable, constructive advice and constant encouragement during this work.
+	Professor Ushio's deep knowledge and his eye for detail have inspired me much.
+\end{acknowledgement}
+
+%%%%%%%%%%%% References %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%適当に変えてねー．
+\begin{thebibliography}{99}
+\bibitem{a} Reference 1
+\bibitem{b} Reference 2
+\end{thebibliography}
+%\bibliographystyle{myjunsrt}
+%\bibliography{refs}
+
+\end{document}

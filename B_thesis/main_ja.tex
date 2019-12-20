@@ -1,0 +1,151 @@
+%卒業論文用雛形
+\documentclass[a4j,12pt,oneside,openany]{jsbook}
+% 英語なら以下を使う．
+%\documentclass[a4j,12pt,oneside,openany,english]{jsbook}
+
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{latexsym}
+
+%jsbook を report っぽくするスタイルファイル
+\usepackage{book2report}
+%定理，補題，系，例題，証明などや英語用の定義がされています．
+%自分なりにいじってください．
+\usepackage{thesis}
+% 具体的には以下のように定義されています．
+% 英語の定理環境
+%  \newtheorem{theorem}{Theorem}[chapter]
+%  \newtheorem{lemma}{Lemma}[chapter]
+%  \newtheorem{proposition}{Proposition}[chapter]
+%  \newtheorem{corollary}{Corollary}[chapter]
+%  \newtheorem{definition}{Definition}[chapter]
+%  \newtheorem{example}{Example}[chapter]
+%  \newtheorem{proof}{Proof}
+% 日本語の定理環境
+%  \newtheorem{theorem}{定理}[chapter]
+%  \newtheorem{lemma}{補題}[chapter]
+%  \newtheorem{proposition}{命題}[chapter]
+%  \newtheorem{corollary}{系}[chapter]
+%  \newtheorem{definition}{定義}[chapter]
+%  \newtheorem{example}{例}[chapter]
+%  \newtheorem{proof}{証明}
+% 証明には番号をつけず，最後は Box で終わります．
+
+% 英語で，見出しのフォントが気に入らなかったら
+%\renewcommand{\headfont}{\bfseries}
+
+%ページ数が少ないときはここを大きくしてごまかそう！！効果絶大！！
+\renewcommand{\baselinestretch}{1.1}
+
+\begin{document}
+%%%%%%%%%%%% 題目 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% ここも適当に変えてもいいと思う %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\thispagestyle{empty}
+\begin{center}
+\vspace*{5mm}
+{\Huge {\bf 特 \hspace{12pt} 別 \hspace{12pt} 研 \hspace{12pt} 究 \hspace{12pt} 報 \hspace{12pt} 告}}\\
+\vspace{2cm}
+{\Large 題\hspace{8mm}目}\\
+\vspace{1cm}
+\underline{\LARGE{なんとかなんとかの}} \\
+\vspace{0.5cm}
+\underline{\LARGE{なんとかなんとか}} \\
+\vspace{12mm}
+{\large 指 導 教 員}\\
+\vspace{6mm}
+\underline{\Large なんとか　だれそれ　教 授}\\
+　\\
+\underline{\Large なんとか　だれそれ　准 教 授}\\
+\vspace{8mm}
+{\large 報 告 者}\\
+\vspace{6mm}
+\underline{\Large なんとか　だれそれ}\\
+\vspace{10mm}
+{\Large 平成28年2月吉日}\\
+\vspace{14mm}
+{\Large 大阪大学基礎工学部システム科学科\\知能システム学コース}\\
+\end{center}
+\clearpage
+\setcounter{page}{0}
+\pagenumbering{roman}
+
+%%%%%%%%%%%% 概要 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+おい　おまえ！　おれの名をいってみろ！！\\
+そうか！！　おまえおれの胸の傷を見ても誰かわからねぇのか？\\
+そうか　おまえ死にたいのか・・・\\
+もう一度だけチャンスをやろう！　おれの名をいってみろ！！\\
+ほ〜〜〜　それではおれの名をいってみろ！！\\
+おれはウソが大きれぇなんだ！！　不発か・・・　運がよかったな　ん！？　おい\\
+肝の小せぇやろうだ・・・　ショック死しやがった・・・\\
+なにを勘違いしている　この女はおれがもらった！！\\
+フフフッ・・・おまえら〜〜〜〜　おれの名をいってみろ！！\\
+\end{abstract}
+
+%%%%%%%%%%%% 目次 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\tableofcontents
+\clearpage
+\setcounter{page}{0}
+\pagenumbering{arabic}
+
+%%%%%%%%%%%% 1章 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{はじめに}
+いきなり定理
+\begin{theorem}[内田の定理]
+内田が肯定した事実は全て真実である．そこに一切の虚偽，虚構は存在し得ない．
+\end{theorem}
+\section{はじめにのはじめに}
+\section{はじめにのつぎに}
+
+\begin{lemma}[最初の補題]
+これは補題です．
+\end{lemma}
+
+\begin{proposition}[最初の命題]
+これは命題です．
+\end{proposition}
+
+\begin{corollary}[最初の系]
+これは系です．
+\end{corollary}
+
+\begin{proof}
+これは自明です．
+\end{proof}
+
+\begin{definition}[最初の定義]
+私はこれを「あれ」と呼びます．
+\end{definition}
+
+\begin{example}[最初の例題]
+これは例題です．
+\end{example}
+%%%%%%%%%%%% 2章 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{つぎに}
+
+%%%%%%%%%%%% 3章 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{なか押し}
+
+%%%%%%%%%%%% 4章 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{ダメ押し}
+
+%%%%%%%%%%%% 5章 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{むすび}
+
+%%%%%%%%%%%% 謝辞 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{acknowledgement}
+みんな本当にありがとう・・・．
+\end{acknowledgement}
+
+%%%%%%%%%%%% 参考文献 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%適当に変えてねー．
+\begin{thebibliography}{99}
+\bibitem{a} Reference 1
+\bibitem{b} Reference 2
+\end{thebibliography}
+%\bibliographystyle{myjunsrt}
+%\bibliography{refs}
+
+\end{document}
