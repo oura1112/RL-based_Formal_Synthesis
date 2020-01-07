@@ -6,13 +6,13 @@
 \contentsline {subsubsection}{First Subsubsection}{1}% 
 \contentsline {chapter}{\numberline {2}2nd Chapter}{2}% 
 \contentsline {section}{\numberline {2.1}Markov Decision Processes and Reinforcement Learning}{2}% 
-\contentsline {section}{\numberline {2.2}Stochastic Discrete Event Systems}{3}% 
-\contentsline {section}{\numberline {2.3}Linear Temporal Logic and Automata}{4}% 
-\contentsline {chapter}{\numberline {3}3rd Chapter}{7}% 
-\contentsline {section}{\numberline {3.1}Reinforcement-Learning-Based Synthesis of Control Policy}{7}% 
-\contentsline {section}{\numberline {3.2}Example}{9}% 
-\contentsline {chapter}{\numberline {4}4th Chapter}{13}% 
-\contentsline {chapter}{\numberline {5}Conclusions}{14}% 
-\contentsline {chapter}{\numberline {A}Proofs}{15}% 
-\contentsline {chapter}{Acknowledgment}{18}% 
-\contentsline {chapter}{References}{19}% 
+\contentsline {section}{\numberline {2.2}Stochastic Discrete Event Systems}{4}% 
+\contentsline {section}{\numberline {2.3}Linear Temporal Logic and Automata}{5}% 
+\contentsline {chapter}{\numberline {3}3rd Chapter}{8}% 
+\contentsline {section}{\numberline {3.1}Reinforcement-Learning-Based Synthesis of Control Policy}{8}% 
+\contentsline {section}{\numberline {3.2}Example}{10}% 
+\contentsline {chapter}{\numberline {4}4th Chapter}{14}% 
+\contentsline {chapter}{\numberline {5}Conclusions}{15}% 
+\contentsline {chapter}{\numberline {A}Proofs}{16}% 
+\contentsline {chapter}{Acknowledgment}{19}% 
+\contentsline {chapter}{References}{20}% 

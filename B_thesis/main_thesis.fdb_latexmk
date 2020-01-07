@@ -1,9 +1,9 @@
 # Fdb version 3
-["dvipdf"] 1578387872 "main_thesis.dvi" "main_thesis.pdf" "main_thesis" 1578387875
-  "main_thesis.dvi" 1578387872 74396 65860097a4df567e2d690b7817895832 "latex"
+["dvipdf"] 1578391385 "main_thesis.dvi" "main_thesis.pdf" "main_thesis" 1578391388
+  "main_thesis.dvi" 1578391385 78508 9c24fea264988c87a3cc1a04d7e4865d "latex"
   (generated)
   "main_thesis.pdf"
-["latex"] 1578387871 "main_thesis.tex" "main_thesis.dvi" "main_thesis" 1578387875
+["latex"] 1578391384 "main_thesis.tex" "main_thesis.dvi" "main_thesis" 1578391388
   "Abate_policy.png" 1578387730 8562 259390f41d8d8c09a15a15cd53a4f6b3 ""
   "MDP_corridor.PNG" 1578387730 12036 b7670ce6e9ea1a633408317c520a965d ""
   "MDP_corridor.png" 1578387730 12036 b7670ce6e9ea1a633408317c520a965d ""
@@ -83,13 +83,13 @@
   "ep_1000_it_10000_MDP3_gamma_095_re2_ini22_nts_c095_20times.png" 1578387730 30368 326658acf6fa4dfc80fc594040e760f2 ""
   "ldgba.pdf" 1578387730 7644 4b28959d88bec0b22c01d50c8a1bcfb8 ""
   "ldgba_original.pdf" 1578387730 4747 1df07183e3250df3beca16fd27061ff4 ""
-  "main_thesis.aux" 1578387872 5916 f9b3bcb330dafe1eb19e74c0246ebd93 "latex"
-  "main_thesis.tex" 1578387871 52957 23dd9eaf83076c8ddcc019ca8a569062 ""
-  "main_thesis.toc" 1578387872 1143 5afaf730d5c5daa0ceacc0a33d608cfd "latex"
+  "main_thesis.aux" 1578391385 5920 4690feff94748bae5039843ca6d25dda "latex"
+  "main_thesis.tex" 1578391382 55592 10e0f56173e0caf7299aba5be43015a2 ""
+  "main_thesis.toc" 1578391385 1144 42f5863a9c9c125f2f3a59361f326b53 "latex"
   "proposed_policy.png" 1578387730 9025 932453edadd7645402707695cfa45510 ""
   "thesis.sty" 1578372970 4457 19dfc45703e3907faa88afdc81deb305 ""
   (generated)
-  "main_thesis.dvi"
   "main_thesis.aux"
-  "main_thesis.toc"
+  "main_thesis.dvi"
   "main_thesis.log"
+  "main_thesis.toc"
