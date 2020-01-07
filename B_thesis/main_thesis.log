@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.sjis) (TeX Live 2019/W32TeX) (preloaded format=platex 2019.9.9)  7 JAN 2020 17:39
+This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.sjis) (TeX Live 2019/W32TeX) (preloaded format=platex 2019.9.9)  7 JAN 2020 18:04
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -367,23 +367,16 @@ Underfull \hbox (badness 1297) in paragraph at lines 341--342
 [7
 
 ] [8]
-
-LaTeX Warning: File `MDP_corridor.png' not found on input line 426.
-
 File: MDP_corridor.png Graphic file (type eps)
-<MDP_corridor.png>
+ <MDP_corridor.png>
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
 (Font)              scaled to size 5.76599pt on input line 428.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 (Font)              scaled to size 8.64899pt on input line 428.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 (Font)              scaled to size 5.76599pt on input line 428.
-
-
-LaTeX Warning: File `ldgba_original.pdf' not found on input line 436.
-
 File: ldgba_original.pdf Graphic file (type eps)
-<ldgba_original.pdf>
+ <ldgba_original.pdf>
 LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <9> not available
 (Font)              Font shape `JT1/gt/m/n' tried instead on input line 437.
 LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
@@ -396,36 +389,29 @@ LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
 (Font)              scaled to size 5.76599pt on input line 437.
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <9> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 437.
-
-
-LaTeX Warning: File `ldgba.pdf' not found on input line 444.
-
 File: ldgba.pdf Graphic file (type eps)
-<ldgba.pdf> [9] [10] [11]
-
-LaTeX Warning: File `ep_1000_it_10000_MDP3_gamma_095_re2_ini22_nts_c095_20times.png' not found on input line 487.
-
+ <ldgba.pdf> [9] [10] [11]
 File: ep_1000_it_10000_MDP3_gamma_095_re2_ini22_nts_c095_20times.png Graphic file (type eps)
-<ep_1000_it_10000_MDP3_gamma_095_re2_ini22_nts_c095_20times.png>
-
-LaTeX Warning: File `ep_1000_it_10000_MDP3_gamma_095_nts_c095_abate_20times.png' not found on input line 493.
+ <ep_1000_it_10000_MDP3_gamma_095_re2_ini22_nts_c095_20times.png>
+Overfull \hbox (4.98335pt too wide) in paragraph at lines 487--488
+ [][] 
+ []
 
 File: ep_1000_it_10000_MDP3_gamma_095_nts_c095_abate_20times.png Graphic file (type eps)
 <ep_1000_it_10000_MDP3_gamma_095_nts_c095_abate_20times.png>
+Overfull \hbox (4.98335pt too wide) in paragraph at lines 493--494
+ [][] 
+ []
+
+
 Overfull \hbox (15.33334pt too wide) in paragraph at lines 483--496
  [][][][] 
  []
 
-
-LaTeX Warning: File `proposed_policy.png' not found on input line 505.
-
 File: proposed_policy.png Graphic file (type eps)
 <proposed_policy.png>
-
-LaTeX Warning: File `Abate_policy.png' not found on input line 510.
-
 File: Abate_policy.png Graphic file (type eps)
-<Abate_policy.png>
+ <Abate_policy.png>
 Overfull \hbox (14.55109pt too wide) in paragraph at lines 502--513
  [][][][] 
  []
@@ -476,4 +462,4 @@ Here is how much of TeX's memory you used:
  934 hyphenation exceptions out of 8191
  27i,18n,32p,1735b,571s stack positions out of 5000i,500n,10000p,500000b,80000s
 
-Output written on main_thesis.dvi (23 pages, 74392 bytes).
+Output written on main_thesis.dvi (23 pages, 74396 bytes).

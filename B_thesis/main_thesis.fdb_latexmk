@@ -1,11 +1,12 @@
 # Fdb version 3
-["dvipdf"] 1578386342 "main_thesis.dvi" "main_thesis.pdf" "main_thesis" 1578386346
-  "main_thesis.dvi" 1578386342 74392 95bf7a344d8db80fb1af2ad663448570 "latex"
+["dvipdf"] 1578387872 "main_thesis.dvi" "main_thesis.pdf" "main_thesis" 1578387875
+  "main_thesis.dvi" 1578387872 74396 65860097a4df567e2d690b7817895832 "latex"
   (generated)
   "main_thesis.pdf"
-["latex"] 1578386340 "main_thesis.tex" "main_thesis.dvi" "main_thesis" 1578386346
-  "Abate_policy.png" 0 -1 0 ""
-  "MDP_corridor.png" 0 -1 0 ""
+["latex"] 1578387871 "main_thesis.tex" "main_thesis.dvi" "main_thesis" 1578387875
+  "Abate_policy.png" 1578387730 8562 259390f41d8d8c09a15a15cd53a4f6b3 ""
+  "MDP_corridor.PNG" 1578387730 12036 b7670ce6e9ea1a633408317c520a965d ""
+  "MDP_corridor.png" 1578387730 12036 b7670ce6e9ea1a633408317c520a965d ""
   "book2report.sty" 1578372970 489 49cebf0210780aa6683c8f6e7a12609c ""
   "c:/w32tex/share/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/jis/jis.tfm" 1519818042 468 53f854284f6afa6c36aaa2d1090ecc12 ""
@@ -78,17 +79,17 @@
   "c:/w32tex/share/texmf-dist/tex/platex/jsclasses/jslogo.sty" 1564048108 6025 c6eb7b869bc73b37a7116f5af977422f ""
   "c:/w32tex/share/texmf-dist/web2c/eptex/platex.fmt" 1567983041 4528567 607c2d5550c5e089833aedf81dffed8f ""
   "c:/w32tex/share/texmf-dist/web2c/texmf.cnf" 1569228113 36614 36bcba4138d21dc48ee03f08b1e2dd36 ""
-  "ep_1000_it_10000_MDP3_gamma_095_nts_c095_abate_20times.png" 0 -1 0 ""
-  "ep_1000_it_10000_MDP3_gamma_095_re2_ini22_nts_c095_20times.png" 0 -1 0 ""
-  "ldgba.pdf" 0 -1 0 ""
-  "ldgba_original.pdf" 0 -1 0 ""
-  "main_thesis.aux" 1578386342 5916 f9b3bcb330dafe1eb19e74c0246ebd93 "latex"
-  "main_thesis.tex" 1578386340 52965 cc4553ba59afae642394f4e471f51cd8 ""
-  "main_thesis.toc" 1578386342 1143 5afaf730d5c5daa0ceacc0a33d608cfd "latex"
-  "proposed_policy.png" 0 -1 0 ""
+  "ep_1000_it_10000_MDP3_gamma_095_nts_c095_abate_20times.png" 1578387730 20519 de53e97f99c34612b45619c01d8a9088 ""
+  "ep_1000_it_10000_MDP3_gamma_095_re2_ini22_nts_c095_20times.png" 1578387730 30368 326658acf6fa4dfc80fc594040e760f2 ""
+  "ldgba.pdf" 1578387730 7644 4b28959d88bec0b22c01d50c8a1bcfb8 ""
+  "ldgba_original.pdf" 1578387730 4747 1df07183e3250df3beca16fd27061ff4 ""
+  "main_thesis.aux" 1578387872 5916 f9b3bcb330dafe1eb19e74c0246ebd93 "latex"
+  "main_thesis.tex" 1578387871 52957 23dd9eaf83076c8ddcc019ca8a569062 ""
+  "main_thesis.toc" 1578387872 1143 5afaf730d5c5daa0ceacc0a33d608cfd "latex"
+  "proposed_policy.png" 1578387730 9025 932453edadd7645402707695cfa45510 ""
   "thesis.sty" 1578372970 4457 19dfc45703e3907faa88afdc81deb305 ""
   (generated)
-  "main_thesis.aux"
   "main_thesis.dvi"
+  "main_thesis.aux"
   "main_thesis.toc"
   "main_thesis.log"
