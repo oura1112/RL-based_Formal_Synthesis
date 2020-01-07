@@ -1,0 +1,4 @@
+PWD C:/Users/ooura/Documents/GitHub/Chap2/Chap2_seminar
+INPUT c:/w32tex/share/texmf-dist/web2c/texmf.cnf
+INPUT c:/w32tex/share/texmf-dist/web2c/pdftex/pdflatex.fmt
+INPUT system_model2.tex

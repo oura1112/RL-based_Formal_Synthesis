@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2018.4.26)  4 JAN 2020 22:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2018.4.26)  6 JAN 2020 10:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**system_model.tex
-(./system_model.tex
+**system_model2.tex
+(./system_model2.tex
 LaTeX2e <2018-04-01> patch level 3
 Babel <3.19> and hyphenation patterns for 84 language(s) loaded.
 (./ieeeconf.cls
@@ -237,8 +237,8 @@ Package: listings 2015/06/04 1.6 (Carsten Heinz)
 \c@lemma=\count120
 \c@prop=\count121
 \c@definition=\count122
- (./system_model.aux)
-\openout1 = `system_model.aux'.
+ (./system_model2.aux)
+\openout1 = `system_model2.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
 LaTeX Font Info:    ... okay on input line 39.
@@ -325,76 +325,67 @@ Underfull \hbox (badness 5787) in paragraph at lines 63--65
  []
 
 
-Overfull \hbox (13.66307pt too wide) detected at line 108
+Overfull \hbox (7.18527pt too wide) detected at line 96
+[]
+ []
+
+
+Overfull \hbox (24.4725pt too wide) detected at line 102
 []
  []
 
 [1
 
 {c:/w32tex/share/texmf-dist/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (24.4725pt too wide) detected at line 114
+Overfull \hbox (4.54388pt too wide) detected at line 129
 []
  []
 
 
-Overfull \hbox (4.54388pt too wide) detected at line 141
-[]
+Underfull \hbox (badness 10000) in paragraph at lines 145--147
+\OT1/ptm/m/n/10 where $\OML/cmm/m/it/10 ^^^[]$ \OT1/ptm/m/n/10 is the $\OML/cmm/m/it/10 i$\OT1/ptm/m/n/10 -th el-e-ment of $\OML/cmm/m/it/10 ^^^[]$ \OT1/ptm/m/n/10 and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--168
-[] []$\OML/cmm/m/it/10 T\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s[]; e\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10   \OT1/cmr/m/n/10 (1 \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 \OT1/cmr/m/n/10 )\OML/cmm/m/it/10 T\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s[]; e\OT1/cmr/m/n/10 ) +
+Underfull \hbox (badness 10000) in paragraph at lines 145--147
+\OML/cmm/m/it/10 RestProb\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^^[]; ^^Y\OT1/cmr/m/n/10 )[]$ \OT1/ptm/m/n/10 is the $\OML/cmm/m/it/10 i$\OT1/ptm/m/n/10 -th el-e-ment of
  []
 
-
-Overfull \hbox (33.48805pt too wide) detected at line 177
-[]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 179--180
-[]$\OML/cmm/m/it/10 Q\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s[]; ^^Y[]\OT1/cmr/m/n/10 ) = \OMS/cmsy/m/n/10 R[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s[]; ^^Y[]\OT1/cmr/m/n/10 ) +
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 210--211
-[] []$\OML/cmm/m/it/10 Q\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s[]; ^^Y\OT1/cmr/m/n/10 ) = \OMS/cmsy/m/n/10 R[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s[]; ^^Y\OT1/cmr/m/n/10 ) +
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 211--212
-[] []$\OML/cmm/m/it/10 T\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s[]; e\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10   \OT1/cmr/m/n/10 (1 \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 \OT1/cmr/m/n/10 )\OML/cmm/m/it/10 T\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s[]; e\OT1/cmr/m/n/10 ) +
- []
-
-[2] Excluding 'comment' comment.
-<cat_mouse.png, id=25, 344.9688pt x 235.1184pt>
-File: cat_mouse.png Graphic file (type png)
-<use cat_mouse.png>
-Package pdftex.def Info: cat_mouse.png  used on input line 253.
-(pdftex.def)             Requested size: 113.81102pt x 77.56776pt.
-Package pdftex.def Info: Option `bb' equivalent to `viewport' with pdftex driver on input line 262.
-<ldgba_original.pdf, id=27, 247.93628pt x 80.40038pt>
-File: ldgba_original.pdf Graphic file (type pdf)
-<use ldgba_original.pdf>
-Package pdftex.def Info: ldgba_original.pdf  used on input line 262.
-(pdftex.def)             Requested size: 210.73882pt x 68.25548pt.
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 263.
- (c:/w32tex/share/texmf-dist/tex/latex/psnfss/omsptm.fd
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 193.
+(c:/w32tex/share/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 193.
+ [2] Excluding 'comment' comment.
+<cat_mouse.png, id=24, 344.9688pt x 235.1184pt>
+File: cat_mouse.png Graphic file (type png)
+<use cat_mouse.png>
+Package pdftex.def Info: cat_mouse.png  used on input line 235.
+(pdftex.def)             Requested size: 199.16928pt x 135.75168pt.
+Package pdftex.def Info: Option `bb' equivalent to `viewport' with pdftex driver on input line 244.
+<ldgba_original.pdf, id=26, 247.93628pt x 80.40038pt>
+File: ldgba_original.pdf Graphic file (type pdf)
+<use ldgba_original.pdf>
+Package pdftex.def Info: ldgba_original.pdf  used on input line 244.
+(pdftex.def)             Requested size: 210.73882pt x 68.25548pt.
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 263.
-<epi20000_step20000_gamma099_ses1_re10_cost01_01_su2.png, id=28, 462.528pt x 346.896pt>
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 245.
+<epi20000_step20000_gamma099_ses1_re10_cost01_01_su2.png, id=27, 462.528pt x 346.896pt>
 File: epi20000_step20000_gamma099_ses1_re10_cost01_01_su2.png Graphic file (type png)
 <use epi20000_step20000_gamma099_ses1_re10_cost01_01_su2.png>
-Package pdftex.def Info: epi20000_step20000_gamma099_ses1_re10_cost01_01_su2.png  used on input line 271.
+Package pdftex.def Info: epi20000_step20000_gamma099_ses1_re10_cost01_01_su2.png  used on input line 253.
 (pdftex.def)             Requested size: 227.62204pt x 170.71628pt.
-<epi20000_step20000_gamma099_ses1_re10_cost01_01_Q-T_su2.png, id=29, 462.528pt x 346.896pt>
+<epi20000_step20000_gamma099_ses1_re10_cost01_01_Q-T_su2.png, id=28, 462.528pt x 346.896pt>
 File: epi20000_step20000_gamma099_ses1_re10_cost01_01_Q-T_su2.png Graphic file (type png)
 <use epi20000_step20000_gamma099_ses1_re10_cost01_01_Q-T_su2.png>
-Package pdftex.def Info: epi20000_step20000_gamma099_ses1_re10_cost01_01_Q-T_su2.png  used on input line 280.
+Package pdftex.def Info: epi20000_step20000_gamma099_ses1_re10_cost01_01_Q-T_su2.png  used on input line 262.
 (pdftex.def)             Requested size: 227.62204pt x 170.71628pt.
- Excluding 'comment' comment.
+
+
+LaTeX Warning: Reference `alg2' on page 3 undefined on input line 263.
+
+Excluding 'comment' comment.
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -406,21 +397,25 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the US letter (8.5in X 11in) paper size.
 
-[3 <./cat_mouse.png> <./ldgba_original.pdf> <./epi20000_step20000_gamma099_ses1_re10_cost01_01_su2.png> <./epi20000_step20000_gamma099_ses1_re10_cost01_01_Q-T_su2.png>] (./system_model.aux) ) 
+[3 <./cat_mouse.png> <./ldgba_original.pdf> <./epi20000_step20000_gamma099_ses1_re10_cost01_01_su2.png> <./epi20000_step20000_gamma099_ses1_re10_cost01_01_Q-T_su2.png>] (./system_model2.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 4786 strings out of 492649
- 67566 string characters out of 6131955
- 165363 words of memory out of 5000000
- 8572 multiletter control sequences out of 15000+600000
+ 4789 strings out of 492649
+ 67614 string characters out of 6131955
+ 158363 words of memory out of 5000000
+ 8575 multiletter control sequences out of 15000+600000
  42371 words of font info for 98 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,19n,32p,1804b,607s stack positions out of 5000i,500n,10000p,500000b,80000s
-{c:/w32tex/share/texmf-dist/fonts/enc/dvips/psnfss/8r.enc}<c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmr7.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/w32tex/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/w32tex/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/w32tex/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on system_model.pdf (3 pages, 304880 bytes).
+ 41i,17n,32p,1805b,508s stack positions out of 5000i,500n,10000p,500000b,80000s
+{c:/w32tex/share/texmf-dist/fonts/enc/dvips/psnfss/8r.enc}<c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/w32tex/share/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmsy8.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/w32tex/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/w32tex/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/w32tex/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on system_model2.pdf (3 pages, 299263 bytes).
 PDF statistics:
- 113 PDF objects out of 1000 (max. 8388607)
- 80 compressed objects within 1 object stream
+ 109 PDF objects out of 1000 (max. 8388607)
+ 77 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

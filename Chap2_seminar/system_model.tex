@@ -41,7 +41,7 @@
 \section{System Model}
 
 \begin{definition}
-We represent a probabilistic discrete event system (DES) as a labeled Markov decision process (MDP). A DES is a tuple $M$ = $(S, E, \mathcal{E}, P_T, s_{init}, AP, L)$, where S is a finite set of states; $E$ is a finite set of events; $\mathcal{E} : S \rightarrow E$ is a mapping that maps each state to the set of feasible events at the state; $P_T:S \times S \times E \rightarrow [0,1]$ is a transition probability such that $\sum_{s' \in S} P_T(s'|s,e) = 1$ for any state $s \in S$ and any event $e \in \mathcal{E}(s) $ and $P_T(s'|s,e) = 0$ for any $e \notin \mathcal{E}(s)$; $s_{init} \in S$ is the initial state; $AP$ is a finite set of atomic propositions; and $L : S \times E \times S \rightarrow 2^{AP}$ is a labeling function that assigns a set of atomic propositions to each transition $(s, e, s') \in S \times E \times S$. We assume that $E$ can be partitioned into the set of controllable events $E_c$ and the set of uncontrollable events $E_{uc}$ such that $E_c \cup E_{uc} = E$ and $E_c \cap E_{uc} = \emptyset$. Note that each event $e$ occurs probabilistically depending on only the current state and the subset of feasible events at the state given by a controller. We define a reward function $\mathcal{R} : S \times 2^E \times E \times S \rightarrow \mathbb{R}$.
+We represent a probabilistic discrete event system (DES) as a labeled Markov decision process (MDP). A DES is a tuple $M$ = $(S, E, \mathcal{E}, P_T, P_E, s_{init}, AP, L)$, where S is a finite set of states; $E$ is a finite set of events; $\mathcal{E} : S \rightarrow E$ is a mapping that maps each state to the set of feasible events at the state; $P_T:S \times S \times E \rightarrow [0,1]$ is a transition probability such that $\sum_{s' \in S} P_T(s'|s,e) = 1$ for any state $s \in S$ and any event $e \in \mathcal{E}(s) $ and $P_T(s'|s,e) = 0$ for any $e \notin \mathcal{E}(s)$; $P_E : E \times S \times 2^E \rightarrow [0,1]$ is the probability that an event occurs under a subset $\pi \in \mathcal{E}(s)$ of events allowed to occur at the state $s \in S$ such that $\Sigma_{e \in \pi} P_E(e|s,\pi) = 1$ and we call the subset the control pattern; for any $(s^{\prime}, s, \pi) \in S \times S \times 2^E$, we define the probability $P : S \times S \times 2^{E} \rightarrow [0,1]$ such that $P(s'|s,\pi) = \sum_{e \in \pi}P_E(e|s,\pi) P_T(s^{\prime}|s,e)$ and $\Sigma_{s^{\prime} \in S} P(s'|s,\pi) = 1$; $s_{init} \in S$ is the initial state; $AP$ is a finite set of atomic propositions; and $L : S \times E \times S \rightarrow 2^{AP}$ is a labeling function that assigns a set of atomic propositions to each transition $(s, e, s') \in S \times E \times S$. We assume that $E$ can be partitioned into the set of controllable events $E_c$ and the set of uncontrollable events $E_{uc}$ such that $E_c \cup E_{uc} = E$ and $E_c \cap E_{uc} = \emptyset$. Note that each event $e$ occurs probabilistically depending on only the current state and the subset of feasible events at the state given by a controller.
 
 In the DES $M$, an infinite path starting from a state $s_0 \in S$ is defined as a sequence $\rho\ =\ s_0e_0s_1 \ldots\ \in S (E S)^{\omega}$ such that $P_T(s_{i+1}|s_i, e_i) > 0$ for any $ i \in \mathbb{N}_0$, where $\mathbb{N}_0$ is the set of natural numbers including zero A finite path is a finite sequence in $S (E S)^*$. In addition, we sometimes represent $\rho$ as $\rho_{init}$ to emphasize that $\rho$ starts from $s_0 = s_{init}$.
 For a path $\rho\ =\ s_0e_0s_1 \ldots$, we define the corresponding labeled path $L(\rho)\ =\ L(s_0,e_0,s_1)L(s_1,e_1,s_2) \ldots \in (2^{AP})^{\omega}$.
@@ -52,7 +52,7 @@ For a path $\rho\ =\ s_0e_0s_1 \ldots$, we define the corresponding labeled path
 We define the supervisor as a controller for the DES that restricts the behaviors of the DES to satisfy a given specification.
 
 \begin{definition}
-For the DES $M$,  a supervisor $SV : FinPath^{M} \rightarrow 2^E$ is defined as a mapping that maps each finite path to a set of allowed events at the finite path and we call the set the control pattern. In the following, the supervisor we consider is {\it state-based}, namely for any $\rho \in FinPath^{M}$, $SV(\rho) = SV(last(\rho))$. Note that the relation $E_{uc} \subset SV(s) \subset E$ holds.
+For the DES $M$,  a supervisor $SV : FinPath^{M} \rightarrow 2^E$ is defined as a mapping that maps each finite path to a set of allowed events at the finite path and we call the set the control pattern. In the following, the supervisor we consider is {\it state-based}, namely for any $\rho \in FinPath^{M}$, $SV(\rho) = SV(last(\rho))$. Note that the relation $E_{uc} \subset SV(\rho) \subset E$ holds for any $\rho \in FinPath^M$.
 \end{definition}
 
 \begin{definition}
@@ -60,7 +60,7 @@ For the DES $M$,  a supervisor $SV : FinPath^{M} \rightarrow 2^E$ is defined as 
 \end{definition}
 
 \begin{definition}
-  Given an augmented tLDBA $\bar{B}_{\varphi} = (\bar{X}, \bar{x}_{init},\bar{\Sigma},\bar{\delta},\bar{\mathcal{F}})$ and a DES $M$, a tuple $M \otimes \bar{B}_{\varphi} = M^{\otimes} = (S^{\otimes}, E^{\otimes}, {\mathcal E}^{\otimes}, s_{init}^{\otimes}, P^{\otimes}_T, \delta^{\otimes}, {\mathcal F}^{\otimes})$ is a product DES, where
+  Given an augmented tLDBA $\bar{B}_{\varphi} = (\bar{X}, \bar{x}_{init},\bar{\Sigma},\bar{\delta},\bar{\mathcal{F}})$ and a DES $M$, a tuple $M \otimes \bar{B}_{\varphi} = M^{\otimes} = (S^{\otimes}, E^{\otimes}, {\mathcal E}^{\otimes}, s_{init}^{\otimes}, P^{\otimes}_T, P^{\otimes}_E, \delta^{\otimes}, {\mathcal F}^{\otimes})$ is a product DES, where
   $S^{\otimes} = S \times \bar{X}$ is the finite set of states and we represent $s$ and $\bar{x}$ corresponding with $s^{\otimes} = (s,\bar{x}) \in S^{\otimes}$ as $\mysps$ and $\myspq$, respectively, $E^{\otimes}=E$ is the finite set of events, ${\mathcal E}^{\otimes} : S^{\otimes} \rightarrow 2^{E^{\otimes}}$ is the mapping defined as ${\mathcal E}^{\otimes}((s,\bar{x})) = {\mathcal E}(s)$, $s_{init}^{\otimes} = (s_{init},\bar{x}_{init})$ is the initial states, $P^{\otimes}_T : S^{\otimes} \times S^{\otimes} \times E^{\otimes} \rightarrow [0,1]$ is the transition probability defined as
   \begin{align}
     P^{\otimes}_T(s^{\otimes \prime} | s^{\otimes}, e) =
@@ -71,7 +71,7 @@ For the DES $M$,  a supervisor $SV : FinPath^{M} \rightarrow 2^E$ is defined as 
     \end{aligned}
     \right. \nonumber
   \end{align}
-  $\delta^{\otimes} = \{ (s^{\otimes}, e, s^{\otimes \prime}) \in S^{\otimes} \times E^{\otimes} \times S^{\otimes} ; P^{\otimes}_T(s^{\otimes \prime} | s^{\otimes}, e) > 0 \}$ is the set of transitions, and ${\mathcal F}^{\otimes} = \{ \bar{F}^{\otimes}_1, \ldots ,\bar{F}^{\otimes}_n \}$ is the acceptance condition, where $\bar{F}^{\otimes}_i = \{ ((s,\bar{x}), e, (s^{\prime}, \bar{x}^{\prime})) \in \delta^{\otimes}\ ;\ (\bar{x}, L(s,e,s^{\prime}), \bar{x}^{\prime}) \in \bar{F}_i \}$ for each $ i \in \{ 1, \ldots ,n \}$.
+  $P^{\otimes}_E : E^{\otimes} \times S^{\otimes} \times 2^{E^{\otimes}} \rightarrow [0,1]$ is the probability of the occurrence of the event defined as $P^{\otimes}_E(e | s^{\otimes}, \pi) = P_E(e | s, \pi)$, $\delta^{\otimes} = \{ (s^{\otimes}, e, s^{\otimes \prime}) \in S^{\otimes} \times E^{\otimes} \times S^{\otimes} ; P^{\otimes}_T(s^{\otimes \prime} | s^{\otimes}, e) > 0 \}$ is the set of transitions, and ${\mathcal F}^{\otimes} = \{ \bar{F}^{\otimes}_1, \ldots ,\bar{F}^{\otimes}_n \}$ is the acceptance condition, where $\bar{F}^{\otimes}_i = \{ ((s,\bar{x}), e, (s^{\prime}, \bar{x}^{\prime})) \in \delta^{\otimes}\ ;\ (\bar{x}, L(s,e,s^{\prime}), \bar{x}^{\prime}) \in \bar{F}_i \}$ for each $ i \in \{ 1, \ldots ,n \}$.
 \end{definition}
 
 \section{Objective function for Control patterns}
@@ -80,7 +80,7 @@ From the view point of reinforcement learning, the DES can be interpreted as the
 \begin{enumerate}
   \item state transitions in the DES occur after a probabilistic occurrence of an event. Therefore, for any $(s^{\prime}, s, \pi) \in S \times S \times 2^E$, we assume that the following equation.
   \begin{align}
-    P(s'|s,\pi) = \sum_{e \in \pi}P_1(e|s,\pi) P_T(s^{\prime}|s,e),
+    P(s'|s,\pi) = \sum_{e \in \pi}P_E(e|s,\pi) P_T(s^{\prime}|s,e),
   \end{align}
   where $P_1 : E \times S \times 2^E$ is the probability that an event occurs after a control pattern $\pi \in \mathcal{E}(s)$ is selected by the supervisor at the state $s \in S$ and $P : S \times S \times 2^E$ is interpreted as the probability that a state transition occurs under that the control pattern is given by the supervisor at the current state.
 
@@ -89,7 +89,7 @@ From the view point of reinforcement learning, the DES can be interpreted as the
     P_T(e|s,\pi) = \frac{\eta(s,e)}{\sum_{e^{\prime} \in \pi} \eta(s,e^{\prime})}.
   \end{align}
 
-  \item The reward $\mathcal{R}$ can be decomposed into $\mathcal{R}_1$ and $\mathcal{R}_2$. The first reward $\mathcal{R}_1 : S \times 2^E \rightarrow \mathbb{R}$ is the reward that is determined by the control pattern selected by the supervisor, which depends on only the control pattern and current state. The second reward $\mathcal{R}_2 : S \times E \times S \rightarrow \mathbb{R}$ is the reward that is determined by the occurrence of an event and the corresponding state transition. For any $(s,\pi,e,s^{\prime}) \in S \times 2^E \times E \times S$, we then have
+  \item We define a reward function $\mathcal{R} : S \times 2^E \times E \times S \rightarrow \mathbb{R}$. The reward $\mathcal{R}$ can be decomposed into $\mathcal{R}_1$ and $\mathcal{R}_2$. The first reward $\mathcal{R}_1 : S \times 2^E \rightarrow \mathbb{R}$ is the reward that is determined by the control pattern selected by the supervisor, which depends on only the control pattern and current state. The second reward $\mathcal{R}_2 : S \times E \times S \rightarrow \mathbb{R}$ is the reward that is determined by the occurrence of an event and the corresponding state transition. For any $(s,\pi,e,s^{\prime}) \in S \times 2^E \times E \times S$, we then have
   \begin{align}
     \mathcal{R}(s,\pi,e,s^{\prime}) = \mathcal{R}_1(s,\pi) + \mathcal{R}_2(s,e,s^{\prime}).
   \end{align}
@@ -250,7 +250,7 @@ Fig.\ \ref{result3} shows the the average reward from $\mathcal{R}_2$ and the av
    \centering
    \vspace{2mm}
 %   \includegraphics[bb=140 498 368 682,width=5cm]{automaton1.pdf}
-   \includegraphics[width = 7cm]{cat_mouse.png}
+   \includegraphics[width=4cm]{cat_mouse.png}
    \caption{The maze of the cat and the mouse. the initial state of the cat and the mouse is $s_0$ and $s_2$, respectively. the food for them is in the room 1 ($s_1$).}
    \label{cat_mouse}
 \end{figure}

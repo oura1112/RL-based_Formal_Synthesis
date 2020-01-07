@@ -66,9 +66,9 @@ class Product_Grid1(AugAutomaton.AugAutomaton, Grid_World1.Grid_World2):
         
         for prohibit_event in prohibit_pi:
             if prohibit_event in cat_doors:
-                prohibit_cost -= 0
+                prohibit_cost -= 0.5
             elif prohibit_event in mouse_doors:
-                prohibit_cost -= 0
+                prohibit_cost -= 0.5
         
         return prohibit_cost
     """   
