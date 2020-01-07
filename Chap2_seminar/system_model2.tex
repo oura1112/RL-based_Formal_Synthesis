@@ -91,7 +91,7 @@ Under the above assumptions, we have the following {\it Bellman optimality equat
   & \left \{ \mathcal{R}(s,\pi,e,s^{\prime}) + \gamma \max_{\pi^{\prime} \in 2^{\mathcal{E}(s^{\prime})}} Q^{\ast}(s^{\prime},\pi^{\prime}) \right \} \nonumber \\
   = & \sum_{s^{\prime} \in S} \sum_{e \in \pi} P_Ee|s,\pi) P_T(s^{\prime}|s,e) \nonumber \\
   & \left \{ \mathcal{R}_1(s,\pi) + \mathcal{R}_2(s,e,s^{\prime}) + \gamma \max_{\pi^{\prime} \in 2^{\mathcal{E}(s^{\prime})}} Q^{\ast}(s^{\prime},\pi^{\prime}) \right \} \nonumber \\
-  = & \mathcal{R}_1(s,\pi) + \sum_{e \in \pi} P_E(e|s,\pi) \sum_{s^{\prime \in S}} P_T(s^{\prime}|s,e)) \nonumber \\
+  = & \mathcal{R}_1(s,\pi) + \sum_{e \in \pi} P_E(e|s,\pi) \sum_{s^{\prime \in S}} P_T(s^{\prime}|s,e) \nonumber \\
   & \left \{ \mathcal{R}_2(s^{\prime}|s,e) + \gamma \max_{\pi^{\prime} \in 2^{\mathcal{E}(s^{\prime})}} Q^{\ast}(s^{\prime}, \pi^{\prime}) \right \},
 \end{align}
 where $\gamma \in [0,1)$.
@@ -162,7 +162,7 @@ Let $p^k_{s,\pi}$ denote the probability vector at the time step $k$ as $p^k_{s,
  \label{bayes}
  \end{algorithm}
 
-Under the estimation of $P_E$, we use TD-learning to estimate $Q^{\ast}$.
+Under the estimation of $P_E$, we use TD-learning to estimate $Q^{\ast}$ with the TD-error defined as $\mathcal{R}_1(s^{\otimes},\pi) + \sum_{e \in \pi} p_{s^{\otimes},\pi,e} T(s^{\otimes},e) - Q(s^{\otimes},\pi)$.
 
 We show the all procedure of learning algorithm in Algorithm \ref{alg1}.
 
@@ -190,7 +190,7 @@ We show the all procedure of learning algorithm in Algorithm \ref{alg1}.
   \STATE $T(s^{\otimes},e) \leftarrow (1-\alpha)T(s^{\otimes},e) + \alpha \{ \mathcal{R}_2(s^{\otimes},e,s^{\otimes \prime}) + \gamma \max_{\pi^{\prime} \in 2^{\mathcal{E}(s^{\otimes \prime})}}Q(s^{\otimes \prime},\pi^{\prime}) \}$
   \STATE $n(s^{\otimes}, \pi, e) \leftarrow n(s^{\otimes}, \pi, e) + 1$
   \STATE Obtain $p_{s^{\otimes},\pi}$ by the $P_E$ inference.
-  \STATE $Q(s^{\otimes},\pi^{\prime}) = (1-\beta)Q(s^{\otimes},\pi^{\prime}) + \beta \{\mathcal{R}_1(s^{\otimes},\pi^{\prime}) + \sum_{e \in \pi} p_{s^{\otimes},\pi,e} T(s^{\otimes},e)$\}
+  \STATE $Q(s^{\otimes},\pi) = (1-\beta)Q(s^{\otimes},\pi) + \beta \{\mathcal{R}_1(s^{\otimes},\pi) + \sum_{e \in \pi} p_{s^{\otimes},\pi,e} T(s^{\otimes},e)$\}
   \STATE $s^{\otimes} \leftarrow s^{\otimes \prime}$
   \STATE $t \leftarrow t + 1$
   \ENDWHILE
@@ -222,9 +222,10 @@ In the example, we want the supervisor to learn to give control patterns satisfy
 The tLDBA $B_{\varphi} = (X, x_{init},\Sigma,\delta,\mathcal{F})$ corresponding to $\varphi$ is shown in Fig.\ \ref{tldba}. $B_{\varphi}$ has the acceptance condition of two accepting sets.
 
 We use $\varepsilon$-greedy policy and gradually reduce $\varepsilon$ to 0 to learn an optimal supervisor asymptotically.
-We set the rewards $r_p = 10$, $r_{n1} = -0.1$, and $r_{n2} = -100$; the epsilon greedy parameter $ \varepsilon = \frac{1}{ \sqrt{episode} }$, where $episode$ is the number of the current episode; and the discount factor $\gamma = 0.99$. $\xi^k_{s^{\otimes},\pi}$ is initially set to 1 and changes to 0.6 from 1/3 to 2/3 of the all episodes and to 0.3 after 2/3 of the all episodes for any $(s^{\otimes},\pi) \in S^{\otimes} \times 2^{E^{\otimes}}$. The learning rate $\alpha$ and $\beta$ vary in accordance with {\it the Robbins-Monro condition}.
+We set the rewards $r_p = 10$, $r_{n1} = -0.1. -0.5, and -1$, and $r_{n2} = -100$; the epsilon greedy parameter $ \varepsilon = \frac{1}{ \sqrt{episode} }$, where $episode$ is the number of the current episode; and the discount factor $\gamma = 0.99$. $\xi^k_{s^{\otimes},\pi}$ is initially set to 1 and changes to 0.6 during 1/3 to 2/3 of all episodes and to 0.3 after 2/3 of all episodes for any $(s^{\otimes},\pi) \in S^{\otimes} \times 2^{E^{\otimes}}$. The learning rate $\alpha$ and $\beta$ vary in accordance with {\it the Robbins-Monro condition}.
 
-Figs.\ \ref{result1} shows the estimated optimal state value function at the initial state $V(s^{\otimes}_{init})$ for each episode when learning 5000 iterations and 15000 episodes by the algorithm \ref{alg1} and the average reward from $\mathcal{R}_2$ and the average cost from $\mathcal{R}_1$ as a result of the learning.
+Figs.\ \ref{result1}, \ref{result2}, and \ref{result3} show the estimated optimal state value function at the initial state $V(s^{\otimes}_{init})$ with $r_{n1} = -0.1. -0.5,$ and $-1$, respectively, for each episode when learning 5000 iterations and 15000 episodes by the algorithm \ref{alg1}.
+Fig.\ \ref{sim1}, \ref{sim2}, and \ref{sim3} shows the average reward from $\mathcal{R}_2$ and the average cost from $\mathcal{R}_1$ with $r_{n1} = -0.1. -0.5,$ and $-1$, respectively, of 5000 iteration and 1000 episodes by the supervisor obtained from the learning.
 \begin{comment}
 Fig.\ \ref{result3} shows the the average reward from $\mathcal{R}_2$ and the average cost from $\mathcal{R}_1$ as a result of the learning when using the algorithm \ref{alg2} {\bf by the same example and the same parameters except that the epsilon greedy parameter $\bf{ \varepsilon = \frac{1}{episode} }$. }
 \end{comment}
@@ -250,8 +251,8 @@ Fig.\ \ref{result3} shows the the average reward from $\mathcal{R}_2$ and the av
    \centering
    \vspace{2mm}
 %   \includegraphics[bb=140 498 368 682,width=5cm]{automaton1.pdf}
-   \includegraphics[width = 8cm]{epi20000_step20000_gamma099_ses1_re10_cost01_01_su2.png}
-   \caption{The result of the learning when using Algorithm \ref{alg1}.}
+   \includegraphics[width = 8cm]{max_Q_value_TD.png}
+   \caption{the estimated optimal state value function at the initial state $V(s^{\otimes}_{init})$ with $r_{n1} = -0.1$ when using the algorithm \ref{alg1}.}
    \label{result1}
 \end{figure}
 
@@ -259,9 +260,45 @@ Fig.\ \ref{result3} shows the the average reward from $\mathcal{R}_2$ and the av
    \centering
    \vspace{2mm}
 %   \includegraphics[bb=140 498 368 682,width=5cm]{automaton1.pdf}
-   \includegraphics[width = 8cm]{epi20000_step20000_gamma099_ses1_re10_cost01_01_Q-T_su2.png}
-   \caption{The result of the learning when using Algorithm \ref{alg2}.}
-   \label{result2}
+   \includegraphics[width = 8cm]{learning_TD_v_15000_5000_rn2_05.png}
+   \caption{the estimated optimal state value function at the initial state $V(s^{\otimes}_{init})$ with $r_{n1} = -0.5$ when using the algorithm \ref{alg1}.}
+   \label{result1}
+\end{figure}
+
+\begin{figure}[htbp]
+   \centering
+   \vspace{2mm}
+%   \includegraphics[bb=140 498 368 682,width=5cm]{automaton1.pdf}
+   \includegraphics[width = 8cm]{max_Q_value_TD_rn2_1.png}
+   \caption{the estimated optimal state value function at the initial state $V(s^{\otimes}_{init})$ with $r_{n1} = -1$ when using the algorithm \ref{alg1}.}
+   \label{result1}
+\end{figure}
+
+\begin{figure}[htbp]
+   \centering
+   \vspace{2mm}
+%   \includegraphics[bb=140 498 368 682,width=5cm]{automaton1.pdf}
+   \includegraphics[width = 8cm]{simulate_TD_v_15000_5000.png}
+   \caption{The average reward and average cost by the supervisor obtained from the learning with $r_{n1} = -0.1$.}
+   \label{sim1}
+\end{figure}
+
+\begin{figure}[htbp]
+   \centering
+   \vspace{2mm}
+%   \includegraphics[bb=140 498 368 682,width=5cm]{automaton1.pdf}
+   \includegraphics[width = 8cm]{simulate_TD_v_15000_5000_rn2_05.png}
+   \caption{The average reward and average cost by the supervisor obtained from the learning with $r_{n1} = -0.5$.}
+   \label{sim1}
+\end{figure}
+
+\begin{figure}[htbp]
+   \centering
+   \vspace{2mm}
+%   \includegraphics[bb=140 498 368 682,width=5cm]{automaton1.pdf}
+   \includegraphics[width = 8cm]{simulate_TD_v_10000_5000_rn2_1.png}
+   \caption{The average reward and average cost by the supervisor obtained from the learning with $r_{n1} = -1$.}
+   \label{sim1}
 \end{figure}
 
 \begin{comment}
