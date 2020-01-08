@@ -888,10 +888,11 @@ The results contradict the optimality assumption of $\pi^{\ast}$.
 \end{proof}
 
 \begin{proof}[Proof of theorem \ref{theorem3-2}]
-  Let $\pi^{\ast}$ be optimal but $Pr^M_{\pi^{\ast}}(\rho_{init} \models \varphi) < 1$. By the definition of $\pi^{\ast}$, there exist a recurrent class $R^{\otimes i}_{\pi^{\ast}}$ such that $\delta^{\otimes}_{\pi^{\ast},i} \cap \bar{F}^{\otimes}_j = \emptyset$ for any accepting set $\bar{F}^{\otimes}_j$. Let $s^{\otimes}$ be a state in $R^{\otimes i}_{\pi^{\ast}}$. By lemma \ref{lemma3-1}, $V^{\pi^{\ast}}(s^{\otimes}) = 0$. Let $\bar{\pi}$ be a policy such that $Pr^M_{\bar{\pi}}(\rho_{init} \models \varphi) = 1$. We consider the following two cases.
+  Let $\pi^{\ast}$ be optimal but $Pr^M_{\pi^{\ast}}(\rho_{init} \models \varphi) < 1$. By the definition of $\pi^{\ast}$, there exist a recurrent class $R^{\otimes i}_{\pi^{\ast}}$ that is accessible from the initial state $s_{init}$ such that $\delta^{\otimes}_{\pi^{\ast},i} \cap \bar{F}^{\otimes}_j = \emptyset$ for any accepting set $\bar{F}^{\otimes}_j$. Let $s^{\otimes}$ be a state in $R^{\otimes i}_{\pi^{\ast}}$. By lemma \ref{lemma3-1}, $V^{\pi^{\ast}}(s^{\otimes}) = 0$. Let $\bar{\pi}$ be a policy such that $Pr^M_{\bar{\pi}}(\rho_{init} \models \varphi) = 1$. We consider the following two cases.
 
   \begin{enumerate}
-    \item Assume that the state &s^{\otimes}
+    \item Assume that the state $s^{\otimes}$ is in a recurrent class $R^{\otimes i}_{\bar{\pi}}$ \\
+
 
   \end{enumerate}
 
