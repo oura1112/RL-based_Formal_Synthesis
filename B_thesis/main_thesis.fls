@@ -42,8 +42,8 @@ INPUT c:/w32tex/share/texmf-dist/tex/latex/graphics/trig.sty
 INPUT c:/w32tex/share/texmf-dist/tex/latex/graphics/trig.sty
 INPUT c:/w32tex/share/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 INPUT c:/w32tex/share/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
-INPUT c:/w32tex/share/texmf-dist/tex/latex/graphics-def/dvips.def
-INPUT c:/w32tex/share/texmf-dist/tex/latex/graphics-def/dvips.def
+INPUT c:/w32tex/share/texmf-dist/tex/latex/graphics-def/dvipdfmx.def
+INPUT c:/w32tex/share/texmf-dist/tex/latex/graphics-def/dvipdfmx.def
 INPUT c:/w32tex/share/texmf-dist/tex/latex/graphics/color.sty
 INPUT c:/w32tex/share/texmf-dist/tex/latex/graphics/color.sty
 INPUT c:/w32tex/share/texmf-dist/tex/latex/graphics-cfg/color.cfg
@@ -169,4 +169,19 @@ INPUT ep_1000_it_10000_MDP3_gamma_095_re2_ini22_nts_c095_20times.png
 INPUT ep_1000_it_10000_MDP3_gamma_095_nts_c095_abate_20times.png
 INPUT proposed_policy.png
 INPUT Abate_policy.png
+INPUT cat_mouse.png
+INPUT extractbb -B cropbox -O cat_mouse.png
+INPUT ldgba_original.pdf
+INPUT max_Q_value_TD.png
+INPUT extractbb -B cropbox -O max_Q_value_TD.png
+INPUT learning_TD_v_15000_5000_rn2_05.png
+INPUT extractbb -B cropbox -O learning_TD_v_15000_5000_rn2_05.png
+INPUT max_Q_value_TD_rn2_1.png
+INPUT extractbb -B cropbox -O max_Q_value_TD_rn2_1.png
+INPUT simulate_TD_v_15000_5000.png
+INPUT extractbb -B cropbox -O simulate_TD_v_15000_5000.png
+INPUT simulate_TD_v_15000_5000_rn2_05.png
+INPUT extractbb -B cropbox -O simulate_TD_v_15000_5000_rn2_05.png
+INPUT simulate_TD_v_10000_5000_rn2_1.png
+INPUT extractbb -B cropbox -O simulate_TD_v_10000_5000_rn2_1.png
 INPUT main_thesis.aux

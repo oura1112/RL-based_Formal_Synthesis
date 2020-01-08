@@ -1,9 +1,9 @@
 # Fdb version 3
-["dvipdf"] 1578391385 "main_thesis.dvi" "main_thesis.pdf" "main_thesis" 1578391388
-  "main_thesis.dvi" 1578391385 78508 9c24fea264988c87a3cc1a04d7e4865d "latex"
+["dvipdf"] 1578466177 "main_thesis.dvi" "main_thesis.pdf" "main_thesis" 1578466181
+  "main_thesis.dvi" 1578466177 104220 4b3e3b89df212ea60cfe40194deb584d "latex"
   (generated)
   "main_thesis.pdf"
-["latex"] 1578391384 "main_thesis.tex" "main_thesis.dvi" "main_thesis" 1578391388
+["latex"] 1578466175 "main_thesis.tex" "main_thesis.dvi" "main_thesis" 1578466181
   "Abate_policy.png" 1578387730 8562 259390f41d8d8c09a15a15cd53a4f6b3 ""
   "MDP_corridor.PNG" 1578387730 12036 b7670ce6e9ea1a633408317c520a965d ""
   "MDP_corridor.png" 1578387730 12036 b7670ce6e9ea1a633408317c520a965d ""
@@ -64,7 +64,7 @@
   "c:/w32tex/share/texmf-dist/tex/latex/float/float.sty" 1317039587 6749 16d2656a1984957e674b149555f1ea1d ""
   "c:/w32tex/share/texmf-dist/tex/latex/graphics-cfg/color.cfg" 1465869092 1213 620bba36b25224fa9b7e1ccb4ecb76fd ""
   "c:/w32tex/share/texmf-dist/tex/latex/graphics-cfg/graphics.cfg" 1465869092 1224 978390e9c2234eab29404bc21b268d1e ""
-  "c:/w32tex/share/texmf-dist/tex/latex/graphics-def/dvips.def" 1508838812 5895 4b59bd0c17e1116fd6b6e7c683dea655 ""
+  "c:/w32tex/share/texmf-dist/tex/latex/graphics-def/dvipdfmx.def" 1508838812 10299 c742d2190e924996d2f4e34b541cd5e3 ""
   "c:/w32tex/share/texmf-dist/tex/latex/graphics/color.sty" 1522996660 7028 112f909feb676788e7ea1c5b0b76320f ""
   "c:/w32tex/share/texmf-dist/tex/latex/graphics/dvipsnam.def" 1522996660 4945 c1421f5ee140ec8aa7a12ec5462e7bab ""
   "c:/w32tex/share/texmf-dist/tex/latex/graphics/graphics.sty" 1522996660 15272 5a97061616e0c8b2aa79c6615ff769f4 ""
@@ -79,17 +79,24 @@
   "c:/w32tex/share/texmf-dist/tex/platex/jsclasses/jslogo.sty" 1564048108 6025 c6eb7b869bc73b37a7116f5af977422f ""
   "c:/w32tex/share/texmf-dist/web2c/eptex/platex.fmt" 1567983041 4528567 607c2d5550c5e089833aedf81dffed8f ""
   "c:/w32tex/share/texmf-dist/web2c/texmf.cnf" 1569228113 36614 36bcba4138d21dc48ee03f08b1e2dd36 ""
+  "cat_mouse.png" 1578462890 34006 b1363f6df978ac0ea1ba0406f774208a ""
   "ep_1000_it_10000_MDP3_gamma_095_nts_c095_abate_20times.png" 1578387730 20519 de53e97f99c34612b45619c01d8a9088 ""
   "ep_1000_it_10000_MDP3_gamma_095_re2_ini22_nts_c095_20times.png" 1578387730 30368 326658acf6fa4dfc80fc594040e760f2 ""
   "ldgba.pdf" 1578387730 7644 4b28959d88bec0b22c01d50c8a1bcfb8 ""
   "ldgba_original.pdf" 1578387730 4747 1df07183e3250df3beca16fd27061ff4 ""
-  "main_thesis.aux" 1578391385 5920 4690feff94748bae5039843ca6d25dda "latex"
-  "main_thesis.tex" 1578391382 55592 10e0f56173e0caf7299aba5be43015a2 ""
-  "main_thesis.toc" 1578391385 1144 42f5863a9c9c125f2f3a59361f326b53 "latex"
+  "learning_TD_v_15000_5000_rn2_05.png" 1578462890 28652 aa4e85eeb75639f908bc63ecaff8ca60 ""
+  "main_thesis.aux" 1578466177 9022 61e9c2aeec4bb32e2c7b96395013c3f5 "latex"
+  "main_thesis.tex" 1578466174 74110 db68196b318e929bab8ed5ffc42a5930 ""
+  "main_thesis.toc" 1578466177 1269 9c74fe07eacbd75adb906c0f9057f036 "latex"
+  "max_Q_value_TD.png" 1578462890 21461 7b32a31f6179c0e5ffb1a4768a9a21b5 ""
+  "max_Q_value_TD_rn2_1.png" 1578462890 30069 106c1ea3b0bb0b3d37b1493cdad6a54d ""
   "proposed_policy.png" 1578387730 9025 932453edadd7645402707695cfa45510 ""
+  "simulate_TD_v_10000_5000_rn2_1.png" 1578462890 26679 540494d80fd6b90b1a2b9e56c843cb82 ""
+  "simulate_TD_v_15000_5000.png" 1578462890 27288 02c92f3e55dcc693cd570a5f3bdbf3ff ""
+  "simulate_TD_v_15000_5000_rn2_05.png" 1578462890 28198 c7dae64b6145bd436be169179ed881f0 ""
   "thesis.sty" 1578372970 4457 19dfc45703e3907faa88afdc81deb305 ""
   (generated)
-  "main_thesis.aux"
   "main_thesis.dvi"
+  "main_thesis.aux"
   "main_thesis.log"
   "main_thesis.toc"
