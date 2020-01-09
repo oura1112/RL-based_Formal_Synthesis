@@ -37,7 +37,7 @@ class Supervisor():
         return T
     
     def initialize_Q(self, actions, v, Q_num, S_num_c, S_num_m) :
-        Q = [[[[[10] * 2**len(actions) for l in range(2**len(v)-1)] for i in range(len(Q_num))] for j in range(S_num_c)] for k in range(S_num_m)]
+        Q = [[[[[0] * 2**len(actions) for l in range(2**len(v)-1)] for i in range(len(Q_num))] for j in range(S_num_c)] for k in range(S_num_m)]
         
         return Q
 

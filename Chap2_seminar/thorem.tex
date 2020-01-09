@@ -20,6 +20,7 @@
 \newtheorem{theorem}{Theorem}
 \newtheorem{corollary}{Corollary}
 \newtheorem{lemma}{Lemma}
+\newtheorem{proof}{Proof}
 \newtheorem{prop}{Proposition}
 \newtheorem{definition}{Definition}
 
@@ -37,11 +38,79 @@
 \newcommand{\argmin}{\mathop{\rm arg~min}\limits}
 
 \begin{document}
-Let $\mathcal{SV}^{\ast}$ be the set of optimal supervisors. Let $M^{\otimes}_{SV^{\ast}}$ denote the product DES $M^{\otimes}$ controlled by the optimal supervisor $SV^{\ast}$.
 
-For a Markov chain $MC^{\otimes}_{SV}$ induced by a product MDP $M^{\otimes}$ with a positional policy $\pi$, let $S^{\otimes}_{SV}= T^{\otimes}_{SV} \sqcup R^{\otimes 1}_{SV} \sqcup \ldots \sqcup R^{\otimes h}_{SV}$ be the set of states in $MC^{\otimes}_{SV}$, where $T^{\otimes}_{SV}$ is the set of transient states and $R^{\otimes i}_{SV}$ is the recurrent class for each $i \in \{ 1, \ldots ,h \}$, and let $R(MC^{\otimes}_{SV})$ be the set of all recurrent classes in $MC^{\otimes}_{SV}$. Let $\delta^{\otimes}_{SV,i}$ be the set of transtions in a recurrent class $R^{\otimes i}_{SV}$, namely $\delta^{\otimes}_{SV,i} = \{ (s^{\otimes}, \pi, s^{\otimes \prime}) \in \delta^{\otimes} ; s^{\otimes} \in R^{\otimes i}_{SV},\ P^{\otimes}(s^{\otimes \prime}|s^{\otimes}, \pi) > 0 \}$, and let $P^{\otimes}_{SV}$ : $S^{\otimes}_{SV} \times S^{\otimes}_{SV} \rightarrow [0,1]$ be the transition probability under $SV$.
+\begin{lemma}
+  For any policy $\pi$ and any recurrent class $R^{\otimes i}_{\pi}$ in the Markov chain $MC^{\otimes}_{\pi}$,
+  $MC^{\otimes}_{\pi}$ satisfies one of the following conditions.
+  \vspace{2mm}
+  \begin{enumerate}
+    \item $\delta^{\otimes}_{\pi,i} \cap \bar{F}^{\otimes}_j \neq \emptyset\ $, $ \forall j \in \{ 1, \ldots ,n \}$,
+    \item $\delta^{\otimes}_{\pi,i} \cap \bar{F}^{\otimes}_j = \emptyset\ $, $ \forall j \in \{ 1, \ldots ,n \}$.
+  \end{enumerate}
+  \label{lemma3-1}
+\end{lemma}
+
+Let $\mathcal{SV}^{\ast}$ be the set of optimal supervisors. Let $D^{\otimes}_{SV^{\ast}}$ denote the product DES $D^{\otimes}$ controlled by the optimal supervisor $SV^{\ast}$.
+
+For a Markov chain $MC^{\otimes}_{SV}$ induced by a product MDP $D^{\otimes}$ with a supervisor $SV$, let $S^{\otimes}_{SV}= T^{\otimes}_{SV} \sqcup R^{\otimes 1}_{SV} \sqcup \ldots \sqcup R^{\otimes h}_{SV}$ be the set of states in $MC^{\otimes}_{SV}$, where $T^{\otimes}_{SV}$ is the set of transient states and $R^{\otimes i}_{SV}$ is the recurrent class for each $i \in \{ 1, \ldots ,h \}$, and let $R(MC^{\otimes}_{SV})$ be the union of all recurrent classes in $MC^{\otimes}_{SV}$. Let $\delta^{\otimes}_{SV,i}$ be the set of transtions in a recurrent class $R^{\otimes i}_{SV}$, namely $\delta^{\otimes}_{SV,i} = \{ (s^{\otimes}, e, s^{\otimes \prime}) \in \delta^{\otimes} ; s^{\otimes} \in R^{\otimes i}_{SV},\ P^{\otimes}_T(s^{\otimes \prime}|s^{\otimes}, e) > 0, P^{\otimes}_E(e | s^{\otimes}, SV(s^{\otimes})) > 0 \}$, and let $P^{\otimes}_{SV}$ : $S^{\otimes}_{SV} \times S^{\otimes}_{SV} \rightarrow [0,1]$ such that $P^{\otimes}_{SV} = \sum_{e \in SV(s^{\otimes})} P^{\otimes}_T (s^{\otimes \prime} | s^{\otimes}, e) P^{\otimes}_E (e | s^{\otimes}, SV(s^{\otimes}))$ be the transition probability under $SV$.
 
 \begin{theorem}
-
+  Let $D^{\otimes}$ be the product DES corresponding to a DES $D$ and an LTL formuula $\varphi$. If there exists a supervisor $SV$ satisfying $\varphi$, then there exist a discount factor $\gamma^{\ast}$ and a positive reward $r_p$ such that any algorithm that maximizes the expected discounted reward with $\gamma > \gamma^{\ast}$ and $r_p > ||\mathcal{R}_1||_{\infty}$ will find a supervisor satisfying $\varphi$.
 \end{theorem}
+
+\begin{proof}
+  Suppose that $SV^{\ast}$ be an optimal supervisor but does not satisfy the LTL formula $\varphi$. Then, for any recurrent class $R^{\otimes i}_{{SV}^{\ast}}$ in the Markov chain $MC^{\otimes}_{{SV}^{\ast}}$ and any accepting set $\bar{F}^{\otimes}_j$ of the product DES $D^{\otimes}$,  $\delta^{\otimes}_{SV^{\ast},i} \cap \bar{F}^{\otimes}_j = \emptyset$
+  holds by Lemma \ref{lemma3-1}. Thus, the agent under the policy $\pi^{\ast}$ can obtain rewards only in the set of transient states. We consider the best scenario in the assumption. Let $p^k(s,s^{\prime})$ be the probability of going to a state $s^{\prime}$ in $k$ time steps after leaving the state $s$, and let $Post(T^{\otimes}_{\pi^{\ast}})$ be the set of states in recurrent classes that can be transitioned from states in $T^{\otimes}_{\pi^{\ast}}$ by one event occurrence. For the initial state $s^{\otimes}_{init}$ in the set of transient states, it holds that
+
+  \begin{align}
+    V^{SV^{\ast}}\!(s^{\otimes}_{init})
+     =\ & \sum_{k=0}^{\infty} \sum_{s^{\otimes} \in T^{\otimes}_{\pi^{\ast}}} \gamma^k p^k(s^{\otimes}_{init}, s^{\otimes}) \nonumber \\
+     & \sum_{s^{\otimes \prime} \in T^{\otimes}_{\pi^{\ast}} \cup Post(T^{\otimes}_{\pi^{\ast}})}  \sum_{e \in SV(s^{\otimes})} P^{\otimes}_T (s^{\otimes \prime} | s^{\otimes}, e) P^{\otimes}_E (e | s^{\otimes}, SV(s^{\otimes})) \mathcal{R}(s^{\otimes}, SV(s^{\otimes}), e, s^{\otimes \prime})\nonumber \\
+     \leq\ & r_p \sum_{k=0}^{\infty} \sum_{s^{\otimes} \in T^{\otimes}_{\pi^{\ast}}} \gamma^k p^k(s^{\otimes}_{init}, s^{\otimes}). \nonumber
+  \label{eqth11}
+  \end{align}
+  By the property of the transient states, for any state $s^{\otimes}$ in $T^{\otimes}_{\pi^{\ast}}$, there exists a bounded positive value $m$ such that $ \sum_{k=0}^{\infty} \gamma^k p^k(s^{\otimes}_{init}, s^{\otimes}) \leq \sum_{k=0}^{\infty} p^k(s^{\otimes}_{init}, s^{\otimes}) < m$ \cite{ESS}. Therefore, there exists a bounded positive value $\bar{m}$ such that $V^{\pi^{\ast}}(s^{\otimes}_{init}) < \bar{m}$.
+  Let $\bar{SV}$ be a supervisor satisfying $\varphi$. We consider the following two cases.
+
+  \begin{enumerate}
+    \vspace{2mm}
+    \item Assume that the initial state $s^{\otimes}_{init}$ is in a recurrent class $R^{\otimes i}_{\bar{\pi}}$ for some $ i \in \{ 1,\ldots,h \} $.
+    For any accepting set $\bar{F}^{\otimes}_j$, $\delta^{\otimes}_{\bar{\pi},i} \cap \bar{F}^{\otimes}_j \neq \emptyset$ holds by the definition of $\bar{\pi}$. The expected discounted reward for $s^{\otimes}_{init}$ is given by
+    \begin{align}
+      V^{\bar{\pi}}(s^{\otimes}_{init})
+       &= \sum_{k=0}^{\infty} \sum_{s^{\otimes} \in R^{\otimes i}_{\bar{SV}}} \gamma^k p^k(s^{\otimes}_{init}, s^{\otimes}) \nonumber \\
+       & \sum_{s^{\otimes \prime} \in R^{\otimes i}_{\bar{SV}}}  \sum_{e \in SV(s^{\otimes})} P^{\otimes}_T (s^{\otimes \prime} | s^{\otimes}, e) P^{\otimes}_E (e | s^{\otimes}, SV(s^{\otimes})) \mathcal{R}(s^{\otimes}, \bar{SV}(s^{\otimes}), e, s^{\otimes \prime}). \nonumber
+    \end{align}
+    Since $s^{\otimes}_{init}$ is in $R^{\otimes i}_{\bar{\pi}}$, there exists a set of positive numbers $K = \{ k\ ;\ k \geq n, p^{k}(s^{\otimes}_{init}, s^{\otimes}_{init}) > 0 \}$ \cite{ESS}. We consider the worst scenario in this case. For the stopping time of first returning the initial state, it holds that
+
+    \begin{align}
+      V^{\bar{\pi}}(s^{\otimes}_{init})
+       > & \mathbb{E} [ \gamma^k r_p - (1 + \ldots + \gamma^k) ||\mathcal{R}_1||_{\infty} + \gamma^k V^{\bar{\pi}}(s^{\otimes}_{init}) ] \nonumber \\
+       \geq & \gamma^{\mathbb{E}[k]} r_p - (1 + \ldots + \gamma^{\mathbb{E}[k]} ) ||\mathcal{R}_1||_{\infty} + \gamma^{\mathbb{E}[k]} V^{\bar{\pi}}(s^{\otimes}_{init}) \nonumber \\
+       = & \frac{ \gamma^{\mathbb{E}[k]} r_p - (1 + \ldots + \gamma^{\mathbb{E}[k]} ) ||\mathcal{R}_1||_{\infty} } { 1 - \gamma^{\mathbb{E}[k]}}, \nonumber
+    \end{align}
+
+  \end{enumerate}
+\end{proof}
+
+\begin{thebibliography}{99}
+\bibitem{ESS}
+R.\ Durrett,
+\textit{Essentials of Stochastic Processes}, 2nd Edition. ser. Springer texts in statistics. New York; London; Springer, 2012.
+\bibitem{ISP}
+L.\ Breuer,
+``Introduction to Stochastic Processes,'' [Online]. Available: https://www.kent.ac.uk/smsas/personal/lb209/files/sp07.pdf
+\bibitem{SM}
+S.M.\ Ross,
+\textit{Stochastic Processes}, 2nd Edition. University of California, Wiley, 1995.
+\bibitem{Singh1998}
+S. Singh, T. Jaakkola, M. L. Littman, and C. Szepes\'{v}ari,
+``Convergence results for single-step on-policy reinforcement learning algorithms'' \textit{Machine Learning},
+vol.~38, no.~3, pp,~287--308, 1998.
+\bibitem{Owl}
+J.~Kretínsk\'{y}, T.~Meggendorfer, S.~Sickert, ``Owl: A library for $\omega$-words, automata,
+and LTL,'' in \textit{Proc.~16th International Symposium on Automated Technology for Verification and Analysis}, 2018,  pp.~543–550.
+%https://doi.org/10.1007/978-3-030-01090-4\_34
+
+\end{thebibliography}
 \end{document}
