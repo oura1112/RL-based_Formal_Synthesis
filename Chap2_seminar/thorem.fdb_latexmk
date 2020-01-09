@@ -1,9 +1,9 @@
 # Fdb version 3
-["dvipdf"] 1578556788 "thorem.dvi" "thorem.pdf" "thorem" 1578556789
-  "thorem.dvi" 1578556788 11504 e8f45812befb8aa03b791829db26e6f1 "latex"
+["dvipdf"] 1578569467 "thorem.dvi" "thorem.pdf" "thorem" 1578569469
+  "thorem.dvi" 1578569467 15424 b5671494e8e10dbfc7e117c87a3c79f4 "latex"
   (generated)
   "thorem.pdf"
-["latex"] 1578556786 "thorem.tex" "thorem.dvi" "thorem" 1578556789
+["latex"] 1578569465 "thorem.tex" "thorem.dvi" "thorem" 1578569469
   "c:/w32tex/share/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/goth10.tfm" 1519818042 1196 5981e79c37b2cfd27b3612a6783cd4b6 ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/min10.tfm" 1519818042 1196 1be730212205a270378fba11a44765dc ""
@@ -59,8 +59,8 @@
   "c:/w32tex/share/texmf-dist/tex/latex/tools/bm.sty" 1546679800 12626 7d9d99d0bbe65f44cc0bb90f67262000 ""
   "c:/w32tex/share/texmf-dist/web2c/eptex/platex.fmt" 1567983041 4528567 607c2d5550c5e089833aedf81dffed8f ""
   "c:/w32tex/share/texmf-dist/web2c/texmf.cnf" 1569228113 36614 36bcba4138d21dc48ee03f08b1e2dd36 ""
-  "thorem.aux" 1578556788 156 8e2601a54710d0a537577ce1907075f8 "latex"
-  "thorem.tex" 1578556786 8360 354165b5a78c840070f046644e471544 ""
+  "thorem.aux" 1578569467 182 79a6df08d42ff471492fe40957d19aa9 "latex"
+  "thorem.tex" 1578569465 11902 00ed8daf0338dd7a768f8138200aecb5 ""
   (generated)
   "thorem.log"
   "thorem.aux"

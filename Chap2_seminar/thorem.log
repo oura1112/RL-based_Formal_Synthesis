@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.sjis) (TeX Live 2019/W32TeX) (preloaded format=platex 2019.9.9)  9 JAN 2020 16:59
+This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.sjis) (TeX Live 2019/W32TeX) (preloaded format=platex 2019.9.9)  9 JAN 2020 20:31
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -220,26 +220,140 @@ Overfull \hbox (66.13173pt too wide) detected at line 71
 [1
 
 ]
-Overfull \hbox (31.01218pt too wide) detected at line 83
+Overfull \hbox (76.00952pt too wide) detected at line 97
 []
  []
 
+
+Overfull \hbox (6.13765pt too wide) in paragraph at lines 97--100
+\OML/cmm/m/it/10 ^^M[]$ \OT1/cmr/m/it/10 and $[] \OMS/cmsy/m/n/10 ^^T \U/msb/m/n/10 E[]\OT1/cmr/m/n/10 [[]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 s[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 s[]\OT1/cmr/m/n/10 ]$ \OT1/cmr/m/it/10 by Jensen's
+ []
+
+
+Overfull \hbox (32.11897pt too wide) in paragraph at lines 101--104
+[]\OT1/cmr/m/it/10 Assume that the ini-tial state $\OML/cmm/m/it/10 s[]$ \OT1/cmr/m/it/10 is in the set of tran-sient states $\OML/cmm/m/it/10 T[]$\OT1/cmr/m/it/10 .$\OML/cmm/m/it/10 P[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s[] \OMS/cmsy/m/n/10 j[]\OT1/cmr/m/n/10 =
+ []
+
+Runaway argument?
+ V^{\bar {\pi }}(s^{\otimes }_{init}) \geq \ & P^{M^{\otimes }}_{\bar \ETC.
+./thorem.tex:112: Paragraph ended before \align was complete.
+<to be read again> 
+                   \par 
+l.112 
+      
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+./thorem.tex:112: Missing $ inserted.
+<inserted text> 
+                $
+l.112 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./thorem.tex:112: Missing } inserted.
+<inserted text> 
+                }
+l.112 
+      
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./thorem.tex:112: Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.112 
+      
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./thorem.tex:112: Display math should end with $$.
+<to be read again> 
+                   \@@par 
+l.112 
+      
+The `$' that I just saw supposedly matches a previous `$$'.
+So I shall assume that you typed `$$' both times.
+
+./thorem.tex:112: Extra }, or forgotten \endgroup.
+\par ...m \@noitemerr {\@@par }\fi \else {\@@par }
+                                                  \fi 
+l.112 
+      
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./thorem.tex:113: LaTeX Error: \begin{align} on input line 105 ended by \end{enumerate}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.113   \end{enumerate}
+                       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./thorem.tex:114: LaTeX Error: \begin{enumerate} on input line 75 ended by \end{proof}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.114 \end{proof}
+                 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
 LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <14.4> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 96.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 116.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <14.4> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 96.
-[2] (./thorem.aux)
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 116.
+[2] 
+
+./thorem.tex:136: LaTeX Error: \begin{proof} on input line 61 ended by \end{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.136 \end{document}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[3] (./thorem.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
- ) 
+ )
+(\end occurred inside a group at level 1)
+
+### semi simple group (level 1) entered at line 61 (\begingroup)
+### bottom level 
 Here is how much of TeX's memory you used:
- 3339 strings out of 493215
- 42608 string characters out of 6145921
- 121086 words of memory out of 5000000
- 7308 multiletter control sequences out of 15000+600000
+ 3340 strings out of 493215
+ 42616 string characters out of 6145921
+ 122094 words of memory out of 5000000
+ 7309 multiletter control sequences out of 15000+600000
  13844 words of font info for 55 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
- 27i,11n,32p,1136b,298s stack positions out of 5000i,500n,10000p,500000b,80000s
+ 27i,12n,32p,1136b,331s stack positions out of 5000i,500n,10000p,500000b,80000s
 
-Output written on thorem.dvi (2 pages, 11504 bytes).
+Output written on thorem.dvi (3 pages, 15424 bytes).

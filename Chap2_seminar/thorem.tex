@@ -76,18 +76,38 @@ For a Markov chain $MC^{\otimes}_{SV}$ induced by a product MDP $D^{\otimes}$ wi
     \vspace{2mm}
     \item Assume that the initial state $s^{\otimes}_{init}$ is in a recurrent class $R^{\otimes i}_{\bar{\pi}}$ for some $ i \in \{ 1,\ldots,h \} $.
     For any accepting set $\bar{F}^{\otimes}_j$, $\delta^{\otimes}_{\bar{\pi},i} \cap \bar{F}^{\otimes}_j \neq \emptyset$ holds by the definition of $\bar{\pi}$. The expected discounted reward for $s^{\otimes}_{init}$ is given by
-    \begin{align}
-      V^{\bar{\pi}}(s^{\otimes}_{init})
-       &= \sum_{k=0}^{\infty} \sum_{s^{\otimes} \in R^{\otimes i}_{\bar{SV}}} \gamma^k p^k(s^{\otimes}_{init}, s^{\otimes}) \nonumber \\
-       & \sum_{s^{\otimes \prime} \in R^{\otimes i}_{\bar{SV}}}  \sum_{e \in SV(s^{\otimes})} P^{\otimes}_T (s^{\otimes \prime} | s^{\otimes}, e) P^{\otimes}_E (e | s^{\otimes}, SV(s^{\otimes})) \mathcal{R}(s^{\otimes}, \bar{SV}(s^{\otimes}), e, s^{\otimes \prime}). \nonumber
-    \end{align}
-    Since $s^{\otimes}_{init}$ is in $R^{\otimes i}_{\bar{\pi}}$, there exists a set of positive numbers $K = \{ k\ ;\ k \geq n, p^{k}(s^{\otimes}_{init}, s^{\otimes}_{init}) > 0 \}$ \cite{ESS}. We consider the worst scenario in this case. For the stopping time of first returning the initial state, it holds that
+    %\begin{comment}
+    %\begin{align}
+    %  V^{\bar{\pi}}(s^{\otimes}_{init})
+    %   &= \sum_{k=0}^{\infty} \sum_{s^{\otimes} \in R^{\otimes i}_{\bar{SV}}} \gamma^k p^k(s^{\otimes}_{init}, s^{\otimes}) \nonumber \\
+    %   & \sum_{s^{\otimes \prime} \in R^{\otimes i}_{\bar{SV}}}  \sum_{e \in SV(s^{\otimes})} P^{\otimes}_T (s^{\otimes \prime} | s^{\otimes}, e) P^{\otimes}_E (e | s^{\otimes}, SV(s^{\otimes})) \mathcal{R}(s^{\otimes}, \bar{SV}(s^{\otimes}), e, s^{\otimes \prime}). \nonumber
+    %\end{align}
+    %\end{comment}
+
+  \begin{align}
+    V^{\bar{SV}}(s^{\otimes}_{init}) = \mathbb{E}^{SV}[ {\sum_{k=0}^{\infty}} \gamma^k \mathcal{R}(s_k, \pi_k, e_k, s_{k+1}) | s_0 = s^{\otimes}_{init} ]
+  \end{align}
+    Since $s^{\otimes}_{init}$ is in $R^{\otimes i}_{\bar{\pi}}$, there exists a set of positive numbers $K = \{ k\ ;\ k \geq n, p^{k}(s^{\otimes}_{init}, s^{\otimes}_{init}) > 0 \}$ \cite{ESS}. We consider the worst scenario of returning the initial state in this case. For the stopping time $k$ of first returning to the initial state, it holds that
 
     \begin{align}
       V^{\bar{\pi}}(s^{\otimes}_{init})
-       > & \mathbb{E} [ \gamma^k r_p - (1 + \ldots + \gamma^k) ||\mathcal{R}_1||_{\infty} + \gamma^k V^{\bar{\pi}}(s^{\otimes}_{init}) ] \nonumber \\
-       \geq & \gamma^{\mathbb{E}[k]} r_p - (1 + \ldots + \gamma^{\mathbb{E}[k]} ) ||\mathcal{R}_1||_{\infty} + \gamma^{\mathbb{E}[k]} V^{\bar{\pi}}(s^{\otimes}_{init}) \nonumber \\
-       = & \frac{ \gamma^{\mathbb{E}[k]} r_p - (1 + \ldots + \gamma^{\mathbb{E}[k]} ) ||\mathcal{R}_1||_{\infty} } { 1 - \gamma^{\mathbb{E}[k]}}, \nonumber
+       > & \mathbb{E}^{\bar{SV}} [ \gamma^k r_p - (1 + \ldots + \gamma^k) ||\mathcal{R}_1||_{\infty} + \gamma^k V^{\bar{\pi}}(s^{\otimes}_{init}) | s_0 = s^{\otimes}_{init} ] \nonumber \\
+       \geq & \gamma^{\mathbb{E}^{\bar{SV}}[k | s_0 = s^{\otimes}_{init} ]} r_p - (1 + \ldots + \gamma^{\mathbb{E}^{\bar{SV}}[k | s_0 = s^{\otimes}_{init} ]} ) ||\mathcal{R}_1||_{\infty} + \gamma^{\mathbb{E}^{\bar{SV}}[k | s_0 = s^{\otimes}_{init} ]} V^{\bar{\pi}}(s^{\otimes}_{init}) \nonumber \\
+       = & \frac{ \gamma^{\mathbb{E}^{\bar{SV}}[k | s_0 = s^{\otimes}_{init} ]} r_p - (1 + \ldots + \gamma^{\mathbb{E}^{\bar{SV}}[k | s_0 = s^{\otimes}_{init} ]} ) ||\mathcal{R}_1||_{\infty} } { 1 - \gamma^{\mathbb{E}^{\bar{SV}}[k | s_0 = s^{\otimes}_{init} ]}}, \nonumber
+    \end{align}
+ where second inequality holds since it holds that $\mathbb{E}^{\bar{SV}} [ \gamma^k | s_0 = s^{\otimes}_{init} ] \geq \gamma^{\mathbb{E}^{\bar{SV}}[k | s_0 = s^{\otimes}_{init} ]}$ and $ \frac{1 - \gamma^{\mathbb{E}^{\bar{SV}} [ {k+1} | s_0 = s^{\otimes}_{init} ]}}{1 - \gamma} \leq \mathbb{E}^{\bar{SV}} [ \frac{1 - \gamma^{k+1}}{1 - \gamma} | s_0 = s^{\otimes}_{init} ]$ by Jensen's inequality.
+  Therefore, for any $\bar{m} \in (V^{SV^{\ast}}(s^{\otimes}_{init}), \infty)$ and any reward function $\mathcal{R}_1$, there exist $\gamma^{\ast} < 1$ and a positive reward $r_p$ such that $\gamma > \gamma^{\ast} $ and $\gamma^{\mathbb{E}^{\bar{SV}}[k | s_0 = s^{\otimes}_{init} ]} r_p - (1 + \ldots + \gamma^{\mathbb{E}^{\bar{SV}}[k | s_0 = s^{\otimes}_{init} ]} ) ||\mathcal{R}_1||_{\infty}$ imply $V^{\bar{SV}}(s^{\otimes}_{init}) > \bar{m} > V^{SV^{\ast}}(s^{\otimes}_{init})$.
+
+  \item Assume that the initial state $s^{\otimes}_{init}$ is in the set of transient states $T_{\bar{SV}}^{\otimes}$.$P^{M^{\otimes}}_{\bar{SV}}(s^{\otimes}_{init} \models \varphi) > 0$ holds by the definition of $\bar{SV}$. For a recurrent class $R^{\otimes i}_{\bar{SV}}$ such that $\delta^{\otimes}_{\bar{SV}, i} \cap \bar{F}^{\otimes}_j \neq \emptyset$ for each accepting set
+    $\bar{F}^{\otimes}_j$, there exist a number $\bar{l} > 0$, a state $\hat{s}^{\otimes}$ in $Post(T^{\otimes}_{\bar{SV}}) \cap R^{\otimes i}_{\bar{SV}}$, and a subset of transient states $\{ s^{\otimes}_1, \ldots , s^{\otimes}_{\bar{l}-1} \} \subset T^\otimes_{\bar{SV}}$ such that $p(s^{\otimes}_{init}, s^{\otimes}_1)>0$, $p(s^{\otimes}_{i}, s^{\otimes}_{i+1})>0$ for $i \in \{ 1,...,\bar{l}-2 \}$, and $p(s^{\otimes}_{\bar{l}-1}, \hat{s}^{\otimes})>0$ by the property of transient states.
+    Hence, it holds that $p^{\bar{l}}(s^{\otimes}_{init}, \hat{s}^{\otimes}) > 0$ for the state $\hat{s}^{\otimes}$. Thus, for the stopping time $k$ of first returning to the state $\hat{s}^{\otimes}$, by ignoring positive rewards in $T^{\otimes}_{\bar{\pi}}$ and assuming the system incurs the full costs regarding events prohibition, we have
+
+    \begin{align}
+      V^{\bar{\pi}}(s^{\otimes}_{init})
+        \geq\ & P^{M^{\otimes}}_{\bar{\pi}}(s^{\otimes}_{init} \models \varphi)  \gamma^{\bar{l}} p^{\bar{l}}(s^{\otimes}_{init}, \hat{s}^{\otimes}) \nonumber \\
+        & \mathbb{E}^{\bar{SV}} [ \gamma^k r_p - (1 + \ldots + \gamma^k) ||\mathcal{R}_1||_{\infty} + \gamma^k V^{\bar{\pi}}(\hat{s}^{\otimes}) | s_{\hat{l}} = \hat{s}^{\otimes} ] \nonumber \\
+        \geq & P^{M^{\otimes}}_{\bar{\pi}}(s^{\otimes}_{init} \models \varphi)  \gamma^{\bar{l}} p^{\bar{l}}(s^{\otimes}_{init}, \hat{s}^{\otimes}) \nonumber \\
+        & \frac{ \gamma^{\mathbb{E}^{\bar{SV}}[k | s_{\hat{l}} = \hat{s}^{\otimes} ]} r_p - (1 + \ldots + \gamma^{\mathbb{E}^{\bar{SV}}[k | s_{\hat{l}} = \hat{s}^{\otimes} ) ||\mathcal{R}_1||_{\infty} } { 1 - \gamma^{\mathbb{E}^{\bar{SV}}[k | s_{\hat{l}} = \hat{s}^{\otimes} ]}}, \nonumber
     \end{align}
 
   \end{enumerate}
