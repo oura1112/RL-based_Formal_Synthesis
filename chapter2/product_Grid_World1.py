@@ -55,6 +55,22 @@ class Product_Grid1(AugAutomaton.AugAutomaton, Grid_World1.Grid_World2):
             return 10
         else :
             return 0
+
+    def acc_event_reward_func(self, pi):
+        acc_reward = 0
+        #cat_doors = [6,7,8,9,10,11,12]
+        #mouse_doors = [0,1,2,3,4,5]
+        
+        cat_doors = [4,5,6,7]
+        mouse_doors = [0,1,2,3]
+        
+        for enable_event in pi:
+            if enable_event in cat_doors:
+                acc_reward += 0.1
+            elif enable_event in mouse_doors:
+                acc_reward += 0.1
+        
+        return acc_reward
         
     def prohibit_cost_func(self, prohibit_pi):
         prohibit_cost = 0
@@ -66,9 +82,9 @@ class Product_Grid1(AugAutomaton.AugAutomaton, Grid_World1.Grid_World2):
         
         for prohibit_event in prohibit_pi:
             if prohibit_event in cat_doors:
-                prohibit_cost -= 1
+                prohibit_cost -= 0.8
             elif prohibit_event in mouse_doors:
-                prohibit_cost -= 1
+                prohibit_cost -= 0.8
         
         return prohibit_cost
     """   
@@ -103,12 +119,14 @@ class Product_Grid1(AugAutomaton.AugAutomaton, Grid_World1.Grid_World2):
         v = self.binary_to_int(self.init_v)
         return self.c_state, self.m_state, self.automaton_state, v
     
-    def step(self, event, prohibit_pi):
+    def step(self, event, prohibit_pi, enable_pi):
         s_c_next, s_m_next, automaton_transit, v_next, v_hat = self._move(self.c_state, self.m_state, self.automaton_state, self.v, event) #後でs → self.agent_state
 
         reward = self.reward_func(automaton_transit, self.v, v_hat)
         
         prohibit_cost = self.prohibit_cost_func(prohibit_pi)
+
+        enable_reward = self.acc_event_reward_func(enable_pi)
         
         self.c_state = s_c_next
         self.m_state = s_m_next
@@ -117,7 +135,7 @@ class Product_Grid1(AugAutomaton.AugAutomaton, Grid_World1.Grid_World2):
         
         v_next = self.binary_to_int(v_next)
         
-        return s_c_next, s_m_next, reward, prohibit_cost, automaton_transit, v_next
+        return s_c_next, s_m_next, reward, prohibit_cost, enable_reward, automaton_transit, v_next
     
 #許可事象に報酬    
 class Product_Grid1_2(AugAutomaton.AugAutomaton, Grid_World1.Grid_World2):
@@ -156,7 +174,7 @@ class Product_Grid1_2(AugAutomaton.AugAutomaton, Grid_World1.Grid_World2):
                 accepting_frag = True
                     
         if accepting_frag == True:
-            return 100
+            return 10
         else :
             return 0
         
@@ -170,9 +188,9 @@ class Product_Grid1_2(AugAutomaton.AugAutomaton, Grid_World1.Grid_World2):
         
         for prohibit_event in pi:
             if prohibit_event in cat_doors:
-                acc_reward += 0.01
+                acc_reward += 0.1
             elif prohibit_event in mouse_doors:
-                acc_reward += 0.01
+                acc_reward += 0.1
         
         return acc_reward
     """   
@@ -207,12 +225,12 @@ class Product_Grid1_2(AugAutomaton.AugAutomaton, Grid_World1.Grid_World2):
         v = self.binary_to_int(self.init_v)
         return self.c_state, self.m_state, self.automaton_state, v
     
-    def step(self, event, prohibit_pi):
+    def step(self, event, enable_pi):
         s_c_next, s_m_next, automaton_transit, v_next, v_hat = self._move(self.c_state, self.m_state, self.automaton_state, self.v, event) #後でs → self.agent_state
 
         reward = self.reward_func(automaton_transit, self.v, v_hat)
         
-        acc_reward = self.acc_event_reward_func(prohibit_pi)
+        acc_reward = self.acc_event_reward_func(enable_pi)
         
         self.c_state = s_c_next
         self.m_state = s_m_next

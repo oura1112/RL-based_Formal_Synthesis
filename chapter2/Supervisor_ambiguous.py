@@ -81,7 +81,7 @@ class Supervisor():
         return Npi
     
     def initialize_prohibit_cost(self, actions, v, Q_num, S_num_c, S_num_m) :
-        prohibit_cost = [0] * (2**len(actions))
+        prohibit_cost = [[0] * (2**len(actions)) for i in range(len(Q_num)) ]
 
         return prohibit_cost
     
@@ -295,10 +295,15 @@ class Supervisor():
             #print(self.Q)
             print("Session : {}\n".format(i))
 
-            for control_pat in range(2**len(self.actions_con)):
-                prohibit_pat = self.prohibit_pi(control_pat, self.actions_con)
-
-                self.prohibit_cost[control_pat] = env.prohibit_cost_func(prohibit_pat)
+            #禁止事象にコスト　or　許可事象に報酬
+            for q in range(len(env.Q)) :
+                for control_pat in range(2**len(self.actions_con)):
+                    if q == env.Q[-1] :
+                        prohibit_cost = 0 #env.prohibit_cost_func(self.actions_con)
+                    else :
+                        prohibit_pi = self.action_to_pi(control_pat, self.actions_con) #self.prohibit_pi(control_pat, self.actions_con)
+                        prohibit_cost = env.acc_event_reward_func(prohibit_pi) #env.prohibit_cost_func(prohibit_pi) #
+                    self.prohibit_cost[q][control_pat] = prohibit_cost
             
             for e in range(episode_count):
                 print("epispode:{}\n".format(e))
@@ -326,7 +331,7 @@ class Supervisor():
                     event = self.event_occur(s_m, s_c, q, v, pi)
                     
                     #Product MDP での状態遷移と報酬の取得
-                    s_c_next, s_m_next, reward, prohibit_cost, automaton_transit, v_next = env.step(event, prohibit_pi) #環境内での状態も変化する
+                    s_c_next, s_m_next, reward, prohibit_cost, enable_reward, automaton_transit, v_next = env.step(event, prohibit_pi, pi) #環境内での状態も変化する
                     #print("current state:({0},{1},{2}); action:{3}; next state:({4},{5},{6}); reward:{7}".format(s,v,automaton_transit[0], a, s_next,v_next,automaton_transit[2], reward))
                     #print("current state:({0},{1},{2},{3}); event:{4}; next state:({5},{6},{7},{8}); reward:{9}; cost:{10}".format(s_c,s_m,v,automaton_transit[0], event, s_c_next,s_m_next,v_next,automaton_transit[2], reward, prohibit_cost))
                     #print(pi)
@@ -440,7 +445,7 @@ class Supervisor():
 
                             #print(len(estimated_set))
                             #self.Q[s_m][s_c][automaton_transit[0]][v][control_pat_d] = self.prohibit_cost[control_pat_d] + estimated_set[0] #(1-1/self.Nq[s_m][s_c][automaton_transit[0]][v][control_pat_d])*self.Q[s_m][s_c][automaton_transit[0]][v][control_pat_d] + (1/self.Nq[s_m][s_c][automaton_transit[0]][v][control_pat_d])*(self.prohibit_cost[control_pat_d] + estimated_set[0]) #min(estimated_set)
-                            self.Q[s_m][s_c][automaton_transit[0]][v][control_pat_d] = (1-1/self.Nq[s_m][s_c][automaton_transit[0]][v][control_pat_d])*self.Q[s_m][s_c][automaton_transit[0]][v][control_pat_d] + (1/self.Nq[s_m][s_c][automaton_transit[0]][v][control_pat_d])*(self.prohibit_cost[control_pat_d] + estimated_set[0]) #min(estimated_set)
+                            self.Q[s_m][s_c][automaton_transit[0]][v][control_pat_d] = (1-1/self.Nq[s_m][s_c][automaton_transit[0]][v][control_pat_d])*self.Q[s_m][s_c][automaton_transit[0]][v][control_pat_d] + (1/self.Nq[s_m][s_c][automaton_transit[0]][v][control_pat_d])*(self.prohibit_cost[automaton_transit[0]][control_pat_d] + estimated_set[0]) #min(estimated_set)
                             #print("comp")
                     """
                     #価値関数の更新　Q -> T
@@ -466,7 +471,7 @@ class Supervisor():
                     v = v_next
                     
                     total_reward += reward
-                    total_cost += prohibit_cost
+                    total_cost += prohibit_cost #enable_reward
                     count += 1
                     #print("reward = {}, V = {}".format(reward, ))
                 total_reward_mean.append(total_reward/step_count)
@@ -542,8 +547,8 @@ class Supervisor():
 
         print(np.array(self.event_probs))
 
-
-        print(np.array(self.Nsigma_pi[2][0][110])/sum(self.Nsigma_pi[2][0][110]))
+        max_index = np.argmax(self.Q[2][0][0][0])
+        print(np.array(self.Nsigma_pi[2][0][max_index])/sum(self.Nsigma_pi[2][0][max_index]))
         
         total_reward_mean_ = np.array(total_reward_mean_)
         total_reward_std_ = np.array(total_reward_std_)
@@ -623,7 +628,7 @@ class Supervisor():
                 event = self.event_occur(s_m, s_c, q, v, pi)
                 
                 #Product MDP での状態遷移と報酬の取得
-                s_c_next, s_m_next, reward, prohibit_cost, automaton_transit, v_next = env.step(event, prohibit_pi) #環境内での状態も変化する
+                s_c_next, s_m_next, reward, prohibit_cost, enable_reward, automaton_transit, v_next = env.step(event, prohibit_pi, pi) #環境内での状態も変化する
                 #print("current state:({0},{1},{2}); action:{3}; next state:({4},{5},{6}); reward:{7}".format(s,v,automaton_transit[0], a, s_next,v_next,automaton_transit[2], reward))
                 #print("current state:({0},{1},{2},{3}); event:{4}; next state:({5},{6},{7},{8}); reward:{9}; cost:{10}".format(s_c,s_m,v,automaton_transit[0], event, s_c_next,s_m_next,v_next,automaton_transit[2], reward, prohibit_cost))
                 #print(pi)
@@ -644,7 +649,7 @@ class Supervisor():
                         break_event = event
                         break_n_state = [s_c_next, s_m_next]
                     break_point = 1
-                    reward = -100
+                    reward = 0
 
                 #エージェントの持つ状態の更新
                 s_c = s_c_next
@@ -653,7 +658,7 @@ class Supervisor():
                 v = v_next
                 
                 total_reward += reward
-                total_cost += prohibit_cost
+                total_cost += prohibit_cost #enable_reward
                 count += 1
                 #print("reward = {}, V = {}".format(reward, ))
             total_reward_mean.append(total_reward/step_count)
@@ -697,7 +702,7 @@ class Supervisor():
         #ax2.fill_between(x_axis, total_cost_mean_ - total_cost_std_, total_cost_mean_ + total_cost_std_, alpha = 0.2, color = "g")
         
         ax1.set_ylim(0,4)
-        ax2.set_ylim(-4,0)
+        ax2.set_ylim(0,4)
 
         ax1.set_ylabel("Average Reward")
         ax2.set_xlabel("Episode Count")
