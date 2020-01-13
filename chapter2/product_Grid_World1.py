@@ -66,9 +66,9 @@ class Product_Grid1(AugAutomaton.AugAutomaton, Grid_World1.Grid_World2):
         
         for enable_event in pi:
             if enable_event in cat_doors:
-                acc_reward += 1.2
+                acc_reward += 0.7
             elif enable_event in mouse_doors:
-                acc_reward += 1.2
+                acc_reward += 0.7
         
         return acc_reward
         

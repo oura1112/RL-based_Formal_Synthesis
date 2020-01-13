@@ -704,10 +704,10 @@ class Supervisor():
         #ax2.fill_between(x_axis, total_cost_mean_ - total_cost_std_, total_cost_mean_ + total_cost_std_, alpha = 0.2, color = "g")
         
         ax1.set_ylim(0,4)
-        ax2.set_ylim(0,6)
+        ax2.set_ylim(0,4)
 
-        ax1.set_ylabel("Average Reward")
+        ax1.set_ylabel("Average Reward for the LTL formula")
         ax2.set_xlabel("Episode Count")
-        ax2.set_ylabel("Average Cost")
+        ax2.set_ylabel("Average reward for control patterns")
 
         plt.show()
