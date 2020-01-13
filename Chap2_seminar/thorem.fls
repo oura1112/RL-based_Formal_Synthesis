@@ -21,6 +21,8 @@ INPUT c:/w32tex/share/texmf-dist/tex/latex/amsmath/amsopn.sty
 INPUT c:/w32tex/share/texmf-dist/tex/latex/amsmath/amsopn.sty
 INPUT c:/w32tex/share/texmf-dist/tex/latex/amsfonts/amssymb.sty
 INPUT c:/w32tex/share/texmf-dist/tex/latex/amsfonts/amssymb.sty
+INPUT c:/w32tex/share/texmf-dist/tex/latex/amscls/amsthm.sty
+INPUT c:/w32tex/share/texmf-dist/tex/latex/amscls/amsthm.sty
 INPUT c:/w32tex/share/texmf-dist/tex/latex/tools/bm.sty
 INPUT c:/w32tex/share/texmf-dist/tex/latex/tools/bm.sty
 INPUT c:/w32tex/share/texmf-dist/tex/latex/float/float.sty
@@ -61,7 +63,6 @@ INPUT thorem.aux
 INPUT thorem.aux
 OUTPUT thorem.aux
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
-INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 INPUT c:/w32tex/share/texmf-dist/tex/latex/amsfonts/umsa.fd
@@ -82,8 +83,7 @@ INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmmib5.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmbsy10.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy7.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy5.tfm
-INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmti7.tfm
-INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmti7.tfm
+INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
 OUTPUT thorem.dvi
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/tmin10.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/min10.tfm

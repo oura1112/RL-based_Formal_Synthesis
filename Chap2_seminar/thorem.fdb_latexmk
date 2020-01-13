@@ -1,9 +1,9 @@
 # Fdb version 3
-["dvipdf"] 1578760318 "thorem.dvi" "thorem.pdf" "thorem" 1578760320
-  "thorem.dvi" 1578760318 25300 ce7b73ad2d6dd645cfa61c5ea16d820b "latex"
+["dvipdf"] 1578901066 "thorem.dvi" "thorem.pdf" "thorem" 1578901069
+  "thorem.dvi" 1578901066 26688 a1d4d63ed8c625dfba2c35f7bf13a035 "latex"
   (generated)
   "thorem.pdf"
-["latex"] 1578760315 "thorem.tex" "thorem.dvi" "thorem" 1578760320
+["latex"] 1578901064 "thorem.tex" "thorem.dvi" "thorem" 1578901069
   "c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/goth10.tfm" 1519818042 1196 5981e79c37b2cfd27b3612a6783cd4b6 ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/min10.tfm" 1519818042 1196 1be730212205a270378fba11a44765dc ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/tgoth10.tfm" 1519818042 856 7404843a5f798859944d7973a47821d5 ""
@@ -27,9 +27,9 @@
   "c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmmib10.tfm" 1136768653 1524 554068197b70979a55370e6c6495f441 ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmr12.tfm" 1136768653 1288 655e228510b4c2a1abe905c368440826 ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmti10.tfm" 1136768653 1480 aa8e34af0eb6a2941b776984cf1dfdc4 ""
-  "c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmti7.tfm" 1136768653 1492 86331993fe614793f5e7e755835c31c5 ""
   "c:/w32tex/share/texmf-dist/tex/latex/algorithms/algorithm.sty" 1458884184 3249 15763257e50278eef5db1952ccde229c ""
   "c:/w32tex/share/texmf-dist/tex/latex/algorithms/algorithmic.sty" 1458884184 9318 793e9d5a71e74e730d97f6bf5d7e2bca ""
+  "c:/w32tex/share/texmf-dist/tex/latex/amscls/amsthm.sty" 1509462900 12604 3dec726c041422879dc3268237f09026 ""
   "c:/w32tex/share/texmf-dist/tex/latex/amsfonts/amsfonts.sty" 1358197772 5949 3f3fd50a8cc94c3d4cbf4fc66cd3df1c ""
   "c:/w32tex/share/texmf-dist/tex/latex/amsfonts/amssymb.sty" 1358197772 13829 94730e64147574077f8ecfea9bb69af4 ""
   "c:/w32tex/share/texmf-dist/tex/latex/amsfonts/umsa.fd" 1358197772 961 6518c6525a34feb5e8250ffa91731cff ""
@@ -59,8 +59,8 @@
   "c:/w32tex/share/texmf-dist/tex/latex/tools/bm.sty" 1524537978 12626 7d9d99d0bbe65f44cc0bb90f67262000 ""
   "c:/w32tex/share/texmf-dist/web2c/eptex/platex.fmt" 1524714577 4473763 7bc72e65b5b4d9fa2d2b248e6ab8b8ec ""
   "c:/w32tex/share/texmf-dist/web2c/texmf.cnf" 1518859120 32699 6adc13c376251eb7d184d2675f4e7970 ""
-  "thorem.aux" 1578760318 212 62a3701d7c1e5df143613881f0ce38b4 ""
-  "thorem.tex" 1578760315 18802 ebf2567c97e234177f686fe13f16480a ""
+  "thorem.aux" 1578901066 212 62a3701d7c1e5df143613881f0ce38b4 ""
+  "thorem.tex" 1578901064 20400 ae52b7f76bb517f64fba50ed194719ac ""
   (generated)
   "thorem.aux"
   "thorem.log"

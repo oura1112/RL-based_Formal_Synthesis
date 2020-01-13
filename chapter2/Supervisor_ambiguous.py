@@ -320,6 +320,7 @@ class Supervisor():
                     control_pats = [i for i in range(2**len(self.actions_con))]
                     control_pat = self.policy(s_m, s_c, q, v, self.Ns[s_m][s_c][q][v], control_pats, e)
                     pi = self.action_to_pi(control_pat, self.actions_con)
+                    control_pi = pi
                     #print("control")
                     #prohibit_cost_count = self.action_count(len(self.actions)) - self.action_count(control_pat)
                     #禁止パターンの取得
@@ -331,7 +332,7 @@ class Supervisor():
                     event = self.event_occur(s_m, s_c, q, v, pi)
                     
                     #Product MDP での状態遷移と報酬の取得
-                    s_c_next, s_m_next, reward, prohibit_cost, enable_reward, automaton_transit, v_next = env.step(event, prohibit_pi, pi) #環境内での状態も変化する
+                    s_c_next, s_m_next, reward, prohibit_cost, enable_reward, automaton_transit, v_next = env.step(event, prohibit_pi, control_pi) #環境内での状態も変化する
                     #print("current state:({0},{1},{2}); action:{3}; next state:({4},{5},{6}); reward:{7}".format(s,v,automaton_transit[0], a, s_next,v_next,automaton_transit[2], reward))
                     #print("current state:({0},{1},{2},{3}); event:{4}; next state:({5},{6},{7},{8}); reward:{9}; cost:{10}".format(s_c,s_m,v,automaton_transit[0], event, s_c_next,s_m_next,v_next,automaton_transit[2], reward, prohibit_cost))
                     #print(pi)
@@ -352,7 +353,7 @@ class Supervisor():
                             break_event = event
                             break_n_state = [s_c_next, s_m_next]
                         break_point = 1
-                        reward = -100
+                        reward = -1000
                         
                     #s_next = self.coord_to_snum(s_next)
                     
@@ -617,6 +618,7 @@ class Supervisor():
                 control_pats = [i for i in range(2**len(self.actions_con))]
                 control_pat = self.greedy(s_m, s_c, q, v)
                 pi = self.action_to_pi(control_pat, self.actions_con)
+                control_pi = pi
                 #print("control")
                 #prohibit_cost_count = self.action_count(len(self.actions)) - self.action_count(control_pat)
                 #禁止パターンの取得
@@ -628,7 +630,7 @@ class Supervisor():
                 event = self.event_occur(s_m, s_c, q, v, pi)
                 
                 #Product MDP での状態遷移と報酬の取得
-                s_c_next, s_m_next, reward, prohibit_cost, enable_reward, automaton_transit, v_next = env.step(event, prohibit_pi, pi) #環境内での状態も変化する
+                s_c_next, s_m_next, reward, prohibit_cost, enable_reward, automaton_transit, v_next = env.step(event, prohibit_pi, control_pi) #環境内での状態も変化する
                 #print("current state:({0},{1},{2}); action:{3}; next state:({4},{5},{6}); reward:{7}".format(s,v,automaton_transit[0], a, s_next,v_next,automaton_transit[2], reward))
                 #print("current state:({0},{1},{2},{3}); event:{4}; next state:({5},{6},{7},{8}); reward:{9}; cost:{10}".format(s_c,s_m,v,automaton_transit[0], event, s_c_next,s_m_next,v_next,automaton_transit[2], reward, prohibit_cost))
                 #print(pi)
@@ -649,7 +651,7 @@ class Supervisor():
                         break_event = event
                         break_n_state = [s_c_next, s_m_next]
                     break_point = 1
-                    reward = 0
+                    reward = -1000
 
                 #エージェントの持つ状態の更新
                 s_c = s_c_next
@@ -658,7 +660,7 @@ class Supervisor():
                 v = v_next
                 
                 total_reward += reward
-                total_cost += prohibit_cost #enable_reward
+                total_cost += enable_reward #prohibit_cost #
                 count += 1
                 #print("reward = {}, V = {}".format(reward, ))
             total_reward_mean.append(total_reward/step_count)
@@ -702,7 +704,7 @@ class Supervisor():
         #ax2.fill_between(x_axis, total_cost_mean_ - total_cost_std_, total_cost_mean_ + total_cost_std_, alpha = 0.2, color = "g")
         
         ax1.set_ylim(0,4)
-        ax2.set_ylim(0,4)
+        ax2.set_ylim(0,6)
 
         ax1.set_ylabel("Average Reward")
         ax2.set_xlabel("Episode Count")
