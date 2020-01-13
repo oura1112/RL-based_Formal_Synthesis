@@ -89,8 +89,8 @@ INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmmib5.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmbsy10.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy7.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy5.tfm
-INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
 OUTPUT system_model3.dvi
+INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/tmin8.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/min8.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
