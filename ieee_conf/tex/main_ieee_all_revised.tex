@@ -77,7 +77,7 @@ Reinforcement Learning of Control Policy for Linear Temporal Logic Specification
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
 
-This letter proposes a novel reinforcement leaning method for the synthesis of a control policy satisfying a control specification described by a linear temporal logic formula.  We assume that the controlled system is modeled by a Markov decision process (MDP).
+This letter proposes a novel reinforcement learning method for the synthesis of a control policy satisfying a control specification described by a linear temporal logic formula.  We assume that the controlled system is modeled by a Markov decision process (MDP).
 We transform the specification to a limit-deterministic B\"{u}chi automaton (LDBA) with several accepting sets that accepts all infinite sequences satisfying the formula.
 The LDBA is augmented so that it explicitly records the previous visits to accepting sets.
 We take a product of the augmented LDBA and the MDP, based on which we define a reward function.  The agent gets rewards whenever state transitions are in an accepting set that has not been visited for a certain number of steps.

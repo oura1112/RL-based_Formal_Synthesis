@@ -158,7 +158,7 @@ Test of Equation.
 %%%%%%%%%%%% 2nd Chapter %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{2nd Chapter}
 
-\section{Markov Decision Processes and Reinforcement Learning}
+\section{Markov Decision Processes}
 
 \begin{definition}[Labeled Markov Decision Process]
 A (labeled) Markov decision process (MDP) is a tuple $M$ = $(S, A, \mathcal{A}, P, s_{init}, AP, L)$, where S is a finite set of states, $A$ is a finite set of actions, $\mathcal{A} : S \rightarrow 2^A$ is a mapping that maps each state to the set of possible actions at the state, $P:S \times S \times A \rightarrow [0,1]$ is a transition probability such that $\sum_{s' \in S} P(s'|s,a) = 1$ for any state $s \in S$ and any action $a \in \mathcal{A}(s) $, $s_{init} \in S$ is the initial state, $AP$ is a finite set of atomic propositions, and $L : S \times A \times S\ \rightarrow\ 2^{AP}$ is a labeling function that assigns a set of atomic propositions to each transition $(s, a, s') \in S \times A \times S$.
@@ -191,6 +191,8 @@ Let $InfPath^{M}_{\pi}$ (resp., $FinPath^{M}_{\pi}$) be the set of infinite (res
 
 In an MDP $M$, we define a reward function $\mathcal{R}:S \times A \times S \rightarrow \mathbb{R}$, where $\mathbb{R}$ is the set of real numbers. The function denotes the immediate scalar bounded reward received after the agent performs an action $a$ at a state $s$ and reaches a next state $s'$ as a result.
 
+\section{Reinforcement Learning}
+
 \begin{definition}[Expected discounted reward for MDPs]
   For a policy $\pi$ on an MDP $M$, any state $s \in S$, and a reward function $\mathcal{R}$, we define the expected discounted reward as
   \begin{align*}
@@ -211,7 +213,7 @@ where $\mathbb{E}^{\pi}$ denotes the expected value given that the agent follows
   \end{align*}
 \end{definition}
 
-by the definition of the action-vlue function, it holds That
+by the definition of the action-value function, it holds that
 
 \begin{align*}
   Q^{\pi}(s,a) = & \max_{a \in \mathcal{A}(s)}V^{\pi}(s) \\
@@ -230,13 +232,15 @@ where $\Pi^{pos}$ is the set of positional policies over the state set $S$.
 We have the following {\it Bellman optimality functions} by the optimal policy.
 
 \begin{align*}
-  V^{\pi^{\ast}}(s) = & \max_{\pi \in \Pi^{pos}} V^{\pi}(s) \\
+  V^{\ast}(s) := & V^{\pi^{\ast}}(s) \\
+               = & \max_{\pi \in \Pi^{pos}} V^{\pi}(s) \\
                     = & \max_{\pi \in \Pi^{pos}} \sum_{a \in \mathcal{A}(s)} \pi(s,a) \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \{ \mathcal{R}(s, a, s^{\prime}) + \gamma V^{\pi}(s^{\prime}) \} \\
                     = & \max_{a \in \mathcal{A}(s)} [ \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \{ \mathcal{R}(s, a, s^{\prime}) + \gamma V^{\pi^{\ast}}(s^{\prime}) \} ],
 \end{align*}
 
 \begin{align*}
-  Q^{\pi^{\ast}}(s,a) = & \max_{\pi \in \Pi^{pos}} Q^{\pi}(s,a) \\
+  Q^{\ast}(s,a) := & Q^{\pi^{\ast}}(s,a) \\
+                = & \max_{\pi \in \Pi^{pos}} Q^{\pi}(s,a) \\
                       = & \max_{\pi \in \Pi^{pos}} \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \{ \mathcal{R}(s, a, s^{\prime}) + \gamma \sum_{a^{\prime} \in \mathcal{A}(s^{\prime})} \pi(s^{\prime}, a^{\prime}) Q^{\pi}(s^{\prime},a^{\prime}) \} \\
                       = & \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \{ \mathcal{R}(s, a, s^{\prime}) + \gamma \max_{\pi \in \Pi^{pos}} \sum_{a^{\prime} \in \mathcal{A}(s^{\prime})} \pi(s^{\prime}, a^{\prime}) Q^{\pi}(s^{\prime},a^{\prime}) \} \\
                       = & \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \{ \mathcal{R}(s, a, s^{\prime}) + \gamma \max_{a \in \mathcal{A}(s^{\prime})} Q^{\pi}(s^{\prime},a^{\prime}) \}.
@@ -244,10 +248,20 @@ We have the following {\it Bellman optimality functions} by the optimal policy.
 \label{opt_pol}
 \end{definition}
 
+We call $V^{\ast}$ and $Q^{\ast}$ the optimal state-value function and the optimal action-value function, respectively. $V^{\ast}(s)$ represents $Q^{\ast}(s,a)$ with an optimal action at the first step. Therefor, for any state $s \in S$, we have
+
+\begin{align*}
+  V^{\ast}(s) = \max_{a \in \mathcal{A}(s)} Q^{\ast}(s,a)
+\end{align*}
+
+In worsd, the set of optimal policies under $V^{\ast}$ and the set of optimal polisies under $Q^{\ast}$ are the same.
+
 \section{Stochastic Discrete Event Systems}
 
 \begin{definition}[Stochastic discrete event system]
 We represent a stochastic discrete event system (DES) as a labeled Markov decision process (MDP). A DES is a tuple $D$ = $(S, E, \mathcal{E}, P_T, P_E, s_{init}, AP, L)$, where S is a finite set of states; $E$ is a finite set of events; $\mathcal{E} : S \rightarrow E$ is a mapping that maps each state to the set of feasible events at the state; $P_T:S \times S \times E \rightarrow [0,1]$ is a transition probability such that $\sum_{s' \in S} P_T(s'|s,e) = 1$ for any state $s \in S$ and any event $e \in \mathcal{E}(s) $ and $P_T(s'|s,e) = 0$ for any $e \notin \mathcal{E}(s)$; $P_E : E \times S \times 2^E \rightarrow [0,1]$ is the probability that an event occurs under a subset $\pi \in \mathcal{E}(s)$ of events allowed to occur at the state $s \in S$ such that $\Sigma_{e \in \pi} P_E(e|s,\pi) = 1$ and we call the subset the control pattern; for any $(s^{\prime}, s, \pi) \in S \times S \times 2^E$, we define the probability $P : S \times S \times 2^{E} \rightarrow [0,1]$ such that $P(s'|s,\pi) = \sum_{e \in \pi}P_E(e|s,\pi) P_T(s^{\prime}|s,e)$ and $\Sigma_{s^{\prime} \in S} P(s'|s,\pi) = 1$; $s_{init} \in S$ is the initial state; $AP$ is a finite set of atomic propositions; and $L : S \times E \times S \rightarrow 2^{AP}$ is a labeling function that assigns a set of atomic propositions to each transition $(s, e, s') \in S \times E \times S$. We assume that $E$ can be partitioned into the set of controllable events $E_c$ and the set of uncontrollable events $E_{uc}$ such that $E_c \cup E_{uc} = E$ and $E_c \cap E_{uc} = \emptyset$. Note that each event $e$ occurs probabilistically depending on only the current state and the subset of feasible events at the state given by a controller.
+
+
 
 In the DES $D$, an infinite path for the DES starting from a state $s_0 \in S$ is defined as a sequence $\rho^D\ =\ s_0\pi_0e_0s_1 \ldots\ \in S (2^E E S)^{\omega}$ such that $P_E(e_i|s_i, \pi_i) > 0$ and $P_T(s_{i+1}|s_i, e_i) > 0$ for any $ i \in \mathbb{N}_0$. A finite path for the DES is a finite sequence in $S (2^E E S)^*$. In addition, we sometimes represent $\rho^D$ as $\rho^D_{init}$ to emphasize that $\rho^D$ starts from $s_0 = s_{init}$.
 For a path $\rho^D\ =\ s_0\pi_0e_0s_1 \ldots$, we define the corresponding labeled path $L(\rho^D)\ =\ L(s_0,e_0,s_1)L(s_1,e_1,s_2) \ldots \in (2^{AP})^{\omega}$.

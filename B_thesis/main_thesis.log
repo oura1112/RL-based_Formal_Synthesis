@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.sjis) (TeX Live 2019/W32TeX) (preloaded format=platex 2019.9.9)  14 JAN 2020 16:53
+This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.sjis) (TeX Live 2019/W32TeX) (preloaded format=platex 2019.9.9)  14 JAN 2020 17:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -358,30 +358,30 @@ Underfull \hbox (badness 2591) in paragraph at lines 172--173
 [2
 
 ] [3] [4] [5] [6] [7]
-Overfull \hbox (2.77481pt too wide) in paragraph at lines 360--361
+Overfull \hbox (2.77481pt too wide) in paragraph at lines 374--375
 []\OT1/cmr/m/n/10 A transition-
  []
 
-
-Overfull \hbox (44.53363pt too wide) in paragraph at lines 370--371
+[8]
+Overfull \hbox (44.53363pt too wide) in paragraph at lines 384--385
 []
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 372.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 386.
 (c:/w32tex/share/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 372.
- [8] [9]
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 386.
+ [9]
 3
 
-Underfull \hbox (badness 1748) in paragraph at lines 419--420
+Underfull \hbox (badness 1748) in paragraph at lines 433--434
 []\OT1/cmr/m/n/10 For a tLDBA $\OML/cmm/m/it/10 B[] \OT1/cmr/m/n/10 = (\OML/cmm/m/it/10 X; x[]; \OT1/cmr/m/n/10 ^^F\OML/cmm/m/it/10 ; ^^N; \OMS/cmsy/m/n/10 F\OT1/cmr/m/n/10 )$, its aug-mented au-toma-
  []
 
 
-Underfull \hbox (badness 1297) in paragraph at lines 419--420
+Underfull \hbox (badness 1297) in paragraph at lines 433--434
 \OML/cmm/m/it/10 ^^N;  v[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 reset\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 Max\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 v; visitf\OT1/cmr/m/n/10 ((\OML/cmm/m/it/10 x; []; x[]\OT1/cmr/m/n/10 ))))\OMS/cmsy/m/n/10 g$\OT1/cmr/m/n/10 , and $[] = \OMS/cmsy/m/n/10 f[]\OML/cmm/m/it/10 ; [] ; []\OMS/cmsy/m/n/10 g$ \OT1/cmr/m/n/10 is de-fined as
  []
 
@@ -391,44 +391,44 @@ Underfull \hbox (badness 1297) in paragraph at lines 419--420
 File: MDP_corridor.png Graphic file (type bmp)
 <MDP_corridor.png>
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 5.76599pt on input line 511.
+(Font)              scaled to size 5.76599pt on input line 525.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 8.64899pt on input line 511.
+(Font)              scaled to size 8.64899pt on input line 525.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 5.76599pt on input line 511.
+(Font)              scaled to size 5.76599pt on input line 525.
 File: ldgba_original.pdf Graphic file (type pdf)
 <ldgba_original.pdf>
 LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <9> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 520.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 534.
 LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
-(Font)              scaled to size 8.64899pt on input line 520.
+(Font)              scaled to size 8.64899pt on input line 534.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <9> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 520.
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 534.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 8.64899pt on input line 520.
+(Font)              scaled to size 8.64899pt on input line 534.
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 5.76599pt on input line 520.
+(Font)              scaled to size 5.76599pt on input line 534.
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <9> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 520.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 534.
 File: ldgba.pdf Graphic file (type pdf)
 <ldgba.pdf>
  [12] [13] [14]
 File: ep_1000_it_10000_MDP3_gamma_095_re2_ini22_nts_c095_20times.png Graphic file (type bmp)
 <ep_1000_it_10000_MDP3_gamma_095_re2_ini22_nts_c095_20times.png>
 
-Overfull \hbox (4.98335pt too wide) in paragraph at lines 570--571
+Overfull \hbox (4.98335pt too wide) in paragraph at lines 584--585
  [][] 
  []
 
 File: ep_1000_it_10000_MDP3_gamma_095_nts_c095_abate_20times.png Graphic file (type bmp)
 <ep_1000_it_10000_MDP3_gamma_095_nts_c095_abate_20times.png>
 
-Overfull \hbox (4.98335pt too wide) in paragraph at lines 576--577
+Overfull \hbox (4.98335pt too wide) in paragraph at lines 590--591
  [][] 
  []
 
 
-Overfull \hbox (15.33334pt too wide) in paragraph at lines 566--579
+Overfull \hbox (15.33334pt too wide) in paragraph at lines 580--593
  [][][][] 
  []
 
@@ -437,7 +437,7 @@ File: proposed_policy.png Graphic file (type bmp)
 File: Abate_policy.png Graphic file (type bmp)
 <Abate_policy.png>
 
-Overfull \hbox (14.55109pt too wide) in paragraph at lines 585--596
+Overfull \hbox (14.55109pt too wide) in paragraph at lines 599--610
  [][][][] 
  []
 
@@ -447,16 +447,16 @@ Overfull \hbox (14.55109pt too wide) in paragraph at lines 585--596
 
 ] [17]
 
-LaTeX Warning: Reference `result2' on page 18 undefined on input line 718.
+LaTeX Warning: Reference `result2' on page 18 undefined on input line 732.
 
 
-LaTeX Warning: Reference `result3' on page 18 undefined on input line 718.
+LaTeX Warning: Reference `result3' on page 18 undefined on input line 732.
 
 
-LaTeX Warning: Reference `sim2' on page 18 undefined on input line 719.
+LaTeX Warning: Reference `sim2' on page 18 undefined on input line 733.
 
 
-LaTeX Warning: Reference `sim3' on page 18 undefined on input line 719.
+LaTeX Warning: Reference `sim3' on page 18 undefined on input line 733.
 
 Excluding 'comment' comment.
 File: cat_mouse.png Graphic file (type bmp)
@@ -483,17 +483,17 @@ File: simulate_TD_v_10000_5000_rn2_1.png Graphic file (type bmp)
 ]
 A
 
-LaTeX Warning: Reference `lemma1' on page 24 undefined on input line 838.
+LaTeX Warning: Reference `lemma1' on page 24 undefined on input line 852.
 
 [24
 
 ]
-Underfull \hbox (badness 1303) in paragraph at lines 861--863
+Underfull \hbox (badness 1303) in paragraph at lines 875--877
 \OT1/cmr/m/n/10 whereas all states in $\OML/cmm/m/it/10 R\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 MC[]\OT1/cmr/m/n/10 )$ are pos-i-tive re-cur-rent be-cause $\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 S[]\OMS/cmsy/m/n/10 j \OML/cmm/m/it/10 < \OMS/cmsy/m/n/10 1$
  []
 
 
-Underfull \hbox (badness 1742) in paragraph at lines 861--863
+Underfull \hbox (badness 1742) in paragraph at lines 875--877
 \OT1/cmr/m/n/10 [[]]. Ob-vi-ously, $\OML/cmm/m/it/10 p[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s[]; s[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^U \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 p[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s[]; s[]\OT1/cmr/m/n/10 ))[] \OML/cmm/m/it/10 > \OT1/cmr/m/n/10 0$ holds for any
  []
 
@@ -502,12 +502,12 @@ Underfull \hbox (badness 1742) in paragraph at lines 861--863
 ] [28
 
 ]
-Underfull \hbox (badness 1675) in paragraph at lines 977--980
+Underfull \hbox (badness 1675) in paragraph at lines 991--994
 []\OT1/cmr/m/n/10 A. K. Bozkurt, Y. Wang, M. Za-vlanos, and M. Pa-jic, ``Con-trol syn-the-sis
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 984--986
+Underfull \hbox (badness 10000) in paragraph at lines 998--1000
 []\OT1/cmr/m/n/10 L. Breuer, ``In-tro-duc-tion to Stochas-tic Pro-cesses'', [On-line]. Avail-able:
  []
 
@@ -528,4 +528,4 @@ Here is how much of TeX's memory you used:
  934 hyphenation exceptions out of 8191
  27i,18n,32p,1735b,571s stack positions out of 5000i,500n,10000p,500000b,80000s
 
-Output written on main_thesis.dvi (32 pages, 104504 bytes).
+Output written on main_thesis.dvi (32 pages, 105776 bytes).
