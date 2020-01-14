@@ -259,18 +259,18 @@ For simplicity, we often represent infinite (resp., finite) path for the DES as 
 We define the supervisor as a controller for the DES that restricts the behaviors of the DES to satisfy a given specification.
 
 \begin{definition}[Supervisor]
-For the DES $M$,  a supervisor $SV : FinPath^{D} \rightarrow 2^E$ is defined as a mapping that maps each finite path to a set of allowed events at the finite path and we call the set the control pattern. In the following, the supervisor we consider is {\it state-based}, namely for any $\rho \in FinPath^{D}$, $SV(\rho) = SV(last(\rho))$. Note that the relation $E_{uc} \subset SV(\rho) \subset E$ holds for any $\rho \in FinPath^D$.
-Let $InfPath^{D}_{SV}$ (resp., $FinPath^{D}_{SV}$) be the set of infinite (resp., finite) paths starting from $s_0=s_{init}$ in the MDP $D$ under a policy $SV$. The behavior of an MDP $D$ under a policy $SV$ is defined on a probability space $(InfPath^{D}_{SV}, \mathcal{F}_{InfPath^{D}_{SV}}, Pr^{D}_{SV})$.
+For the DES $D$,  a supervisor $SV : FinPath^{D} \rightarrow 2^E$ is defined as a mapping that maps each finite path to a set of allowed events at the finite path and we call the set the control pattern. In the following, the supervisor we consider is {\it state-based}, namely for any $\rho \in FinPath^{D}$, $SV(\rho) = SV(last(\rho))$. Note that the relation $E_{uc} \subset SV(\rho) \subset E$ holds for any $\rho \in FinPath^D$.
+Let $InfPath^{D}_{SV}$ (resp., $FinPath^{D}_{SV}$) be the set of infinite (resp., finite) paths starting from $s_0=s_{init}$ in the DES $D$ under a supervisor $SV$. The behavior of an DES $D$ under a supervisor $SV$ is defined on a probability space $(InfPath^{D}_{SV}, \mathcal{F}_{InfPath^{D}_{SV}}, Pr^{D}_{SV})$.
 \end{definition}
 
 We consider the objective function similar to the {\it Bellamn optimality function} defined by the definition \ref{opt_pol}.
 \begin{definition}[Optimal value function for DESs]
 
-  From the view point of reinforcement learning, the DES can be interpreted as the environment controlled by the supervisor and the supervisor can be interpreted as the agent. We introduce the two following assumptions.
+  From the view point of reinforcement learning, the DES can be interpreted as the environment controlled by the supervisor and the supervisor can be interpreted as the policy. We introduce the two following assumptions.
 
   \begin{enumerate}
     \item The relative frequency of occurrence of each event does not depend on the control pattern.
-    \item We define a reward function $\mathcal{R} : S \times 2^E \times E \times S \rightarrow \mathbb{R}$ and the reward $\mathcal{R}$ can be decomposed into $\mathcal{R}_1$ and $\mathcal{R}_2$. The first reward $\mathcal{R}_1 : S \times 2^E \rightarrow \mathbb{R}$ is a reward that is determined by the control pattern selected by the supervisor, which depends on only the control pattern and the current state. The second reward $\mathcal{R}_2 : S \times E \times S \rightarrow \mathbb{R}$ is a reward that is determined by the occurrence of an event and the corresponding state transition. For any $(s,\pi,e,s^{\prime}) \in S \times 2^E \times E \times S$, we then have
+    \item We define a reward function $\mathcal{R} : S \times 2^E \times E \times S \rightarrow \mathbb{R}$ and the reward $\mathcal{R}$ can be decomposed into $\mathcal{R}_1$ and $\mathcal{R}_2$. The first reward $\mathcal{R}_1 : S \times 2^E \rightarrow \mathbb{R}$ is determined by the control pattern selected by the supervisor, which depends on only the control pattern and the current state. The second reward $\mathcal{R}_2 : S \times E \times S \rightarrow \mathbb{R}$ is determined by the occurrence of an event and the corresponding state transition. For any $(s,\pi,e,s^{\prime}) \in S \times 2^E \times E \times S$, we then have
     \begin{align}
       \mathcal{R}(s,\pi,e,s^{\prime}) = \mathcal{R}_1(s,\pi) + \mathcal{R}_2(s,e,s^{\prime}).
     \end{align}

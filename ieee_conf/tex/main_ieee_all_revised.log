@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.sjis) (TeX Live 2019/W32TeX) (preloaded format=platex 2019.9.9)  9 JAN 2020 14:46
+This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.sjis) (TeX Live 2019/W32TeX) (preloaded format=platex 2019.9.9)  14 JAN 2020 17:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -411,8 +411,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 280--282
 Underfull \vbox (badness 5548) has occurred while \output is active []
 
  [4]
-Underfull \hbox (badness 1418) in paragraph at lines 387--394
-\OT1/ptm/m/n/10 for any $\OML/cmm/m/it/10 k \OMS/cmsy/m/n/10 2 \OT1/cmr/m/n/10 (0\OML/cmm/m/it/10 ; \OMS/cmsy/m/n/10 1\OT1/cmr/m/n/10 ]$\OT1/ptm/m/n/10 . There-fore, for any $[] \OMS/cmsy/m/n/10 2
+Underfull \hbox (badness 1424) in paragraph at lines 387--394
+\OT1/ptm/m/n/10 where $[] \OMS/cmsy/m/n/10 ^^U \OML/cmm/m/it/10 n$ \OT1/ptm/m/n/10 is a con-stant and $\OT1/cmr/m/n/10 0 \OML/cmm/m/it/10 < [] <
  []
 
 File: MDP_corridor.png Graphic file (type eps)
@@ -484,4 +484,4 @@ Here is how much of TeX's memory you used:
  929 hyphenation exceptions out of 8191
  27i,18n,32p,994b,437s stack positions out of 5000i,500n,10000p,500000b,80000s
 
-Output written on main_ieee_all_revised.dvi (6 pages, 64104 bytes).
+Output written on main_ieee_all_revised.dvi (6 pages, 63824 bytes).
