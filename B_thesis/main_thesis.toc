@@ -7,6 +7,7 @@
 \contentsline {chapter}{\numberline {2}2nd Chapter}{2}% 
 \contentsline {section}{\numberline {2.1}Markov Decision Processes}{2}% 
 \contentsline {section}{\numberline {2.2}Reinforcement Learning}{3}% 
+\contentsline {subsection}{\numberline {2.2.1}Value functions and a policy}{3}% 
 \contentsline {section}{\numberline {2.3}Stochastic Discrete Event Systems}{5}% 
 \contentsline {section}{\numberline {2.4}Linear Temporal Logic and Automata}{7}% 
 \contentsline {chapter}{\numberline {3}3rd Chapter}{10}% 

@@ -193,6 +193,8 @@ In an MDP $M$, we define a reward function $\mathcal{R}:S \times A \times S \rig
 
 \section{Reinforcement Learning}
 
+\subsection{Value functions and a policy}
+
 \begin{definition}[Expected discounted reward for MDPs]
   For a policy $\pi$ on an MDP $M$, any state $s \in S$, and a reward function $\mathcal{R}$, we define the expected discounted reward as
   \begin{align*}
@@ -205,21 +207,23 @@ where $\mathbb{E}^{\pi}$ denotes the expected value given that the agent follows
 
   We have the following recursively equation for the state-value function and the action-value function.
 
-  \begin{align*}
-    V^{\pi}(s) = & \mathbb{E}^{\pi}[\sum_{n=0}^{\infty}\gamma^n \mathcal{R}(S_n, A_n, S_{n+1})|S_0 = s] \\
-     = & \sum_{a \in \mathcal{A}(s)} \pi(s,a) \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \mathbb{E}^{\pi}[\sum_{n=0}^{\infty}\gamma^n \mathcal{R}(S_n, A_n, S_{n+1})|S_0 = s, A_0 = a, S_1 = s^{\prime}] \\
-     = & \sum_{a \in \mathcal{A}(s)} \pi(s,a) \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \{ \mathcal{R}(s, a, s^{\prime}) + \gamma \mathbb{E}^{\pi}[\sum_{n=0}^{\infty}\gamma^n \mathcal{R}(S_n, A_n, S_{n+1})|S_1 = s^{\prime}] \} \\
+  \begin{align}
+    V^{\pi}(s) = & \mathbb{E}^{\pi}[\sum_{n=0}^{\infty}\gamma^n \mathcal{R}(S_n, A_n, S_{n+1})|S_0 = s] \nonumber \\
+     = & \sum_{a \in \mathcal{A}(s)} \pi(s,a) \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \mathbb{E}^{\pi}[\sum_{n=0}^{\infty}\gamma^n \mathcal{R}(S_n, A_n, S_{n+1})|S_0 = s, A_0 = a, S_1 = s^{\prime}] \nonumber \\
+     = & \sum_{a \in \mathcal{A}(s)} \pi(s,a) \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \{ \mathcal{R}(s, a, s^{\prime}) + \gamma \mathbb{E}^{\pi}[\sum_{n=0}^{\infty}\gamma^n \mathcal{R}(S_n, A_n, S_{n+1})|S_1 = s^{\prime}] \} \nonumber \\
     = & \sum_{a \in \mathcal{A}(s)} \pi(s,a) \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \{ \mathcal{R}(s, a, s^{\prime}) + \gamma V^{\pi}(s^{\prime}) \},
-  \end{align*}
+    \label{V_pi}
+  \end{align}
 \end{definition}
 
 by the definition of the action-value function, it holds that
 
-\begin{align*}
-  Q^{\pi}(s,a) = & \max_{a \in \mathcal{A}(s)}V^{\pi}(s) \\
-               = & \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \{ \mathcal{R}(s, a, s^{\prime}) + \gamma V^{\pi}(s^{\prime}) \} \\
+\begin{align}
+  Q^{\pi}(s,a) = & \max_{a \in \mathcal{A}(s)}V^{\pi}(s) \nonumber \\
+               = & \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \{ \mathcal{R}(s, a, s^{\prime}) + \gamma V^{\pi}(s^{\prime}) \} \nonumber \\
                = & \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \{ \mathcal{R}(s, a, s^{\prime}) + \gamma \sum_{a^{\prime} \in \mathcal{A}(s^{\prime})} \pi(s^{\prime}, a^{\prime}) Q^{\pi}(s^{\prime},a^{\prime}) \}.
-\end{align*}
+ \label{Q_pi}
+\end{align}
  The above equations are called the {\it Bellman equation}.
 
 \begin{definition}[Optimal policy]
@@ -229,22 +233,24 @@ by the definition of the action-value function, it holds that
   \end{align*}
 where $\Pi^{pos}$ is the set of positional policies over the state set $S$.
 
-We have the following {\it Bellman optimality functions} by the optimal policy.
+We have the following {\it Bellman optimality functions} by the definition of optimal policies.
 
-\begin{align*}
-  V^{\ast}(s) := & V^{\pi^{\ast}}(s) \\
-               = & \max_{\pi \in \Pi^{pos}} V^{\pi}(s) \\
-                    = & \max_{\pi \in \Pi^{pos}} \sum_{a \in \mathcal{A}(s)} \pi(s,a) \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \{ \mathcal{R}(s, a, s^{\prime}) + \gamma V^{\pi}(s^{\prime}) \} \\
+\begin{align}
+  V^{\ast}(s) := & V^{\pi^{\ast}}(s) \nonumber \\
+               = & \max_{\pi \in \Pi^{pos}} V^{\pi}(s) \nonumber \\
+                    = & \max_{\pi \in \Pi^{pos}} \sum_{a \in \mathcal{A}(s)} \pi(s,a) \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \{ \mathcal{R}(s, a, s^{\prime}) + \gamma V^{\pi}(s^{\prime}) \} \nonumber \\
                     = & \max_{a \in \mathcal{A}(s)} [ \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \{ \mathcal{R}(s, a, s^{\prime}) + \gamma V^{\pi^{\ast}}(s^{\prime}) \} ],
-\end{align*}
+\label{opt_V}
+\end{align}
 
-\begin{align*}
-  Q^{\ast}(s,a) := & Q^{\pi^{\ast}}(s,a) \\
-                = & \max_{\pi \in \Pi^{pos}} Q^{\pi}(s,a) \\
-                      = & \max_{\pi \in \Pi^{pos}} \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \{ \mathcal{R}(s, a, s^{\prime}) + \gamma \sum_{a^{\prime} \in \mathcal{A}(s^{\prime})} \pi(s^{\prime}, a^{\prime}) Q^{\pi}(s^{\prime},a^{\prime}) \} \\
-                      = & \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \{ \mathcal{R}(s, a, s^{\prime}) + \gamma \max_{\pi \in \Pi^{pos}} \sum_{a^{\prime} \in \mathcal{A}(s^{\prime})} \pi(s^{\prime}, a^{\prime}) Q^{\pi}(s^{\prime},a^{\prime}) \} \\
+\begin{align}
+  Q^{\ast}(s,a) := & Q^{\pi^{\ast}}(s,a) \nonumber \\
+                = & \max_{\pi \in \Pi^{pos}} Q^{\pi}(s,a) \nonumber \\
+                      = & \max_{\pi \in \Pi^{pos}} \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \{ \mathcal{R}(s, a, s^{\prime}) + \gamma \sum_{a^{\prime} \in \mathcal{A}(s^{\prime})} \pi(s^{\prime}, a^{\prime}) Q^{\pi}(s^{\prime},a^{\prime}) \} \nonumber \\
+                      = & \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \{ \mathcal{R}(s, a, s^{\prime}) + \gamma \max_{\pi \in \Pi^{pos}} \sum_{a^{\prime} \in \mathcal{A}(s^{\prime})} \pi(s^{\prime}, a^{\prime}) Q^{\pi}(s^{\prime},a^{\prime}) \} \nonumber \\
                       = & \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \{ \mathcal{R}(s, a, s^{\prime}) + \gamma \max_{a \in \mathcal{A}(s^{\prime})} Q^{\pi}(s^{\prime},a^{\prime}) \}.
-\end{align*}
+\label{opt_Q}
+\end{align}
 \label{opt_pol}
 \end{definition}
 
@@ -254,7 +260,9 @@ We call $V^{\ast}$ and $Q^{\ast}$ the optimal state-value function and the optim
   V^{\ast}(s) = \max_{a \in \mathcal{A}(s)} Q^{\ast}(s,a)
 \end{align*}
 
-In worsd, the set of optimal policies under $V^{\ast}$ and the set of optimal polisies under $Q^{\ast}$ are the same.
+In words, the set of optimal policies under $V^{\ast}$ and the set of optimal polisies under $Q^{\ast}$ are the same.
+
+If we know the full information of the transition probability and the reward function, we can obtain an optimal policy by solving Eqs. \ref{opt_V} or \ref{opt_Q}. we usually use {\it Dynamic Programming} to solve recursively equation such as Eqs \ref{opt_V} or \ref{opt_Q}. To find $V^{\pi}$ or $Q^{\pi}$ for a policy $\pi$ to solve Eqs. \ref{V_pi} or \ref{Q_pi} is referred to {\it Policy Evaluation}. For any state $s \in S$ or any state-action pair $(s,a) \in S \times A$, to update the policy $\pi$ to increase the value of $V^{\pi}(s)$ or $Q^{\pi}(s,a)$ is referred to {\it Policy Improvement}. The method to find an optimal policy to update optimal value function repeatedly in accordance with Eqs. \ref{opt_V} ar \ref{opt_Q} is referred to {\it Value Iteration}.
 
 \section{Stochastic Discrete Event Systems}
 
@@ -312,7 +320,7 @@ We consider the objective function similar to the {\it Bellamn optimality functi
 \begin{definition}[Optimal supervisor]
 We define an optimal supervisor $SV^{\ast}$ as follows. For any state $s \in S$,
 \begin{align}
-  SV^{\ast}(s) = \pi \in \argmax_{pi \in \mathcal{E}(s)} Q^{\ast}(s,\pi),
+  SV^{\ast}(s) = \pi \in \argmax_{\pi \in \mathcal{E}(s)} Q^{\ast}(s,\pi),
 \end{align}
 \end{definition}
 

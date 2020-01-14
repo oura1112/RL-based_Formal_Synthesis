@@ -1,9 +1,9 @@
 # Fdb version 3
-["dvipdf"] 1578992117 "main_thesis.dvi" "main_thesis.pdf" "main_thesis" 1578992120
-  "main_thesis.dvi" 1578992117 105776 ce7c92fa0cf6731a11b6e40b0a547218 "latex"
+["dvipdf"] 1578995372 "main_thesis.dvi" "main_thesis.pdf" "main_thesis" 1578995376
+  "main_thesis.dvi" 1578995372 107248 49485d4bc2afad99a9f5a3c2ece5a6fa "latex"
   (generated)
   "main_thesis.pdf"
-["latex"] 1578992114 "main_thesis.tex" "main_thesis.dvi" "main_thesis" 1578992120
+["latex"] 1578995370 "main_thesis.tex" "main_thesis.dvi" "main_thesis" 1578995376
   "Abate_policy.png" 1578387730 8562 259390f41d8d8c09a15a15cd53a4f6b3 ""
   "MDP_corridor.PNG" 1578387730 12036 b7670ce6e9ea1a633408317c520a965d ""
   "MDP_corridor.png" 1578387730 12036 b7670ce6e9ea1a633408317c520a965d ""
@@ -85,9 +85,9 @@
   "ldgba.pdf" 1578387730 7644 4b28959d88bec0b22c01d50c8a1bcfb8 ""
   "ldgba_original.pdf" 1578387730 4747 1df07183e3250df3beca16fd27061ff4 ""
   "learning_TD_v_15000_5000_rn2_05.png" 1578462890 28652 aa4e85eeb75639f908bc63ecaff8ca60 ""
-  "main_thesis.aux" 1578992116 9105 117f459680e4db30517319878ca91a30 "latex"
-  "main_thesis.tex" 1578992111 74896 0e96febcad9b8902853c0e5097a109e7 ""
-  "main_thesis.toc" 1578992117 1312 bd91e81e84384f65d6717cb9d0854870 "latex"
+  "main_thesis.aux" 1578995372 9332 9971c0c80779794e1ee68ec267d01567 "latex"
+  "main_thesis.tex" 1578995370 75906 dbd04d8acf03db310537c8b7328422fb ""
+  "main_thesis.toc" 1578995372 1393 a4e585328a584f75bb9108b89879a3eb "latex"
   "max_Q_value_TD.png" 1578462890 21461 7b32a31f6179c0e5ffb1a4768a9a21b5 ""
   "max_Q_value_TD_rn2_1.png" 1578462890 30069 106c1ea3b0bb0b3d37b1493cdad6a54d ""
   "proposed_policy.png" 1578387730 9025 932453edadd7645402707695cfa45510 ""
@@ -96,7 +96,7 @@
   "simulate_TD_v_15000_5000_rn2_05.png" 1578462890 28198 c7dae64b6145bd436be169179ed881f0 ""
   "thesis.sty" 1578372970 4457 19dfc45703e3907faa88afdc81deb305 ""
   (generated)
-  "main_thesis.dvi"
   "main_thesis.aux"
-  "main_thesis.toc"
+  "main_thesis.dvi"
   "main_thesis.log"
+  "main_thesis.toc"
