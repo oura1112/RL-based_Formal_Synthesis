@@ -156,9 +156,11 @@ Test of Equation.
 
 
 %%%%%%%%%%%% 2nd Chapter %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{2nd Chapter}
+\chapter{Preliminaries}
 
 \section{Markov Decision Processes}
+
+We define a controlled system as a labeled Markov decision process.
 
 \begin{definition}[Labeled Markov Decision Process]
 A (labeled) Markov decision process (MDP) is a tuple $M$ = $(S, A, \mathcal{A}, P, s_{init}, AP, L)$, where S is a finite set of states, $A$ is a finite set of actions, $\mathcal{A} : S \rightarrow 2^A$ is a mapping that maps each state to the set of possible actions at the state, $P:S \times S \times A \rightarrow [0,1]$ is a transition probability such that $\sum_{s' \in S} P(s'|s,a) = 1$ for any state $s \in S$ and any action $a \in \mathcal{A}(s) $, $s_{init} \in S$ is the initial state, $AP$ is a finite set of atomic propositions, and $L : S \times A \times S\ \rightarrow\ 2^{AP}$ is a labeling function that assigns a set of atomic propositions to each transition $(s, a, s') \in S \times A \times S$.
@@ -193,7 +195,9 @@ In an MDP $M$, we define a reward function $\mathcal{R}:S \times A \times S \rig
 
 \section{Reinforcement Learning}
 
-\subsection{Value functions and a policy}
+Reinforcement learning is the theoretical framework to find a policy maximizing or minimizing an objective function through the iterative interactions between the learner referred to the agent and the controlled system referred to the environment. The interaction is that the agent takes an action on the environment and the environment returns a observation such as a immediate reward or next state. In this section, since we use model-free method in this thesis, we refer the model-free reinforcement learning, which find a policy maximizing or minimizing an objective function without inference the environment implicitly.
+
+\subsection{Objective functions and a policy}
 
 \begin{definition}[Expected discounted reward for MDPs]
   For a policy $\pi$ on an MDP $M$, any state $s \in S$, and a reward function $\mathcal{R}$, we define the expected discounted reward as
@@ -227,7 +231,7 @@ by the definition of the action-value function, it holds that
  The above equations are called the {\it Bellman equation}.
 
 \begin{definition}[Optimal policy]
-  For any state $s$ in $S$, a policy $\pi^{\ast}$ is optimal if
+  For any state $s \in S$, a policy $\pi^{\ast}$ is optimal if
   \begin{align*}
     \pi^{\ast} \in \argmax_{\pi \in \Pi^{pos}} V^{\pi}(s),
   \end{align*}
@@ -262,12 +266,19 @@ We call $V^{\ast}$ and $Q^{\ast}$ the optimal state-value function and the optim
 
 In words, the set of optimal policies under $V^{\ast}$ and the set of optimal polisies under $Q^{\ast}$ are the same.
 
-If we know the full information of the transition probability and the reward function, we can obtain an optimal policy by solving Eqs. \ref{opt_V} or \ref{opt_Q}. we usually use {\it Dynamic Programming} to solve recursively equation such as Eqs \ref{opt_V} or \ref{opt_Q}. To find $V^{\pi}$ or $Q^{\pi}$ for a policy $\pi$ to solve Eqs. \ref{V_pi} or \ref{Q_pi} is referred to {\it Policy Evaluation}. For any state $s \in S$ or any state-action pair $(s,a) \in S \times A$, to update the policy $\pi$ to increase the value of $V^{\pi}(s)$ or $Q^{\pi}(s,a)$ is referred to {\it Policy Improvement}. The method to find an optimal policy to update optimal value function repeatedly in accordance with Eqs. \ref{opt_V} ar \ref{opt_Q} is referred to {\it Value Iteration}.
+If we know the full information of the MDP such as transition probability or the reward function, we can obtain an optimal policy by solving Eqs. \ref{opt_V} or \ref{opt_Q}. we usually use {\it Dynamic Programming} to solve recursively equation such as Eqs \ref{opt_V} or \ref{opt_Q}. To find $V^{\pi}$ or $Q^{\pi}$ for a policy $\pi$ to solve Eqs. \ref{V_pi} or \ref{Q_pi} is referred to {\it Policy Evaluation}. For any state $s \in S$ or any state-action pair $(s,a) \in S \times A$, to update the policy $\pi$ to increase the value of $V^{\pi}(s)$ or $Q^{\pi}(s,a)$ is referred to {\it Policy Improvement}. The method to find an optimal policy to update optimal value function repeatedly in accordance with Eqs. \ref{opt_V} ar \ref{opt_Q} is referred to {\it Value Iteration}. The method to find an optimal policy to repeat policy evaluation and policy improvement alternately is referred to {\it Policy Iteration}.
+
+\subsection{Temporal Difference Learning}
+
+If the MDP $M$ is unknown, we can not use dynamic programming such as value iteration or policy iteration to obtain an optimal policy. In the case that the MDP $M$ is unknown, we often use   reinforcement learning to find an optimal policy instead of dynamic programming.
+
+Temporal difference learning (TD-learning) is the basic method of model-free reinforcement learning.
 
 \section{Stochastic Discrete Event Systems}
+We represent a stochastic discrete event system (DES) as an MDP.
 
 \begin{definition}[Stochastic discrete event system]
-We represent a stochastic discrete event system (DES) as a labeled Markov decision process (MDP). A DES is a tuple $D$ = $(S, E, \mathcal{E}, P_T, P_E, s_{init}, AP, L)$, where S is a finite set of states; $E$ is a finite set of events; $\mathcal{E} : S \rightarrow E$ is a mapping that maps each state to the set of feasible events at the state; $P_T:S \times S \times E \rightarrow [0,1]$ is a transition probability such that $\sum_{s' \in S} P_T(s'|s,e) = 1$ for any state $s \in S$ and any event $e \in \mathcal{E}(s) $ and $P_T(s'|s,e) = 0$ for any $e \notin \mathcal{E}(s)$; $P_E : E \times S \times 2^E \rightarrow [0,1]$ is the probability that an event occurs under a subset $\pi \in \mathcal{E}(s)$ of events allowed to occur at the state $s \in S$ such that $\Sigma_{e \in \pi} P_E(e|s,\pi) = 1$ and we call the subset the control pattern; for any $(s^{\prime}, s, \pi) \in S \times S \times 2^E$, we define the probability $P : S \times S \times 2^{E} \rightarrow [0,1]$ such that $P(s'|s,\pi) = \sum_{e \in \pi}P_E(e|s,\pi) P_T(s^{\prime}|s,e)$ and $\Sigma_{s^{\prime} \in S} P(s'|s,\pi) = 1$; $s_{init} \in S$ is the initial state; $AP$ is a finite set of atomic propositions; and $L : S \times E \times S \rightarrow 2^{AP}$ is a labeling function that assigns a set of atomic propositions to each transition $(s, e, s') \in S \times E \times S$. We assume that $E$ can be partitioned into the set of controllable events $E_c$ and the set of uncontrollable events $E_{uc}$ such that $E_c \cup E_{uc} = E$ and $E_c \cap E_{uc} = \emptyset$. Note that each event $e$ occurs probabilistically depending on only the current state and the subset of feasible events at the state given by a controller.
+A DES is a tuple $D$ = $(S, E, \mathcal{E}, P_T, P_E, s_{init}, AP, L)$, where S is a finite set of states; $E$ is a finite set of events; $\mathcal{E} : S \rightarrow E$ is a mapping that maps each state to the set of feasible events at the state; $P_T:S \times S \times E \rightarrow [0,1]$ is a transition probability such that $\sum_{s' \in S} P_T(s'|s,e) = 1$ for any state $s \in S$ and any event $e \in \mathcal{E}(s) $ and $P_T(s'|s,e) = 0$ for any $e \notin \mathcal{E}(s)$; $P_E : E \times S \times 2^E \rightarrow [0,1]$ is the probability that an event occurs under a subset $\pi \in \mathcal{E}(s)$ of events allowed to occur at the state $s \in S$ such that $\Sigma_{e \in \pi} P_E(e|s,\pi) = 1$ and we call the subset the control pattern; for any $(s^{\prime}, s, \pi) \in S \times S \times 2^E$, we define the probability $P : S \times S \times 2^{E} \rightarrow [0,1]$ such that $P(s'|s,\pi) = \sum_{e \in \pi}P_E(e|s,\pi) P_T(s^{\prime}|s,e)$ and $\Sigma_{s^{\prime} \in S} P(s'|s,\pi) = 1$; $s_{init} \in S$ is the initial state; $AP$ is a finite set of atomic propositions; and $L : S \times E \times S \rightarrow 2^{AP}$ is a labeling function that assigns a set of atomic propositions to each transition $(s, e, s') \in S \times E \times S$. We assume that $E$ can be partitioned into the set of controllable events $E_c$ and the set of uncontrollable events $E_{uc}$ such that $E_c \cup E_{uc} = E$ and $E_c \cap E_{uc} = \emptyset$. Note that each event $e$ occurs probabilistically depending on only the current state and the subset of feasible events at the state given by a controller.
 
 
 
@@ -493,12 +504,12 @@ Lemma \ref{lemma3-1} implies that for an LTL formula $\varphi$ if a path $\rho$ 
   \label{theorem3-1}
 \end{theorem}
 
-\begin{theorem}
-  Let $M^{\otimes}$ be the product MDP corresponding to an MDP $M$ and an LTL formula $\varphi$. If there exists a positional policy $\pi$ such that $Pr^M_{\pi}(\rho_{init} \models \varphi) = 1$, then there exists a discount factor $\gamma^{\ast}$ such that any algorithm that maximizes the expected reward with $\gamma > \gamma^{\ast}$ will find a positional policy $\pi^{\prime}$ such that $Pr^M_{\pi^{\prime}}(\rho_{init} \models \varphi) = 1$.
-  \label{theorem3-2}
-\end{theorem}
+%\begin{theorem}
+%  Let $M^{\otimes}$ be the product MDP corresponding to an MDP $M$ and an LTL formula $\varphi$. If there exists a positional policy $\pi$ such that $Pr^M_{\pi}(\rho_{init} \models \varphi) = 1$, then there exists a discount factor $\gamma^{\ast}$ such that any algorithm that maximizes the expected reward with $\gamma > \gamma^{\ast}$ will find a positional policy $\pi^{\prime}$ such that $Pr^M_{\pi^{\prime}}(\rho_{init} \models \varphi) = 1$.
+%  \label{theorem3-2}
+%\end{theorem}
 
-We show the overall procedure of our proposed method in Algorithm \ref{alg1}. We employ Q-learning in Algorithm \ref{alg1}, but any algorithms maximizing the expected discounted reward can be applied to our proposed method.
+We show the overall procedure of our proposed method in Algorithm \ref{syn_pol}. We employ Q-learning in Algorithm \ref{syn_pol}, but any algorithms maximizing the expected discounted reward can be applied to our proposed method.
 \begin{algorithm}
  \caption{RL-based synthesis of control policy on the MDP with the augmented tLDBA.}
  \begin{algorithmic}[1]
@@ -521,7 +532,7 @@ We show the overall procedure of our proposed method in Algorithm \ref{alg1}. We
   \ENDFOR
   \ENDWHILE
  \end{algorithmic}
- \label{alg1}
+ \label{syn_pol}
  \end{algorithm}
 
  \section{Example}
