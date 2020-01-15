@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.sjis) (TeX Live 2019/W32TeX) (preloaded format=platex 2019.9.9)  14 JAN 2020 16:34
+This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.sjis) (TeX Live 2019/W32TeX) (preloaded format=platex 2019.9.9)  15 JAN 2020 15:03
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -268,11 +268,6 @@ Overfull \hbox (37.6546pt too wide) in paragraph at lines 171--175
 \OT1/cmr/m/n/10 If it holds that $\OML/cmm/m/it/10 ^^M[]p[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s[]; []\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ^^M[]r[] > \OT1/cmr/m/n/10 (1 + [] + \OML/cmm/m/it/10 ^^M[]\OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 jjR[]jj[]$\OT1/cmr/m/n/10 ,
  []
 
-
-Overfull \hbox (48.75354pt too wide) in paragraph at lines 171--175
-\OT1/cmr/m/n/10 there ex-ist $\OML/cmm/m/it/10 ^^M[] < \OT1/cmr/m/n/10 1$, a pos-i-tive re-ward $\OML/cmm/m/it/10 r[]$ \OT1/cmr/m/n/10 that sat-is-fies $\OML/cmm/m/it/10 ^^M[]p[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s[]; []\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ^^M[]r[] >
- []
-
 LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <14.4> not available
 (Font)              Font shape `JT1/gt/m/n' tried instead on input line 180.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <14.4> not available
@@ -291,4 +286,4 @@ Here is how much of TeX's memory you used:
  929 hyphenation exceptions out of 8191
  27i,21n,32p,1171b,322s stack positions out of 5000i,500n,10000p,500000b,80000s
 
-Output written on thorem.dvi (5 pages, 28016 bytes).
+Output written on thorem.dvi (5 pages, 27972 bytes).
