@@ -39,14 +39,18 @@
 \begin{document}
 This reply is for the reviewer 5.
 
-In the following, we refer to limit-diterministic generalized B\"{u}chi automaton as LDGBA and non-generalized one as LDBA.
+In the following, we refer to transition-besed limit-diterministic generalized B\"{u}chi automaton as tLDGBA and non-generalized one as tLDBA.
 
 \begin{enumerate}
   \item Contributions in our paper. \\
-  Our contributions are as follows.
+  We propose an augmented tLDGBA. Consequently, our contributions are as follows.
+  
   \begin{itemize}
-    \item The sparsity of rewards is relaxed comparing with using LDGBA by introducing the augmentation of LDBAs. Therefore, our proposed algorithm is more sample efficient.
-    \item The recurrent classes of the Markov chain induced by a product MDP $M^{\otimes}$ and a positional policy $\pi$ on $M^{\otimes}$ are classified as ones that has at least one accepting transition in each accepting set or ones that has no accepting transition in all accepting sets without depending on the policy.
+    \item  The sparsity of rewards is relaxed compared to the case of using LDBAs. Therefore, our proposed algorithm is more sample efficient compared to the case of using LDBAs.
+
+    \item For a product MDP $M^{\otimes}$ of an MDP $M$ and an augmented tLDGBA $\bar{B}_{\varphi}$ corresponding to a given LTL formula and a reward function corresponding to the acceptance condition of $M^{\otimes}$, if there exists a finite-memoly policy on the MDP $M$, we obtain a positional policy satisfying $\varphi$ on $M^{\otimes}$ by a reinforcement learning algorithm maximizing expected discounted reward.
+
+    %\item The recurrent classes of the Markov chain induced by a product MDP $M^{\otimes}$ and a positional policy $\pi$ on $M^{\otimes}$ are classified as ones that has at least one accepting transition in each accepting set or ones that has no accepting transition in all accepting sets without depending on the policy.
   \end{itemize}
 
   \item Discussions in the section with the simulation. \\

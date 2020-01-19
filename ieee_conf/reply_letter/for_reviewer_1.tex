@@ -39,6 +39,8 @@
 \begin{document}
 This reply is for the reviewer 1.
 
+In the following, we refer to transition-besed limit-diterministic generalized B\"{u}chi automaton as tLDGBA and non-generalized one as tLDBA.
+
 \begin{enumerate}
   \item About the correctness of Theorem 1 and the connection between RL-based sysnthesis and Theoretical results. \\
   For an MDP $M$, the augmented tLDBA $\bar{B}_{\varphi}$ corresponding to an LTL formula $\varphi$, and the product MDP $M^{\otimes}$ of $M$ and $\bar{B}_{\varphi}$, we see an optimal policy as an positional policy on the product $M^{\otimes}$. Then, we define a reward function based on the acceptance condition of $\bar{B}_{\varphi}$. Therefore, in the counterexample of the reviewer 1, the optimal policy and the reward function should be considered as one on the product $M^{\otimes}$ and be designed based on the corresponding acceptance condition, respectively.
@@ -56,10 +58,13 @@ This reply is for the reviewer 1.
   The reason we employ the notion of a formula being satisfied as the non-zero probability is to more generally evaluate an obtained policy. Underlying the notion, the goal is to obtain a policy maximizing the probability of satisfaction efficiently.
 
   \item Contributions in our paper. \\
-  Our contributions are as follows.
+  We propose an augmented tLDGBA. Consequently, our contributions are as follows.
   \begin{itemize}
-    \item The sparsity of rewards is relaxed comparing with using LDBA (non-generalized) by introducing the augmentation of LDBAs. Therfore, our proposed algorithm is more sample efficient.
-    \item Recurrent classes of the Markov chain induced by a product MDP $M^{\otimes}$ and a positional policy $\pi$ on $M^{\otimes}$ are classified as ones that has at least one accepting transition in each accepting set or ones that has no accepting transition in all accepting sets without depending on the policy.
+    \item  The sparsity of rewards is relaxed compared to the case of using LDBAs. Therefore, our proposed algorithm is more sample efficient.
+
+    \item For a product MDP $M^{\otimes}$ of an MDP $M$ and an augmented tLDGBA $\bar{B}_{\varphi}$ corresponding to a given LTL formula and a reward function based on the acceptance condition of $M^{\otimes}$, if there exists a finite-memoly policy on the MDP $M$, we then obtain a positional policy satisfying $\varphi$ on $M^{\otimes}$ by a reinforcement learning algorithm maximizing the expected discounted reward.
+
+    %\item The recurrent classes of the Markov chain induced by a product MDP $M^{\otimes}$ and a positional policy $\pi$ on $M^{\otimes}$ are classified as ones that has at least one accepting transition in each accepting set or ones that has no accepting transition in all accepting sets without depending on the policy.
   \end{itemize}
 \end{enumerate}
 

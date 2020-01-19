@@ -1,0 +1,92 @@
+Usually I start reviews by giving a broad outline of my opinion about
+the paper, followed by detailed comments. In this case, I have one
+comment that is so substantial that it makes the rest of the discussion
+mostly irrelevant. My primary issue with this paper is in the claim of
+the paper's main result, Theorem 1. In itself, the claim of Theorem 1
+has nothing to do with automata or learning. It states that we consider
+an MDP M and any LTL formula phi, and appears to say the following: if
+there exists a stationary (or, in the author's words, positional)
+policy satisfying phi, then a policy maximizing the expected discounted
+reward (for some discounted factor) will actually be a policy that
+satisfies phi.
+
+If my reading of the theorem claim is correct, such a result is clearly
+incorrect. Consider an MDP M with states {s_0,s_1} and actions {a,b}
+such that P(s_i,a,s_i)=1, P(s_i,b,s_{1-i})=1 (in other words, action a
+results in the agent state not changing, and b results in it changing
+to the other state). Consider the rewards given by R(s_0,*,*)=0,
+R(s_1,*,*)=1; in other words, the agent does not receive anything when
+it is at s_0 and receives 1 when it is at s_1. Consider now phi =
+"always s_0". 
+
+Clearly, if s_0=s_init, there exists a positional policy satisfying
+phi: it just applies action a over and over again. (Even if s_init is
+not set, we can consider phi = "next always s_0", and a policy that
+applies b at s_1 and a at s_0). On the other hand, regardless of the
+discount factor, the reward obtained by an agent that satisfies phi is
+by definition 0. The maximal expected reward will actually be achieved
+by an agent that goes to s_1 and stays there indefinitely, thus
+seemingly contradicting the theorem claim.
+
+Because this "counterexample" is so obvious, I am tempted to believe
+that it stems from a misunderstanding of the theorem claim: perhaps the
+unusually written part saying "any algorithm that maximizes the
+expected reward ... will find a positional policy" means something else
+than what I meant? Nonetheless, before continuing with evaluating the
+paper, I believe that this issue needs to be cleared up.
+
+方策はproduct MDP上で考えること，報酬は定義に従ったものであることを定理1に追記．
+
+
+For the sake of completeness, let me also list my other comments (some
+of which may also be somewhat major issues), in descending order of
+importance:
+
+- the connection between RL-based synthesis and the theoretical results
+of Section III should be made much clearer
+
+定理１よりaugmented LDBAとMDPによるproduct MDP上で学習を行えばproduct上でのLTLを満たす方策を得ることができる，
+
+
+- apart from the potential theoretical interest, it's not clear why
+using LDBA would be better for policy synthesis than using other
+automata; the example only compares the authors' results with another
+LDBA approach
+
+Rabin automata を用いた場合LTLを確率１で満たす方策が存在してもそれを学習で得られないケースが存在する．これはRabin automataには複数の受理集合のペアが存在し，
+各ペアに対して報酬関数が定義されることに起因する．
+
+
+- the notation "section", which is combined with Section II.A, is
+unclear and imprecise: what is omega in the exponent, what is a "scalar
+bounded reward", what is s_init (it is not mentioned in M), etc.
+
+MDPの定義に追記．
+
+
+- the notion of a formula being "satisfied" if it is satisfied with any
+non-zero probability (instead of 1) is counterintuitive
+
+根底にある目的として，充足確率を最大化することを念頭に置いているため．
+
+
+- the introductory section is not clear about the ultimate purpose and
+contribution of the paper: is it to improve RL performance for LTL
+specifications? If so, OK, but that should be stated clearly.
+
+introで，最終目標とcontributionをより明確にする．
+
+
+- the sentence "In general, there are uncertainties in a controlled
+system..." needs rephrasing: maybe something like "Because of inherent
+stochasticity of many controlled systems, ..."
+- "we model a controlled system" -- it is not clear whether this is the
+authors' contribution or prior work. It might be better to say
+"Previously, ..."
+
+intro内での表現修正．
+
+
+- typo: "syntehsis"
+
+修正．

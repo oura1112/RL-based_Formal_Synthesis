@@ -1,0 +1,49 @@
+
+In this paper, the author presented a new reinforcement learning
+algorithm to optimally planning in MDP given linear temporal logic
+formulas. They use limit deterministic buchi automaton and presented
+the algorithm using the product between the MDP and an augmented
+automaton, constructed from the limit deterministic one. 
+The paper studies an important problem in probabilistic model checking
+and has unique approaches to that problem. the reviewer has the
+following technical questions: 
+
+- The probability function in Def. 9 can be not well-defined for
+non-deterministic transitions. Consider a simple example, say (x1, l,
+x1’ ) and (x1, l, x2’) are both in delta. P(s’|s, a) =1 with l=
+L((s,a,s’)) will have two outgoing transitions labeled by the same
+action a, and all with probability one. The sum of probability given
+action a on state (s, x1) will be 2. Will this study only consider
+deterministic transitions?
+- The construction of augmented automaton in Def. 8 is not
+well-motivated. What is the intuition behind this construction? 
+Further, there should be a formal proof that the two automata accepting
+the same language. Examples in section IV helps a lot. It would be
+useful to have a small example to illustrate the construction. 
+- In the proof of Lemma 1, the last sentence is unclear. The goal is to
+show that either an agent receives no reward from visiting recurrent
+class, or the agent has to visit “all recurrent class for which the
+acceptance condition are satisfied”. It is not clear why it is not
+possible that a policy only visits some subset of acceptance set but
+not all. This may due to the lack of explanation to the def.8. 
+- The construction of augmented automaton is similar to the “accepting
+frontier” in the following paper, presented at CDC this year: Hosein et
+al.  mainly, the same problem was studied too. The authors should
+highlight the difference and their unique contribution comparing to
+existing work. 
+Reinforcement Learning for Temporal Logic Control Synthesis with
+Probabilistic Satisfaction Guarantees  
+https://arxiv.org/pdf/1909.05304.pdf
+- The comparison with [14] is unclear. If both methods generate the
+optimal policies, then it is not clear why [14] does not perform
+correctly in this example. 
+
+Other nontechnical comments:
+
+- The notations are too complicated and can be simplified. 
+-Def. 7 is bit complicated in writing, the definition in ref.[13] is
+much clearer. Further, the statement “the transitions in each part are
+deterministic“ — this claim is not suggested in [13]. In fact, in the
+original definition, the state space partitions to the nondeterministic
+part and deterministic part. The transitions in the nondeterministic
+part can be nondeterministic. 
