@@ -1,11 +1,10 @@
-PWD C:/Users/oura/Documents/GitHub/Chap2/B_thesis
+PWD C:/Users/ooura/Documents/GitHub/Chap2/B_thesis
 INPUT c:/w32tex/share/texmf-dist/web2c/texmf.cnf
 INPUT c:/w32tex/share/texmf-dist/web2c/eptex/platex.fmt
 INPUT main_thesis.tex
 OUTPUT main_thesis.log
 INPUT c:/w32tex/share/texmf-dist/tex/platex/jsclasses/jsbook.cls
 INPUT c:/w32tex/share/texmf-dist/tex/platex/jsclasses/jsbook.cls
-INPUT c:/w32tex/share/texmf-dist/fonts/map/fontname/texfonts.map
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/tmin10.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/jis/jis.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/tmin10.tfm

@@ -1,9 +1,9 @@
 # Fdb version 3
-["dvipdf"] 1579203713 "thorem.dvi" "thorem.pdf" "thorem" 1579203715
-  "thorem.dvi" 1579203713 33892 07140e7fc68f42828285d058a78de4df "latex"
+["dvipdf"] 1579257017 "thorem.dvi" "thorem.pdf" "thorem" 1579257021
+  "thorem.dvi" 1579257017 33568 962d4eb1321c73e4a49eaea87233d3bd "latex"
   (generated)
   "thorem.pdf"
-["latex"] 1579203711 "thorem.tex" "thorem.dvi" "thorem" 1579203715
+["latex"] 1579257011 "thorem.tex" "thorem.dvi" "thorem" 1579257021
   "c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/goth10.tfm" 1519818042 1196 5981e79c37b2cfd27b3612a6783cd4b6 ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/min10.tfm" 1519818042 1196 1be730212205a270378fba11a44765dc ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/tgoth10.tfm" 1519818042 856 7404843a5f798859944d7973a47821d5 ""
@@ -59,9 +59,9 @@
   "c:/w32tex/share/texmf-dist/tex/latex/tools/bm.sty" 1524537978 12626 7d9d99d0bbe65f44cc0bb90f67262000 ""
   "c:/w32tex/share/texmf-dist/web2c/eptex/platex.fmt" 1524714577 4473763 7bc72e65b5b4d9fa2d2b248e6ab8b8ec ""
   "c:/w32tex/share/texmf-dist/web2c/texmf.cnf" 1518859120 32699 6adc13c376251eb7d184d2675f4e7970 ""
-  "thorem.aux" 1579203713 197 d1f2c707a70af1f16470c7692a13c244 ""
-  "thorem.tex" 1579203709 24285 4ef31eb920add56ab58d39351e4f5f3b ""
+  "thorem.aux" 1579257017 186 7677db5e2315c264f3fbe03a3a9fe841 ""
+  "thorem.tex" 1579257009 24085 78ec28ce31dcfbae64328169092706ad ""
   (generated)
-  "thorem.aux"
   "thorem.dvi"
+  "thorem.aux"
   "thorem.log"

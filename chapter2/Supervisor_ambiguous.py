@@ -411,11 +411,11 @@ class Supervisor():
                                 #confidence_level = np.sqrt(2*math.log(env.State_c*env.State_m*2**(env.State_m*env.State_c)/0.05)/ self.Nsigma[s_m][s_c][automaton_transit[0]][v][event])
                                 
                                 if e < episode_count/3 :
-                                    confidence_level = 1
+                                    confidence_level = 100
                                 elif e > episode_count/3 and e < 2*episode_count/3 :
-                                    confidence_level = 0.6
+                                    confidence_level = 100
                                 elif e > 2*episode_count/3 :
-                                    confidence_level = 0.3
+                                    confidence_level = 100
                                 for prob in self.prob_list[s_m][s_c][control_pat_d] :
                                     if (np.linalg.norm(prob - self.prob_mean[s_m][s_c][control_pat_d]) < confidence_level ) :
                                         ambiguity_set.append(prob)
@@ -704,7 +704,7 @@ class Supervisor():
         #ax2.fill_between(x_axis, total_cost_mean_ - total_cost_std_, total_cost_mean_ + total_cost_std_, alpha = 0.2, color = "g")
         
         ax1.set_ylim(0,4)
-        ax2.set_ylim(0,4)
+        ax2.set_ylim(0,2)
 
         ax1.set_ylabel("Average Reward for the LTL formula")
         ax2.set_xlabel("Episode Count")

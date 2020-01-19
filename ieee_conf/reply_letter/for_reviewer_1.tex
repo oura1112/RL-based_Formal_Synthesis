@@ -1,0 +1,73 @@
+\documentclass[10 pt, dvipdfmx]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage{bm}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{color}
+%\usepackage[dvipdfmx]{hyperref}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+%\usepackage{txfonts}
+%\usepackage{ascmac, here}
+\usepackage{listings}
+\usepackage{color}
+%\usepackage{url}
+\usepackage{comment}
+
+\allowdisplaybreaks[1]
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{prop}{Proposition}
+%\newtheorem{definition}{Definition}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+%\theoremstyle{remark}
+%\newtheorem*{remark}{Remark}
+
+\newcommand{\mysps}{\ensuremath{[\![s^{\otimes}]\!]}_s}
+\newcommand{\myspq}{\ensuremath{[\![s^{\otimes}]\!]}_q}
+\newcommand{\myspds}{\ensuremath{[\![s^{\otimes \prime}]\!]}_s}
+\newcommand{\myspdq}{\ensuremath{[\![s^{\otimes \prime}]\!]}_q}
+\newcommand{\argmax}{\mathop{\rm arg~max}\limits}
+\newcommand{\argmin}{\mathop{\rm arg~min}\limits}
+
+\begin{document}
+This reply is for the reviewer 1.
+
+\begin{enumerate}
+  \item About the correctness of Theorem 1 and the connection between RL-based sysnthesis and Theoretical results. \\
+  For an MDP $M$, the augmented tLDBA $\bar{B}_{\varphi}$ corresponding to an LTL formula $\varphi$, and the product MDP $M^{\otimes}$ of $M$ and $\bar{B}_{\varphi}$, we see an optimal policy as an positional policy on the product $M^{\otimes}$. Then, we define a reward function based on the acceptance condition of $\bar{B}_{\varphi}$. Therefore, in the counterexample of the reviewer 1, the optimal policy and the reward function should be considered as one on the product $M^{\otimes}$ and be designed based on the corresponding acceptance condition, respectively.
+
+  An positional policy on $M^{\otimes}$ corresponds to an finite memoly policy, thus the our counterexample is meaningful as an example that shows we may not obtain any policy satisfying the given LTL formula if we use the corresponding limit-deterministic generalized B\"{u}chi automaton without the proper augmentation.
+
+  \item The reason we use LDBA. \\
+  The reason we use LDBA is explained in \cite{Hahn2019}. we know that deterministic Rabin automata (DRA) and non-deterministic B\"{u}chi automata (NBA) can recognize all of the $\omega$-regular language. However, there is an example of an MDP $M$ and an LTL formula $\varphi$ with Rabin index 2, such that, although there is an policy satisfying $\varphi$ with probability 1, optimal policy obtained from any reward corresponding to the acceptance condition do not satisfy the LTL formula. Further, LDBAs are as expressive as general NBAs.
+  However, in a LDBA (non-generalized), the order of visiting accepting sets is fixed. Therefore, the reward based on the acceptance condition tends to be sparse.
+
+  \item Notion of the omega in the exponent etc. \\
+  The omega in the exponent means the infinite connection, namely $\Sigma^{\omega}$ means $\Sigma \Sigma \ldots$ and $S (\Sigma S)^{\omega}$ means $S \Sigma S \Sigma S \ldots$. The scalar bounded reward means the reward $r_p \in [0,\infty)$. $s_{init}$ is the initial state.
+
+  \item why we employ the notion of a formula being satisfied as the non-zero probability. \\
+  The reason we employ the notion of a formula being satisfied as the non-zero probability is to more generally evaluate an obtained policy. Underlying the notion, the goal is to obtain a policy maximizing the probability of satisfaction efficiently.
+
+  \item Contributions in our paper. \\
+  Our contributions are as follows.
+  \begin{itemize}
+    \item The sparsity of rewards is relaxed comparing with using LDBA (non-generalized) by introducing the augmentation of LDBAs. Therfore, our proposed algorithm is more sample efficient.
+    \item Recurrent classes of the Markov chain induced by a product MDP $M^{\otimes}$ and a positional policy $\pi$ on $M^{\otimes}$ are classified as ones that has at least one accepting transition in each accepting set or ones that has no accepting transition in all accepting sets without depending on the policy.
+  \end{itemize}
+\end{enumerate}
+
+\begin{thebibliography}{99}
+\bibitem{Hahn2019}
+E.\ M.\ Hahn, M.\ Perez, S.\ Schewe, F.\ Somenzi, A.\ Triverdi, and D.\ Wojtczak,
+``Omega-regular objective in model-free reinforcement learning,''
+\textit{Lecture Notes in Computer Science}, no.\ 11427, pp.\ 395--412, 2019.
+\end{thebibliography}
+
+\end{document}

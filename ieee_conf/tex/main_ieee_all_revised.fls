@@ -1,4 +1,4 @@
-PWD C:/Users/oura/Documents/GitHub/Chap2/ieee_conf/tex
+PWD C:/Users/ooura/Documents/GitHub/Chap2/ieee_conf/tex
 INPUT c:/w32tex/share/texmf-dist/web2c/texmf.cnf
 INPUT c:/w32tex/share/texmf-dist/web2c/eptex/platex.fmt
 INPUT main_ieee_all_revised.tex
@@ -7,7 +7,6 @@ INPUT ieeeconf.cls
 INPUT ieeeconf.cls
 INPUT c:/w32tex/share/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 INPUT c:/w32tex/share/texmf-dist/tex/latex/psnfss/ot1ptm.fd
-INPUT c:/w32tex/share/texmf-dist/fonts/map/fontname/texfonts.map
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/adobe/times/ptmr7t.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/adobe/times/ptmr7t.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/adobe/times/ptmb7t.tfm

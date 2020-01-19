@@ -1,0 +1,66 @@
+\documentclass[10 pt, dvipdfmx]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage{bm}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{color}
+%\usepackage[dvipdfmx]{hyperref}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+%\usepackage{txfonts}
+%\usepackage{ascmac, here}
+\usepackage{listings}
+\usepackage{color}
+%\usepackage{url}
+\usepackage{comment}
+
+\allowdisplaybreaks[1]
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{prop}{Proposition}
+%\newtheorem{definition}{Definition}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+%\theoremstyle{remark}
+%\newtheorem*{remark}{Remark}
+
+\newcommand{\mysps}{\ensuremath{[\![s^{\otimes}]\!]}_s}
+\newcommand{\myspq}{\ensuremath{[\![s^{\otimes}]\!]}_q}
+\newcommand{\myspds}{\ensuremath{[\![s^{\otimes \prime}]\!]}_s}
+\newcommand{\myspdq}{\ensuremath{[\![s^{\otimes \prime}]\!]}_q}
+\newcommand{\argmax}{\mathop{\rm arg~max}\limits}
+\newcommand{\argmin}{\mathop{\rm arg~min}\limits}
+
+\begin{document}
+This reply is for the reviewer 7.
+
+\begin{enumerate}
+  \item The definition of the transition probability of the product MDP will not be well-defined. \\
+
+  \item The motivation of introducing the augmented LDGBA. \\
+  First, the motivation of using LDGBA is to relax the sparsity of rewards. the motivation of our augmentation is to circulate all accepting sets without depending on an MDP or an LTL formula.
+
+  \item A formal proof that LDBA and augmented one accepts the same language and the small example of an augmented LDGBA and non-augmented one. \\
+
+  \item The construction augmented LDGBA is similar to the accepting frontier function in \cite{HKAKPL2019}. It should be highlighted the difference between the our contribution and the one in \cite{HKAKPL2019}. \\
+
+\end{enumerate}
+
+\begin{thebibliography}{99}
+\bibitem{Hahn2019}
+E.\ M.\ Hahn, M.\ Perez, S.\ Schewe, F.\ Somenzi, A.\ Triverdi, and D.\ Wojtczak,
+``Omega-regular objective in model-free reinforcement learning,''
+\textit{Lecture Notes in Computer Science}, no.\ 11427, pp.\ 395--412, 2019.
+
+\bibitem{HKAKPL2019}
+M.\ Hasanbeig, Y.\ Kantaros, A.\ Abate, D.\ Kroening, G.\ J.\ Pappas, and I.\ Lee,
+``Reinforcement learning for temporal logic control synthesis with probabilistic satisfaction guarantee,''
+\textit{arXiv:1909.05304v1}, 2019.
+\end{thebibliography}
+
+\end{document}
