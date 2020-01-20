@@ -1,0 +1,70 @@
+This paper addresses the problem of synthesizing control policies that
+satisfy Linear Temporal Logic (LTL) formulas for unknown MDPs using
+reinforcement learning. The paper is well written and seems to be
+technically sound. Nevertheless, there are several points that the
+authors should consider.
+
+1) The contribution of the paper is unclear. The authors claim that the
+proposed algorithm improves the learning performance compared to
+relevant approaches [14]-[17]; however this is a vague statement. Does
+this mean that the proposed algorithm is more sample efficient?
+
+contrbutionを明確にする．
+
+
+
+Also, there are several recent papers addressing similar problems that
+need to be discussed:
+
+Li, Xiao, et al. "A formal methods approach to interpretable
+reinforcement learning for robotic planning." Science Robotics 4.37
+(2019).
+
+Gao, Qitong, et al. "Reduced variance deep reinforcement learning with
+temporal logic specifications." Proceedings of the 10th ACM/IEEE
+International Conference on Cyber-Physical Systems. ACM, 2019.
+
+これらの追加は要相談．
+
+
+
+2) The last paragraph in the section with the simulations is unclear
+and possibly wrong. The authors argue that [14] cannot find a policy
+for the considered example. However, [14] (and [15], [16]) has been
+shown that if there exists a policy that satisfies the LTL spec, then
+it will find it. This reviewer's understanding is that [14] is not as
+sample efficient as the proposed algorithm. In other words, [14] can
+also find a policy but it requires more episodes. The authors need to
+clarify this point.
+
+元のMDP上にはfinite-memolyのLTLを満たす方策が存在しても，そのMDPとLTLに依存してproduct MDP上にLTLを満たすpositional policyが
+存在しないことを追記．
+
+
+
+3) The main benefit of using a LDBA is that its state space is smaller
+than alternative automata such Rabin Automata. However, here due to
+state augmentation (Definition 8) this advantage is lost. The authors
+need to motivate the use of the LDBA in this paper and also report the
+size of the state-space of the product MDP and compare it to [14]. The
+latter is important for the scalability of the proposed algorithm.
+
+遷移の総数に対する受理遷移の割合が格段に増えることを追記．
+状態空間のサイズはnon-generalizedなLDBAと比べておよそ2^(n-1)/n倍大きくなる．
+
+
+
+4) Does maximizing the collection of the proposed rewards implies
+maximization of the satisfaction probability? In other words, does the
+proposed algorithm find a feasible or the optimal solution.
+
+Abateの論文[16]のTheorem 4.3が正しければ言える．
+
+
+
+Minor comments:
+
+5) The definition of the labeling function (page 2) is unusual.
+Typically, observations are assigned to states and not to transitions. 
+
+6) In Definition 2, last(\rho) is not defined anywhere in the text.

@@ -1,0 +1,76 @@
+\documentclass[10 pt, dvipdfmx]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage{bm}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{color}
+%\usepackage[dvipdfmx]{hyperref}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+%\usepackage{txfonts}
+%\usepackage{ascmac, here}
+\usepackage{listings}
+\usepackage{color}
+%\usepackage{url}
+\usepackage{comment}
+
+\allowdisplaybreaks[1]
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{prop}{Proposition}
+%\newtheorem{definition}{Definition}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+%\theoremstyle{remark}
+%\newtheorem*{remark}{Remark}
+
+\newcommand{\mysps}{\ensuremath{[\![s^{\otimes}]\!]}_s}
+\newcommand{\myspq}{\ensuremath{[\![s^{\otimes}]\!]}_q}
+\newcommand{\myspds}{\ensuremath{[\![s^{\otimes \prime}]\!]}_s}
+\newcommand{\myspdq}{\ensuremath{[\![s^{\otimes \prime}]\!]}_q}
+\newcommand{\argmax}{\mathop{\rm arg~max}\limits}
+\newcommand{\argmin}{\mathop{\rm arg~min}\limits}
+
+\begin{document}
+This reply is for the reviewer 5.
+
+In the following, we refer to transition-besed limit-diterministic generalized B\"{u}chi automaton as tLDGBA and non-generalized one as tLDBA.
+
+\begin{enumerate}
+  \item Contributions in our paper. \\
+  We propose an augmented tLDGBA. Consequently, our contributions are as follows.
+  
+  \begin{itemize}
+    \item  The sparsity of rewards is relaxed compared to the case of using LDBAs. Therefore, our proposed algorithm is more sample efficient compared to the case of using LDBAs.
+
+    \item For a product MDP $M^{\otimes}$ of an MDP $M$ and an augmented tLDGBA $\bar{B}_{\varphi}$ corresponding to a given LTL formula and a reward function corresponding to the acceptance condition of $M^{\otimes}$, if there exists a finite-memoly policy on the MDP $M$, we obtain a positional policy satisfying $\varphi$ on $M^{\otimes}$ by a reinforcement learning algorithm maximizing expected discounted reward.
+
+    %\item The recurrent classes of the Markov chain induced by a product MDP $M^{\otimes}$ and a positional policy $\pi$ on $M^{\otimes}$ are classified as ones that has at least one accepting transition in each accepting set or ones that has no accepting transition in all accepting sets without depending on the policy.
+  \end{itemize}
+
+  \item Discussions in the section with the simulation. \\
+  If we construct product MDP $M^{\otimes}$ of an MDP and an LDGBA without any augmentation corresponding to a given LTL formula $\varphi$, a policy satisfying $\varphi$ may not be exist depending on $M^{\otimes}$ and $\varphi$. We show that an example in which there is not policies satisfying an LTL formula $\varphi$ when using the corresponding LDGBA without any augmentation.
+
+  \item The motivations of using LDBA. \\
+  the motivation of using LDGBA is to relax the sparsity of rewards. the motivation of our augmentation is to circulate all accepting sets without depending on an MDP, an LTL formula, and a policy.
+
+  \item Comparing to the size of state space of the product MDP with the augmented LDGBA and one with the non-augmented LDGBA. \\
+
+
+  \item Does maximizing the collection of the proposed rewards implies the maximization of the satisfaction probability? \\
+  No, it does. It does not generally hold. However, our proposed method can be combined with some research results of attempting to maximize the satisfaction probability such as \cite{Hahn2019}.
+\end{enumerate}
+
+\begin{thebibliography}{99}
+\bibitem{Hahn2019}
+E.\ M.\ Hahn, M.\ Perez, S.\ Schewe, F.\ Somenzi, A.\ Triverdi, and D.\ Wojtczak,
+``Omega-regular objective in model-free reinforcement learning,''
+\textit{Lecture Notes in Computer Science}, no.\ 11427, pp.\ 395--412, 2019.
+\end{thebibliography}
+
+\end{document}

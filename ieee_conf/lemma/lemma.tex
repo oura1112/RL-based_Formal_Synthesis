@@ -1,0 +1,49 @@
+\documentclass[10 pt, dvipdfmx]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage{bm}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{color}
+%\usepackage[dvipdfmx]{hyperref}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+%\usepackage{txfonts}
+%\usepackage{ascmac, here}
+\usepackage{listings}
+\usepackage{color}
+%\usepackage{url}
+\usepackage{comment}
+
+\allowdisplaybreaks[1]
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{prop}{Proposition}
+%\newtheorem{definition}{Definition}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+%\theoremstyle{remark}
+%\newtheorem*{remark}{Remark}
+
+\newcommand{\mysps}{\ensuremath{[\![s^{\otimes}]\!]}_s}
+\newcommand{\myspq}{\ensuremath{[\![s^{\otimes}]\!]}_q}
+\newcommand{\myspds}{\ensuremath{[\![s^{\otimes \prime}]\!]}_s}
+\newcommand{\myspdq}{\ensuremath{[\![s^{\otimes \prime}]\!]}_q}
+\newcommand{\argmax}{\mathop{\rm arg~max}\limits}
+\newcommand{\argmin}{\mathop{\rm arg~min}\limits}
+
+\begin{document}
+
+\begin{lemma}
+  For a product MDP $M^{\otimes}$ of an MDP $M$ and an augmented tLDBA $\bar{B}_{\varphi}$ corresponding to a given LTL formula and a reward function corresponding to the acceptance condition of $M^{\otimes}$, if there exists a finite-memoly policy on the MDP $M$, then there exists a positional policy satisfying the LTL formula on $M^{\otimes}$.
+\end{lemma}
+
+\begin{proof}
+  Suppose that there exists a finite-memoly policy satisfying $\varphi$ on $M$, but there is no positional policy satisfying $\varphi$ on $M^{\otimes}$. By the definition of an augmented LDBA, a state $(x,v)$ keeps track of previous visits the accepting sets. Therefore, the property of the augmented states contradicts the assumptions.
+\end{proof}
+
+\end{document}
