@@ -12,10 +12,19 @@ i) The paper is well-written and organized well. There are lot of
 symbols with subscripts, superscripts in the paper and it might be
 helpful to include a paragraph that describes the notation. 
 
+notationを説明する段落を追記．
+
+
 ii) How is the reward function defined in the example for the method in
 [14]? Can the two rewards be compared? 
+
+同じ報酬関数を用いている．
+
+
 
 iii) How does the proposed method compare in terms of computational
 complexity with other methods? This would be helpful information for
 the readers especially since the proposed method depends on augmenting
 the LDBA.
+
+ほかの手法と比べて，計算複雑性がどの程度かを述べる．

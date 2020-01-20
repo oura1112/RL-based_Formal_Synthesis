@@ -36,6 +36,7 @@ than what I meant? Nonetheless, before continuing with evaluating the
 paper, I believe that this issue needs to be cleared up.
 
 方策はproduct MDP上で考えること，報酬は定義に従ったものであることを定理1に追記．
+(新しい補題を加えて表現を変えたほうがいいかも)
 
 
 For the sake of completeness, let me also list my other comments (some
