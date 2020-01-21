@@ -1,0 +1,253 @@
+\documentclass[10 pt, dvipdfmx]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage{bm}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{color}
+%\usepackage[dvipdfmx]{hyperref}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+%\usepackage{txfonts}
+%\usepackage{ascmac, here}
+\usepackage{listings}
+\usepackage{color}
+%\usepackage{url}
+\usepackage{comment}
+
+\allowdisplaybreaks[1]
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{prop}{Proposition}
+%\newtheorem{definition}{Definition}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\newtheorem{review point}{Review Point}[section]
+\newtheorem*{reply}{Reply}
+
+%\theoremstyle{remark}
+%\newtheorem*{remark}{Remark}
+
+\newcommand{\mysps}{\ensuremath{[\![s^{\otimes}]\!]}_s}
+\newcommand{\myspq}{\ensuremath{[\![s^{\otimes}]\!]}_q}
+\newcommand{\myspds}{\ensuremath{[\![s^{\otimes \prime}]\!]}_s}
+\newcommand{\myspdq}{\ensuremath{[\![s^{\otimes \prime}]\!]}_q}
+\newcommand{\argmax}{\mathop{\rm arg~max}\limits}
+\newcommand{\argmin}{\mathop{\rm arg~min}\limits}
+
+
+\title{\LARGE \bf
+Author's Reply.
+}
+
+
+\author{Ryohei Oura, Ami Sakakibara, and Toshimitsu Ushio}
+
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\pagestyle{empty}
+
+We are thankful to the reviewers for their fruitful comments. We have revised our
+manuscript according to the comments. We hope that our revisions have improved
+the manuscript to their satisfaction.
+
+In the following, we refer to a transition-besed limit-diterministic generalized B\"{u}chi automaton as tLDGBA and a non-generalized one as tLDBA in our replies.
+
+\section{Reply to Reviewer 1 (19781)}
+
+\begin{review point}
+  My primary issue with this paper is in the claim of
+the paper's main result, Theorem 1. In itself, the claim of Theorem 1
+has nothing to do with automata or learning. It states that we consider
+an MDP M and any LTL formula phi, and appears to say the following: if
+there exists a stationary (or, in the author's words, positional)
+policy satisfying phi, then a policy maximizing the expected discounted
+reward (for some discounted factor) will actually be a policy that
+satisfies phi.
+
+If my reading of the theorem claim is correct, such a result is clearly
+incorrect. Consider an MDP M with states {$s_0,s_1$} and actions {a,b}
+such that $P(s_i,a,s_i)=1, P(s_i,b,s_{1-i})=1$ (in other words, action a
+results in the agent state not changing, and b results in it changing
+to the other state). Consider the rewards given by $R(s_0,*,*)=0,
+R(s_1,*,*)=1$; in other words, the agent does not receive anything when
+it is at $s_0$ and receives 1 when it is at $s_1$. Consider now phi =
+"always $s_0$".
+
+Clearly, if $s_0=s_{init}$, there exists a positional policy satisfying
+phi: it just applies action a over and over again. (Even if $s_init$ is
+not set, we can consider phi = "next always $s_0$", and a policy that
+applies b at $s_1$ and a at $s_0$). On the other hand, regardless of the
+discount factor, the reward obtained by an agent that satisfies phi is
+by definition 0. The maximal expected reward will actually be achieved
+by an agent that goes to $s_1$ and stays there indefinitely, thus
+seemingly contradicting the theorem claim.
+
+Because this "counterexample" is so obvious, I am tempted to believe
+that it stems from a misunderstanding of the theorem claim: perhaps the
+unusually written part saying "any algorithm that maximizes the
+expected reward ... will find a positional policy" means something else
+than what I meant? Nonetheless, before continuing with evaluating the
+paper, I believe that this issue needs to be cleared up.
+
+\end{review point}
+
+\begin{reply}
+  For an MDP $M$, an augmented tLDBA $\bar{B}_{\varphi}$ corresponding to an LTL formula $\varphi$, the product MDP $M^{\otimes}$ of $M$ and $\bar{B}_{\varphi}$, and a reward function based on the acceptance condition of $M^{\otimes}$, we see an optimal policy as an positional policy on $M^{\otimes}$ maximizing the expected discounted reward. Therefore, in the counterexample of the reviewer, the optimal policy and the reward function should be considered as one on the product $M^{\otimes}$ and be designed based on the corresponding acceptance condition, respectively. Probably, this misunderstanding of Theorem 1 is due to the lack of expression of the theorem claim. We revised the theorem claim to clarify that the reward function is based on the acceptance condition of $M^{\otimes}$ and an optimal policy is considered on $M^{\otimes}$.
+\end{reply}
+
+\begin{review point}
+  The connection between RL-based synthesis and the theoretical results
+of Section III should be made much clearer.
+\end{review point}
+
+\begin{reply}
+  Theorem 1 implies that for the product MDP $M^{\otimes}$ of an MDP $M$ and an augmented tLDBA corresponding to the given LTL formula $\varphi$, we can obtain a feasible positional policy satisfying $\varphi$ on $M^{\otimes}$ by an algorithm maximizing the expected discounted reward with large enough discount factor if there exists a positional policy on $M^{\otimes}$ satisfying $\varphi$ with non-zero probability. We added the explanation of the connection of Theorem 1 and the RL-based synthesis after the proof of Theorem 1.
+\end{reply}
+
+\begin{review point}
+  Apart from the potential theoretical interest, it's not clear why
+using LDBA would be better for policy synthesis than using other
+automata; the example only compares the authors' results with another
+LDBA approach.
+\end{review point}
+
+\begin{reply}
+  The reason we use LDBA is mainly described in \cite{Hahn2019}. It is known that deterministic Rabin automata (DRA) and non-deterministic B\"{u}chi automata (NBA) can recognize all of the $\omega$-regular language. However, there is a counterexample of an MDP $M$ and an LTL formula $\varphi$ with Rabin index 2, such that, although there is an policy satisfying $\varphi$ with probability 1, optimal policy obtained from any reward based on the acceptance condition do not satisfy the LTL formula with probability 1. This is because the reward function is defined for each acceptance pair of acceptance condition of the DRA, namely the counterexample is contributed to that only one acceptance pair of the DRA is considered in one learning. Further, LDBAs are not only as expressive as NBAs but also non-deterministic transitions in LDBAs are much smaller than ones in NBAs.
+  However, in an LDBA, the order of visiting accepting sets is fixed. Therefore, the reward based on the acceptance condition tends to be sparse. We added a remark to our manuscript that explains the sparsity of B\"{u}chi automata and that the sparsity is critical for an RL-based synthesis.
+\end{reply}
+
+\begin{review point}
+  The notation "section", which is combined with Section II.A, is
+unclear and imprecise: what is omega in the exponent, what is a "scalar
+bounded reward", what is $s_{init}$ (it is not mentioned in M), etc.
+\end{review point}
+
+\begin{reply}
+  We revised our manuscript to clarify the notions.
+\end{reply}
+
+\begin{review point}
+  The notion of a formula being "satisfied" if it is satisfied with any
+non-zero probability (instead of 1) is counterintuitive.
+\end{review point}
+
+\begin{reply}
+  The reason we employ the notion that a formula is satisfied with a non-zero probability is to more generally evaluate an obtained policy. Underlying the notion, the goal is to obtain a policy maximizing the satisfaction probability efficiently.
+\end{reply}
+
+\begin{review point}
+  The introductory section is not clear about the ultimate purpose and
+contribution of the paper: is it to improve RL performance for LTL
+specifications? If so, OK, but that should be stated clearly.
+\end{review point}
+
+\begin{reply}
+  Yes, it is. We revised the introduction in our manuscript to clarify our contribution and ultimate purpose.
+\end{reply}
+
+\begin{review point}
+  The sentence "In general, there are uncertainties in a controlled
+system..." needs rephrasing: maybe something like "Because of inherent
+stochasticity of many controlled systems, ...".
+
+"we model a controlled system" -- it is not clear whether this is the
+authors' contribution or prior work. It might be better to say
+"Previously, ..."
+
+Reply to Typo : "syntehsis"
+\end{review point}
+
+\begin{reply}
+  We revised it.
+\end{reply}
+
+\section{Reply to Reviewer 5 (19849)}
+
+\begin{review point}
+  The contribution of the paper is unclear. The authors claim that the
+proposed algorithm improves the learning performance compared to
+relevant approaches \cite{Hahn2019}-\cite{BWZP2019}; however this is a vague statement. Does
+this mean that the proposed algorithm is more sample efficient?
+\end{review point}
+
+\begin{reply}
+  Yes, it is. By the definition of augmentation in our manuscript, the sparsity of rewards is relaxed compared to the case of using tLDBAs. Therefore, our proposed algorithm is more sample efficient compared to the case of using tLDBAs. In addition, the reward function based on the acceptance condition of an augmented tLDGBA has memory of previous visits to the accepting sets of the original tLDBA but the reward function defined as the accepting frontier function \cite{HAK2019} has no memory of previous visits to the accepting sets of the tLDGBA. Therefore, there is an example of an MDP $M$ and an LTL formula $\varphi$ that there exists no positional policy satisfying $\varphi$ on the product MDP of $M$ and $\varphi$.
+\end{reply}
+
+\begin{review point}
+  The last paragraph in the section with the simulations is unclear
+and possibly wrong. The authors argue that [14] cannot find a policy
+for the considered example. However, [14] (and [15], [16]) has been
+shown that if there exists a policy that satisfies the LTL spec, then
+it will find it. This reviewer's understanding is that [14] is not as
+sample efficient as the proposed algorithm. In other words, [14] can
+also find a policy but it requires more episodes. The authors need to
+clarify this point.
+\end{review point}
+
+\begin{reply}
+  If we construct the product MDP $M^{\otimes}$ of an MDP and a raw tLDGBA corresponding to a given LTL formula $\varphi$, a positional policy satisfying $\varphi$ may not be exist depending on $M$ and $\varphi$. We show that an example in which there is not positional policies satisfying $\varphi$ when using the corresponding raw tLDGBA. Even though we use state-based LDGBA and the reward function defined as the accepting frontier function, there is a small counterexample of an MDP $M$ and an LTL formula $\varphi$ such that there exists no positional policy satisfying $\varphi$ on the corresponding product MDP $M^{\otimes}$. We show the counterexample in Fig.
+  %However, the ratio of the number of accepting states to the number of all states of the state-based LDGBA without the sink state is $\frac{1}{3}$ , while in the augmented tLDGBA without the sink state, the ratio of the number of accepting transitions to the number of all transitions is $\frac{7}{12}$.
+\end{reply}
+
+\begin{review point}
+  The main benefit of using a LDBA is that its state space is smaller
+than alternative automata such Rabin Automata. However, here due to
+state augmentation (Definition 8) this advantage is lost. The authors
+need to motivate the use of the LDBA in this paper and also report the
+size of the state-space of the product MDP and compare it to [14]. The
+latter is important for the scalability of the proposed algorithm.
+\end{review point}
+
+\begin{reply}
+ As you pointed out, by the augmentation, the state space of an augmented tLDGBA corresponding to an LTL formula $\varphi$ is larger than the state space of the state space of a tLDBA corresponding to the same formula and its size is about $\frac{2^{n-1}}{n}$ times, where $n$ is the number of all accepting sets of the raw tLDGBA. We added a remark (Remark 1) explaining about this point.
+\end{reply}
+
+\begin{review point}
+  Does maximizing the collection of the proposed rewards implies
+maximization of the satisfaction probability? In other words, does the
+proposed algorithm find a feasible or the optimal solution.
+\end{review point}
+
+\begin{reply}
+ No, it is. It does not generally hold in our problem settings that maximizing expected discounted reward implies maximizing the satisfaction probability. We revised the conclusion in our manuscript to clarify that maximizing the satisfaction probability is one of future works.
+\end{reply}
+
+\begin{review point}
+  The definition of the labeling function (page 2) is unusual. Typically, observations are assigned to states and not to transitions.
+\end{review point}
+
+\begin{review point}
+  In Definition 2, $last(\rho)$ is not defined anywhere in the text.
+\end{review point}
+
+\begin{reply}
+  We defined $last(\rho)$ in the second paragraph of Definition 1.
+\end{reply}
+\begin{thebibliography}{99}
+\bibitem{Hahn2019}
+E.\ M.\ Hahn, M.\ Perez, S.\ Schewe, F.\ Somenzi, A.\ Triverdi, and D.\ Wojtczak,
+``Omega-regular objective in model-free reinforcement learning,''
+\textit{Lecture Notes in Computer Science}, no.\ 11427, pp.\ 395--412, 2019.
+\bibitem{HAK2019}
+M.\ Hasanbeig, A.\ Abate, and D.\ Kroening,
+``Logically-constrained reinforcement learning,'' \textit{arXiv:1801.08099v8}, Feb.\ 2019.
+\bibitem{HKAKPL2019}
+M.\ Hasanbeig, Y.\ Kantaros, A.\ Abate, D.\ Kroening, G.\ J.\ Pappas, and I.\ Lee,
+``Reinforcement learning for temporal logic control synthesis with probabilistic satisfaction guarantee,''
+\textit{arXiv:1909.05304v1}, 2019.
+\bibitem{BWZP2019}
+A.\ K.\ Bozkurt, Y.\ Wang, M.\ Zavlanos, and M.\ Pajic,
+``Control synthesis from linear temporal logic specifications using model-free reinforcement learning,''
+\textit{arXiv:1909.07299}, 2019.
+\end{thebibliography}
+
+\end{document}
