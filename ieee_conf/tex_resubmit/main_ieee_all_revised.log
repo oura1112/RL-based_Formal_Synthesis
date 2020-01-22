@@ -1,11 +1,16 @@
-This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.sjis) (TeX Live 2019/W32TeX) (preloaded format=platex 2019.9.9)  20 JAN 2020 21:16
+<<<<<<< HEAD
+This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.sjis) (TeX Live 2019/W32TeX) (preloaded format=platex 2019.9.9)  20 JAN 2020 21:52
+=======
+This is e-pTeX, Version 3.14159265-p3.8.0-180226-2.6 (utf8.sjis) (TeX Live 2018/W32TeX) (preloaded format=platex 2018.4.26)  21 JAN 2020 20:00
+>>>>>>> 805676395ed2ed84e9d872c52af42fa5d953a4e7
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
 **main_ieee_all_revised.tex
 (./main_ieee_all_revised.tex
-pLaTeX2e <2019-04-06> (based on LaTeX2e <2018-12-01>)
+pLaTeX2e <2018-04-01>+1 (based on LaTeX2e <2018-04-01> patch level 3)
+Babel <3.19> and hyphenation patterns for 84 language(s) loaded.
 (./ieeeconf.cls
 
 LaTeX Warning: You have requested document class `ieeeconf',
@@ -182,7 +187,7 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <24> not available
 \@IEEEeqncolcnt=\count93
 \@IEEEtmpitemindent=\dimen128
 \c@biography=\count94
-\@IEEEtranrubishbin=\box43
+\@IEEEtranrubishbin=\box42
 )
 ** ATTENTION: Overriding command lockouts (line 9).
 ** ATTENTION: Overriding IEEE standard margins (line 12).
@@ -194,7 +199,7 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ) (c:/w32tex/share/texmf-dist/tex/latex/amsmath/amsmath.sty
-Package: amsmath 2018/12/01 v2.17b AMS math features
+Package: amsmath 2017/09/02 v2.17a AMS math features
 \@mathmargin=\skip47
 
 For additional information on amsmath, use the `?' option.
@@ -211,20 +216,20 @@ Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 Package: amsopn 2016/03/08 v2.02 operator names
 )
 \inf@bad=\count95
-LaTeX Info: Redefining \frac on input line 223.
+LaTeX Info: Redefining \frac on input line 213.
 \uproot@=\count96
 \leftroot@=\count97
-LaTeX Info: Redefining \overline on input line 385.
+LaTeX Info: Redefining \overline on input line 375.
 \classnum@=\count98
 \DOTSCASE@=\count99
-LaTeX Info: Redefining \ldots on input line 482.
-LaTeX Info: Redefining \dots on input line 485.
-LaTeX Info: Redefining \cdots on input line 606.
-\Mathstrutbox@=\box44
-\strutbox@=\box45
+LaTeX Info: Redefining \ldots on input line 472.
+LaTeX Info: Redefining \dots on input line 475.
+LaTeX Info: Redefining \cdots on input line 596.
+\Mathstrutbox@=\box43
+\strutbox@=\box44
 \big@size=\dimen131
-LaTeX Font Info:    Redeclaring font encoding OML on input line 729.
-LaTeX Font Info:    Redeclaring font encoding OMS on input line 730.
+LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
 \macc@depth=\count100
 \c@MaxMatrixCols=\count101
 \dotsspace@=\muskip10
@@ -245,8 +250,8 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 730.
 \multlinegap=\skip48
 \multlinetaggap=\skip49
 \mathdisplay@stack=\toks21
-LaTeX Info: Redefining \[ on input line 2844.
-LaTeX Info: Redefining \] on input line 2845.
+LaTeX Info: Redefining \[ on input line 2817.
+LaTeX Info: Redefining \] on input line 2818.
 ) (c:/w32tex/share/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 ) (c:/w32tex/share/texmf-dist/tex/latex/tools/bm.sty
@@ -260,9 +265,9 @@ LaTeX Info: Redefining \bm on input line 207.
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count107
 \float@exts=\toks22
-\float@box=\box46
+\float@box=\box45
 \@float@everytoks=\toks23
-\@floatcapt=\box47
+\@floatcapt=\box46
 ) (c:/w32tex/share/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
  (c:/w32tex/share/texmf-dist/tex/latex/graphics/keyval.sty
@@ -307,7 +312,7 @@ Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
 \algorithmicindent=\skip51
 ) (c:/w32tex/share/texmf-dist/tex/latex/listings/listings.sty
 \lst@mode=\count113
-\lst@gtempboxa=\box48
+\lst@gtempboxa=\box47
 \lst@token=\toks26
 \lst@length=\count114
 \lst@currlwidth=\dimen140
@@ -319,14 +324,14 @@ Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
 \lst@lineno=\count118
 \lst@maxwidth=\dimen143
  (c:/w32tex/share/texmf-dist/tex/latex/listings/lstmisc.sty
-File: lstmisc.sty 2019/09/10 1.8c (Carsten Heinz)
+File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
 \c@lstnumber=\count119
 \lst@skipnumbers=\count120
-\lst@framebox=\box49
+\lst@framebox=\box48
 ) (c:/w32tex/share/texmf-dist/tex/latex/listings/listings.cfg
-File: listings.cfg 2019/09/10 1.8c listings configuration
+File: listings.cfg 2015/06/04 1.6 listings configuration
 ))
-Package: listings 2019/09/10 1.8c (Carsten Heinz)
+Package: listings 2015/06/04 1.6 (Carsten Heinz)
  (c:/w32tex/share/texmf-dist/tex/latex/comment/comment.sty
 \CommentStream=\write3
  Excluding comment 'comment') (c:/w32tex/share/texmf-dist/tex/latex/cite/cite.sty
@@ -432,8 +437,8 @@ Underfull \hbox (badness 1577) in paragraph at lines 287--316
  []
 
 
-Underfull \hbox (badness 4013) in paragraph at lines 287--316
-\OT1/ptm/m/n/10 where $\OML/cmm/m/it/10 s[] \OT1/cmr/m/n/10 = (\OML/cmm/m/it/10 s; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x; v\OT1/cmr/m/n/10 ))$ \OT1/ptm/m/n/10 and $\OML/cmm/m/it/10 s[] \OT1/cmr/m/n/10 = (\OML/cmm/m/it/10 s[]; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[]; v[]\OT1/cmr/m/n/10 ))$\OT1/ptm/m/n/10 ,
+Underfull \hbox (badness 4416) in paragraph at lines 287--316
+\OT1/ptm/m/n/10 and $\OML/cmm/m/it/10 s[] \OT1/cmr/m/n/10 = (\OML/cmm/m/it/10 s[]; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[]; v[]\OT1/cmr/m/n/10 ))$\OT1/ptm/m/n/10 , $\OML/cmm/m/it/10 ^^N[] \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s[]; a; s[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 2
  []
 
 
@@ -441,10 +446,7 @@ Underfull \hbox (badness 3861) in paragraph at lines 333--334
 []\OT1/ptm/m/n/10 In gen-eral, when the con-struc-tion of a
  []
 
-[3] Excluding 'comment' comment.
-Underfull \vbox (badness 1968) has occurred while \output is active []
-
- [4]
+[3] Excluding 'comment' comment. [4]
 Overfull \hbox (3.14598pt too wide) detected at line 427
 []
  []
@@ -473,7 +475,7 @@ File: ep_1000_it_10000_MDP3_gamma_095_re2_ini22_nts_c095_20times.png Graphic fil
  <ep_1000_it_10000_MDP3_gamma_095_re2_ini22_nts_c095_20times.png>
 File: ep_1000_it_10000_MDP3_gamma_095_nts_c095_abate_20times.png Graphic file (type eps)
  <ep_1000_it_10000_MDP3_gamma_095_nts_c095_abate_20times.png>
-Overfull \hbox (15.50008pt too wide) in paragraph at lines 530--543
+Overfull \hbox (15.50006pt too wide) in paragraph at lines 530--543
  [][][][] 
  []
 
@@ -481,7 +483,7 @@ File: proposed_policy.png Graphic file (type eps)
 <proposed_policy.png>
 File: Abate_policy.png Graphic file (type eps)
  <Abate_policy.png>
-Overfull \hbox (15.00514pt too wide) in paragraph at lines 549--560
+Overfull \hbox (15.00513pt too wide) in paragraph at lines 549--560
  [][][][] 
  []
 
@@ -505,12 +507,16 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 4195 strings out of 493215
- 57326 string characters out of 6145921
- 149277 words of memory out of 5000000
- 8120 multiletter control sequences out of 15000+600000
+ 4193 strings out of 493281
+ 57293 string characters out of 6146979
+ 147017 words of memory out of 5000000
+ 8055 multiletter control sequences out of 15000+600000
  46140 words of font info for 137 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
- 27i,18n,32p,1108b,437s stack positions out of 5000i,500n,10000p,500000b,80000s
+ 27i,18n,32p,1173b,437s stack positions out of 5000i,500n,10000p,500000b,80000s
 
-Output written on main_ieee_all_revised.dvi (7 pages, 67488 bytes).
+<<<<<<< HEAD
+Output written on main_ieee_all_revised.dvi (7 pages, 67572 bytes).
+=======
+Output written on main_ieee_all_revised.dvi (7 pages, 67584 bytes).
+>>>>>>> 805676395ed2ed84e9d872c52af42fa5d953a4e7

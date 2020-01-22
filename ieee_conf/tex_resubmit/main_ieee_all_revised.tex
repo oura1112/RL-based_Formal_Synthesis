@@ -285,7 +285,7 @@ The augmented tLDBA $\bar{B}_{\varphi}$ from a tLDBA $B_{\varphi}$ keeps track o
 
 \begin{definition}
   Given an augmented tLDBA $\bar{B}_{\varphi}$ and an MDP $M$, a tuple $M \otimes \bar{B}_{\varphi} = M^{\otimes} = (S^{\otimes}, A^{\otimes}, {\mathcal A}^{\otimes}, s_{init}^{\otimes}, P^{\otimes}, \delta^{\otimes}, {\mathcal F}^{\otimes})$ is a product MDP, where
-  $S^{\otimes} = S \times \bar{X}$ is the finite set of states, $A^{\otimes}=A$ is the finite set of actions, ${\mathcal A}^{\otimes} : S^{\otimes} \rightarrow 2^{A^{\otimes}}$ is the mapping defined as ${\mathcal A}^{\otimes}((s,(x,v))) = {\mathcal A}(s) \cup \{ \varepsilon_{x^{\prime}} ; \exists x^{\prime}\! \in \! X \text{ s.t. } (x,\varepsilon_{x^{\prime}}, x^{\prime}) \in \delta \}$ where $\varepsilon_{x^{\prime}}$ represents the $\varepsilon$-transiton to the state $x^{\prime}\! \in\! X$, $s_{init}^{\otimes} = (s_{init},\bar{x}_{init})$ is the initial states, $P^{\otimes} : S^{\otimes} \times S^{\otimes} \times A^{\otimes} \rightarrow [0,1]$ is the transition probability defined as $P^{\otimes}(s^{\otimes \prime} | s^{\otimes}, a) = P(s^{\prime} | s, a)$ if $ (\bar{x}, L((s,a,s^{\prime})), \bar{x}^{\prime}) \in \bar{\delta}$ and $ a \in \mathcal{A}(s)$, $P^{\otimes}(s^{\otimes \prime} | s^{\otimes}, a) = 1$ if $s\!=\!s^{\prime},v\!=\!v^{\prime},(x, \varepsilon_{x^{\prime}}, x^{\prime})\! \in \! \bar{\delta},$ and $ a=\varepsilon_{x^{\prime}}$,
+  $S^{\otimes} = S \times \bar{X}$ is the finite set of states, $A^{\otimes}=A$ is the finite set of actions, ${\mathcal A}^{\otimes} : S^{\otimes} \rightarrow 2^{A^{\otimes}}$ is the mapping defined as ${\mathcal A}^{\otimes}((s,(x,v))) = {\mathcal A}(s) \cup \{ \varepsilon_{x^{\prime}} ; \exists x^{\prime}\! \in \! X \text{ s.t. } (x,\varepsilon_{x^{\prime}}, x^{\prime}) \in \delta \}$ where $\varepsilon_{x^{\prime}}$ represents the $\varepsilon$-transiton to the state $x^{\prime}\! \in\! X$, $s_{init}^{\otimes} = (s_{init},\bar{x}_{init})$ is the initial states, $P^{\otimes} : S^{\otimes} \times S^{\otimes} \times A^{\otimes} \rightarrow [0,1]$ is the transition probability defined as $P^{\otimes}(s^{\otimes \prime} | s^{\otimes}, a) = P(s^{\prime} | s, a)$ if $ (\bar{x}, L((s,a,s^{\prime})), \bar{x}^{\prime}) \in \bar{\delta}$ and $ a \in \mathcal{A}(s)$, $P^{\otimes}(s^{\otimes \prime} | s^{\otimes}, a) = 1$ if $s\!=\!s^{\prime},v\!=\!v^{\prime},(x, \varepsilon_{x^{\prime}}, x^{\prime})\! \in \! \bar{\delta},$ and $ a=\varepsilon_{x^{\prime}}$, otherwise $P^{\otimes}(s^{\otimes \prime} | s^{\otimes}, a) = 0$
   \begin{comment}
   \begin{align}
     P^{\otimes}(s^{\otimes \prime} | s^{\otimes}, a) =
@@ -334,7 +334,7 @@ The augmented tLDBA $\bar{B}_{\varphi}$ from a tLDBA $B_{\varphi}$ keeps track o
 \end{remark}
 
 \begin{remark}
-  Hasanbeig $et\ al.$\cite{HAK2019} proposed the accepting frontier function $Acc : X \times 2^X \rightarrow 2^X $ where $X$ is the set of states of the state-based LDBA. Under initializing a set of states $ \mathbb{F} $ with the union of the all accepting sets of the state-based LDBA, the function receives the state $x$ after each transition and the set $\mathbb{F}$. If $x$ is in $\mathbb{F}$, then $Acc$ removes the accepting sets containing $x$ from $\mathbb{F}$. The reward function is based on the varying set $\mathbb{F}$. However, the reward function depends on the previous visits to accepting sets of the state-based LDBA, however, the reward is memoryless. Therefore, there exists an example such that there is no positional policy satisfying the given LTL formula $\varphi$ on the corresponding product MDP even though there exists a policy satisfying $\varphi$ on the original MDP $M$.
+  Hasanbeig $et\ al.$\cite{HAK2019} proposed the accepting frontier function $Acc : X \times 2^X \rightarrow 2^X $ where $X$ is the set of states of the state-based LDBA. Under initializing a set of states $ \mathbb{F} $ with the union of the all accepting sets of the state-based LDBA, the function receives the state $x$ after each transition and the set $\mathbb{F}$. If $x$ is in $\mathbb{F}$, then $Acc$ removes the accepting sets containing $x$ from $\mathbb{F}$. The reward function is based on the varying set $\mathbb{F}$. The reward function depends on the previous visits to accepting sets of the state-based LDBA, however, the reward is memoryless. Therefore, there exists an example such that there is no positional policy satisfying the given LTL formula $\varphi$ on the corresponding product MDP even though there exists a policy satisfying $\varphi$ on the original MDP $M$.
 \end{remark}
 
 %The reward assignments are based on the acceptance conditions of the product MDP.
@@ -395,7 +395,7 @@ Lemma \ref{lemma1} implies that for an LTL formula $\varphi$ if a path $\rho$ un
   \begin{enumerate}
     \vspace{2mm}
     \item Assume that the initial state $s^{\otimes}_{init}$ is in a recurrent class $R^{\otimes i}_{\bar{\pi}}$ for some $ i \in \{1,\ldots,h\} $.
-    For any accepting set $\bar{F}^{\otimes}_j$, $\delta^{\otimes}_{\bar{\pi},i} \cap \bar{F}^{\otimes}_j \neq \emptyset$ holds by the definition of $\bar{\pi}$. The expected discounted reward for $s^{\otimes}_{init}$ is given by
+    For any accepting set $\bar{F}^{\otimes}_j$, $\delta^{\otimes i}_{\bar{\pi}} \cap \bar{F}^{\otimes}_j \neq \emptyset$ holds by the definition of $\bar{\pi}$. The expected discounted reward for $s^{\otimes}_{init}$ is given by
     \begin{align}
       V^{\bar{\pi}}(s^{\otimes}_{init})
        &= \sum_{k=0}^{\infty} \sum_{s^{\otimes} \in R^{\otimes i}_{\bar{\pi}}} \gamma^k p^k(s^{\otimes}_{init}, s^{\otimes}) \nonumber \\
@@ -416,7 +416,7 @@ whereas all states in $R(MC^{\otimes}_{\bar{\pi}})$ are positive recurrent becau
     Therefore, for any $\bar{m} \in (V^{\pi^{\ast}}(s^{\otimes}_{init}), \infty)$ and any $r_p < \infty$, there exists $\gamma^{\ast}<1$ such that $\gamma > \gamma^{\ast}$ implies $V^{\bar{\pi}}(s^{\otimes}_{init}) > r_p \bar{p} \gamma^{\bar{k}} p^{\bar{k}}(s^{\otimes}_{init},s^{\otimes}_{init}) \frac{1}{ 1 - \gamma^{\bar{k}} } > \bar{m}.$
 
     \item Assume that the initial state $s^{\otimes}_{init}$ is in the set of transient states $T_{\bar{\pi}}^{\otimes}$.
-    $P^{M^{\otimes}}_{\bar{\pi}}(s^{\otimes}_{init} \models \varphi) > 0$ holds by the definition of $\bar{\pi}$. For a recurrent class $R^{\otimes i}_{\bar{\pi}}$ such that $\delta^{\otimes}_{\bar{\pi}, i} \cap \bar{F}^{\otimes}_j \neq \emptyset$ for each accepting set
+    $P^{M^{\otimes}}_{\bar{\pi}}(s^{\otimes}_{init} \models \varphi) > 0$ holds by the definition of $\bar{\pi}$. For a recurrent class $R^{\otimes i}_{\bar{\pi}}$ such that $\delta^{\otimes i}_{\bar{\pi}} \cap \bar{F}^{\otimes}_j \neq \emptyset$ for each accepting set
     $\bar{F}^{\otimes}_j$, there exist a number $\bar{l} > 0$, a state $\hat{s}^{\otimes}$ in $Post(T^{\otimes}_{\bar{\pi}}) \cap R^{\otimes i}_{\bar{\pi}}$, and a subset of transient states $\{ s^{\otimes}_1, \ldots , s^{\otimes}_{\bar{l}-1} \} \subset T^\otimes_{\bar{\pi}}$ such that $p(s^{\otimes}_{init}, s^{\otimes}_1)>0$, $p(s^{\otimes}_{i}, s^{\otimes}_{i+1})>0$ for $i \in \{ 1,...,\bar{l}-2 \}$, and $p(s^{\otimes}_{\bar{l}-1}, \hat{s}^{\otimes})>0$ by the property of transient states.
     Hence, it holds that $p^{\bar{l}}(s^{\otimes}_{init}, \hat{s}^{\otimes}) > 0$ for the state $\hat{s}^{\otimes}$. Thus, by ignoring rewards in $T^{\otimes}_{\bar{\pi}}$, we have
      \begin{align}
@@ -436,7 +436,7 @@ whereas all states in $R(MC^{\otimes}_{\bar{\pi}})$ are positive recurrent becau
 The results contradict the optimality assumption of $\pi^{\ast}$.
 \end{proof}
 
-Theorem \ref{theorem1} implies that for the product MDP $M^{\otimes}$ of an MDP $M$ and an augmented tLDBA corresponding to the given LTL formula $\varphi$, we can obtain a feasible positional policy satisfying $\varphi$ on $M^{\otimes}$ by an algorithm maximizing the expected discounted reward with large enough discount factor.
+Theorem \ref{theorem1} implies that for the product MDP $M^{\otimes}$ of an MDP $M$ and an augmented tLDBA corresponding to the given LTL formula $\varphi$, we can obtain a feasible positional policy satisfying $\varphi$ on $M^{\otimes}$ by an algorithm maximizing the expected discounted reward with large enough discount factor if there exists a positional policy on $M^{\otimes}$ satisfying $\varphi$ with non-zero probability.
 
 %We show the overall procedure in our proposed method in Algorithm \ref{alg1}. We employ Q-learning in Algorithm \ref{alg1}, but any algorithms maximizing the discounted expected reward can be applied to our proposed method.
 %\begin{algorithm}

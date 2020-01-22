@@ -39,11 +39,11 @@
 \begin{document}
 
 \begin{lemma}
-  For a product MDP $M^{\otimes}$ of an MDP $M$ and an augmented tLDBA $\bar{B}_{\varphi}$ corresponding to a given LTL formula and a reward function corresponding to the acceptance condition of $M^{\otimes}$, if there exists a finite-memoly policy on the MDP $M$, then there exists a positional policy satisfying the LTL formula on $M^{\otimes}$.
+  For a product MDP $M^{\otimes}$ of an MDP $M$ and an augmented tLDBA $\bar{B}_{\varphi}$ corresponding to a given LTL formula and a reward function corresponding to the acceptance condition of $M^{\otimes}$, if there exists a finite-memoly policy satisfying $\varphi$ on the MDP $M$, then there exists a positional policy satisfying $\varphi$ on $M^{\otimes}$.
 \end{lemma}
 
 \begin{proof}
-  Suppose that there exists a finite-memoly policy satisfying $\varphi$ on $M$, but there is no positional policy satisfying $\varphi$ on $M^{\otimes}$. By the definition of an augmented LDBA, a state $(x,v)$ keeps track of previous visits the accepting sets. Therefore, the property of the augmented states contradicts the assumptions.
+  Suppose that there exists a finite-memoly policy satisfying $\varphi$ on $M$, but there is no positional policy satisfying $\varphi$ on $M^{\otimes}$. By the definition of the augmented tLDBA, a state $(x,v)$ keeps track of previous visits the accepting sets and the accepting transitions of the augmented tLDBA are the first visits to the accepting transitions of the tLDBA. Therefore, the properties of the augmented states and the acceptance condition contradict the assumption.
 \end{proof}
 
 \end{document}
