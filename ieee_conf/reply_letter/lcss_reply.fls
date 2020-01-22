@@ -1,4 +1,4 @@
-PWD C:/Users/ooura/Documents/GitHub/Chap2/ieee_conf/reply_letter
+PWD C:/Users/oura/Documents/GitHub/Chap2/ieee_conf/reply_letter
 INPUT c:/w32tex/share/texmf-dist/web2c/texmf.cnf
 INPUT c:/w32tex/share/texmf-dist/web2c/eptex/platex.fmt
 INPUT lcss_reply.tex
@@ -62,6 +62,7 @@ INPUT c:/w32tex/share/texmf-dist/tex/latex/comment/comment.sty
 INPUT lcss_reply.aux
 INPUT lcss_reply.aux
 OUTPUT lcss_reply.aux
+INPUT c:/w32tex/share/texmf-dist/fonts/map/fontname/texfonts.map
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/tmin10.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/min10.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmr17.tfm

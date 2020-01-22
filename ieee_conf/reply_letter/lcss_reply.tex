@@ -120,8 +120,8 @@ LDBA approach.
 \end{review point}
 
 \begin{reply}
-  The reason we use LDBA is mainly described in \cite{Hahn2019}. It is known that deterministic Rabin automata (DRA) and non-deterministic B\"{u}chi automata (NBA) can recognize all of the $\omega$-regular language. However, there is a counterexample of an MDP $M$ and an LTL formula $\varphi$ with Rabin index 2, such that, although there is an policy satisfying $\varphi$ with probability 1, optimal policy obtained from any reward based on the acceptance condition do not satisfy the LTL formula with probability 1. This is because the reward function is defined for each acceptance pair of acceptance condition of the DRA, namely the counterexample is contributed to that only one acceptance pair of the DRA is considered in one learning. Further, LDBAs are not only as expressive as NBAs but also non-deterministic transitions in LDBAs are much smaller than ones in NBAs.
-  However, in an LDBA, the order of visiting accepting sets is fixed. Therefore, the reward based on the acceptance condition tends to be sparse. We added a remark to our manuscript that explains the sparsity of B\"{u}chi automata and that the sparsity is critical for an RL-based synthesis.
+  The reason we use LDBAs is mainly described in \cite{Hahn2019}. It is known that deterministic Rabin automata (DRA) and non-deterministic B\"{u}chi automata (NBA) can recognize all of the $\omega$-regular language. However, there is a counterexample of an MDP $M$ and an LTL formula $\varphi$ with Rabin index 2, such that, although there is an policy satisfying $\varphi$ with probability 1, optimal policy obtained from any reward based on the acceptance condition do not satisfy the LTL formula with probability 1. This is because the reward function is defined for each acceptance pair of acceptance condition of the DRA, namely the counterexample is contributed to that only one acceptance pair of the DRA is considered in one learning. Further, LDBAs are not only as expressive as NBAs but also the number of non-deterministic transitions of LDBAs are much less than ones of NBAs.
+  However, in an LDBA, the order of visiting accepting sets of the corresponding generalized B\"{u}chi automaton (GBA) is fixed. Therefore, the reward function based on the acceptance condition of the LDBA tends to be sparse. We added a remark to our manuscript that explains the sparsity of B\"{u}chi automata and that the sparsity is critical for an RL-based synthesis.
 \end{reply}
 
 \begin{review point}
@@ -208,7 +208,7 @@ latter is important for the scalability of the proposed algorithm.
 \end{review point}
 
 \begin{reply}
- As you pointed out, by the augmentation, the state space of an augmented tLDGBA corresponding to an LTL formula $\varphi$ is larger than the state space of the state space of a tLDBA corresponding to the same formula and its size is about $\frac{2^{n-1}}{n}$ times, where $n$ is the number of all accepting sets of the raw tLDGBA. We added a remark (Remark 1) explaining about this point.
+ As you pointed out, by the augmentation, the state space of an augmented tLDGBA corresponding to an LTL formula $\varphi$ is larger than the state space of a tLDBA corresponding to the same formula and its size is about $\frac{2^{n-1}}{n}$ times, where $n$ is the number of all accepting sets of the original tLDGBA. We added a remark (Remark 1) explaining about this point.
 \end{reply}
 
 \begin{review point}
@@ -232,6 +232,53 @@ proposed algorithm find a feasible or the optimal solution.
 \begin{reply}
   We defined $last(\rho)$ in the second paragraph of Definition 1.
 \end{reply}
+
+\section{Reply to Reviewer 7 (20009)}
+
+\begin{review point}
+  The probability function in Def. 9 can be not well-defined for
+non-deterministic transitions. Consider a simple example, say (x1, l,
+x1') and (x1, l, x2') are both in delta. P(s'$|$s, a) =1 with l=
+L((s,a,s')) will have two outgoing transitions labeled by the same
+action a, and all with probability one. The sum of probability given
+action a on state (s, x1) will be 2. Will this study only consider
+deterministic transitions?
+\end{review point}
+
+\begin{reply}
+  We added the explanation of $\varepsilon$-transitions in a tLDGBA. Then, we revised Definition 8 to clarify how we handle $\varepsilon$-transitions in the augmented tLDGBA.
+\end{reply}
+
+\begin{review point}
+  The construction of augmented automaton in Def. 8 is not
+well-motivated. What is the intuition behind this construction?
+Further, there should be a formal proof that the two automata accepting
+the same language. Examples in section IV helps a lot. It would be
+useful to have a small example to illustrate the construction.
+\end{review point}
+
+\begin{reply}
+  The intuition behind the construction is that we think there is an example of an MDP $M$ and an LTL formula $\varphi$ such that there exists no positional policy satisfying $\varphi$ on the product MDP of $M$ and the tLDGBA ( or LDGBA ) corresponding to $\varphi$ if we use the reward function defined as the accepting frontier function \cite{HAK2019}. This is because that the original LDGBAs have less memory capacity than LDBAs and the accepting frontier function is memoryless. We believe it is expanded that the class of positional policies satisfying a given LTL formula on the corresponding product MDP. We added two remarks that explain the reason we used LDGBA instead of other automata including LDBAs and if we use original LDGBAs and the reward function defined as the accepting frontier function, there exists an example such that there exists no positional policy satisfying a given LTL formula on the corresponding product MDP.
+
+  Due to lack of space in the manuscript, we gave up to add the formal proof to the manuscript. So we proof the two automata accepts the same language only in the reply letter.
+
+  \begin{theorem}
+    A tLDGBA and its augmented accept the same language.
+  \end{theorem}
+
+  \begin{proof}
+    Let $B$ denote a tLDGBA and $\bar{B}$ denote its augmented. Let a infinite word $r$ be accepted by $B$. Thus, $inf(r) \cap F_j \neq \emptyset$ for any accepting set $F_j$ of $B$, where $inf(r)$ is the set of transitions that occur infnitely often in the word $r$. In other words, the infinite accepting transitions of all accepting sets of $B$ are in $r$ regardless of its order. Then, we consider how the word $r$ is accepted by $\bar{B}$. By the acceptance condition of $\bar{B}$, two or more visits to an accepting set $F_j$ does not contribute to the acceptance by $\bar{B}$ until all accepting sets of $B$ are visited. for a current binary-valued vector $v$, if a current transition $(x,\sigma,x^{\prime})$ is in an accepting set that have been visited once or more after the latest visits to all accepting sets of $B$, $visitf((x,\sigma,x^{\prime}))_j = 1$ and $Max(v, visitf((x,\sigma,x^{\prime}))) = v$ holds, where $visitf((x,\sigma,x^{\prime}))_j$ represents the $j$-th element of $visitf((x,\sigma,x^{\prime}))$. This is because the $j$-th element of $v$ is already 1 and $visitf((x,\sigma,x^{\prime}))$ returns a vector such that the $j$-th element is 1 and the rest of elements are 0. Therefore, by the acceptance condition of $\bar{B}$, the transition is not in any accepting sets of $\bar{B}$.
+    While, if the current transition $(x,\sigma,x^{\prime})$ is first visit to an accepting set $F_j$ of $B$ after the latest visits to all accepting sets of $B$, namely the $j$-th element of the current binary-valued vector is $0$, then $Max(v, visitf((x,\sigma,x^{\prime})))$ returns the vector such that the $j$-th element is 1 and the rest of elements are same as the ones of $v$. Therefore, by the acceptance condition of $\bar{B}$, the transition is in the $j$-th accepting set $\bar{F}_j$ of $\bar{B}$.
+    When all accepting sets of $B$ have visited at the transition $(\hat{x},\hat{\sigma},\hat{x}^{\prime})$, we have $Max(v, visitf((x,\sigma,x^{\prime}))) = \bm{1}$ and $reset(Max(v, visitf((x,\sigma,x^{\prime})))) = \bm{0}$. Subsequently, the same processing is performed on the word $r$, so that $r$ is accepted by $\bar{B}$. Therefore, the language accepted by $B$ are also accepted by $\bar{B}$.
+
+    Let $r^{\prime}$ denote the word accepted by $\bar{B}$. The word $r^{\prime}$ visits all accepting sets of $\bar{B}$ infinitely often. Thus, by the definition of the acceptance condition of $\bar{B}$, obviously $r^{\prime}$ visits all accepting sets of $B$ infinitely often. Therefore, the language accepted by $\bar{B}$ are also accepted by $B$.
+  \end{proof}
+\end{reply}
+
+\begin{review point}
+
+\end{review point}
+
 \begin{thebibliography}{99}
 \bibitem{Hahn2019}
 E.\ M.\ Hahn, M.\ Perez, S.\ Schewe, F.\ Somenzi, A.\ Triverdi, and D.\ Wojtczak,
