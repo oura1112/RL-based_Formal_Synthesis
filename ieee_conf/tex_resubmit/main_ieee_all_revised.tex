@@ -94,9 +94,9 @@ Temporal logic has been developed in computer engineering as a useful formalism 
 A merit of temporal logics is its resemblance to natural languages and it has been widely used in several other areas of engineering. Especially, a complicated mission or task in computer-controlled systems such as robots can be described by a temporal logic specification precisely and many synthesis algorithms of a controller or a planner that satisfies the specification have been proposed \cite{KB2008,Gazit2009,WTM2012a,SU2018}.
 Linear temporal logic (LTL) is often used as a specification language because of its rich expressiveness.  It can explain many important $\omega$-regular properties such as liveness, safety, and persistence \cite{BK2008}.
 It is known that the LTL specification is converted into an $\omega$-automaton such as a nondeterministic B\"{u}chi automaton and a deterministic Rabin automaton \cite{BK2008,Belta2017}.
-In the synthesis of a control policy for the LTL specification,  we model a controlled system by a transition system that abstracts its dynamics, construct a product automaton of the transition system and the $\omega$-automaton corresponding to the LTL specification, and compute a winning strategy of a game over the product automaton \cite{Belta2017}.
+Previously, in the synthesis of a control policy for the LTL specification,  we model a controlled system by a transition system that abstracts its dynamics, construct a product automaton of the transition system and the $\omega$-automaton corresponding to the LTL specification, and compute a winning strategy of a game over the product automaton \cite{Belta2017}.
 
-In general, there are uncertainties in a controlled system and we often use a Markov decision process (MDP) as a finite-state abstraction of the controlled system \cite{Puterman}.
+Because of inherent stochasticity of controlled systems, we often use a Markov decision process (MDP) as a finite-state abstraction of the controlled systems \cite{Puterman}.
 In the case where the probabilities are unknown a priori, we have two approaches to the synthesis of the control policy. One is robust control where we assume that state transition probabilities are in uncertainty sets \cite{WTM2012} while the other is learning using samples \cite{Sadigh2014}.
 
 Reinforcement learning (RL) is a useful approach to learning an optimal policy from sample behaviors of the controlled system \cite{Sutton}.
@@ -105,13 +105,14 @@ Thus, to apply RL to the synthesis of a control policy for the LTL specification
 A reward function based on the acceptance condition of a Rabin automaton was proposed in \cite{Sadigh2014}. It was applied to a control problem where the controller optimizes a given control cost under the LTL constraint \cite{HU2015}.
 
 Recently, a limit-deterministic B\"{u}chi automaton (LDBA) is paid much attention to as an $\omega$-automaton corresponding to the LTL specification \cite{SEJK2016}.
-The RL-based approaches to the syntehsis of a control policy using LDBAs have been proposed in \cite{HAK2019,Hahn2019,HKAKPL2019,BWZP2019}.
-To deal with the acceptance condition of an LDBA that accepts behaviors visiting all accepting sets infinitely often, the accepting frontier function was introduced in \cite{HAK2019,HKAKPL2019}. The reward function is defined based on the function.
+The RL-based approaches to the synthesis of a control policy using LDBAs have been proposed in \cite{HAK2019,Hahn2019,HKAKPL2019,BWZP2019}.
+In \cite{Hahn2019,BWZP2019}, they use a non-generalized LDBA. However, when constructing an non-generalized LDBA from an LDBA, the order of visits to accepting sets of the LDBA is fixed. The construction causes the sparsity of the reward based on the acceptance condition of the non-generalized LDBA.
+On the other hand, to deal with the acceptance condition of an LDBA that accepts behaviors visiting all accepting sets infinitely often, the accepting frontier function was introduced in \cite{HAK2019,HKAKPL2019}. The reward function is defined based on the function.
 However, the function is memoryless, that is, it does not provide the information of accepting sets that have been visited, which is important to improve learning performance.
 In this letter, we propose a novel method to augment an LDBA converted from a given LTL formula.
 Then, we define a reward function based on the acceptance condition of the product MDP of the augmented LDBA and the controlled system.
 % based on the acceptance condition of the augmented automaton, embedded in the product MDP, which enables us to
-As a result, we can learn a dynamic control policy that satisfies the LTL specification.
+As a result, we can improve the sparsity of the rewards and learn a dynamic control policy that satisfies the LTL specification efficiently.
 
 The rest of the letter is organized as follows.
 Section II reviews an MDP, LTL, and automata.
@@ -150,7 +151,7 @@ A Markov chain induced by an MDP $M$ with a positional policy $\pi$ is a tuple $
 The state set $S_{\pi}$ of $MC_{\pi}$ can be represented as a disjoint union of a set of transient states $T_{\pi}$ and closed irreducible sets of recurrent states $R^j_{\pi}$ with $j \in \{ 1, \ldots ,h \}$, as $ S_{\pi} = T_{\pi} \sqcup R^1_{\pi} \sqcup \ldots \sqcup R^h_{\pi} $ \cite{ESS}.
 In the following, we say a ``recurrent class'' instead of a ``closed irreducible set of recurrent states'' for simplicity.
 
-In an MDP $M$, we define a reward function $R:S \times A \times S \rightarrow \mathbb{R}_{\geq0}$, where $\mathbb{R}_{\geq0}$ is the set of nonnegative real numbers. The function denotes the immediate scalar bounded reward received after the agent performs an action $a$ at a state $s$ and reaches a next state $s'$ as a result.
+In an MDP $M$, we define a reward function $R:S \times A \times S \rightarrow \mathbb{R}_{\geq0}$, where $\mathbb{R}_{\geq0}$ is the set of nonnegative real numbers. The function denotes the immediate reward received after the agent performs an action $a$ at a state $s$ and reaches a next state $s'$ as a result.
 
 \begin{definition}
   For a policy $\pi$ on an MDP $M$, any state $s \in S$, and a reward function $R$, we define the expected discounted reward as
@@ -189,7 +190,7 @@ Let $ M $ be an MDP.
 For an infinite path $\rho = s_0a_0s_1 \ldots $ of $ M $ with $ s_0 \in S $, let $\rho[i]$ be the $i$-th state of $\rho$ i.e., $\rho[i]=s_i$ and let $\rho[i:]$ be the $i$-th suffix $\rho[i:]=s_ia_is_{i+1} \ldots $.
 % let $\rho[:i]$ be the $i$-th prefix $\rho[:i]=s_0 \ldots s_{i-1}a_{i-1}s_i$,and let $\rho[i:j]$ be the finite sequence $\rho[i:j]=s_ia_is_{i+1} \ldots s_{j-1}a_{j-1}s_{j}$.
 \begin{definition}
-	For an LTL formula $\varphi$, an MDP $M$, and an infinite path $\rho = s_0a_0s_1 \ldots$ of $ M $ with $ s_0 \in S $, the satisfaction relation $M,\rho \models \varphi$ is recursively defined as follows. $M, \rho \models \top$, $M, \rho \models \alpha \in AP \text{ iff } \alpha \in L(s_0,a_0,s_1)$, $M, \rho \models \varphi_1 \land \varphi_2 \text{ iff } M, \rho \models \varphi_1 \land M, \rho \models \varphi_2$, $M, \rho \models \neg \varphi \text{ iff } M, \rho \not\models \varphi$, $ M, \rho \models \text{{\bf X}}\varphi \text{ iff } M, \rho[1:] \models \varphi$, and $M, \rho \models \varphi_1 \text{{\bf U}} \varphi_2 \text{ iff } \exists j \geq 0, \ M, \rho[j:] \models \varphi_2 \land \forall i, 0\leq i < j, \ M, \rho[i:] \models \varphi_1$.
+	For an LTL formula $\varphi$, an MDP $M$, and an infinite path $\rho = s_0a_0s_1 \ldots$ of $ M $ with $ s_0 \in S $, the satisfaction relation $M,\rho \models \varphi$ is recursively defined as follows. $M, \rho \models \top$; $M, \rho \models \alpha \in AP \text{ iff } \alpha \in L(s_0,a_0,s_1)$; $M, \rho \models \varphi_1 \land \varphi_2 \text{ iff } M, \rho \models \varphi_1 \land M, \rho \models \varphi_2$; $M, \rho \models \neg \varphi \text{ iff } M, \rho \not\models \varphi$; $ M, \rho \models \text{{\bf X}}\varphi \text{ iff } M, \rho[1:] \models \varphi$; and $M, \rho \models \varphi_1 \text{{\bf U}} \varphi_2 \text{ iff } \exists j \geq 0, \ M, \rho[j:] \models \varphi_2 \land \forall i, 0\leq i < j, \ M, \rho[i:] \models \varphi_1$.
   \begin{comment}
 	\begin{alignat}{2}
 	& M, \rho \models \top,\nonumber \\
@@ -330,11 +331,11 @@ The augmented tLDBA $\bar{B}_{\varphi}$ from a tLDBA $B_{\varphi}$ keeps track o
 \end{definition}
 
 \begin{remark}
-  In general, when the construction of a transition-based generalized B\"{u}chi automaton (tGBA) to a transition-based B\"{u}chi automaton (tBA), the order of visits to accepting sets of the tGBA is fixed. Consequently, the reward based on the acceptance condition of the tBA tends to be sparse and the sparsity is critical for RL-based control policy synthesis. The augmentation of tGBA relaxes the sparsity since the augmented tGBA has all of the order of visits to all accepting sets of the original tGBA. The size of state space of the augmented tGBA is about $\frac{2^{n-1}}{n}$ times the one of the tBA, however, the ratio of the number of accepting transitions to the number of all transitions of the augmented tGBA is much greater than the one of the tBA. Therefore, our proposed method is more sample efficient than the use of non-generalized tLDBA.
+  In general, when constructing a transition-based B\"{u}chi automaton (tBA) from a transition-based generalized B\"{u}chi automaton (tGBA), the order of visits to accepting sets of the tGBA is fixed. Consequently, the reward based on the acceptance condition of the tBA tends to be sparse and the sparsity is critical against RL-based control policy synthesis problems. The augmentation of tGBA relaxes the sparsity since the augmented tGBA has all of the order of visits to all accepting sets of the original tGBA. The size of the state space of the augmented tGBA is about $\frac{2^{n}-1}{n}$ times larger than the tBA, however, the ratio of the number of accepting transitions to the number of all transitions of the augmented tGBA is much greater than the tBA. Therefore, our proposed method is more sample efficient than the use of non-generalized tLDBA.
 \end{remark}
 
 \begin{remark}
-  Hasanbeig $et\ al.$\cite{HAK2019} proposed the accepting frontier function $Acc : X \times 2^X \rightarrow 2^X $ where $X$ is the set of states of the state-based LDBA. Under initializing a set of states $ \mathbb{F} $ with the union of the all accepting sets of the state-based LDBA, the function receives the state $x$ after each transition and the set $\mathbb{F}$. If $x$ is in $\mathbb{F}$, then $Acc$ removes the accepting sets containing $x$ from $\mathbb{F}$. The reward function is based on the varying set $\mathbb{F}$. The reward function depends on the previous visits to accepting sets of the state-based LDBA, however, the reward is memoryless. Therefore, there exists an example such that there is no positional policy satisfying the given LTL formula $\varphi$ on the corresponding product MDP even though there exists a policy satisfying $\varphi$ on the original MDP $M$.
+  Hasanbeig $et\ al.$\cite{HAK2019} proposed the accepting frontier function $Acc : X \times 2^X \rightarrow 2^X $ where $X$ is the set of states of the state-based LDBA. Under initializing a set of states $ \mathbb{F} $ with the union of the all accepting sets of the state-based LDBA, the function receives the state $x$ after each transition and the set $\mathbb{F}$. If $x$ is in $\mathbb{F}$, then $Acc$ removes the accepting sets containing $x$ from $\mathbb{F}$. The reward function is based on the varying set $\mathbb{F}$. The reward function depends on the previous visits to accepting sets of the state-based LDBA, however, the reward is memoryless. Therefore, there exists an example an MDP $M$ and an LTL formula $\varphi$ such that there is no positional policy satisfying $\varphi$ on the corresponding product MDP even though there exists a policy satisfying $\varphi$ on the original MDP $M$.
 \end{remark}
 
 %The reward assignments are based on the acceptance conditions of the product MDP.

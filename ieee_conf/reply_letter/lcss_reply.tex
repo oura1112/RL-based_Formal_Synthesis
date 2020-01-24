@@ -51,8 +51,8 @@ Author's Reply.
 \begin{document}
 
 \maketitle
-\thispagestyle{empty}
-\pagestyle{empty}
+%\thispagestyle{empty}
+%\pagestyle{empty}
 
 We are thankful to the reviewers for their fruitful comments. We have revised our
 manuscript according to the comments. We hope that our revisions have improved
@@ -100,7 +100,7 @@ paper, I believe that this issue needs to be cleared up.
 \end{review point}
 
 \begin{reply}
-  For an MDP $M$, an augmented tLDBA $\bar{B}_{\varphi}$ corresponding to an LTL formula $\varphi$, the product MDP $M^{\otimes}$ of $M$ and $\bar{B}_{\varphi}$, and a reward function based on the acceptance condition of $M^{\otimes}$, we see an optimal policy as an positional policy on $M^{\otimes}$ maximizing the expected discounted reward. Therefore, in the counterexample of the reviewer, the optimal policy and the reward function should be considered as one on the product $M^{\otimes}$ and be designed based on the corresponding acceptance condition, respectively. Probably, this misunderstanding of Theorem 1 is due to the lack of expression of the theorem claim. We revised the theorem claim to clarify that the reward function is based on the acceptance condition of $M^{\otimes}$ and an optimal policy is considered on $M^{\otimes}$.
+  For an MDP $M$, an augmented tLDBA $\bar{B}_{\varphi}$ corresponding to an LTL formula $\varphi$, the product MDP $M^{\otimes}$ of $M$ and $\bar{B}_{\varphi}$, and a reward function based on the acceptance condition of $M^{\otimes}$, we see an optimal policy as an positional policy on $M^{\otimes}$ maximizing the expected discounted reward. Therefore, in your counterexample, the optimal policy and the reward function should be considered as a positional policy on the product MDP $M^{\otimes}$ and be designed based on the acceptance condition of $M^{\otimes}$, respectively. Probably, this misunderstanding of Theorem 1 is due to the lack of expression of our theorem claim. We revised the theorem claim to clarify that the reward function is based on the acceptance condition of $M^{\otimes}$ and an optimal policy is considered on $M^{\otimes}$.
 \end{reply}
 
 \begin{review point}
@@ -109,7 +109,7 @@ of Section III should be made much clearer.
 \end{review point}
 
 \begin{reply}
-  Theorem 1 implies that for the product MDP $M^{\otimes}$ of an MDP $M$ and an augmented tLDBA corresponding to the given LTL formula $\varphi$, we can obtain a feasible positional policy satisfying $\varphi$ on $M^{\otimes}$ by an algorithm maximizing the expected discounted reward with large enough discount factor if there exists a positional policy on $M^{\otimes}$ satisfying $\varphi$ with non-zero probability. We added the explanation of the connection of Theorem 1 and the RL-based synthesis after the proof of Theorem 1.
+  Theorem 1 implies that for the product MDP $M^{\otimes}$ of an MDP $M$ and an augmented tLDBA corresponding to a given LTL formula $\varphi$, we can obtain a feasible positional policy satisfying $\varphi$ on $M^{\otimes}$ by an algorithm maximizing the expected discounted reward with large enough discount factor if there exists a positional policy on $M^{\otimes}$ satisfying $\varphi$ with non-zero probability. We added the explanation of the connection of Theorem 1 and the RL-based synthesis after the proof of Theorem 1.
 \end{reply}
 
 \begin{review point}
@@ -120,8 +120,8 @@ LDBA approach.
 \end{review point}
 
 \begin{reply}
-  The reason we use LDBAs is mainly described in \cite{Hahn2019}. It is known that deterministic Rabin automata (DRA) and non-deterministic B\"{u}chi automata (NBA) can recognize all of the $\omega$-regular language. However, there is a counterexample of an MDP $M$ and an LTL formula $\varphi$ with Rabin index 2, such that, although there is an policy satisfying $\varphi$ with probability 1, optimal policy obtained from any reward based on the acceptance condition do not satisfy the LTL formula with probability 1. This is because the reward function is defined for each acceptance pair of acceptance condition of the DRA, namely the counterexample is contributed to that only one acceptance pair of the DRA is considered in one learning. Further, LDBAs are not only as expressive as NBAs but also the number of non-deterministic transitions of LDBAs are much less than ones of NBAs.
-  However, in an LDBA, the order of visiting accepting sets of the corresponding generalized B\"{u}chi automaton (GBA) is fixed. Therefore, the reward function based on the acceptance condition of the LDBA tends to be sparse. We added a remark to our manuscript that explains the sparsity of B\"{u}chi automata and that the sparsity is critical for an RL-based synthesis.
+  The reason we use LDBAs instead of other automata is mainly described in \cite{Hahn2019}. It is known that deterministic Rabin automata (DRA) and non-deterministic B\"{u}chi automata (NBA) can recognize all of the $\omega$-regular language. However, there is a counterexample of an MDP $M$ and an LTL formula $\varphi$ with Rabin index 2, which is mentioned in \cite{Hahn2019}, such that, although there is a positional policy satisfying $\varphi$ with probability 1 on $M^{\otimes}$ of $M$ and the DRA, optimal policy obtained from any reward based on the acceptance condition of the DRA do not satisfy the LTL formula with probability 1. This is because the reward function is defined for each acceptance pair of the acceptance condition of the DRA, namely the counterexample is due to that only one acceptance pair of the DRA is considered in one learning. Further, LDBAs are not only as expressive as NBAs but also the number of non-deterministic transitions are much less than NBAs.
+  However, in an LDBA, the order of visiting accepting sets of the corresponding LDGBA is fixed. Therefore, the reward function based on the acceptance condition of the LDBA tends to be sparse. We added a remark (Remark 1) to our manuscript that explains the sparsity of rewards for B\"{u}chi acceptance and that the sparsity is critical against an RL-based synthesis.
 \end{reply}
 
 \begin{review point}
@@ -131,7 +131,7 @@ bounded reward", what is $s_{init}$ (it is not mentioned in M), etc.
 \end{review point}
 
 \begin{reply}
-  We revised our manuscript to clarify the notions.
+  The omega in the exponent means the infinite connection, namely $\Sigma^{\omega}$ means $\Sigma \Sigma \ldots$ and $S (\Sigma S)^{\omega}$ means $S \Sigma S \Sigma S \ldots$. $s_{init}$ is the initial state. We revised ``immediate scholar bounded reward" to ``immediate reward".
 \end{reply}
 
 \begin{review point}
@@ -140,7 +140,7 @@ non-zero probability (instead of 1) is counterintuitive.
 \end{review point}
 
 \begin{reply}
-  The reason we employ the notion that a formula is satisfied with a non-zero probability is to more generally evaluate an obtained policy. Underlying the notion, the goal is to obtain a policy maximizing the satisfaction probability efficiently.
+  The reason we employ the notion that a formula is satisfied with a non-zero probability is to more generally evaluate an obtained policy. Underlying the notion, the goal is to obtain a policy efficiently that maximizes the satisfaction probability.
 \end{reply}
 
 \begin{review point}
@@ -150,7 +150,7 @@ specifications? If so, OK, but that should be stated clearly.
 \end{review point}
 
 \begin{reply}
-  Yes, it is. We revised the introduction in our manuscript to clarify our contribution and ultimate purpose.
+  Yes, it is. We revised the introduction in our manuscript to clarify our contribution.
 \end{reply}
 
 \begin{review point}
@@ -179,23 +179,42 @@ this mean that the proposed algorithm is more sample efficient?
 \end{review point}
 
 \begin{reply}
-  Yes, it is. By the definition of augmentation in our manuscript, the sparsity of rewards is relaxed compared to the case of using tLDBAs. Therefore, our proposed algorithm is more sample efficient compared to the case of using tLDBAs. In addition, the reward function based on the acceptance condition of an augmented tLDGBA has memory of previous visits to the accepting sets of the original tLDBA but the reward function defined as the accepting frontier function \cite{HAK2019} has no memory of previous visits to the accepting sets of the tLDGBA. Therefore, there is an example of an MDP $M$ and an LTL formula $\varphi$ that there exists no positional policy satisfying $\varphi$ on the product MDP of $M$ and $\varphi$.
+  Yes, it is. By the definition of augmentation in our manuscript, the sparsity of rewards is relaxed compared to the case of using tLDBAs. Therefore, our proposed algorithm is more sample efficient compared to the case of using tLDBAs. In addition, the reward function based on the acceptance condition of an augmented tLDGBA does not have to have memory of previous visits to the accepting sets of the original tLDGBA because the augmented tLDGBA keeps track of the previous visits. The reward function defined as the accepting frontier function \cite{HAK2019}, however, has no memory of previous visits to the accepting sets of the original tLDGBA despite they construct the product MDP from the original tLDGBA. Therefore, there is an example of an MDP $M$ and an LTL formula $\varphi$ that there exists no positional policy satisfying $\varphi$ on the product MDP of $M$ and a tLDGBA corresponding to $\varphi$.
 \end{reply}
 
 \begin{review point}
   The last paragraph in the section with the simulations is unclear
-and possibly wrong. The authors argue that [14] cannot find a policy
-for the considered example. However, [14] (and [15], [16]) has been
+and possibly wrong. The authors argue that \cite{HAK2019} cannot find a policy
+for the considered example. However, \cite{HAK2019} (and \cite{HKAKPL2019}, \cite{BWZP2019}) has been
 shown that if there exists a policy that satisfies the LTL spec, then
-it will find it. This reviewer's understanding is that [14] is not as
-sample efficient as the proposed algorithm. In other words, [14] can
+it will find it. This reviewer's understanding is that \cite{HAK2019} is not as
+sample efficient as the proposed algorithm. In other words, \cite{HAK2019} can
 also find a policy but it requires more episodes. The authors need to
 clarify this point.
 \end{review point}
 
 \begin{reply}
-  If we construct the product MDP $M^{\otimes}$ of an MDP and a raw tLDGBA corresponding to a given LTL formula $\varphi$, a positional policy satisfying $\varphi$ may not be exist depending on $M$ and $\varphi$. We show that an example in which there is not positional policies satisfying $\varphi$ when using the corresponding raw tLDGBA. Even though we use state-based LDGBA and the reward function defined as the accepting frontier function, there is a small counterexample of an MDP $M$ and an LTL formula $\varphi$ such that there exists no positional policy satisfying $\varphi$ on the corresponding product MDP $M^{\otimes}$. We show the counterexample in Fig.
-  %However, the ratio of the number of accepting states to the number of all states of the state-based LDGBA without the sink state is $\frac{1}{3}$ , while in the augmented tLDGBA without the sink state, the ratio of the number of accepting transitions to the number of all transitions is $\frac{7}{12}$.
+  In \cite{HAK2019}, they claim that if there exists {\bf a positional policy satisfying an given LTL formula $\varphi$ on the product MDP of an MDP and an LDBA associated with $\varphi$, then the proposed algorithm will find one such policy}. However, if we construct the product MDP $M^{\otimes}$ of an MDP $M$ and a raw tLDGBA corresponding to a given LTL formula $\varphi$ and use the reward function defined as the accepting frontier function, a positional policy satisfying $\varphi$ may not be exist on $M^{\otimes}$ depending on $M$ and $\varphi$. We showed an example in which there is no positional policy satisfying $\varphi$ on $M^{\otimes}$ when using the corresponding raw tLDGBA in our manuscript. In the example, the state of the tLDGBA is always $x_0$ while the agent does not move to states $s_2$, $s_3$, $s_5$, and $s_6$ on the original MDP $M$. Thus, the state of the product MDP is always $(s_4, x_0)$ while the agent stays in $s_4$ on the original MDP $M$. Therefore, the method in \cite{HAK2019} may not synthesize policies satisfying LTL formulas depending on the setting of MDPs or LTL formulas.
+  Even though we use state-based LDGBA, there is a small counterexample of an MDP $M$ and an LTL formula $\varphi$ such that there exists no positional policy satisfying $\varphi$ on the corresponding product MDP $M^{\otimes}$. We show the counterexample as follows. We consider an MDP shown in Fig.\ \ref{MDP_counterexample}, the LTL formula
+  $\varphi = \text{{\bf GF}}a \land \text{{\bf GF}}b$, and the corresponding state-based LDGBA shown in Fig.\ \ref{LDBA_counterexample}. The acceptance condition of the LDGBA is $\mathcal{F} = \{ F_1, F_2 \}$, where $F_1 = \{ x_1 \}$ and $F_2 = \{ x_2 \}$, which have been removed the accepting state transitioned by the observation $a\land b$, respectively. The initial state of the corresponding MDP $M^{\otimes}$ is $(s_0,x_0)$. Let the initial action be $left$. The state of $M^{\otimes}$ is transitioned to $(s_1,x_1)$ from $(s_0,x_0)$ by action $left$. Then action $right$ performed at the state $(s_1,x_1)$ and the state is transitioned to $(s_0,x_0)$. Subsequently, the agent have to take the action $right$ at $(s_0,x_0)$ eventually to visit all accepting sets $F_1$ and $F_2$. However, the action selection is not positional.
+
+  \begin{figure}[H]
+      \centering
+      \includegraphics[width = 8cm]{reply_letter_MDP.pdf}
+      \caption{The MDP with three states $s_0$, $s_1$, and $s_2$ and two actions $left$ and $right$. $s_1$ and $s_2$ are labeled with $\{ a \}$ and $\{ b \}$, respectively. The initial sate is $s_0$.}
+      \label{MDP_counterexample}
+  \end{figure}
+
+  \begin{figure}[H]
+     \centering
+     \vspace{2mm}
+  %   \includegraphics[bb=140 498 368 682,width=5cm]{automaton1.pdf}
+     \includegraphics[width = 8cm]{reply_letter_LDBA.pdf}
+     \caption{The state-based LDBA corresponding the LTL formula $\varphi = \text{{\bf GF}}a \land \text{{\bf GF}}b$. The accepting states are represented as double circles. The initial state is $x_0$.}
+     \label{LDBA_counterexample}
+  \end{figure}
+
+
 \end{reply}
 
 \begin{review point}
@@ -208,7 +227,7 @@ latter is important for the scalability of the proposed algorithm.
 \end{review point}
 
 \begin{reply}
- As you pointed out, by the augmentation, the state space of an augmented tLDGBA corresponding to an LTL formula $\varphi$ is larger than the state space of a tLDBA corresponding to the same formula and its size is about $\frac{2^{n-1}}{n}$ times, where $n$ is the number of all accepting sets of the original tLDGBA. We added a remark (Remark 1) explaining about this point.
+ As you pointed out, by the augmentation, the state space of an augmented tLDGBA corresponding to an LTL formula $\varphi$ is larger than a tLDBA corresponding to the same formula and its size is about $\frac{2^{n}-1}{n}$ times, where $n$ is the number of all accepting sets of the original tLDGBA. We added a remark (Remark 1) explaining this point to our manuscript. The reason we use LDBAs instead of other automata is mainly described in \cite{Hahn2019}. It is known that deterministic Rabin automata (DRA) and non-deterministic B\"{u}chi automata (NBA) can recognize all of the $\omega$-regular language. However, there is a counterexample of an MDP $M$ and an LTL formula $\varphi$ with Rabin index 2, which is mentioned in \cite{Hahn2019}, such that, although there is a positional policy satisfying $\varphi$ with probability 1 on $M^{\otimes}$ of $M$ and the DRA, optimal policy obtained from any reward based on the acceptance condition of the DRA do not satisfy the LTL formula with probability 1. This is because the reward function is defined for each acceptance pair of the acceptance condition of the DRA, namely the counterexample is due to that only one acceptance pair of the DRA is considered in one learning. Further, LDBAs are not only as expressive as NBAs but also the number of non-deterministic transitions are much less than NBAs.
 \end{reply}
 
 \begin{review point}
@@ -225,6 +244,10 @@ proposed algorithm find a feasible or the optimal solution.
   The definition of the labeling function (page 2) is unusual. Typically, observations are assigned to states and not to transitions.
 \end{review point}
 
+\begin{reply}
+
+\end{reply}
+
 \begin{review point}
   In Definition 2, $last(\rho)$ is not defined anywhere in the text.
 \end{review point}
@@ -237,16 +260,16 @@ proposed algorithm find a feasible or the optimal solution.
 
 \begin{review point}
   The probability function in Def. 9 can be not well-defined for
-non-deterministic transitions. Consider a simple example, say (x1, l,
-x1') and (x1, l, x2') are both in delta. P(s'$|$s, a) =1 with l=
-L((s,a,s')) will have two outgoing transitions labeled by the same
+non-deterministic transitions. Consider a simple example, say $(x_1, l,
+x_1')$ and $(x_1, l, x_2')$ are both in delta. $P(s'|s, a) =1$ with $l=
+L((s,a,s'))$ will have two outgoing transitions labeled by the same
 action a, and all with probability one. The sum of probability given
-action a on state (s, x1) will be 2. Will this study only consider
+action a on state $(s, x_1)$ will be 2. Will this study only consider
 deterministic transitions?
 \end{review point}
 
 \begin{reply}
-  We added the explanation of $\varepsilon$-transitions in a tLDGBA. Then, we revised Definition 8 to clarify how we handle $\varepsilon$-transitions in the augmented tLDGBA.
+  We added the explanation of $\varepsilon$-transitions in a tLDGBA to the definition of the limit-determinism. Then, we revised Definition 8 to clarify how we handle $\varepsilon$-transitions in an augmented tLDGBA.
 \end{reply}
 
 \begin{review point}
@@ -258,26 +281,77 @@ useful to have a small example to illustrate the construction.
 \end{review point}
 
 \begin{reply}
-  The intuition behind the construction is that we think there is an example of an MDP $M$ and an LTL formula $\varphi$ such that there exists no positional policy satisfying $\varphi$ on the product MDP of $M$ and the tLDGBA ( or LDGBA ) corresponding to $\varphi$ if we use the reward function defined as the accepting frontier function \cite{HAK2019}. This is because that the original LDGBAs have less memory capacity than LDBAs and the accepting frontier function is memoryless. We believe it is expanded that the class of positional policies satisfying a given LTL formula on the corresponding product MDP. We added two remarks that explain the reason we used LDGBA instead of other automata including LDBAs and if we use original LDGBAs and the reward function defined as the accepting frontier function, there exists an example such that there exists no positional policy satisfying a given LTL formula on the corresponding product MDP.
+  The intuition behind the construction is that we think the method in \cite{HAK2019} may not have positional policy satisfying a given LTL formula on the corresponding MDP.
+  %there is an example of an MDP $M$ and an LTL formula $\varphi$ such that there exists no positional policy satisfying $\varphi$ on the product MDP of $M$ and the tLDGBA (or state-based LDGBA) corresponding to $\varphi$ if we use the reward function defined as the accepting frontier function \cite{HAK2019}.
+  This is because that the original LDGBAs have less memory capacity than LDBAs and the accepting frontier function is memoryless. We believe it is expanded that the class of positional policies satisfying a given LTL formula on the corresponding product MDP by our augmentation. We added two remarks that explain the reason we used LDGBAs instead of other automata including LDBAs and that if we use original LDGBAs and the reward function defined as the accepting frontier function, there exists an example such that there exists no positional policy satisfying a given LTL formula on the corresponding product MDP. We have showed the example in section IV that the method in \cite{HAK2019} cannot synthesize any positional policy satisfying the given LTL formula on the corresponding product MDP.
 
-  Due to lack of space in the manuscript, we gave up to add the formal proof to the manuscript. So we proof the two automata accepts the same language only in the reply letter.
+  Due to lack of space in our manuscript, we gave up to add the formal proof to the manuscript. So we proof the two automata accepts the same language only in the reply letter.
 
   \begin{theorem}
-    A tLDGBA and its augmented accept the same language.
+    A tLDGBA and its augmentation accept the same language.
   \end{theorem}
 
   \begin{proof}
-    Let $B$ denote a tLDGBA and $\bar{B}$ denote its augmented. Let a infinite word $r$ be accepted by $B$. Thus, $inf(r) \cap F_j \neq \emptyset$ for any accepting set $F_j$ of $B$, where $inf(r)$ is the set of transitions that occur infnitely often in the word $r$. In other words, the infinite accepting transitions of all accepting sets of $B$ are in $r$ regardless of its order. Then, we consider how the word $r$ is accepted by $\bar{B}$. By the acceptance condition of $\bar{B}$, two or more visits to an accepting set $F_j$ does not contribute to the acceptance by $\bar{B}$ until all accepting sets of $B$ are visited. for a current binary-valued vector $v$, if a current transition $(x,\sigma,x^{\prime})$ is in an accepting set that have been visited once or more after the latest visits to all accepting sets of $B$, $visitf((x,\sigma,x^{\prime}))_j = 1$ and $Max(v, visitf((x,\sigma,x^{\prime}))) = v$ holds, where $visitf((x,\sigma,x^{\prime}))_j$ represents the $j$-th element of $visitf((x,\sigma,x^{\prime}))$. This is because the $j$-th element of $v$ is already 1 and $visitf((x,\sigma,x^{\prime}))$ returns a vector such that the $j$-th element is 1 and the rest of elements are 0. Therefore, by the acceptance condition of $\bar{B}$, the transition is not in any accepting sets of $\bar{B}$.
-    While, if the current transition $(x,\sigma,x^{\prime})$ is first visit to an accepting set $F_j$ of $B$ after the latest visits to all accepting sets of $B$, namely the $j$-th element of the current binary-valued vector is $0$, then $Max(v, visitf((x,\sigma,x^{\prime})))$ returns the vector such that the $j$-th element is 1 and the rest of elements are same as the ones of $v$. Therefore, by the acceptance condition of $\bar{B}$, the transition is in the $j$-th accepting set $\bar{F}_j$ of $\bar{B}$.
-    When all accepting sets of $B$ have visited at the transition $(\hat{x},\hat{\sigma},\hat{x}^{\prime})$, we have $Max(v, visitf((x,\sigma,x^{\prime}))) = \bm{1}$ and $reset(Max(v, visitf((x,\sigma,x^{\prime})))) = \bm{0}$. Subsequently, the same processing is performed on the word $r$, so that $r$ is accepted by $\bar{B}$. Therefore, the language accepted by $B$ are also accepted by $\bar{B}$.
+    Let $B$ denote a tLDGBA and $\bar{B}$ denote its augmentation. Let a infinite word $r$ be accepted by $B$. Thus, $inf(r) \cap F_j \neq \emptyset$ holds for any accepting set $F_j$ of $B$, where $inf(r)$ is the set of transitions that occur infnitely often in the word $r$. In other words, the infinite accepting transitions of all accepting sets of $B$ are in $r$ regardless of its order. Then, we consider how the word $r$ is accepted by $\bar{B}$. By the definition of the acceptance condition of $\bar{B}$, two or more visits to an accepting set $F_j$ does not contribute to the acceptance by $\bar{B}$ until all accepting sets of $B$ are visited after the latest visits to them of $B$. For a current binary-valued vector $v$, if a current transition $(x,\sigma,x^{\prime})$ is in an accepting set that have been visited once or more after the latest visits to all accepting sets of $B$, $Max(v, visitf((x,\sigma,x^{\prime}))) = v$ holds, where $visitf((x,\sigma,x^{\prime}))_j$ represents the $j$-th element of $visitf((x,\sigma,x^{\prime}))$. This is because the $j$-th element of $v$ is already 1 and $visitf((x,\sigma,x^{\prime}))$ returns a vector such that the $j$-th element is 1 and the rest of elements are 0. Therefore, by the definition of the acceptance condition of $\bar{B}$, the transition is not in any accepting sets of $\bar{B}$.
+    While, if the current transition $(x,\sigma,x^{\prime})$ is first visit to an accepting set $F_j$ of $B$ after the latest visits to all accepting sets of $B$, namely the $j$-th element of the current binary-valued vector is $0$, then $Max(v, visitf((x,\sigma,x^{\prime})))$ returns the vector such that the $j$-th element is 1 and the rest of elements are same as $v$. Therefore, by the definition of the acceptance condition of $\bar{B}$, the transition is in the $j$-th accepting set $\bar{F}_j$ of $\bar{B}$.
+    When all accepting sets of $B$ have visited at the transition $(\hat{x},\hat{\sigma},\hat{x}^{\prime})$, we have $Max(v, visitf(\hat{x},\hat{\sigma},\hat{x}^{\prime}))) = \bm{1}$ and $reset(Max(v, visitf((\hat{x},\hat{\sigma},\hat{x}^{\prime})))) = \bm{0}$. Subsequently, the same processing is performed on the word $r$, so that $r$ is accepted by $\bar{B}$. Therefore, the language accepted by $B$ are also accepted by $\bar{B}$.
 
     Let $r^{\prime}$ denote the word accepted by $\bar{B}$. The word $r^{\prime}$ visits all accepting sets of $\bar{B}$ infinitely often. Thus, by the definition of the acceptance condition of $\bar{B}$, obviously $r^{\prime}$ visits all accepting sets of $B$ infinitely often. Therefore, the language accepted by $\bar{B}$ are also accepted by $B$.
   \end{proof}
 \end{reply}
 
 \begin{review point}
-
+  The notations are too complicated and can be simplified.
 \end{review point}
+
+\begin{reply}
+
+\end{reply}
+
+\begin{review point}
+  Def. 7 is bit complicated in writing, the definition in ref.[13] is
+much clearer. Further, the statement the transitions in each part are
+deterministic・・this claim is not suggested in [13]. In fact, in the
+original definition, the state space partitions to the nondeterministic
+part and deterministic part. The transitions in the nondeterministic
+part can be nondeterministic.
+\end{review point}
+
+\begin{reply}
+  We revised the definition of limit-determinism and employed the definition like \cite{SEJK2016}. Then we explain that the transitions in initial part are deterministic because of its construction.
+\end{reply}
+
+\section{Reply to Reviewer 8 (20011)}
+
+\begin{review point}
+  The paper is well-written and organized well. There are lot of
+symbols with subscripts, superscripts in the paper and it might be
+helpful to include a paragraph that describes the notation.
+\end{review point}
+
+\begin{reply}
+
+\end{reply}
+
+\begin{review point}
+  How is the reward function defined in the example for the method in
+\cite{HAK2019}? Can the two rewards be compared?
+\end{review point}
+
+\begin{reply}
+  We defined the reward function in the example for the method in \cite{HAK2019} as the accepting frontier function defined in \cite{HAK2019} and the immediate reward is the same value as the reward for our proposed method. If an optimal policy on the product MDP were satisfying the LTL formula $\varphi$, the agent could visit $s_0$, $s_8$ infinitely often and would never visit $s_2$, $s_3$, $s_5$, and $s_6$, and would accumulate rewards just like the agent under the our proposed method. Therefore, the two rewards can be compared.
+\end{reply}
+
+\begin{review point}
+  How does the proposed method compare in terms of computational
+complexity with other methods? This would be helpful information for
+the readers especially since the proposed method depends on augmenting
+the LDBA.
+\end{review point}
+
+\begin{reply}
+  We interpret the computational complexity as the size of the state space of an automaton. In general, when constructing a transition-based B\"{u}chi automaton (tBA) from a transition-based generalized B\"{u}chi automaton (tGBA), the order of visits to accepting sets of the tGBA is fixed. Consequently, the reward based on the acceptance condition of the tBA tends to be sparse and the sparsity is critical against RL-based control policy synthesis problems. The augmentation of tGBA relaxes the sparsity since the augmented tGBA has all of the order of visits to all accepting sets of the original tGBA. The size of the state space of the augmented tGBA is about $\frac{2^{n}-1}{n}$ times larger than the tBA, however, the ratio of the number of accepting transitions to the number of all transitions of the augmented tGBA is much greater than the tBA.
+\end{reply}
 
 \begin{thebibliography}{99}
 \bibitem{Hahn2019}
@@ -295,6 +369,10 @@ M.\ Hasanbeig, Y.\ Kantaros, A.\ Abate, D.\ Kroening, G.\ J.\ Pappas, and I.\ Le
 A.\ K.\ Bozkurt, Y.\ Wang, M.\ Zavlanos, and M.\ Pajic,
 ``Control synthesis from linear temporal logic specifications using model-free reinforcement learning,''
 \textit{arXiv:1909.07299}, 2019.
+\bibitem{SEJK2016}
+S.\ Sickert, J.\ Esparaza, S.\ Jaax, and J.\ K\v{r}et\`{i}nsk\'{y},
+``Limit-deterministic B\"{u}chi automata for linear temporal logic,''
+ in \textit{International Conference on Computer Aided Verification}, 2016, pp.\ 312-332.
 \end{thebibliography}
 
 \end{document}
