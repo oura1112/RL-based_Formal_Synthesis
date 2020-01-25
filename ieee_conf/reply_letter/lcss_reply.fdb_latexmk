@@ -1,9 +1,9 @@
 # Fdb version 3
-["dvipdf"] 1579858396 "lcss_reply.dvi" "lcss_reply.pdf" "lcss_reply" 1579858398
-  "lcss_reply.dvi" 1579858396 36136 91c3c762b8c344d61e58e857b5af80d2 "latex"
+["dvipdf"] 1579961253 "lcss_reply.dvi" "lcss_reply.pdf" "lcss_reply" 1579961258
+  "lcss_reply.dvi" 1579961252 41424 2183362dc16fe2cc379a375a3343025b "latex"
   (generated)
   "lcss_reply.pdf"
-["latex"] 1579858394 "lcss_reply.tex" "lcss_reply.dvi" "lcss_reply" 1579858398
+["latex"] 1579961249 "lcss_reply.tex" "lcss_reply.dvi" "lcss_reply" 1579961258
   "c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/goth10.tfm" 1519818042 1196 5981e79c37b2cfd27b3612a6783cd4b6 ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/min10.tfm" 1519818042 1196 1be730212205a270378fba11a44765dc ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/tgoth10.tfm" 1519818042 856 7404843a5f798859944d7973a47821d5 ""
@@ -78,11 +78,11 @@
   "c:/w32tex/share/texmf-dist/web2c/texmf.cnf" 1518859120 32699 6adc13c376251eb7d184d2675f4e7970 ""
   "extractbb -B cropbox -O reply_letter_LDBA.pdf" 0 -1 0 ""
   "extractbb -B cropbox -O reply_letter_MDP.pdf" 0 -1 0 ""
-  "lcss_reply.aux" 1579858396 1493 4d56437653a25461bc8b715f97fea4ab ""
-  "lcss_reply.tex" 1579858393 26436 d9b5fa12b0f2c8bdddc073247c693fe1 ""
+  "lcss_reply.aux" 1579961252 1610 c879032c3c4396157ff9c3c8b2daae53 ""
+  "lcss_reply.tex" 1579961249 30341 100f9122eb2ef90cc1a63ebf482f35cc ""
   "reply_letter_LDBA.pdf" 1579775240 28456 b91f78f43e8a3a141bb339101c8224c4 ""
   "reply_letter_MDP.pdf" 1579774087 37178 4be0bf4d6143012a839908e593093317 ""
   (generated)
+  "lcss_reply.aux"
   "lcss_reply.dvi"
   "lcss_reply.log"
-  "lcss_reply.aux"

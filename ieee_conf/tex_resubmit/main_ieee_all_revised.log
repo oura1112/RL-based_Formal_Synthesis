@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.0-180226-2.6 (utf8.sjis) (TeX Live 2018/W32TeX) (preloaded format=platex 2018.4.26)  24 JAN 2020 17:35
+This is e-pTeX, Version 3.14159265-p3.8.0-180226-2.6 (utf8.sjis) (TeX Live 2018/W32TeX) (preloaded format=platex 2018.4.26)  25 JAN 2020 22:10
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -394,53 +394,48 @@ LaTeX Font Warning: Font shape `JY1/mc/m/sc' undefined
 
 
 ] Excluding 'comment' comment. Excluding 'comment' comment. [2] Excluding 'comment' comment. Excluding 'comment' comment.
-Underfull \hbox (badness 10000) in paragraph at lines 288--317
+Underfull \hbox (badness 10000) in paragraph at lines 286--315
 []\OT1/ptm/m/n/10 Given an aug-mented tLDBA $[]$
  []
 
 
-Underfull \hbox (badness 3439) in paragraph at lines 288--317
+Underfull \hbox (badness 3439) in paragraph at lines 286--315
 \OT1/ptm/m/n/10 and an MDP $\OML/cmm/m/it/10 M$\OT1/ptm/m/n/10 , a tu-ple $\OML/cmm/m/it/10 M \OMS/cmsy/m/n/10 
  [] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 M[] \OT1/cmr/m/n/10 =
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 288--317
-\OT1/ptm/m/n/10 where $\OML/cmm/m/it/10 "[]$ \OT1/ptm/m/n/10 rep-re-sents the $\OML/cmm/m/it/10 "$\OT1/ptm/m/n/10 -transiton to the state
- []
-
-
-Underfull \hbox (badness 1852) in paragraph at lines 288--317
+Underfull \hbox (badness 1852) in paragraph at lines 286--315
 \OML/cmm/m/it/10 x[]  \OMS/cmsy/m/n/10 2  \OML/cmm/m/it/10 X$\OT1/ptm/m/n/10 , $\OML/cmm/m/it/10 s[] \OT1/cmr/m/n/10 = (\OML/cmm/m/it/10 s[]; []\OT1/cmr/m/n/10 )$ \OT1/ptm/m/n/10 is the ini-tial states,
  []
 
 
-Underfull \hbox (badness 1997) in paragraph at lines 288--317
+Underfull \hbox (badness 1997) in paragraph at lines 286--315
 \OML/cmm/m/it/10 P[] \OT1/cmr/m/n/10 : \OML/cmm/m/it/10 S[] \OMS/cmsy/m/n/10 ^^B \OML/cmm/m/it/10 S[] \OMS/cmsy/m/n/10 ^^B \OML/cmm/m/it/10 A[] \OMS/cmsy/m/n/10 ! \OT1/cmr/m/n/10 [0\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 1]$ \OT1/ptm/m/n/10 is the tran-si-tion
  []
 
 
-Underfull \hbox (badness 1803) in paragraph at lines 288--317
+Underfull \hbox (badness 1803) in paragraph at lines 286--315
 \OT1/ptm/m/n/10 prob-a-bil-ity de-fined as $\OML/cmm/m/it/10 P[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s[]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 s[]; a\OT1/cmr/m/n/10 ) = \OML/cmm/m/it/10 P\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s[]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 s; a\OT1/cmr/m/n/10 )$ \OT1/ptm/m/n/10 if
  []
 
 
-Underfull \hbox (badness 1577) in paragraph at lines 288--317
+Underfull \hbox (badness 1577) in paragraph at lines 286--315
 \OT1/ptm/m/n/10 if $\OML/cmm/m/it/10 s  \OT1/cmr/m/n/10 =  \OML/cmm/m/it/10 s[]; v  \OT1/cmr/m/n/10 =  \OML/cmm/m/it/10 v[]; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x; "[]; x[]\OT1/cmr/m/n/10 )  \OMS/cmsy/m/n/10 2  []\OML/cmm/m/it/10 ;$ \OT1/ptm/m/n/10 and $\OML/cmm/m/it/10 a \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 "[]$\OT1/ptm/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 4416) in paragraph at lines 288--317
+Underfull \hbox (badness 4416) in paragraph at lines 286--315
 \OT1/ptm/m/n/10 and $\OML/cmm/m/it/10 s[] \OT1/cmr/m/n/10 = (\OML/cmm/m/it/10 s[]; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[]; v[]\OT1/cmr/m/n/10 ))$\OT1/ptm/m/n/10 , $\OML/cmm/m/it/10 ^^N[] \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s[]; a; s[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 2
  []
 
 [3] Excluding 'comment' comment. [4]
-Overfull \hbox (3.14598pt too wide) detected at line 428
+Overfull \hbox (3.14598pt too wide) detected at line 427
 []
  []
 
 
-Underfull \hbox (badness 1424) in paragraph at lines 428--435
+Underfull \hbox (badness 1424) in paragraph at lines 427--434
 \OT1/ptm/m/n/10 where $[] \OMS/cmsy/m/n/10 ^^U \OML/cmm/m/it/10 n$ \OT1/ptm/m/n/10 is a con-stant and $\OT1/cmr/m/n/10 0 \OML/cmm/m/it/10 < [] <
  []
 
@@ -448,22 +443,22 @@ File: MDP_corridor.png Graphic file (type eps)
 <MDP_corridor.png>
 File: ldgba_original.pdf Graphic file (type eps)
  <ldgba_original.pdf>
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 483.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 482.
  (c:/w32tex/share/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 483.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 482.
 File: ldgba.pdf Graphic file (type eps)
  <ldgba.pdf>
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 509.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 508.
  [5]
 File: ep_1000_it_10000_MDP3_gamma_095_re2_ini22_nts_c095_20times.png Graphic file (type eps)
  <ep_1000_it_10000_MDP3_gamma_095_re2_ini22_nts_c095_20times.png>
 File: ep_1000_it_10000_MDP3_gamma_095_nts_c095_abate_20times.png Graphic file (type eps)
  <ep_1000_it_10000_MDP3_gamma_095_nts_c095_abate_20times.png>
-Overfull \hbox (15.50006pt too wide) in paragraph at lines 531--544
+Overfull \hbox (15.50006pt too wide) in paragraph at lines 530--543
  [][][][] 
  []
 
@@ -471,7 +466,7 @@ File: proposed_policy.png Graphic file (type eps)
 <proposed_policy.png>
 File: Abate_policy.png Graphic file (type eps)
  <Abate_policy.png>
-Overfull \hbox (15.00513pt too wide) in paragraph at lines 550--561
+Overfull \hbox (15.00513pt too wide) in paragraph at lines 549--560
  [][][][] 
  []
 
@@ -497,10 +492,10 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Here is how much of TeX's memory you used:
  4193 strings out of 493281
  57293 string characters out of 6146979
- 147017 words of memory out of 5000000
+ 148017 words of memory out of 5000000
  8055 multiletter control sequences out of 15000+600000
  46140 words of font info for 137 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
- 27i,18n,32p,1173b,437s stack positions out of 5000i,500n,10000p,500000b,80000s
+ 27i,18n,32p,1180b,437s stack positions out of 5000i,500n,10000p,500000b,80000s
 
-Output written on main_ieee_all_revised.dvi (7 pages, 68184 bytes).
+Output written on main_ieee_all_revised.dvi (7 pages, 68452 bytes).
