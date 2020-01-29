@@ -39,6 +39,8 @@
 %\usepackage{url}
 \usepackage{comment}
 \usepackage{cite}
+
+\usepackage{lipsum}
 \allowdisplaybreaks[1]
 
 \newtheorem{theorem}{Theorem}
@@ -46,6 +48,8 @@
 \newtheorem{lemma}{Lemma}
 \newtheorem{prop}{Proposition}
 \newtheorem{definition}{Definition}
+\newtheorem{notations}{Notations}
+\renewcommand{\thenotations}{\unskip}
 
 %\theoremstyle{definition}
 %\newtheorem{definition}{Definition}[section]
@@ -57,7 +61,7 @@
 \newcommand{\argmin}{\mathop{\rm arg~min}\limits}
 
 \title{\LARGE \bf
-Reinforcement Learning of Control Policy for Linear Temporal Logic Specifications Using Limit-Deterministic B\"{u}chi Automata
+Reinforcement Learning of Control Policy for Linear Temporal Logic Specifications Using Limit-Deterministic Generalized B\"{u}chi Automata
 }
 
 
@@ -78,9 +82,9 @@ Reinforcement Learning of Control Policy for Linear Temporal Logic Specification
 \begin{abstract}
 
 This letter proposes a novel reinforcement learning method for the synthesis of a control policy satisfying a control specification described by a linear temporal logic formula.  We assume that the controlled system is modeled by a Markov decision process (MDP).
-We transform the specification to a limit-deterministic B\"{u}chi automaton (LDBA) with several accepting sets that accepts all infinite sequences satisfying the formula.
-The LDBA is augmented so that it explicitly records the previous visits to accepting sets.
-We take a product of the augmented LDBA and the MDP, based on which we define a reward function.  The agent gets rewards whenever state transitions are in an accepting set that has not been visited for a certain number of steps.
+We transform the specification to a limit-deterministic generalized B\"{u}chi automaton (LDGBA) with several accepting sets that accepts all infinite sequences satisfying the formula.
+The LDGBA is augmented so that it explicitly records the previous visits to accepting sets.
+We take a product of the augmented LDBA and the MDP, based on which we define a reward function. The agent gets rewards whenever state transitions are in an accepting set that has not been visited for a certain number of steps.
 Consequently, sparsity of rewards is relaxed and optimal circulations among the accepting sets are learned. We show that the proposed method can learn an optimal policy when the discount factor is sufficiently close to one.
 \end{abstract}
 
@@ -90,6 +94,7 @@ Consequently, sparsity of rewards is relaxed and optimal circulations among the 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
+\begin{comment}
 Temporal logic has been developed in computer engineering as a useful formalism of formal specifications  \cite{BK2008,Clarke2018}.
 A merit of temporal logics is its resemblance to natural languages and it has been widely used in several other areas of engineering. Especially, a complicated mission or task in computer-controlled systems such as robots can be described by a temporal logic specification precisely and many synthesis algorithms of a controller or a planner that satisfies the specification have been proposed \cite{KB2008,Gazit2009,WTM2012a,SU2018}.
 Linear temporal logic (LTL) is often used as a specification language because of its rich expressiveness.  It can explain many important $\omega$-regular properties such as liveness, safety, and persistence \cite{BK2008}.
@@ -118,15 +123,40 @@ The rest of the letter is organized as follows.
 Section II reviews an MDP, LTL, and automata.
 Section III proposed a novel RL-based method for the synthesis of a control policy.
 Section IV presents a numerical example for which the previous method cannot learn a control policy but the proposed one can.
+\end{comment}
+
+Reinforcement learning (RL) is a useful approach to learning an optimal policy from sample behaviors of the controlled system \cite{Sutton}.
+In RL, we use a reward function that assigns a reward to each transition in the behaviors and evaluate a control policy by the return that is an expected (discounted) sum of the rewards along the behaviors.
+Thus, to apply RL to the synthesis of a control policy for the LTL specification, it is an important issue how to introduce the reward function.
+Previously, a reward function based on the acceptance condition of a Rabin automaton was proposed in \cite{Sadigh2014}. They converted a given LTL specification to a Rabin automaton and introduced the reward function that assigns a positive and negative value to observations corresponding to an acceptance pair of the Rabin automaton. It was applied to a control problem where the controller optimizes a given control cost under the LTL constraint \cite{HU2015}. It is known that the LTL specification is converted into an $\omega$-automaton such as a nondeterministic B\"{u}chi automaton and a deterministic Rabin automaton \cite{BK2008,Belta2017}. A B\"{u}chi automaton (BA) and a generalized one (GBA) are also an $\omega$-automaton. When constructing a BA from a GBA, however, the order of visits to accepting sets of the GBA is fixed. The construction causes the sparsity of the reward based on the acceptance condition of a BA. It is critical against an RL-based controller synthesis.
+
+Recently, a limit-deterministic B\"{u}chi automaton (LDBA) or a generalized one (LDGBA) is paid much attention to as an $\omega$-automaton corresponding to the LTL specification \cite{SEJK2016}.
+The RL-based approaches to the synthesis of a control policy using LDBAs or LDGBAs have been proposed in \cite{HAK2019,Hahn2019,HKAKPL2019,BWZP2019}.
+%In \cite{Hahn2019,BWZP2019}, they use a non-generalized LDBA. However, when constructing a non-generalized LDBA from an LDBA, the order of visits to accepting sets of the LDBA is fixed. The construction causes the sparsity of the reward based on the acceptance condition of the non-generalized LDBA.
+To deal with the acceptance condition of an LDGBA that accepts behaviors visiting all accepting sets infinitely often, the accepting frontier function was introduced in \cite{HAK2019,HKAKPL2019}. The reward function is defined based on the function.
+However, the function is memoryless, that is, it does not provide the information of accepting sets that have been visited, which is important to improve learning performance.
+In this letter, we propose a novel method to augment an LDBA converted from a given LTL formula.
+Then, we define a reward function based on the acceptance condition of the product MDP of the augmented LDBA and the controlled system.
+% based on the acceptance condition of the augmented automaton, embedded in the product MDP, which enables us to
+As a result, we can improve the sparsity of rewards and expand the class of policies that satisfy the LTL specification compared to \cite{HAK2019}.
+
+The rest of the letter is organized as follows.
+Section II reviews an MDP, LTL, and automata.
+Section III proposed a novel RL-based method for the synthesis of a control policy.
+Section IV presents a numerical example for which the previous method cannot learn a control policy but the proposed one can.
+
+\begin{notations}
+  For sets $A$ and $B$, $AB$ denotes their concatenation. $A^{\omega}$ denotes the infinite concatenation of the set $A$ and $A^{\ast}$ denotes the finite one. $\mathbb{N}_0$ is the nonnegative integers. $\mathbb{R}_0$ is nonnegative real numbers.
+\end{notations}
 
 \section{Preliminaries}
 
 \subsection{Markov Decision Process}
 
 \begin{definition}
-A (labeled) Markov decision process (MDP) is a tuple $M$ = $(S, A, \mathcal{A}, P, s_{init}, AP, L)$, where S is a finite set of states, $A$ is a finite set of actions, $\mathcal{A} : S \rightarrow 2^A$ is a mapping that maps each state to the set of possible actions at the state, $P:S \times S \times A \rightarrow [0,1]$ is a transition probability such that $\sum_{s' \in S} P(s'|s,a) = 1$ for any state $s \in S$ and any action $a \in \mathcal{A}(s) $, $s_{init} \in S$ is the initial state, $AP$ is a finite set of atomic propositions, and $L : S \times A \times S\ \rightarrow\ 2^{AP}$ is a labeling function that assigns a set of atomic propositions to each transition $(s, a, s') \in S \times A \times S$.
+A (labeled) Markov decision process (MDP) is a tuple $M$ = $(S, A, P, s_{init}, AP, L)$, where S is a finite set of states, $A$ is a finite set of actions, $P:S \times S \times A \rightarrow [0,1]$ is a transition probability, $s_{init} \in S$ is the initial state, $AP$ is a finite set of atomic propositions, and $L : S \times A \times S\ \rightarrow\ 2^{AP}$ is a labeling function that assigns a set of atomic propositions to each transition. Let $\mathcal{A}(s) = \{ a \in A ; \text{the action $a$ is feasible at the state $s$} \}$. Note that $\sum_{s' \in S} P(s'|s,a) = 1$ holds for any state $s \in S$ and action $a \in \mathcal{A}(s)$.
 
-In the MDP $M$, an infinite path starting from a state $s_0 \in S$ is defined as a sequence $\rho\ =\ s_0a_0s_1 \ldots\ \in S (A S)^{\omega}$ such that $P(s_{i+1}|s_i, a_i) > 0$ for any $ i \in \mathbb{N}_0$, where $\mathbb{N}_0$ is the set of natural numbers including zero.  A finite path is a finite sequence in $S (A S)^*$. In addition, we sometimes represent $\rho$ as $\rho_{init}$ to emphasize that $\rho$ starts from $s_0 = s_{init}$.
+In the MDP $M$, an infinite path starting from a state $s_0 \in S$ is defined as a sequence $\rho\ =\ s_0a_0s_1 \ldots\ \in S (A S)^{\omega}$ such that $P(s_{i+1}|s_i, a_i) > 0$ for any $ i \in \mathbb{N}_0$. A finite path is a finite sequence in $S (A S)^{\ast}$. In addition, we sometimes represent $\rho$ as $\rho_{init}$ to emphasize that $\rho$ starts from $s_0 = s_{init}$.
 For a path $\rho\ =\ s_0a_0s_1 \ldots$, we define the corresponding labeled path $L(\rho)\ =\ L(s_0,a_0,s_1)L(s_1,a_1,s_2) \ldots \in (2^{AP})^{\omega}$. $InfPath^{M}\ ( \text{resp., }FinPath^{M})$ is defined as the set of infinite (resp., finite) paths starting from $s_0=s_{init}$ in the MDP $M$. For each finite path $\rho$, $last(\rho)$ denotes its last state.
 \end{definition}
 
@@ -148,10 +178,10 @@ For a path $\rho\ =\ s_0a_0s_1 \ldots$, we define the corresponding labeled path
 Let $InfPath^{M}_{\pi}$ (resp., $FinPath^{M}_{\pi}$) be the set of infinite (resp., finite) paths starting from $s_0=s_{init}$ in the MDP $M$ under a policy $\pi$. The behavior of an MDP $M$ under a policy $\pi$ is defined on a probability space $(InfPath^{M}_{\pi}, \mathcal{F}_{InfPath^{M}_{\pi}}, Pr^{M}_{\pi})$. % over the set of infinite paths $InfPath^{M}_{\pi}$ on the MDP $M$ with the policy $\pi$.
 
 A Markov chain induced by an MDP $M$ with a positional policy $\pi$ is a tuple $MC_{\pi} = (S_{\pi},P_{\pi},s_{init},AP,L)$, where $S_{\pi} = S$, $P_{\pi}(s'|s) = P(s'|s,a)$ for $s, s^{\prime} \in S$ and $a \in \mathcal{A}(s)$ such that $\pi(s,a) = 1$.
-The state set $S_{\pi}$ of $MC_{\pi}$ can be represented as a disjoint union of a set of transient states $T_{\pi}$ and closed irreducible sets of recurrent states $R^j_{\pi}$ with $j \in \{ 1, \ldots ,h \}$, as $ S_{\pi} = T_{\pi} \sqcup R^1_{\pi} \sqcup \ldots \sqcup R^h_{\pi} $ \cite{ESS}.
+The state set $S_{\pi}$ of $MC_{\pi}$ can be represented as a disjoint union of a set of transient states $T_{\pi}$ and closed irreducible sets of recurrent states $R^j_{\pi}$ with $j \in \{ 1, \ldots ,h \}$, i.e., $ S_{\pi} = T_{\pi} \cup R^1_{\pi} \cup \ldots \cup R^h_{\pi} $ \cite{ESS}.
 In the following, we say a ``recurrent class'' instead of a ``closed irreducible set of recurrent states'' for simplicity.
 
-In an MDP $M$, we define a reward function $R:S \times A \times S \rightarrow \mathbb{R}_{\geq0}$, where $\mathbb{R}_{\geq0}$ is the set of nonnegative real numbers. The function denotes the immediate reward received after the agent performs an action $a$ at a state $s$ and reaches a next state $s'$ as a result.
+In an MDP $M$, we define a reward function $R:S \times A \times S \rightarrow \mathbb{R}_{0}$. The function denotes the immediate reward received after the agent performs an action $a$ at a state $s$ and reaches a next state $s'$ as a result.
 
 \begin{definition}
   For a policy $\pi$ on an MDP $M$, any state $s \in S$, and a reward function $R$, we define the expected discounted reward as
@@ -165,7 +195,7 @@ where $\mathbb{E}^{\pi}$ denotes the expected value given that the agent follows
 \end{definition}
 
 \begin{definition}
-  For any state $s$ in $S$, a policy $\pi^{\ast}$ is optimal if
+  For any state $s \in S$, a policy $\pi^{\ast}$ is optimal if
   \begin{align*}
     \pi^{\ast} \in \argmax_{\pi \in \Pi^{pos}} V^{\pi}(s),
   \end{align*}
@@ -228,13 +258,13 @@ all words satisfying $\varphi$.
  We define a generalized B\"{u}chi automaton at the beginning, and then introduce a limit-deterministic B\"{u}chi automaton.
 
 \begin{definition}
-  A transition-based generalized B\"{u}chi automaton (tGBA) is a tuple $B = (X,\ x_{init},\ \Sigma,\ \delta,\ \mathcal{F})$, where $X$ is a finite set of states, $x_{init} \in X$ is the initial state, $\Sigma$ is an input alphabet, $\delta \subset  X\times \Sigma \times X$ is a set of transitions, and $\mathcal{F} = \{F_1,\ldots,F_n\}$ is an acceptance condition, where for each $ j \in \{1,\ldots,n\}$, $F_j \subset \delta$ is a set of accepting transitions and called an accepting set.
+  A transition-based generalized B\"{u}chi automaton (tGBA) is a tuple $B = (X,\ x_{init},\ \Sigma,\ \delta,\ \mathcal{F})$, where $X$ is a finite set of states, $x_{init} \in X$ is the initial state, $\Sigma$ is an input alphabet, $\delta \subset  X\times \Sigma \times X$ is a set of transitions, and $\mathcal{F} = \{F_1,\ldots,F_n\}$ is an acceptance condition, where for each $ j \in \{1,\ldots,n\}$, $F_j \subset \delta$ is a set of accepting transitions and called an accepting set. We refer to a tGBA with one accepting set as a tBA.
 
   Let $\Sigma^{\omega}$ be the set of all infinite words over $\Sigma$ and let an infinite run be an infinite sequence $r = x_0\sigma_0x_1 \ldots \in X (\Sigma X)^{\omega}$ where $(x_i, \sigma_{i}, x_{i+1}) \in \delta\ $ for any $ i\in \mathbb{N}_0$. An infinite word $w = \sigma_0\sigma_1 \ldots \in \Sigma^{\omega}$ is accepted by $B_{\varphi}$ if and only if there exists an infinite run $r = x_0 \sigma_0 x_1 \ldots$ starting from $x_0 = x_{init}$ such that $inf(r) \cap F_j \neq \emptyset\ $ for each $F_j \in \mathcal{F}$, where $inf(r)$ is the set of transitions that occur infinitely often in the run $r$.
 \end{definition}
 
 \begin{definition}
-  A tGBA $B = (X, x_{init},\Sigma,\delta,\mathcal{F})$ is limit-deterministic (tLDBA) if $X$ can be partitioned into disjoint set $X_{initial} \sqcup X_{final}$ such that
+  A transition-based limit-deterministic generalized B\"{u}chi automaton (tLDGBA) is a tGBA $B = (X, x_{init},\Sigma,\delta,\mathcal{F})$ such that $X$ is partitioned into two disjoint sets $X_{initial}$ and $X_{final}$ such that
   \begin{itemize}
     \item $F_j \subset X_{final} \times \Sigma \times X_{final}$, $\forall j \in \{ 1,...,n \}$,
     %\item $| \{ (x, \sigma, x^{\prime}) \! \in \! \delta; x^{\prime} \! \in \! X_{initial} \} | \! \leq \! 1$, $\forall x \! \in \! X_{initial}, \forall \sigma \! \in \! \Sigma$,
@@ -242,17 +272,18 @@ all words satisfying $\varphi$.
     \item $| \{ (x, \sigma, x^{\prime}) \in \delta; x^{\prime} \in X_{initial} \} |$=0, $\forall x \! \in \! X_{final}, \forall \sigma \! \in \! \Sigma$.
   \end{itemize}
 \end{definition}
-A tLDBA is a tGBA whose state set can be partitioned into the initial part $X_{initial}$ and the final part $X_{final}$, and they are connected by a single ``guess". The final part has all accepting sets. The transitions in $X_{final}$ are deterministic.  Moreover, the construction of \cite{SEJK2016} produces tLDBA with the initial part deterministic except for $\varepsilon$-transitions into the final part. An $\varepsilon$-transition enable the tLDBA to change its state with no input. Then, $\varepsilon$-transitions reflect the single ``guess" from $X_{initial}$ to $X_{final}$.
-It is known that, for any LTL formula $ \varphi $, there exists a tLDBA that accepts all words satisfying $\varphi$ \cite{SEJK2016}.
+ $X_{initial}$ and $X_{final}$ are connected by a single ``guess". An $\varepsilon$-transition enables the tLDGBA to change its state with no input. Then, $\varepsilon$-transitions reflect the single ``guess" from $X_{initial}$ to $X_{final}$. The final part has all accepting sets. Note that by the construction in \cite{SEJK2016}, the transitions in each part have determinism except for $\varepsilon$-transitions into $X_{final}$ from $X_{intial}$.
+It is known that, for any LTL formula $ \varphi $, there exists a tLDGBA that accepts all words satisfying $\varphi$ \cite{SEJK2016}. We refer to a tLDGBA with one accepting set as a tLDBA.
 %in $ \mathcal{L}(\varphi) $ \cite{SEJK2016}.
-In particular, we represent a tLDBA recognizing an LTL formula $\varphi$ as $B_{\varphi}$, whose input alphabet is given by $ \Sigma = 2^{AP} $.
+In particular, we represent a tLDGBA recognizing an LTL formula $\varphi$ as $B_{\varphi}$, whose input alphabet is given by $ \Sigma = 2^{AP} $.
 
 \section{Reinforcement-Learning-Based Synthesis of Control Policy}
 We introduce an automaton augmented with binary-valued vectors. The automaton can explicitly represent whether transitions in each accepting set occur at least once, and ensure transitions in each accepting set occur infinitely often.
 
 Let $V = \{ (v_1, \ldots ,v_n)^T\ ;\ v_i \in \{ 0,1 \},\ i \in \{ 1, \ldots ,n \} \}$ be a set of binary-valued vectors, and let $\bm{1}$ and $\bm{0}$ be the $n$-dimentional vectors with all elements 1 and 0, respectively.
-In order to augment a tLDBA $B_{\varphi}$, we introduce three functions $visitf:\delta \rightarrow V$, $reset:V \rightarrow V$, and $Max:V\times V \rightarrow V$ as follows.
-For any $e \in \delta$, $visitf(e) = (v_1, \ldots ,v_n)^T$, where %$ v_i = 1 $ if $ e \in F_i $ and $ v_i=0 $ otherwise.
+In order to augment a tLDGBA $B_{\varphi}$, we introduce three functions $visitf:\delta \rightarrow V$, $reset:V \rightarrow V$, and $Max:V\times V \rightarrow V$ as follows.
+For any $e \in \delta$, $visitf(e) = (v_1, \ldots ,v_n)^T$, where $ v_i = 1 $ if $ e \in F_i $ and $ v_i=0 $ otherwise.
+\begin{comment}
 \begin{align}
  v_i =
   \left\{
@@ -262,7 +293,9 @@ For any $e \in \delta$, $visitf(e) = (v_1, \ldots ,v_n)^T$, where %$ v_i = 1 $ i
   \end{aligned}
   \right. \nonumber
 \end{align}
-For any $v \in V$, %$ reset(v) = \bm{0} $ if $ v = \bm{1} $ and $ reset(v) = v $ otherwise.
+\end{comment}
+For any $v \in V$, $ reset(v) = \bm{0} $ if $ v = \bm{1} $ and $ reset(v) = v $ otherwise.
+\begin{comment}
 \begin{align}
   &reset(v) =
   \left\{
@@ -272,19 +305,20 @@ For any $v \in V$, %$ reset(v) = \bm{0} $ if $ v = \bm{1} $ and $ reset(v) = v $
   \end{aligned}
   \right. \nonumber
 \end{align}
+\end{comment}
 For any $v,u \in V$, $Max(v,u) = (l_1,\ldots ,l_n)^T$, where $l_i = max\{v_i, u_i\} $ for any $i\in \{1, \ldots ,n\}$.
 
 Intuitively, each vector $v$ represents which accepting sets have been visited. The function $visitf$ returns a binary vector whose $i$-th element is 1 if and only if a transition in the accepting set $F_i$ occurs. The function $reset$ returns the zero vector $\bm{0}$ if at least one transition in each accepting set has occurred after the latest reset. Otherwise, it returns the input vector without change.
 
 \begin{definition}
-   For a tLDBA $B_{\varphi} = (X,x_{init},\Sigma,\delta,\mathcal{F})$, its augmented automaton is a tLDBA $\bar{B}_{\varphi}$ = $(\bar{X},\bar{x}_{init},\bar{\Sigma},\bar{\delta},\bar{\mathcal{F}})$, where $\bar{X} = X\times V$, $\bar{x}_{init} = (x_{init}, \bm{0})$, $\bar{\Sigma} = \Sigma$, $\bar{\delta}$ is defined as $\bar{\delta}$ = $\{ ((x,v), \bar{\sigma}, (x^{\prime},v^{\prime})) \in \bar{X} \times \bar{\Sigma} \times \bar{X}\ ;\ (x,\bar{\sigma},x^{\prime}) \in \delta,\ v^{\prime} = reset(Max(v,visitf((x,\bar{\sigma},x^{\prime})))) \}$, and $\mathcal{\bar{F}} = \{ \bar{F_1}, \ldots ,\bar{F_n} \}$ is defined as $\bar{F_j} = \{ ((x,v), \bar{\sigma}, (x^{\prime},v^{\prime})) \in \bar{\delta}\ ;\ (x, \bar{\sigma}, x^{\prime}) \in F_j,\ v_j = 0,\ visitf((x, \bar{\sigma}, x^{\prime}))_j = 1\}$ for each $ j \in \{1,...,n\}$, where $visitf((x, \bar{\sigma}, x^{\prime}))_j$ is the $j$-th element of $visitf((x, \bar{\sigma}, x^{\prime}))$.
+   For a tLDGBA $B_{\varphi} = (X,x_{init},\Sigma,\delta,\mathcal{F})$, its augmented automaton is a tLDGBA $\bar{B}_{\varphi}$ = $(\bar{X},\bar{x}_{init},\bar{\Sigma},\bar{\delta},\bar{\mathcal{F}})$, where $\bar{X} = X\times V$, $\bar{x}_{init} = (x_{init}, \bm{0})$, $\bar{\Sigma} = \Sigma$, $\bar{\delta}$ is defined as $\bar{\delta}$ = $\{ ((x,v), \bar{\sigma}, (x^{\prime},v^{\prime})) \in \bar{X} \times \bar{\Sigma} \times \bar{X}\ ;\ (x,\bar{\sigma},x^{\prime}) \in \delta,\ v^{\prime} = reset(Max(v,visitf((x,\bar{\sigma},x^{\prime})))) \}$, and $\mathcal{\bar{F}} = \{ \bar{F_1}, \ldots ,\bar{F_n} \}$ is defined as $\bar{F_j} = \{ ((x,v), \bar{\sigma}, (x^{\prime},v^{\prime})) \in \bar{\delta}\ ;\ (x, \bar{\sigma}, x^{\prime}) \in F_j,\ v_j = 0,\ visitf((x, \bar{\sigma}, x^{\prime}))_j = 1\}$ for each $ j \in \{1,...,n\}$, where $visitf((x, \bar{\sigma}, x^{\prime}))_j$ is the $j$-th element of $visitf((x, \bar{\sigma}, x^{\prime}))$.
 \end{definition}
 
-The augmented tLDBA $\bar{B}_{\varphi}$ keeps track of previous visits to the accepting sets of $B_{\varphi}$. Once an accepting transition in $F_j$ is visited, then another visit to $F_j$ does not contribute to the acceptance by $\bar{B}_{\varphi}$ until all accepting sets of $B_{\varphi}$ is visited after the latest visits to all accepting sets of $B_{\varphi}$.
+The augmented tLDGBA $\bar{B}_{\varphi}$ keeps track of previous visits to the accepting sets of $B_{\varphi}$ as a state.
 
 \begin{definition}
-  Given an augmented tLDBA $\bar{B}_{\varphi}$ and an MDP $M$, a tuple $M \otimes \bar{B}_{\varphi} = M^{\otimes} = (S^{\otimes}, A^{\otimes}, {\mathcal A}^{\otimes}, s_{init}^{\otimes}, P^{\otimes}, \delta^{\otimes}, {\mathcal F}^{\otimes})$ is a product MDP, where
-  $S^{\otimes} = S \times \bar{X}$ is the finite set of states, $A^{\otimes}=A$ is the finite set of actions, ${\mathcal A}^{\otimes} : S^{\otimes} \rightarrow 2^{A^{\otimes}}$ is the mapping defined as ${\mathcal A}^{\otimes}((s,(x,v))) = {\mathcal A}(s) \cup \{ \varepsilon_{x^{\prime}} ; \exists x^{\prime}\! \in \! X \text{ s.t. } (x,\varepsilon_{x^{\prime}}, x^{\prime}) \in \delta \}$ where $\varepsilon_{x^{\prime}}$ is the action for the $\varepsilon$-transiton to the state $x^{\prime}\! \in\! X$, $s_{init}^{\otimes} = (s_{init},\bar{x}_{init})$ is the initial states, $P^{\otimes} : S^{\otimes} \times S^{\otimes} \times A^{\otimes} \rightarrow [0,1]$ is the transition probability defined as $P^{\otimes}(s^{\otimes \prime} | s^{\otimes}, a) = P(s^{\prime} | s, a)$ if $ (\bar{x}, L((s,a,s^{\prime})), \bar{x}^{\prime}) \in \bar{\delta}$ and $ a \in \mathcal{A}(s)$, $P^{\otimes}(s^{\otimes \prime} | s^{\otimes}, a) = 1$ if $s\!=\!s^{\prime},v\!=\!v^{\prime},(x, \varepsilon_{x^{\prime}}, x^{\prime})\! \in \! \bar{\delta},$ and $ a=\varepsilon_{x^{\prime}}$, otherwise $P^{\otimes}(s^{\otimes \prime} | s^{\otimes}, a) = 0$
+  Given an augmented tLDGBA $\bar{B}_{\varphi}$ and an MDP $M$, a tuple $M \otimes \bar{B}_{\varphi} = M^{\otimes} = (S^{\otimes}, A^{\otimes}, s_{init}^{\otimes}, P^{\otimes}, \delta^{\otimes}, {\mathcal F}^{\otimes})$ is a product MDP, where
+  $S^{\otimes} = S \times \bar{X}$ is the finite set of states, $A^{\otimes}$  is the finite set of actions such that $A^{\otimes}=A \cup \{ \varepsilon_{x^{\prime}} ; \exists x^{\prime}\! \in \! X \text{ s.t. } (x,\varepsilon_{x^{\prime}}, x^{\prime}) \in \delta \}$ where $\varepsilon_{x^{\prime}}$ is the action for the $\varepsilon$-transiton to the state $x^{\prime}\! \in\! X$, $s_{init}^{\otimes} = (s_{init},\bar{x}_{init})$ is the initial states, $P^{\otimes} : S^{\otimes} \times S^{\otimes} \times A^{\otimes} \rightarrow [0,1]$ is the transition probability defined as $P^{\otimes}(s^{\otimes \prime} | s^{\otimes}, a) = P(s^{\prime} | s, a)$ if $ (\bar{x}, L((s,a,s^{\prime})), \bar{x}^{\prime}) \in \bar{\delta}$ and $ a \in \mathcal{A}(s)$, $P^{\otimes}(s^{\otimes \prime} | s^{\otimes}, a) = 1$ if $s\!=\!s^{\prime},v\!=\!v^{\prime},(x, \varepsilon_{x^{\prime}}, x^{\prime})\! \in \! \bar{\delta},$ and $ a=\varepsilon_{x^{\prime}}$, otherwise $P^{\otimes}(s^{\otimes \prime} | s^{\otimes}, a) = 0$
   \begin{comment}
   \begin{align}
     P^{\otimes}(s^{\otimes \prime} | s^{\otimes}, a) =
@@ -312,10 +346,12 @@ The augmented tLDBA $\bar{B}_{\varphi}$ keeps track of previous visits to the ac
   \end{align}
   where $s^{\otimes}=(s,(x,v))$ and $s^{\otimes}=(s^{\prime},(x^{\prime},v^{\prime}))$.
 \end{comment}
+
+\label{def9}
 \end{definition}
 
 \begin{definition}
-  The reward function $\mathcal{R} :S^{\otimes} \times A^{\otimes} \times S^{\otimes} \rightarrow {\mathbb R}_{\geq 0}$ is defined as
+  The reward function $\mathcal{R} :S^{\otimes} \times A^{\otimes} \times S^{\otimes} \rightarrow {\mathbb R}_{0}$ is defined as
   \begin{align}
     \mathcal{R}(s^{\otimes}, a, s^{\otimes \prime}) =
     \left\{
@@ -326,21 +362,27 @@ The augmented tLDBA $\bar{B}_{\varphi}$ keeps track of previous visits to the ac
     \right. \nonumber
   \end{align}
   where $r_p$ is a positive value.
+  \label{def10}
 \end{definition}
 
+The reward can be obtained if the first visits to the accepting sets is occurred regardless of its orders after a reset to $v=\bm{0}$.
+
 \begin{remark}
+  \begin{comment}
   If we use a deterministic Rabin automata (DRA) to synthesize a controller, we may not synthesize a desired controller due to that the reward functions are defined each acceptance pair of the DRA \cite{Hahn2019}.
-  On the other hand, when constructing a transition-based B\"{u}chi automaton (tBA) from a transition-based generalized B\"{u}chi automaton (tGBA), the order of visits to accepting sets of the tGBA is fixed. Consequently, the reward based on the acceptance condition of the tBA tends to be sparse and the sparsity is critical against RL-based control policy synthesis problems. The augmentation of tGBA relaxes the sparsity since the augmented tGBA has all of the order of visits to all accepting sets of the original tGBA. The size of the state space of the augmented tGBA is about $\frac{2^{n}-1}{n}$ times larger than the tBA, however, the ratio of the number of accepting transitions to the number of all transitions of the augmented tGBA is much greater than the tBA. Therefore, our proposed method is more sample efficient than the use of non-generalized tLDBA.
+\end{comment}
+  When constructing a tBA from a tGBA, the order of visits to accepting sets of the tGBA is fixed. Consequently, the reward based on the acceptance condition of the tBA tends to be sparse and the sparsity is critical against RL-based controller synthesis problems. The augmentation of tGBA relaxes the sparsity since the augmented tGBA has all of the order of visits to all accepting sets of the original tGBA. For the acceptance condition $\mathcal{F}$ of a tGBA, the size of the state space of the augmented tGBA is about $\frac{2^{|\mathcal{F}|}-1}{|\mathcal{F}|}$ times larger than the tBA, however, the ratio of the number of accepting transitions to the number of all transitions of the augmented tGBA is much greater than the tBA. Therefore, our proposed method is expected more sample efficient than the use of tLDBA.
 \end{remark}
 
 \begin{remark}
-  Hasanbeig $et\ al.$\cite{HAK2019} proposed the accepting frontier function $Acc : X \times 2^X \rightarrow 2^X $ where $X$ is the set of states of the state-based LDBA. Under initializing a set of states $ \mathbb{F} $ with the union of the all accepting sets of the state-based LDBA, the function receives the state $x$ after each transition and the set $\mathbb{F}$. If $x$ is in $\mathbb{F}$, then $Acc$ removes the accepting sets containing $x$ from $\mathbb{F}$. The reward function is based on the varying set $\mathbb{F}$. The reward function depends on the previous visits to accepting sets of the state-based LDBA, however, the reward is memoryless. Therefore, there exists an example an MDP $M$ and an LTL formula $\varphi$ such that there is no positional policy satisfying $\varphi$ on the corresponding product MDP even though there exists a policy satisfying $\varphi$ on the original MDP $M$.
+  In \cite{HAK2019,HKAKPL2019}, the accepting frontier function is proposed, which is $Acc : X \times 2^X \rightarrow 2^X $ where $X$ is the set of states of the state-based LDBA. Under initializing a set of states $ \mathbb{F} $ with the union of the all accepting sets of the state-based LDBA, the function receives the state $x$ after each transition and the set $\mathbb{F}$. If $x$ is in $\mathbb{F}$, then $Acc$ removes the accepting sets containing $x$ from $\mathbb{F}$. The reward function is based on the varying set $\mathbb{F}$. Let $\mathbb{F}_{rem}$ be the union of the removed states. For the product MDP of an MDP $M$ and an state-based LDBA $B_{\varphi}$, the reward function depends on the previous visits to accepting sets of $B_{\varphi}$. Thus, the optimal policy may also depend on the set $\mathbb{F}_{rem}$. In other words, to obtain the positional policy satisfying $\varphi$, we need both of the current state and $\mathbb{F}_{rem}$. Each state of the MDP defined by Def.\ \ref{def9} represent them. We show an example of an MDP $M$ and an LTL formula $\varphi$ such that there exists no positional policy satisfying $\varphi$ on $M^{\otimes}$ of $M$ and $B_{\varphi}$ in Section IV.
+  %Therefore, there exists an example an MDP $M$ and an LTL formula $\varphi$ such that there is no positional policy satisfying $\varphi$ on the corresponding product MDP even though there exists a policy satisfying $\varphi$ on the original MDP $M$.
 \end{remark}
 
 %The reward assignments are based on the acceptance conditions of the product MDP.
 Under the product MDP $M^{\otimes}$ and the reward function $\mathcal{R}$, which is based on the acceptance condition of $ M^\otimes $, we show that if there exists a positional policy $\pi$ satisfying the LTL specification $\varphi$ on $M^{\otimes}$, maximizing the expected discounted reward with large enough $\gamma$ produces a positional policy satisfying $\varphi$ on $M^{\otimes}$.
 
-For a Markov chain $MC^{\otimes}_{\pi}$ induced by a product MDP $M^{\otimes}$ with a positional policy $\pi$, let $S^{\otimes}_{\pi}= T^{\otimes}_{\pi} \sqcup R^{\otimes 1}_{\pi} \sqcup \ldots \sqcup R^{\otimes h}_{\pi}$ be the set of states in $MC^{\otimes}_{\pi}$, where $T^{\otimes}_{\pi}$ is the set of transient states and $R^{\otimes i}_{\pi}$ is the recurrent class for each $i \in \{ 1, \ldots ,h \}$, and let $R(MC^{\otimes}_{\pi})$ be the set of all recurrent classes in $MC^{\otimes}_{\pi}$. Let $\delta^{\otimes i}_{\pi}$ be the set of transitions in a recurrent class $R^{\otimes i}_{\pi}$, namely $\delta^{\otimes i}_{\pi} = \{ (s^{\otimes},a,s^{\otimes \prime}) \in \delta^{\otimes} ; s^{\otimes} \in R^{\otimes i}_{\pi},\ P^{\otimes}(s^{\otimes \prime}|s^{\otimes},a) > 0 \}$, and let $P^{\otimes}_{\pi}$ : $S^{\otimes}_{\pi} \times S^{\otimes}_{\pi} \rightarrow [0,1]$ be the transition probability under $\pi$.
+For a Markov chain $MC^{\otimes}_{\pi}$ induced by a product MDP $M^{\otimes}$ with a positional policy $\pi$, let $S^{\otimes}_{\pi}= T^{\otimes}_{\pi} \cup R^{\otimes 1}_{\pi} \cup \ldots \cup R^{\otimes h}_{\pi}$ be the set of states in $MC^{\otimes}_{\pi}$, where $T^{\otimes}_{\pi}$ is the set of transient states and $R^{\otimes i}_{\pi}$ is the recurrent class for each $i \in \{ 1, \ldots ,h \}$, and let $R(MC^{\otimes}_{\pi})$ be the set of all recurrent classes in $MC^{\otimes}_{\pi}$. Let $\delta^{\otimes i}_{\pi}$ be the set of transitions in a recurrent class $R^{\otimes i}_{\pi}$, namely $\delta^{\otimes i}_{\pi} = \{ (s^{\otimes},a,s^{\otimes \prime}) \in \delta^{\otimes} ; s^{\otimes} \in R^{\otimes i}_{\pi},\ P^{\otimes}(s^{\otimes \prime}|s^{\otimes},a) > 0 \}$, and let $P^{\otimes}_{\pi}$ : $S^{\otimes}_{\pi} \times S^{\otimes}_{\pi} \rightarrow [0,1]$ be the transition probability under $\pi$.
 
 \begin{lemma}
   For any policy $\pi$ and any recurrent class $R^{\otimes i}_{\pi}$ in the Markov chain $MC^{\otimes}_{\pi}$,
@@ -376,7 +418,7 @@ Lemma \ref{lemma1} implies that for an LTL formula $\varphi$ if a path $\rho$ un
 \end{comment}
 
 \begin{theorem}
-  For a product MDP $M^{\otimes}$ of an MDP $M$ and an augmented tLDBA $\bar{B}_{\varphi}$ corresponding to a given LTL formula and a reward function based on the acceptance condition of $M^{\otimes}$. If there exists a positional policy satisfying $\varphi$ on $M^{\otimes}$, then there exists a discount factor $\gamma^{\ast}$ such that any algorithm that maximizes the expected discounted reward with $\gamma > \gamma^{\ast}$ will find a positional policy satisfying $\varphi$ on $M^{\otimes}$.
+  For a product MDP $M^{\otimes}$ of an MDP $M$ and an augmented tLDBA $\bar{B}_{\varphi}$ corresponding to a given LTL formula $\varphi$ and the reward function given by Def.\ \ref{def10}, if there exists a positional policy satisfying $\varphi$ on $M^{\otimes}$, then there exists a discount factor $\gamma^{\ast}$ such that any algorithm that maximizes the expected discounted reward with $\gamma > \gamma^{\ast}$ will find a positional policy satisfying $\varphi$ on $M^{\otimes}$.
   \label{theorem1}
 \end{theorem}
 
@@ -403,9 +445,9 @@ Lemma \ref{lemma1} implies that for an LTL formula $\varphi$ if a path $\rho$ un
     \end{align}
     where the action $a$ is selected by $\bar{\pi}$. Since $s^{\otimes}_{init}$ is in $R^{\otimes i}_{\bar{\pi}}$, there exists a positive number $\bar{k} = \min \{ k\ ;\ k \geq n, p^{k}(s^{\otimes}_{init}, s^{\otimes}_{init}) > 0 \}$ \cite{ESS}. We consider the worst scenario in this case. It holds that
     \begin{align}
-      &V^{\bar{\pi}}(s^{\otimes}_{init}) \nonumber \\
-       \geq & \sum_{k=n}^{\infty} p^{k}(s^{\otimes}_{init}, s^{\otimes}_{init})(\gamma^{k - 1} + \gamma^{k - 2} +...+ \gamma^{k - n})r_p \nonumber \\
-       \geq & \sum_{k=1}^{\infty} p^{k \bar{k}}(s^{\otimes}_{init}, s^{\otimes}_{init}) (\gamma^{k \bar{k}} +...+ \gamma^{k \bar{k} - n + 1})r_p \nonumber \\
+      V^{\bar{\pi}}(s^{\otimes}_{init})
+       \geq & \sum_{k=n}^{\infty} p^{k}(s^{\otimes}_{init}, s^{\otimes}_{init}) \sum_{i=1}^{n} \gamma^{k-i} r_p \nonumber \\
+       \geq & \sum_{k=1}^{\infty} p^{k \bar{k}}(s^{\otimes}_{init}, s^{\otimes}_{init}) \sum_{i=0}^{n-1} \gamma^{k \bar{k} - i} r_p \nonumber \\
        > & r_p \sum_{k=1}^{\infty} \gamma^{k \bar{k}} p^{k \bar{k}}(s^{\otimes}_{init}, s^{\otimes}_{init}), \nonumber
     \end{align}
 whereas all states in $R(MC^{\otimes}_{\bar{\pi}})$ are positive recurrent because $|S^{\otimes}| < \infty$ \cite{ISP}. Obviously, $p^{k \bar{k}}(s^{\otimes}_{init}, s^{\otimes}_{init}) \geq (p^{\bar{k}}(s^{\otimes}_{init}, s^{\otimes}_{init}))^k > 0$ holds for any $k \in (0, \infty)$ by the Chapman-Kolmogorov equation \cite{ESS}. Furthermore, we have $\lim_{k \rightarrow \infty} p^{k \bar{k}}(s^{\otimes}_{init}, s^{\otimes}_{init}) > 0$ by the property of irreducibility and positive recurrence \cite{SM}. Hence, there exists $\bar{p}$ such that $0<\bar{p}<p^{k \bar{k}}(s^{\otimes}_{init}, s^{\otimes}_{init})$ for any $k \in (0, \infty]$ and we have
@@ -479,7 +521,8 @@ Theorem \ref{theorem1} implies that for the product MDP $M^{\otimes}$ of an MDP 
    \vspace{2mm}
 %   \includegraphics[bb=140 498 368 682,width=5cm]{automaton1.pdf}
    \includegraphics[bb=0 0 247 80,scale=0.65]{ldgba_original.pdf}
-   \caption{The tLDBA recognizing the LTL formula $\text{{\bf GF}}a \wedge \text{{\bf GF}}b \wedge \text{{\bf G}}\neg c$, where the initial state is $x_0$. Red arcs are accepting transitions that are numbered in accordance with the accepting sets they belong to, e.g., \textcircled{\scriptsize 1}$a \land \neg b \land \neg c$ means the transition labeled by it belongs to the accepting set $F_1$.}
+   \caption{The tLDGBA recognizing the LTL formula $\text{{\bf GF}}a \wedge \text{{\bf GF}}b \wedge \text{{\bf G}}\neg c$, where the initial state is $x_0$. Red arcs are accepting transitions that are numbered in accordance with the accepting sets they belong to.}
+   % e.g., \textcircled{\scriptsize 1}$a \land \neg b \land \neg c$ means the transition labeled by it belongs to the accepting set $F_1$.}
    \label{automaton}
 \end{figure}
 
@@ -487,43 +530,46 @@ Theorem \ref{theorem1} implies that for the product MDP $M^{\otimes}$ of an MDP 
    \centering
 %   \includegraphics[bb=0 0 374 207,height=4cm, width=7cm]{ldgba.pdf}
    \includegraphics[bb=0 0 374 207,scale=0.6]{ldgba.pdf}
-   \caption{The augmented automaton for the tLDBA in Fig.~\ref{automaton} recognizing the LTL formula $\text{{\bf GF}}a \wedge \text{{\bf GF}}b \wedge \text{{\bf G}}\neg c$, where the initial state is $(x_0, (0,0)^T )$. Red arcs are accepting transitions that are numbered in accordance with the accepting sets they belong to. All states corresponding to $x_1$ are merged into $(x_1, (*,*)^T )$.}
+   \caption{The augmented automaton for the tLDGBA in Fig.~\ref{automaton} recognizing the LTL formula $\text{{\bf GF}}a \wedge \text{{\bf GF}}b \wedge \text{{\bf G}}\neg c$, where the initial state is $(x_0, (0,0)^T )$. Red arcs are accepting transitions that are numbered in accordance with the accepting sets they belong to. All states corresponding to $x_1$ are merged into $(x_1, (*,*)^T )$.}
    \label{automaton_aug}
 \end{figure}
 
-In this section, we evaluate our proposed method and compare it with an existing work.
+In this section, we compare our proposed method with the method in \cite{HAK2019,HKAKPL2019} and the method using tLDBA. In the method using tLDBA, the reward function given by like Def.\ \ref{def10}, namely it is based on the one accepting set of the corresponding product MDP.
 We consider a path planning problem of a robot in an environment consisting of eight rooms and one corridor as shown in Fig.\ \ref{Grid1}. The state $s_7$ is the initial state and the action space is specified with $\mathcal{A}(s) = \{ Right,\ Left,\ Up,\ Down \}$ for any state $s \neq s_4$ and $\mathcal{A}(s_4) = \{ to\_s_0,\ to\_s_1,\ to\_s_2,$ $\ to\_s_3,\ to\_s_5,\ to\_s_6,\ to\_s_7,\ to\_s_8 \}$, where $to\_s_i$ means attempting to go to the state $s_i$ for $i \in \{0,\ 1,\ 2,\ 3,\ 5,\ 6,\ 7,\ 8 \}$. The robot moves in the intended direction with probability 0.9 and it stays in the same state with probability 0.1 if it is in the state $s_4$. In the states other than $s_4$, it moves in the intended direction with probability 0.9 and it moves in the opposite direction to that it intended to go with probability 0.1. If the robot tries to go to outside the environment, it stays in the same state. The labeling function is as follows.
 \begin{align*}
       & L((s, a, s^{\prime})) =
       \left\{
       \begin{aligned}
         & \{ c \} &  & \text{if }s^{\prime} = s_i,\ i \in \{ 2,3,5,6 \}, \nonumber \\
-        & \{ a \} &  & \text{if }(s,a,s^{\prime})=(s_4,to\_s_0,s_0), \nonumber \\
-        & \{ b \} &  & \text{if }(s,a,s^{\prime})=(s_4,to\_s_8, s_8), \nonumber \\
+        & \{ b_1 \} &  & \text{if }(s,a,s^{\prime})=(s_4,to\_s_0,s_0), \nonumber \\
+        & \{ b_2 \} &  & \text{if }(s,a,s^{\prime})=(s_4,to\_s_8, s_8), \nonumber \\
         & \emptyset &  & \text{otherwise}.
       \end{aligned}
       \right.
     \end{align*}
 
-In the example, the robot tries to take two transitions that we want to occur infinitely often, represented by arcs labeled by \{{\it a}\} and \{{\it b}\}, while avoiding unsafe transitions represented by the arcs labeled by \{{\it c}\}. This is formally specified by the following LTL formula.
+In the example, the robot tries to take two transitions that we want to occur infinitely often, represented by arcs labeled by \{$b_1$\} and \{$b_2$\}, while avoiding unsafe transitions represented by the arcs labeled by \{{\it c}\}. This is formally specified by the following LTL formula.
 \begin{align*}
-  \varphi = \text{{\bf GF}}a \wedge \text{{\bf GF}}b \wedge \text{{\bf G}}\neg c.
+  \varphi = \text{{\bf GF}}b_1 \wedge \text{{\bf GF}}b_2 \wedge \text{{\bf G}}\neg c.
 \end{align*}
 The above LTL formula requires the robot to keep on entering the two rooms $s_0$ and $s_8$ from the corridor $s_4$ regardless of the order of entries, while avoiding entering the four rooms $s_2$, $s_3$, $s_5$, and $s_6$.
 
-We use Owl \cite{Owl} to obtain the tLDBA corresponding to the LTL formula.
+%We use Owl \cite{Owl} to obtain the tLDBA corresponding to the LTL formula.
 The tLDBA $B_{\varphi} = (X, x_{init},\Sigma,\delta,\mathcal{F})$ and its augmented automaton $\bar{B}_{\varphi} = (\bar{X},\bar{x}_{init},\bar{\Sigma},\bar{\delta},\bar{\mathcal{F}})$ are shown in Figs.\ \ref{automaton} and \ref{automaton_aug}, respectively. Specifically, the acceptance condition ${\mathcal F}$ of the tLDBA is given by ${\mathcal F} = \{ F_1,F_2 \}$, where $F_1=\{ (x_0, \{ a \}, x_0),\ (x_0, \{ a,b \}, x_0) \}$ and $F_2 = \{ (x_0, \{ b \}, x_0),\ (x_0, \{ a,b \}, x_0) \}$.
 
-We use Q-learning\footnote{We employ Q-learning here but any algorithm that maximizes the discounted expected reward can be applied to our proposed method.} with $\varepsilon$-greedy policy and gradually reduce $\varepsilon$ to 0 to learn an optimal policy asymptotically.
-We set the positive reward $r_p = 2$, the epsilon greedy parameter $ \varepsilon = \frac{0.95}{n_t(s^{\otimes})}$, where $n_t(s^{\otimes})$ is the number of visits to state $s^{\otimes}$ within $t$ time steps \cite{Singh1998}, and the discount factor $\gamma = 0.9$. The learning rate $\alpha$ varies in accordance with {\it the Robbins-Monro condition}.
+For the three methods, we use Q-learning\footnote{We employ Q-learning here but any algorithm that maximizes the discounted expected reward can be applied to our proposed method.} with $\varepsilon$-greedy policy and gradually reduce $\varepsilon$ to 0 to learn an optimal policy asymptotically.
+We set the positive reward $r_p = 2$, the epsilon greedy parameter $ \varepsilon = \frac{0.95}{n_t(s^{\otimes})}$, where $n_t(s^{\otimes})$ is the number of visits to state $s^{\otimes}$ within $t$ time steps \cite{Singh1998}, and the discount factor $\gamma = 0.95$. The learning rate $\alpha$ varies in accordance with {\it the Robbins-Monro condition}. We train the agent in 10000 iterations and 1000 episodes for 20 learning sessions.
 
-We also evaluate the method in \cite{HAK2019}.
+%We also evaluate the method in \cite{HAK2019}.
 % They use state-based LDBAs for LTL formulas and construct the product MDP of an MDP and a state-based LDBA to synthesize a policy satisfying the LTL formula. They proposed the accepting frontier function $Acc : X \times 2^X \rightarrow 2^X $ where $X$ is the set of states of the state-based LDBA. Under initializing a set of states $ \mathbb{F} $ with the union of the all accepting sets of the state-based LDBA, the function receives the state $x$ after each transition and the set $\mathbb{F}$. If $x$ is in $\mathbb{F}$, then $Acc$ removes the accepting sets containing $x$ from $\mathbb{F}$. The reward function is based on the varying set $\mathbb{F}$.
-We conduct the same example with their method using the tLDBA instead and the same parameters.
+%We conduct the same example with their method using the tLDBA instead and the same parameters.
 
-Figs.\ \ref{result} and \ref{optimal} show the average reward and the optimal policy, respectively, as a result of the learning when using our proposed method and the method in \cite{HAK2019} after 10000 iterations and 1000 episodes. The arithmetic mean of average reward in each episode for 20 learning sessions is displayed per 100 episodes in Fig.\ \ref{result}.
+Fig.\ \ref{result} shows the average rewards obtained by our proposed method and the method using tLDBA, respectively. Both of methods eventually acquire an optimal policy satisfying $\varphi$. As can be seen from Fig.\ \ref{result}, however, our proposed method converges faster. It suggest that our proposed method is expected to be more sample efficient than using tLDBA. It is expected that such learning delays are remarkable as the number of accepting sets increases.
 
-The result for the method in \cite{HAK2019} is due to that it is impossible the transitions labeled by $\{ a \}$ and $\{ b \}$ occur from $s_4$ infinitely often by any positional policy with the tLDBA. In detail, the state of the tLDBA is always $x_0$ while the agent does not move to states $s_2$, $s_3$, $s_5$, and $s_6$. Thus, the state of the product MDP is always $(s_4, x_0)$ while the agent stays in $s_4$. While our proposed method can recognize the previous visits as a state. Thus, our proposed method can synthesize a positional policy satisfying $\varphi$ on the product MDP, while the method in \cite{HAK2019} cannot. Therefore, the method in \cite{HAK2019} may not synthesize positional policies satisfying LTL specifications on the product MDP depending on the settings of MDPs or LTL specifications.
+Fig.\ \ref{optimal} shows the obtained optimal policies by our proposed method and the method in \cite{HAK2019,HKAKPL2019}, respectively.
+
+The result for the method in \cite{HAK2019,HKAKPL2019} is due to that it is impossible the transitions labeled by $\{ a \}$ and $\{ b \}$ occur from $s_4$ infinitely often by any positional policy with the tLDGBA. In detail, the state of the tLDGBA is always $x_0$ while the agent does not move to states $s_2$, $s_3$, $s_5$, and $s_6$. Thus, the state of the product MDP is always $(s_4, x_0)$ while the agent stays in $s_4$. While our proposed method can recognize the previous visits as a state. Thus, our proposed method can synthesize a positional policy satisfying $\varphi$ on the product MDP, while the method in \cite{HAK2019, HKAKPL2019} cannot.
+% Therefore, the method in \cite{HAK2019} may not synthesize positional policies satisfying LTL specifications on the product MDP depending on the settings of MDPs or LTL specifications.
 
 \begin{figure}[tbp]
  \centering
@@ -531,16 +577,16 @@ The result for the method in \cite{HAK2019} is due to that it is impossible the 
   \begin{minipage}{0.5\hsize}
      \centering
 %     \includegraphics[width=4.5cm]{ep_1000_it_10000_MDP3_gamma_095_re2_ini22_nts_c095_20times.png}
-     \includegraphics[bb=0 0 461 346, height = 3.4cm, width=4.2cm]{ep_1000_it_10000_MDP3_gamma_095_re2_ini22_nts_c095_20times.png}
+     \includegraphics[bb=0 0 461 346, height = 3.4cm, width=4.2cm]{ep_1000_it_10000_MDP3_gamma_095_re2_ini22_nts_c095_20times_no2.png}
  \end{minipage}
 
  \begin{minipage}{0.5\hsize}
    \centering
 %   \includegraphics[width=4.5cm]{ep_1000_it_10000_MDP3_gamma_095_nts_c095_abate_20times.png}
-   \includegraphics[bb=0 0 461 346, height = 3.4cm, width=4.2cm]{ep_1000_it_10000_MDP3_gamma_095_nts_c095_abate_20times.png}
+   \includegraphics[bb=0 0 461 346, height = 3.4cm, width=4.2cm]{ep_1000_it_10000_MDP3_gamma_095_nts_c095_ldba_20times.png}
  \end{minipage}
 \end{tabular}
- \caption{The arithmetic mean of average reward in each episode for 20 learning sessions obtained from our proposed method (left) and the method by Hasanbeig $et\ al.$\cite{HAK2019} (right). They are plotted per 100 episodes and the green areas represent the range of standard deviations.}
+ \caption{The arithmetic mean of average reward in each episode for 20 learning sessions obtained from our proposed method (left) and the method using tLDBA (right). They are plotted per 100 episodes and the green areas represent the range of standard deviations. Each theoretical optimal convergence value are about }
  \label{result}
 \end{figure}
 
@@ -558,15 +604,15 @@ The result for the method in \cite{HAK2019} is due to that it is impossible the 
 		\end{minipage}
 	\end{tabular}
 
-	\caption{The optimal policy obtained from our proposed method (left) and the method by Hasanbeig $et\ al.$\cite{HAK2019} (right).}
+	\caption{The optimal policy obtained from our proposed method (left) and the method in \cite{HAK2019, HKAKPL2019} (right).}
 	\label{optimal}
 \end{figure}
 
 \section{Conclusions}
 
-The letter proposed a novel RL-based method for the synthesis of a control policy for an LTL specification using a limit-deterministic B\"{u}chi automaton.
-The proposed method improved the learning performance compared to an existing method.
-It is future work that we extend the method to the synthesis of a hierarchical control policy and maximize the satisfaction probability.
+The letter proposed a novel RL-based method for the synthesis of a control policy for an LTL specification using a limit-deterministic generalized B\"{u}chi automaton.
+The proposed method improved the learning performance compared to existing methods.
+It is future work to investigate a method that maximizes the satisfaction probability.
 
 
 
@@ -587,6 +633,7 @@ It is future work that we extend the method to the synthesis of a hierarchical c
 C.\ Baier and J.-P.\ Katoen,
 \textit{Principles of Model Checking}.
 MIT Press, 2008.
+\begin{comment}
 \bibitem{Clarke2018}
 E.\ M.\ Clarke, Jr., O.\ Grumberg, D.\ Kroening, D.\ Peled, and H.\ Veith,
 \textit{Model Checking}, 2nd Edition.
@@ -607,6 +654,7 @@ T.\ Wongpiromsarn, U.\ Topcu, and R.\ M.\ Murray,
 A.\ Sakakibara and T.\ Ushio,
 ``Decentralized supervision and coordination of concurrent discrete event systems under LTL constraints,''
  in \textit{Proc.\ 14th International Workshop on Discrete Event Systems}, 2018, pp.\ 18-23.
+\end{comment}
 \bibitem{Belta2017}
 C.\ Belta, B.\ Yordanov, and E.\ A.\ Gol,
 \textit{Formal Methods for Discrete-Time Dynamical Systems}.
@@ -664,10 +712,12 @@ S.M.\ Ross,
 S. Singh, T. Jaakkola, M. L. Littman, and C. Szepes\'{v}ari,
 ``Convergence results for single-step on-policy reinforcement learning algorithms'' \textit{Machine Learning},
 vol.~38, no.~3, pp,~287--308, 1998.
-\bibitem{Owl}
-J.~Kretínsk\'{y}, T.~Meggendorfer, S.~Sickert, ``Owl: A library for $\omega$-words, automata,
-and LTL,'' in \textit{Proc.~16th International Symposium on Automated Technology for Verification and Analysis}, 2018,  pp.~543–550.
+%\bibitem{Owl}
+%J.~Kretínsk\'{y}, T.~Meggendorfer, S.~Sickert, ``Owl: A library for $\omega$-words, automata, and LTL,'' in \textit{Proc.~16th International Symposium on Automated Technology for Verification and Analysis}, 2018,  pp.~543–550.
 %https://doi.org/10.1007/978-3-030-01090-4\_34
+\bibitem{Rab}
+J. Kretínsk\'{y}, T. Meggendorfer, S. Sickert, and C. Ziegler. ``Rabinizer 4: From ltl to
+your favourite deterministic automaton,'' \textit{In CAV}, 2018. To appear.
 
 \end{thebibliography}
 
