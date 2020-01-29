@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.sjis) (TeX Live 2019/W32TeX) (preloaded format=platex 2019.9.9)  29 JAN 2020 21:08
+This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.sjis) (TeX Live 2019/W32TeX) (preloaded format=platex 2019.9.9)  29 JAN 2020 23:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -349,13 +349,8 @@ Overfull \hbox (98.37534pt too wide) detected at line 111
  []
 
 [2]
-Overfull \hbox (43.84009pt too wide) detected at line 122
+Overfull \hbox (60.75182pt too wide) detected at line 122
 []
- []
-
-
-Overfull \hbox (113.79576pt too wide) in paragraph at lines 122--125
-\OT1/cmr/m/n/10 where $[]$ is a con-stant such that $[] \OML/cmm/m/it/10 > Pr[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s[] \OMS/cmsy/m/n/10 6j[]\OT1/cmr/m/n/10 = \OML/cmm/m/it/10 '\OT1/cmr/m/n/10 )(\OML/cmm/m/it/10 r[] \OT1/cmr/m/n/10 + \OMS/cmsy/m/n/10 jjR[]jj[]\OT1/cmr/m/n/10 ) [][] [][] \OML/cmm/m/it/10 ^^M[]p[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s[]; s[]\OT1/cmr/m/n/10 )$.
  []
 
 
@@ -366,6 +361,11 @@ Overfull \hbox (25.3433pt too wide) detected at line 157
 [3]
 Overfull \hbox (21.82086pt too wide) in paragraph at lines 157--161
 \OT1/cmr/m/n/10 by Jensen's in-equal-ity, and Eq. ([]6[]) holds since it holds that $\OML/cmm/m/it/10 ^^M[] < ^^M[]$
+ []
+
+
+Overfull \hbox (45.09465pt too wide) in paragraph at lines 157--161
+[]\OT1/cmr/m/n/10 ([][]\OML/cmm/m/it/10 r[] \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 ^^F[][][]\OMS/cmsy/m/n/10 jjR[]jj[]\OT1/cmr/m/n/10 ) \OML/cmm/m/it/10 > m\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 r[]\OT1/cmr/m/n/10 )$, where $\OML/cmm/m/it/10 m\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 r[]\OT1/cmr/m/n/10 ) = []\OMS/cmsy/m/n/10 f[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 r[]\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ; []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 r[]\OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 g$\OT1/cmr/m/n/10 .
  []
 
 
@@ -410,10 +410,10 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 225.
 Here is how much of TeX's memory you used:
  7330 strings out of 493215
  103566 string characters out of 6145921
- 213530 words of memory out of 5000000
+ 214530 words of memory out of 5000000
  11247 multiletter control sequences out of 15000+600000
  13844 words of font info for 55 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
  28i,21n,32p,1171b,515s stack positions out of 5000i,500n,10000p,500000b,80000s
 
-Output written on thorem.dvi (6 pages, 37768 bytes).
+Output written on thorem.dvi (6 pages, 38528 bytes).
