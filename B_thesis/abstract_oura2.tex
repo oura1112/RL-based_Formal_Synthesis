@@ -1,0 +1,184 @@
+\documentclass[a4j,9pt,twocolumn]{jsarticle}
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage{bm}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage[dvipdfmx]{hyperref}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+%\usepackage{txfonts}
+%\usepackage{ascmac, here}
+\usepackage{listings}
+\usepackage{color}
+%\usepackage{url}
+\usepackage{comment}
+\usepackage[top=20truemm,bottom=20truemm,left=25truemm,right=25truemm]{geometry}
+
+\allowdisplaybreaks[1]
+
+\newtheorem{theorem}{定理}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{補題}
+%\newtheorem{proof}{Proof}
+\newtheorem{prop}{Proposition}
+%\newtheorem{definition}{Definition}
+%\newtheorem*{definition*}{Definition}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+%\theoremstyle{remark}
+%\newtheorem*{remark}{Remark}
+
+\newcommand{\mysps}{\ensuremath{[\![s^{\otimes}]\!]}_s}
+\newcommand{\myspq}{\ensuremath{[\![s^{\otimes}]\!]}_x}
+\newcommand{\myspqsink}{\ensuremath{[\![s^{\otimes}_{sink}]\!]}_x}
+\newcommand{\myspds}{\ensuremath{[\![s^{\otimes \prime}]\!]}_s}
+\newcommand{\myspdq}{\ensuremath{[\![s^{\otimes \prime}]\!]}_x}
+\newcommand{\argmax}{\mathop{\rm arg~max}\limits}
+\newcommand{\argmin}{\mathop{\rm arg~min}\limits}
+%%% \begin{document}の前に，各エントリーを記述する
+%
+%\title{{\large Optimal Directed Control of Discrete Event Systems with Linear Temporal Logic Constraints}}	% 論文のタイトル
+%% （線形時相論理制約のある離散事象システムの最適ディレクター制御）
+%\author{榊原愛海} 		% 著者
+%\studentid{09C11068} 	% 学籍番号
+%\lab{潮}		% 研究室名
+
+% 英語なら以下2行を定義
+%\englishtitle
+%\jptitle{日本語の題名}  % 日本語のタイトル
+
+%\begin{document}
+%\absttitle 		% 表題の出力
+
+%%% define paper layout
+%\ifnum\@ptsize=0 % for 10pt
+\textwidth 200mm%
+\textheight 277mm%
+\voffset -1in%垂直方向のオフセット
+\hoffset -1in%水平方向のオフセット
+\topmargin 0mm%オフセットからヘッダまでのマージン
+\headheight 18mm%ヘッダの高さ
+\headsep 0mm%ヘッダと本文領域の間の高さ
+\oddsidemargin 10mm%奇数ページのマージン
+\footskip -30mm%文章領域の終わりからフッタの終わりまでの高さ
+
+\pagestyle{empty}
+
+\begin{document}
+\twocolumn[ %表題は2段に組まない
+\begin{center}%
+\underline{ \bf{\Large Reinforcement Learning based Controller synthesis for Linear Temporal Logic }}\\
+\vspace{+2mm}
+\underline{ \bf{\Large Specifications Using Limit-Deterministic Generalized B\"{u}chi Automata}}\\%
+\bf{\normalsize 一般化 Linit-Deterministic B\"{u}chi オートマトンを用いた線形時相論理制約に対する強化学習に基づく制御器設計}
+{\Large \bf{
+  \begin{tabular}[t]{ccc}%
+    学籍番号：09C18707 & 潮\ 研究室 &大浦\ 稜平
+  \end{tabular}\par}}%
+\end{center}%
+\par\vskip .5mm
+]
+
+\section{緒論}
+%マルコフ決定過程（MDP)に対して線形時相論理式（LTL式）で与えた制約を満たす強化学習法が提案されている．
+近年，LTL式に対する$\omega$-オートマトンとして（一般化）limit-deterministic B\"{u}chi オートマトン（LD(G)BA)が注目されており，LDBAまたはLDGBAを用いたMDPに対する制御器の強化学習法が提案されている \cite{HAK2019,Hahn2019}．本研究では，報酬関数のスパース性を緩和する拡張LDGBAを提案し，割引率を十分1に近づけることでLTL式を満たす最適方策が学習できることを示す．
+
+\section{拡張LDGBAと制御器の強化学習}
+制御対象はラベル付きMDPでモデル化され，$M$ = $(S, A, P, s_{init}, AP, L)$で表現される．
+$S$は状態の有限集合，$A$は行動の有限集合，$P : S \times S \times A \to [0,1]$は状態の遷移確率，$s_{init} \in S$はシステムの初期状態，$AP$は原子命題の有限集合，$L : S \times A \times S \to 2^{AP}$は各遷移に原子命題を割り当てるラベル関数である．
+状態$s$で行動$a$を起こした下で，状態$s^{\prime}$に遷移する確率が$P(s^{\prime}|s,a)$であり，$P$はマルコフ性を有するものとする．
+
+LTL式$\varphi$に対する遷移ベースのLDGBA（tLDGBA）は$B_{\varphi}= (X,\ x_{init},\ \Sigma,\ \delta,\ \mathcal{F})$で表現される．$X$は状態の有限集合，$x_{init}$は初期状態，$\Sigma$は文字の有限集合，$\delta$は状態遷移の集合，$\mathcal{F}=\{ F_j \} _{j=1}^{n}$は受理条件であり，各$j\in\{ 1,\ldots,  n \}$に対して$F_j \subset \delta$である．
+状態集合$X$は2つの部分集合$X_{initial}$,$X_{final}$に分割でき，$X_{initial}$内と$X_{final}$内の遷移は決定的である．$X_{initial}$から$X_{final}$への遷移は非決定的で，それらは$\varepsilon$-遷移で表現される．また，全ての$F_i$の要素は$X_{final}$内の遷移である．$X_{final}$から$X_{initial}$への遷移は存在しない．
+
+$V$を$n$次元2値ベクトルの集合とする．$B_{\varphi}$を拡張するため，以下に３つの関数$visitf: \delta \to V$, $reset:V \to V$, $Max:V \times V \to V$を導入する．任意の$e \in \delta$に対して，$visitf(e) = (v_1,\ldots,v_n)^T$，ここで$e\in F_i$ならば$v_i = 1$，それ以外ならば$v_i = 0$である．
+\begin{comment}
+\begin{align}
+ v_i =
+  \left\{
+  \begin{aligned}
+    1 &   & &\text{if}\ e\in F_i, \\
+    0 &   & &\text{otherwise}.
+  \end{aligned}
+  \right. \nonumber
+\end{align}
+\end{comment}
+任意の$v \in V$に対して，$v = \bm{1}$ならば$reset(v) = \bm{0}$，それ以外ならば$reset(v) = v$である．
+\begin{comment}
+\begin{align}
+  reset(v) =
+  \left\{
+  \begin{aligned}
+    \bm{0} &   & &\text{if}\  v = \bm{1},\\
+    v &   & &\text{otherwise}.
+  \end{aligned}
+  \right. \nonumber
+\end{align}
+\end{comment}
+任意の$v,u \in V$に対して，$Max(v,u) = (l_1, \ldots, l_n)^T$, ここで各$i \in \{ 1,\dots, n \}$に対して$l_i = \max \{ v_i, u_i \}$．
+
+$B_\varphi = (X,x_{init},\Sigma,\delta,\mathcal{F})$に対する拡張オートマトンを次のtLDGBA $\bar{B}_{\varphi} = (\bar{X},\bar{x}_{init},\bar{\Sigma},\bar{\delta},\bar{\mathcal{F}})$で定義する．
+．
+\begin{itemize}
+  \item $\bar{X} = X \times V$ : 状態の有限集合.
+  \item $\bar{x}_{init} = (x_{init}, \bm{0})$ : 初期状態.
+  \item $\bar{\Sigma} = \Sigma$ : 文字の有限集合.
+  \item $\bar{\delta}$ = $\{ ((x,v), \bar{\sigma}, (x^{\prime},v^{\prime})) \in \bar{X} \times \bar{\Sigma} \times \bar{X}\ ;\ (x,\bar{\sigma},x^{\prime}) \in \delta,\ v^{\prime} = reset(Max(v,visitf((x,\bar{\sigma},x^{\prime})))) \}$: 状態遷移の集合.
+  \item $\mathcal{\bar{F}} = \{ \bar{F_1}, \ldots ,\bar{F_n} \}$ : 受理条件．各$j \in \{ 1,\ldots,n \}$に対して$\bar{F_j} = \{ ((x,v), \bar{\sigma}, (x^{\prime},v^{\prime})) \in \bar{\delta}\ ;\ (x, \bar{\sigma}, x^{\prime}) \in F_j,\ v_j = 0,\ visitf((x, \bar{\sigma}, x^{\prime}))_j = 1\}$と定義される．ここで，$visitf((x, \bar{\sigma}, x^{\prime}))_j$は$visitf((x, \bar{\sigma}, x^{\prime}))$の$j$番目の要素を表す.
+\end{itemize}
+
+MDP $M$と拡張tLDGBA $\bar{B}_{\varphi}$による合成MDP $M^{\otimes} = M \otimes \bar{B}_{\varphi}$を次の$(S^{\otimes}, A^{\otimes}, s_{init}^{\otimes}, P^{\otimes}, \delta^{\otimes}, {\mathcal F}^{\otimes})$で定義する．
+\begin{itemize}
+  \item $S^{\otimes} = S \times \bar{X}$ : 状態の有限集合.
+  \item $A^{\otimes}=A \cup \{ \varepsilon_{x^{\prime}} ; \exists x^{\prime}\! \in \! X \text{ s.t. } (x,\varepsilon_{x^{\prime}}, x^{\prime}) \in \delta \}$ : 行動の有限集合．ここで，$\varepsilon_{x^{\prime}}$は$\varepsilon$-遷移 $(x,\varepsilon_{x^{\prime}}, x^{\prime}) \in \delta$に対する行動である．
+  \item $s^{\otimes}_{init} = (s_init,\bar{x}_{init})$ : 合成MDPの初期状態．
+  \item $P^{\otimes} : S^{\otimes} \times S^{\otimes} \times A^{\otimes} \to [0,1] $ : 状態の遷移確率．以下のように定義される．
+  \begin{align}
+    P^{\otimes}(s^{\otimes \prime} | s^{\otimes}, a) =
+    \left\{
+    \begin{aligned}
+      &P(s^{\prime} | s, a) &   &\text{if}\  (\bar{x}, L((s,a,s^{\prime})), \bar{x}^{\prime}) \in \bar{\delta}, a \in \mathcal{A}(s)，\\
+      &1 &   &\text{if}\ s\!=\!s^{\prime},v\!=\!v^{\prime},(x, \varepsilon_{x^{\prime}}, x^{\prime})\! \in \! \bar{\delta}, a=\varepsilon_{x^{\prime}}，\\
+      &0 &   &\text{otherwise} ，
+    \end{aligned}
+    \right. \nonumber
+  \end{align}
+  \item $\delta^{\otimes}  = \{ (s^{\otimes}, a, s^{\otimes \prime}) \in S^{\otimes} \times A^{\otimes} \times S^{\otimes} ; P^{\otimes}(s^{\otimes \prime} | s^{\otimes}, a) > 0 \} $ : 状態遷移の集合．
+  \item $\mathcal{F}^{\otimes} = \{ \bar{F}^{\otimes}_i \} _{i=1}^{n}$ : 受理条件．各$j \in \{ 1,\ldots,n \}$に対して，$\bar{F}^{\otimes}_i = \{ ((s,\bar{x}), a, (s^{\prime}, \bar{x}^{\prime})) \in \delta^{\otimes}\ ;\ (\bar{x}, L(s,a,s^{\prime}), \bar{x}^{\prime}) \in \bar{F}_i \}$と定義される．
+\end{itemize}
+報酬関数$\mathcal{R} :S^{\otimes} \times A^{\otimes} \times S^{\otimes} \rightarrow {\mathbb R}$を次のように定義する．
+\begin{align}
+    \mathcal{R}(s^{\otimes}, a, s^{\otimes \prime}) =
+    \left\{
+    \begin{aligned}
+      &r_p \  \text{if}\ \exists i \in \! \{ 1, \ldots ,n \},\ (s^{\otimes}, a, s^{\otimes \prime}) \in \bar{F}^{\otimes}_i \!,\\
+      &0   \ \ \text{otherwise},
+    \end{aligned}
+    \right.
+  \label{reward}
+  \end{align}
+ここで$r_p$は正の実数である．
+
+\section{定理}
+\begin{theorem}
+  あるMDP $M$と与えられたLTL式$\varphi$に対応する拡張tLDGBA $\bar{B}_{\varphi}$の合成MDP $M^{\otimes}$及び式(\ref{reward})で与えられる報酬関数に対して，$M^{\otimes}$上に$\varphi$を確率非0で満たす決定論的定常方策が存在すれば，ある割引率$\gamma^{\ast}$が存在し，$\gamma>\gamma^{\ast}$の下で状態価値関数を最大化するアルゴリズムはそのような方策の一つを見つける．
+\end{theorem}
+
+\section{結論}
+本研究では報酬関数のスパース性を緩和するオートマトンを提案し，それを用いた学習によりLTL式を確率非0で満たす方策が得られることを示した．LTLの充足確率を最大化するアルゴリズムを示すことが主要な課題の一つである．
+
+\begin{thebibliography}{9}
+  \bibitem{HAK2019}
+  M.\ Hasanbeig, A.\ Abate, and D.\ Kroening,
+  ``Logically-constrained reinforcement learning,'' \textit{arXiv:1801.08099v8}, Feb.\ 2019.
+  \bibitem{Hahn2019}
+  E.\ M.\ Hahn, M.\ Perez, S.\ Schewe, F.\ Somenzi, A.\ Triverdi, and D.\ Wojtczak,
+  ``Omega-regular objective in model-free reinforcement learning,''
+  \textit{Lecture Notes in Computer Science}, no.\ 11427, pp.\ 395--412, 2019.
+\end{thebibliography}
+\newpage
+\pagebreak
+\end{document}

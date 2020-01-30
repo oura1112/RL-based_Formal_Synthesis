@@ -1,0 +1,99 @@
+\documentclass[a4j,9pt,twocolumn]{jsarticle}
+%\documentclass[a4j,10pt,twocolumn]{abstract}
+%\documentclass[a4j,9pt,twocolumn]{abstract}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[varg]{txfonts}
+%%% \begin{document}の前に，各エントリーを記述する
+%
+%\title{{\large Optimal Directed Control of Discrete Event Systems with Linear Temporal Logic Constraints}}	% 論文のタイトル
+%% （線形時相論理制約のある離散事象システムの最適ディレクター制御）
+%\author{榊原愛海} 		% 著者
+%\studentid{09C11068} 	% 学籍番号
+%\lab{潮}		% 研究室名
+
+% 英語なら以下2行を定義
+%\englishtitle
+%\jptitle{日本語の題名}  % 日本語のタイトル
+
+%\begin{document}
+%\absttitle 		% 表題の出力
+
+%%% define paper layout
+%\ifnum\@ptsize=0 % for 10pt
+\textwidth 194mm%
+\textheight 277mm%
+\voffset -1in%垂直方向のオフセット
+\hoffset -1in%水平方向のオフセット
+\topmargin 0mm%オフセットからヘッダまでのマージン
+\headheight 18mm%ヘッダの高さ
+\headsep 0mm%ヘッダと本文領域の間の高さ
+\oddsidemargin 16mm%奇数ページのマージン
+\footskip 0mm%文章領域の終わりからフッタの終わりまでの高さ
+
+\pagestyle{empty}
+
+\begin{document}
+\twocolumn[ %表題は2段に組まない
+\begin{center}%
+\underline{ \bf{\LARGE Optimal Directed Control of Discrete Event Systems}}\\   %underline中では改行できない
+\vspace{+2mm}
+\underline{ \bf{\LARGE  with Linear Temporal Logic Constraints}}\\%
+\bf{\normalsize （線形時相論理制約のある離散事象システムの最適ディレクター制御）}
+{\Large \bf{
+  \begin{tabular}[t]{ccc}%
+          学籍番号：09C11068 & 潮\ 研究室 &榊原愛海
+  \end{tabular}\par}}%
+\end{center}%
+\par\vskip .5mm
+]
+
+\section{緒論}
+離散事象システムのスーパバイザ制御において，制御仕様は形式言語で与えられることが多い．LTL（Linear Temporal Logic）はパスの定性的な性質を表現できる論理体系であり，LTLを用いることにより効率よく仕様を表現することができる．本報告では，与えられたLTL式を満たしつつ，プラントにおける平均利得が最適になるような制御器の設計法を提案する．ただし制御器として，スーパバイザよりも制限の強いディレクターを用いる．ディレクターは各状態において高々1つの可制御事象を許可する制御器である．
+
+\section{定式化}
+プラントは非決定的なオートマトン$ \mathcal{P} = (X_\mathcal{P}, \Sigma_\mathcal{P}, \delta_\mathcal{P}, \{x_0^\mathcal{P}\}, w_\mathcal{P}, L_\mathcal{P}, AP)
+$で表されるとする．
+ただし$ X_\mathcal{P} $は状態の集合である．$ \Sigma_\mathcal{P} = \Sigma_\mathcal{P}^c \cup \Sigma_\mathcal{P}^u $は事象の集合で，可制御事象集合$ \Sigma_\mathcal{P}^c $と不可制御事象集合$ \Sigma_\mathcal{P}^u $の和集合となっている．$ \delta_\mathcal{P} \subseteq X_\mathcal{P} \times \Sigma_\mathcal{P} \times X_\mathcal{P} $は状態遷移関係，$ \{x_0^\mathcal{P}\} $は初期状態の集合，$ w_\mathcal{P}: X_\mathcal{P} \times \Sigma_\mathcal{P} \times X_\mathcal{P} \rightarrow \mathbb{R} $は重み関数であり，各遷移の枝に対して実数を割り当てる．$ AP $は原子命題の集合で，$ L_\mathcal{P} $により各状態で成り立っている原子命題を割り当てている．プラントが状態$ x $から状態$ y $へ遷移するとき，$ L_\mathcal{P}(x) L_\mathcal{P}(y) $という原子命題の部分集合，すなわちレターの列が生成される．遷移を繰り返すことによりレターの無限列であるワードが生成される．このワードがLTL式を満たすようにプラントを制御する．
+
+本報告では，与えられたLTL式の仕様を満たし，かつ$ D^* \in \arg \sup_{\{D\}} \inf_{\rho \in Runs(D/\mathcal{P})} V_\mathcal{P}(\rho) $となるようなディレクター$ D^* $を設計する．ただし，$ Runs(D/\mathcal{P}) $はディレクター$ D $により制御されたプラントにおけるラン$ \rho = x_0 \sigma_1 x_1 \ldots $の集合である．
+
+\section{提案アルゴリズム}
+まず，LTL式を決定的ラビンオートマトン（DRA）$ \mathcal{R} = ( X_\mathcal{R}, x_0^\mathcal{R}, \delta_\mathcal{R}, Acc) $に変換する．ただし，$ Acc $は受理条件の集合であり，各要素$ Acc_{rk}^\mathcal{G} \in Acc $はオートマトンが最終的に留まる状態の集合$ F_{rk}^\mathcal{G} $，無限回生起してほしい遷移（$succeed$）の集合および有限回しか生起してはいけない遷移（$fail,buy$）の集合
+%\vspace{-2mm}
+%\begin{itemize} 
+%  \item オートマトンが最終的に留まる状態の集合$ F_\pi^\mathcal{G} $ \vspace{-0.5mm}
+%  \item 無限回生成してほしいレター（$succeed$）の集合 \vspace{-0.5mm}
+%  \item 有限回しか生成してはいけないレター（$fail,buy$）の集合 \vspace{-2mm}
+%\end{itemize}
+から成る．プラントのオートマトンと仕様のオートマトンを合成し，$ \mathcal{P}' || \mathcal{R} = (X, \delta_{\mathcal{P'} || \mathcal{R}}, x_0, w_{\mathcal{P}' || \mathcal{R}}, Acc, AP) $を得る．合成オートマトンは，事象とレターのペア$ (\sigma, \nu) \in \Sigma_{AP} $により遷移する．
+
+次に，合成オートマトン$ \mathcal{P}' || \mathcal{R} $から2-playerゲームオートマトン$ G = ((X_G = X_D \cup X_{P_\varphi}, \Sigma_{G}, \delta_{G} = \delta_D \cup \delta_{P_\varphi}, x_0^D \in X_D), w_{G}, V_G, Acc) $に変換する．このゲームのプレイヤーは$ D $（ディレクター）と$ P_\varphi $（合成オートマトン）である．
+
+さらに，ゲームオートマトンを木オートマトンに変換する．この変換により，ゲームオートマトンが最終的に留まる強連結成分を求めることができる．木のノードは遷移履歴でラベル付けを行い，閉路があると判断された時点でノードの展開を終了する．葉ノードは強連結成分に対応しており，受理条件を満たさないか，デッドロックに陥ってしまう場合には評価値を$ -\infty $としておく．そうでない場合にはランの平均利得を評価値として割り当てる．これらの評価値を用いて木オートマトンからプレイヤー$ D $と$ P_{\varphi} $の最適戦略をボトムアップ式に求める．
+最後に，得られた最適応答からディレクターを構成する．
+%初期ノードから幅優先探索により最適応答をたどっていくことにより，オートマトンと関数$ \hat{D}: X_D \rightarrow \Gamma $を作る．
+
+\textbf{例題}　図\ref{fig:ex1}のプラントに対して，LTL式$ \varphi = \mathbf{G}\neg p_c \land \mathbf{GF}p_f \land \mathbf{G}(p_f \rightarrow \mathbf{X} \neg p_f) $で仕様が与えられたときの制御を考える．ただし，$ \Sigma_\mathcal{P}^c = \{ \sigma_1, \sigma_2 \}, \  \Sigma_\mathcal{P}^u = \{ \sigma_3 \}, \  L_\mathcal{P}(x_0^\mathcal{P}) = L_\mathcal{P}(x_4^\mathcal{P}) = \emptyset, \  L_\mathcal{P}(x_1^\mathcal{P}) = \{p_c\}, \ L_\mathcal{P}(x_2^\mathcal{P}) = L_\mathcal{P}(x_3^\mathcal{P}) = \{p_f\} $である．LTL式をオートマトンに変換すると図\ref{fig:ex2}となる．このとき，図\ref{fig:ex3}のディレクターが得られる．
+
+\section{結論}
+LTLで制御仕様が与えられたとき，それを満たしながら平均利得を最大にするディレクターを設計するアルゴリズムを提案した．
+\vspace{-5mm}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[scale=0.48]{fig/ex_P.eps}  \vspace{-2mm}
+  \caption{プラント}  \label{fig:ex1}
+  \includegraphics[scale=0.72]{fig/ex_R.eps}  \vspace{-2mm}
+  \caption{$ \varphi $の変換結果}  \label{fig:ex2}
+  \includegraphics[scale=0.6]{fig/ex_D.eps}  \vspace{-2mm}
+  \caption{ディレクター}  \label{fig:ex3}
+\end{figure}
+%\bibliographystyle{junsrt}
+%\bibliography{refs}
+%\begin{thebibliography}{1}
+%\bibitem{}
+%\end{thebibliography}
+\newpage
+\pagebreak
+\end{document}
