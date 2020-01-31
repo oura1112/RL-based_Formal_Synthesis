@@ -56,7 +56,7 @@
 %%% define paper layout
 %\ifnum\@ptsize=0 % for 10pt
 \textwidth 200mm%
-\textheight 277mm%
+\textheight 290mm%
 \voffset -1in%垂直方向のオフセット
 \hoffset -1in%水平方向のオフセット
 \topmargin 0mm%オフセットからヘッダまでのマージン
@@ -94,7 +94,7 @@ $S$は状態の有限集合，$A$は行動の有限集合，$P : S \times S \tim
 LTL式$\varphi$に対する遷移ベースのLDGBA（tLDGBA）は$B_{\varphi}= (X,\ x_{init},\ \Sigma,\ \delta,\ \mathcal{F})$で表現される．$X$は状態の有限集合，$x_{init}$は初期状態，$\Sigma$は文字の有限集合，$\delta$は状態遷移の集合，$\mathcal{F}=\{ F_j \} _{j=1}^{n}$は受理条件であり，各$j\in\{ 1,\ldots,  n \}$に対して$F_j \subset \delta$である．
 状態集合$X$は2つの部分集合$X_{initial}$,$X_{final}$に分割でき，$X_{initial}$内と$X_{final}$内の遷移は決定的である．$X_{initial}$から$X_{final}$への遷移は非決定的で，それらは$\varepsilon$-遷移で表現される．また，全ての$F_i$の要素は$X_{final}$内の遷移である．$X_{final}$から$X_{initial}$への遷移は存在しない．
 
-$V$を$n$次元2値ベクトルの集合とする．$B_{\varphi}$を拡張するため，以下に３つの関数$visitf: \delta \to V$, $reset:V \to V$, $Max:V \times V \to V$を導入する．任意の$e \in \delta$に対して，$visitf(e) = (v_1,\ldots,v_n)^T$，ここで$e\in F_i$ならば$v_i = 1$，それ以外ならば$v_i = 0$である．
+$V$を$n$次元2値ベクトルの集合とする．$\bm{1},\bm{0}$を，各々すべての要素が$1,0$のベクトルとする．$B_{\varphi}$を拡張するため，以下に３つの関数$visitf: \delta \to V$, $reset:V \to V$, $Max:V \times V \to V$を導入する．任意の$e \in \delta$に対して，$visitf(e) = (v_1,\ldots,v_n)^T$，ここで$e\in F_i$ならば$v_i = 1$，それ以外ならば$v_i = 0$である．
 \begin{comment}
 \begin{align}
  v_i =
@@ -164,7 +164,7 @@ MDP $M$と拡張tLDGBA $\bar{B}_{\varphi}$による合成MDP $M^{\otimes} = M \o
 
 \section{定理}
 \begin{theorem}
-  あるMDP $M$と与えられたLTL式$\varphi$に対応する拡張tLDGBA $\bar{B}_{\varphi}$の合成MDP $M^{\otimes}$及び式(\ref{reward})で与えられる報酬関数に対して，$M^{\otimes}$上に$\varphi$を確率非0で満たす決定論的定常方策が存在すれば，ある割引率$\gamma^{\ast}$が存在し，$\gamma>\gamma^{\ast}$の下で状態価値関数を最大化するアルゴリズムはそのような方策の一つを見つける．
+  あるMDP $M$と与えられたLTL式$\varphi$に対応する拡張tLDGBA $\bar{B}_{\varphi}$の合成MDP $M^{\otimes}$及び式(\ref{reward})で与えられる報酬関数に対して，$M^{\otimes}$上に$\varphi$を確率非0で満たす確定的定常方策が存在すれば，ある割引率$\gamma^{\ast}$が存在し，$\gamma>\gamma^{\ast}$の下で状態価値関数を最大化するアルゴリズムはそのような方策の一つを見つける．
 \end{theorem}
 
 \section{結論}

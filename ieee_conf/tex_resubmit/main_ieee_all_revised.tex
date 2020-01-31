@@ -314,7 +314,25 @@ Intuitively, each vector $v$ represents which accepting sets have been visited. 
    For a tLDGBA $B_{\varphi} = (X,x_{init},\Sigma,\delta,\mathcal{F})$, its augmented automaton is a tLDGBA $\bar{B}_{\varphi}$ = $(\bar{X},\bar{x}_{init},\bar{\Sigma},\bar{\delta},\bar{\mathcal{F}})$, where $\bar{X} = X\times V$, $\bar{x}_{init} = (x_{init}, \bm{0})$, $\bar{\Sigma} = \Sigma$, $\bar{\delta}$ is defined as $\bar{\delta}$ = $\{ ((x,v), \bar{\sigma}, (x^{\prime},v^{\prime})) \in \bar{X} \times \bar{\Sigma} \times \bar{X}\ ;\ (x,\bar{\sigma},x^{\prime}) \in \delta,\ v^{\prime} = reset(Max(v,visitf((x,\bar{\sigma},x^{\prime})))) \}$, and $\mathcal{\bar{F}} = \{ \bar{F_1}, \ldots ,\bar{F_n} \}$ is defined as $\bar{F_j} = \{ ((x,v), \bar{\sigma}, (x^{\prime},v^{\prime})) \in \bar{\delta}\ ;\ (x, \bar{\sigma}, x^{\prime}) \in F_j,\ v_j = 0,\ visitf((x, \bar{\sigma}, x^{\prime}))_j = 1\}$ for each $ j \in \{1,...,n\}$, where $visitf((x, \bar{\sigma}, x^{\prime}))_j$ is the $j$-th element of $visitf((x, \bar{\sigma}, x^{\prime}))$.
 \end{definition}
 
-The augmented tLDGBA $\bar{B}_{\varphi}$ keeps track of previous visits to the accepting sets of $B_{\varphi}$ as a state.
+The augmented tLDGBA $\bar{B}_{\varphi}$ keeps track of previous visits to the accepting sets of $B_{\varphi}$ as a state. For example, We show an augmented tLDGBAs with the corresponding tLDGBA associated with the LTL formula $\text{{\bf GF}}a \land \text{{\bf GF}}b \land \text{{\bf G}}\neg c$ in Figs.\ \ref{automaton} and \ref{automaton_aug}.
+
+\begin{figure}[htbp]
+   \centering
+   \vspace{2mm}
+%   \includegraphics[bb=140 498 368 682,width=5cm]{automaton1.pdf}
+   \includegraphics[bb=0 0 247 80,scale=0.65]{ldgba_original.pdf}
+   \caption{The tLDGBA recognizing the LTL formula $\text{{\bf GF}}a \wedge \text{{\bf GF}}b \wedge \text{{\bf G}}\neg c$, where the initial state is $x_0$. Red arcs are accepting transitions that are numbered in accordance with the accepting sets they belong to.}
+   % e.g., \textcircled{\scriptsize 1}$a \land \neg b \land \neg c$ means the transition labeled by it belongs to the accepting set $F_1$.}
+   \label{automaton}
+\end{figure}
+
+\begin{figure}[htbp]
+   \centering
+%   \includegraphics[bb=0 0 374 207,height=4cm, width=7cm]{ldgba.pdf}
+   \includegraphics[bb=0 0 374 207,scale=0.6]{ldgba.pdf}
+   \caption{The augmented automaton for the tLDGBA in Fig.~\ref{automaton} recognizing the LTL formula $\text{{\bf GF}}a \wedge \text{{\bf GF}}b \wedge \text{{\bf G}}\neg c$, where the initial state is $(x_0, (0,0)^T )$. Red arcs are accepting transitions that are numbered in accordance with the accepting sets they belong to. All states corresponding to $x_1$ are merged into $(x_1, (*,*)^T )$.}
+   \label{automaton_aug}
+\end{figure}
 
 \begin{definition}
   Given an augmented tLDGBA $\bar{B}_{\varphi}$ and an MDP $M$, a tuple $M \otimes \bar{B}_{\varphi} = M^{\otimes} = (S^{\otimes}, A^{\otimes}, s_{init}^{\otimes}, P^{\otimes}, \delta^{\otimes}, {\mathcal F}^{\otimes})$ is a product MDP, where
@@ -371,18 +389,20 @@ The reward can be obtained if the first visits to the accepting sets is occurred
   \begin{comment}
   If we use a deterministic Rabin automata (DRA) to synthesize a controller, we may not synthesize a desired controller due to that the reward functions are defined each acceptance pair of the DRA \cite{Hahn2019}.
 \end{comment}
-  When constructing a tBA from a tGBA, the order of visits to accepting sets of the tGBA is fixed. Consequently, the reward based on the acceptance condition of the tBA tends to be sparse and the sparsity is critical against RL-based controller synthesis problems. The augmentation of tGBA relaxes the sparsity since the augmented tGBA has all of the order of visits to all accepting sets of the original tGBA. For the acceptance condition $\mathcal{F}$ of a tGBA, the size of the state space of the augmented tGBA is about $\frac{2^{|\mathcal{F}|}-1}{|\mathcal{F}|}$ times larger than the tBA, however, the ratio of the number of accepting transitions to the number of all transitions of the augmented tGBA is much greater than the tBA. Therefore, our proposed method is expected more sample efficient than the use of tLDBA.
+  When constructing a tBA from a tGBA, the order of visits to accepting sets of the tGBA is fixed. Consequently, the rewards based on the acceptance condition of the tBA tends to be sparse and the sparsity is critical against RL-based controller synthesis problems. The augmentation of tGBA relaxes the sparsity since the augmented tGBA has all of the order of visits to all accepting sets of the original tGBA. For the acceptance condition $\mathcal{F}$ of a tGBA, the size of the state space of the augmented tGBA is about $\frac{2^{|\mathcal{F}|}-1}{|\mathcal{F}|}$ times larger than the tBA, however, the ratio of the number of accepting transitions to the number of all transitions of the augmented tGBA is much greater than the tBA. Therefore, our proposed method is expected more sample efficient than using tLDBA.
 \end{remark}
 
+\begin{comment}
 \begin{remark}
   In \cite{HAK2019,HKAKPL2019}, the accepting frontier function is proposed, which is $Acc : X \times 2^X \rightarrow 2^X $ where $X$ is the set of states of the state-based LDBA. Under initializing a set of states $ \mathbb{F} $ with the union of the all accepting sets of the state-based LDBA, the function receives the state $x$ after each transition and the set $\mathbb{F}$. If $x$ is in $\mathbb{F}$, then $Acc$ removes the accepting sets containing $x$ from $\mathbb{F}$. The reward function is based on the varying set $\mathbb{F}$. Let $\mathbb{F}_{rem}$ be the union of the removed states. For the product MDP of an MDP $M$ and an state-based LDBA $B_{\varphi}$, the reward function depends on the previous visits to accepting sets of $B_{\varphi}$. Thus, the optimal policy may also depend on the set $\mathbb{F}_{rem}$. In other words, to obtain the positional policy satisfying $\varphi$, we need both of the current state and $\mathbb{F}_{rem}$. Each state of the MDP defined by Def.\ \ref{def9} represent them. We show an example of an MDP $M$ and an LTL formula $\varphi$ such that there exists no positional policy satisfying $\varphi$ on $M^{\otimes}$ of $M$ and $B_{\varphi}$ in Section IV.
   %Therefore, there exists an example an MDP $M$ and an LTL formula $\varphi$ such that there is no positional policy satisfying $\varphi$ on the corresponding product MDP even though there exists a policy satisfying $\varphi$ on the original MDP $M$.
 \end{remark}
+\end{comment}
 
 %The reward assignments are based on the acceptance conditions of the product MDP.
 Under the product MDP $M^{\otimes}$ and the reward function $\mathcal{R}$, which is based on the acceptance condition of $ M^\otimes $, we show that if there exists a positional policy $\pi$ satisfying the LTL specification $\varphi$ on $M^{\otimes}$, maximizing the expected discounted reward with large enough $\gamma$ produces a positional policy satisfying $\varphi$ on $M^{\otimes}$.
 
-For a Markov chain $MC^{\otimes}_{\pi}$ induced by a product MDP $M^{\otimes}$ with a positional policy $\pi$, let $S^{\otimes}_{\pi}= T^{\otimes}_{\pi} \cup R^{\otimes 1}_{\pi} \cup \ldots \cup R^{\otimes h}_{\pi}$ be the set of states in $MC^{\otimes}_{\pi}$, where $T^{\otimes}_{\pi}$ is the set of transient states and $R^{\otimes i}_{\pi}$ is the recurrent class for each $i \in \{ 1, \ldots ,h \}$, and let $R(MC^{\otimes}_{\pi})$ be the set of all recurrent classes in $MC^{\otimes}_{\pi}$. Let $\delta^{\otimes i}_{\pi}$ be the set of transitions in a recurrent class $R^{\otimes i}_{\pi}$, namely $\delta^{\otimes i}_{\pi} = \{ (s^{\otimes},a,s^{\otimes \prime}) \in \delta^{\otimes} ; s^{\otimes} \in R^{\otimes i}_{\pi},\ P^{\otimes}(s^{\otimes \prime}|s^{\otimes},a) > 0 \}$, and let $P^{\otimes}_{\pi}$ : $S^{\otimes}_{\pi} \times S^{\otimes}_{\pi} \rightarrow [0,1]$ be the transition probability under $\pi$.
+For a Markov chain $MC^{\otimes}_{\pi}$ induced by a product MDP $M^{\otimes}$ with a positional policy $\pi$, let $S^{\otimes}_{\pi}= T^{\otimes}_{\pi} \cup R^{\otimes 1}_{\pi} \cup \ldots \cup R^{\otimes h}_{\pi}$ be the set of states in $MC^{\otimes}_{\pi}$, where $T^{\otimes}_{\pi}$ is the set of transient states and $R^{\otimes i}_{\pi}$ is the recurrent class for each $i \in \{ 1, \ldots ,h \}$, and let $R(MC^{\otimes}_{\pi})$ be the set of all recurrent states in $MC^{\otimes}_{\pi}$. Let $\delta^{\otimes i}_{\pi}$ be the set of transitions in a recurrent class $R^{\otimes i}_{\pi}$, namely $\delta^{\otimes i}_{\pi} = \{ (s^{\otimes},a,s^{\otimes \prime}) \in \delta^{\otimes} ; s^{\otimes} \in R^{\otimes i}_{\pi},\ P^{\otimes}(s^{\otimes \prime}|s^{\otimes},a) > 0 \}$, and let $P^{\otimes}_{\pi}$ : $S^{\otimes}_{\pi} \times S^{\otimes}_{\pi} \rightarrow [0,1]$ be the transition probability under $\pi$. In the following, for simplicity, we omit the supersciript $^\otimes$ of product states, but remain some superscripts and subscripts to emphasize that we consider a product MDP $M^{\otimes}$ with a positional policy $\pi$.
 
 \begin{lemma}
   For any policy $\pi$ and any recurrent class $R^{\otimes i}_{\pi}$ in the Markov chain $MC^{\otimes}_{\pi}$,
@@ -397,12 +417,12 @@ For a Markov chain $MC^{\otimes}_{\pi}$ induced by a product MDP $M^{\otimes}$ w
 
 \begin{proof}
   Suppose that $MC^{\otimes}_{\pi}$ satisfies neither conditions 1 nor 2. Then, there exists a policy $\pi$, $i \in \{ 1, \ldots ,h \}$, and $j_1$, $j_2$ $\in \{ 1, \ldots ,n \}$ such that $\delta^{\otimes i}_{\pi} \cap \bar{F}^{\otimes}_{j_1} = \emptyset$ and $\delta^{\otimes i}_{\pi} \cap \bar{F}^{\otimes}_{j_2} \neq \emptyset$. In other words, there exists a nonempty and proper subset $J \in 2^{\{ 1, \ldots ,n \}} \setminus \{ \{ 1, \ldots ,n \}, \emptyset \}$ such that $ \delta^{\otimes i}_{\pi} \cap \bar{F}^{\otimes}_j \neq \emptyset $ for any $j \in J$.
-   For any transition $ (s^{\otimes},a,s^{\otimes \prime}) \in \delta^{\otimes i}_{\pi} \cap \bar{F}^{\otimes}_j$, the following equation holds by the properties of the recurrent states in $MC^{\otimes}_{\pi}$\cite{ESS}.
+   For any transition $ (s,a,s^{\prime}) \in \delta^{\otimes i}_{\pi} \cap \bar{F}^{\otimes}_j$, the following equation holds by the properties of the recurrent states in $MC^{\otimes}_{\pi}$\cite{ESS}.
   \begin{align}
-    \sum_{k=0}^{\infty} p^k((s^{\otimes},a,s^{\otimes \prime}),(s^{\otimes},a,s^{\otimes \prime})) = \infty,
+    \sum_{k=0}^{\infty} p^k((s,a,s^{\prime}),(s,a,s^{\prime})) = \infty,
     \label{eq15}
   \end{align}
-  where $p^k((s^{\otimes},a,s^{\otimes \prime}),(s^{\otimes},a,s^{\otimes \prime}))$ is the probability that the transition $(s^{\otimes},a,s^{\otimes \prime})$ occurs again after the occurrence of itself in $k$ time steps. Eq. (\ref{eq15}) means that the agent obtains a reward infinitely often. This contradicts the definition of the acceptance condition of the product MDP $M^{\otimes}$.
+  where $p^k((s,a,s^{\prime}),(s,a,s^{ \prime}))$ is the probability that the transition $(s,a,s^{\prime})$ occurs again after the occurrence of itself in $k$ time steps. Eq. (\ref{eq15}) means that the agent obtains a reward infinitely often. This contradicts the definition of the acceptance condition of the product MDP $M^{\otimes}$.
 \end{proof}
 
 Lemma \ref{lemma1} implies that for an LTL formula $\varphi$ if a path $\rho$ under a policy $\pi$ does not satisfy $\varphi$, then the agent obtains no reward in recurrent classes; otherwise there exists at least one recurrent class where the agent obtains rewards infinitely often.
@@ -426,53 +446,53 @@ Lemma \ref{lemma1} implies that for an LTL formula $\varphi$ if a path $\rho$ un
   Suppose that $\pi^{\ast}$ is an optimal policy but does not satisfy the LTL formula $\varphi$. Then, for any recurrent class $R^{\otimes i}_{{\pi}^{\ast}}$ in the Markov chain $MC^{\otimes}_{{\pi}^{\ast}}$ and any accepting set $\bar{F}^{\otimes}_j$ of the product MDP $M^{\otimes}$,  $\delta^{\otimes i}_{\pi^{\ast}} \cap \bar{F}^{\otimes}_j = \emptyset$
   holds by Lemma \ref{lemma1}. Thus, the agent under the policy $\pi^{\ast}$ can obtain rewards only in the set of transient states. We consider the best scenario in the assumption. Let $p^k(s,s^{\prime})$ be the probability of going to a state $s^{\prime}$ in $k$ time steps after leaving the state $s$, and let $Post(T^{\otimes}_{\pi^{\ast}})$ be the set of states in recurrent classes that can be transitioned from states in $T^{\otimes}_{\pi^{\ast}}$ by one action. For the initial state $s^{\otimes}_{init}$ in the set of transient states, it holds that
   \begin{align}
-    V^{\pi^{\ast}}\!(s^{\otimes}_{init})
-     =\ & \sum_{k=0}^{\infty} \sum_{s^{\otimes} \in T^{\otimes}_{\pi^{\ast}}} \gamma^k p^k(s^{\otimes}_{init}, s^{\otimes}) \nonumber \\
-      & \sum_{s^{\otimes \prime} \in T^{\otimes}_{\pi^{\ast}} \cup Post(T^{\otimes}_{\pi^{\ast}})} \!\!\!\!P^{\otimes}_{\pi^{\ast}}(s^{\otimes \prime}| s^{\otimes}) \mathcal{R}(s^{\otimes}, a, s^{\otimes \prime})\nonumber \\
-     \leq\ & r_p \sum_{k=0}^{\infty} \sum_{s^{\otimes} \in T^{\otimes}_{\pi^{\ast}}} \gamma^k p^k(s^{\otimes}_{init}, s^{\otimes}), \nonumber
+    V^{\pi^{\ast}}\!(s_{init})
+     =\ & \sum_{k=0}^{\infty} \sum_{s \in T^{\otimes}_{\pi^{\ast}}} \gamma^k p^k(s_{init}, s) \nonumber \\
+      & \sum_{s^{\prime} \in T^{\otimes}_{\pi^{\ast}} \cup Post(T^{\otimes}_{\pi^{\ast}})} \!\!\!\!P^{\otimes}_{\pi^{\ast}}(s^{\prime}| s) \mathcal{R}(s, a, s^{\prime})\nonumber \\
+     \leq\ & r_p \sum_{k=0}^{\infty} \sum_{s \in T^{\otimes}_{\pi^{\ast}}} \gamma^k p^k(s_{init}, s), \nonumber
   \label{eqth11}
   \end{align}
-  where the action $a$ is selected by $\pi^{\ast}$. By the property of the transient states, for any state $s^{\otimes}$ in $T^{\otimes}_{\pi^{\ast}}$, there exists a bounded positive value $m$ such that $ \sum_{k=0}^{\infty} \gamma^k p^k(s^{\otimes}_{init}, s^{\otimes}) \leq \sum_{k=0}^{\infty} p^k(s^{\otimes}_{init}, s^{\otimes}) < m$ \cite{ESS}. Therefore, there exists a bounded positive value $\bar{m}$ such that $V^{\pi^{\ast}}(s^{\otimes}_{init}) < \bar{m}$.
+  where the action $a$ is selected by $\pi^{\ast}$. By the property of the transient states, for any state $s^{\otimes}$ in $T^{\otimes}_{\pi^{\ast}}$, there exists a bounded positive value $m$ such that $ \sum_{k=0}^{\infty} \gamma^k p^k(s_{init}, s) \leq \sum_{k=0}^{\infty} p^k(s_{init}, s) < m$ \cite{ESS}. Therefore, there exists a bounded positive value $\bar{m}$ such that $V^{\pi^{\ast}}(s^{\otimes}_{init}) < \bar{m}$.
   Let $\bar{\pi}$ be a positional policy satisfying $\varphi$. We consider the following two cases.
   \begin{enumerate}
     \vspace{2mm}
-    \item Assume that the initial state $s^{\otimes}_{init}$ is in a recurrent class $R^{\otimes i}_{\bar{\pi}}$ for some $ i \in \{1,\ldots,h\} $.
-    For any accepting set $\bar{F}^{\otimes}_j$, $\delta^{\otimes i}_{\bar{\pi}} \cap \bar{F}^{\otimes}_j \neq \emptyset$ holds by the definition of $\bar{\pi}$. The expected discounted reward for $s^{\otimes}_{init}$ is given by
+    \item Assume that the initial state $s_{init}$ is in a recurrent class $R^{\otimes i}_{\bar{\pi}}$ for some $ i \in \{1,\ldots,h\} $.
+    For any accepting set $\bar{F}^{\otimes}_j$, $\delta^{\otimes i}_{\bar{\pi}} \cap \bar{F}^{\otimes}_j \neq \emptyset$ holds by the definition of $\bar{\pi}$. The expected discounted reward for $s_{init}$ is given by
+    \begin{align}
+      V^{\bar{\pi}}(s_{init})
+       &= \sum_{k=0}^{\infty} \sum_{s \in R^{\otimes i}_{\bar{\pi}}} \gamma^k p^k(s_{init}, s) \nonumber \\
+       & \quad \sum_{s^{\prime} \in R^{\otimes i}_{\bar{\pi}}}  P^{\otimes}_{\bar{\pi}}(s^{\prime}\ |\ s) \mathcal{R}(s, a, s^{\prime}), \nonumber
+    \end{align}
+    where the action $a$ is selected by $\bar{\pi}$. Since $s_{init}$ is in $R^{\otimes i}_{\bar{\pi}}$, there exists a positive number $\bar{k} = \min \{ k\ ;\ k \geq n, p^{k}(s_{init}, s_{init}) > 0 \}$ \cite{ESS}. We consider the worst scenario in this case. It holds that
     \begin{align}
       V^{\bar{\pi}}(s^{\otimes}_{init})
-       &= \sum_{k=0}^{\infty} \sum_{s^{\otimes} \in R^{\otimes i}_{\bar{\pi}}} \gamma^k p^k(s^{\otimes}_{init}, s^{\otimes}) \nonumber \\
-       & \quad \sum_{s^{\otimes \prime} \in R^{\otimes i}_{\bar{\pi}}}  P^{\otimes}_{\bar{\pi}}(s^{\otimes \prime}\ |\ s^{\otimes}) \mathcal{R}(s^{\otimes}, a, s^{\otimes \prime}), \nonumber
+       \geq & \sum_{k=n}^{\infty} p^{k}(s_{init}, s_{init}) \sum_{i=1}^{n} \gamma^{k-i} r_p \nonumber \\
+       \geq & \sum_{k=1}^{\infty} p^{k \bar{k}}(s_{init}, s_{init}) \sum_{i=0}^{n-1} \gamma^{k \bar{k} - i} r_p \nonumber \\
+       > & r_p \sum_{k=1}^{\infty} \gamma^{k \bar{k}} p^{k \bar{k}}(s_{init}, s_{init}), \nonumber
     \end{align}
-    where the action $a$ is selected by $\bar{\pi}$. Since $s^{\otimes}_{init}$ is in $R^{\otimes i}_{\bar{\pi}}$, there exists a positive number $\bar{k} = \min \{ k\ ;\ k \geq n, p^{k}(s^{\otimes}_{init}, s^{\otimes}_{init}) > 0 \}$ \cite{ESS}. We consider the worst scenario in this case. It holds that
+whereas all states in $R(MC^{\otimes}_{\bar{\pi}})$ are positive recurrent because $|S^{\otimes}| < \infty$ \cite{ISP}. Obviously, $p^{k \bar{k}}(s_{init}, s_{init}) \geq (p^{\bar{k}}(s_{init}, s_{init}))^k > 0$ holds for any $k \in (0, \infty)$ by the Chapman-Kolmogorov equation \cite{ESS}. Furthermore, we have $\lim_{k \rightarrow \infty} p^{k \bar{k}}(s_{init}, s_{init}) > 0$ by the property of irreducibility and positive recurrence \cite{SM}. Hence, there exists $\bar{p}$ such that $0<\bar{p}<p^{k \bar{k}}(s_{init}, s_{init})$ for any $k \in (0, \infty]$ and we have
     \begin{align}
-      V^{\bar{\pi}}(s^{\otimes}_{init})
-       \geq & \sum_{k=n}^{\infty} p^{k}(s^{\otimes}_{init}, s^{\otimes}_{init}) \sum_{i=1}^{n} \gamma^{k-i} r_p \nonumber \\
-       \geq & \sum_{k=1}^{\infty} p^{k \bar{k}}(s^{\otimes}_{init}, s^{\otimes}_{init}) \sum_{i=0}^{n-1} \gamma^{k \bar{k} - i} r_p \nonumber \\
-       > & r_p \sum_{k=1}^{\infty} \gamma^{k \bar{k}} p^{k \bar{k}}(s^{\otimes}_{init}, s^{\otimes}_{init}), \nonumber
-    \end{align}
-whereas all states in $R(MC^{\otimes}_{\bar{\pi}})$ are positive recurrent because $|S^{\otimes}| < \infty$ \cite{ISP}. Obviously, $p^{k \bar{k}}(s^{\otimes}_{init}, s^{\otimes}_{init}) \geq (p^{\bar{k}}(s^{\otimes}_{init}, s^{\otimes}_{init}))^k > 0$ holds for any $k \in (0, \infty)$ by the Chapman-Kolmogorov equation \cite{ESS}. Furthermore, we have $\lim_{k \rightarrow \infty} p^{k \bar{k}}(s^{\otimes}_{init}, s^{\otimes}_{init}) > 0$ by the property of irreducibility and positive recurrence \cite{SM}. Hence, there exists $\bar{p}$ such that $0<\bar{p}<p^{k \bar{k}}(s^{\otimes}_{init}, s^{\otimes}_{init})$ for any $k \in (0, \infty]$ and we have
-    \begin{align}
-       V^{\bar{\pi}}(s^{\otimes}_{init}) > & r_p \bar{p} \gamma^{\bar{k}} p^{\bar{k}}(s^{\otimes}_{init},s^{\otimes}_{init}) \frac{1}{ 1 - \gamma^{\bar{k}} }. \nonumber
+       V^{\bar{\pi}}(s_{init}) > & r_p \bar{p} \frac{\gamma^{\bar{k}}}{ 1 - \gamma^{\bar{k}} }. \nonumber
     \end{align}
 
-    Therefore, for any $\bar{m} \in (V^{\pi^{\ast}}(s^{\otimes}_{init}), \infty)$ and any $r_p < \infty$, there exists $\gamma^{\ast}<1$ such that $\gamma > \gamma^{\ast}$ implies $V^{\bar{\pi}}(s^{\otimes}_{init}) > r_p \bar{p} \gamma^{\bar{k}} p^{\bar{k}}(s^{\otimes}_{init},s^{\otimes}_{init}) \frac{1}{ 1 - \gamma^{\bar{k}} } > \bar{m}.$
+    Therefore, for any $\bar{m} \in (V^{\pi^{\ast}}(s_{init}), \infty)$ and any $r_p < \infty$, there exists $\gamma^{\ast}<1$ such that $\gamma > \gamma^{\ast}$ implies $V^{\bar{\pi}}(s_{init}) > r_p \bar{p} \frac{\gamma^{\bar{k}}}{ 1 - \gamma^{\bar{k}} } > \bar{m}.$
 
-    \item Assume that the initial state $s^{\otimes}_{init}$ is in the set of transient states $T_{\bar{\pi}}^{\otimes}$.
-    $P^{M^{\otimes}}_{\bar{\pi}}(s^{\otimes}_{init} \models \varphi) > 0$ holds by the definition of $\bar{\pi}$. For a recurrent class $R^{\otimes i}_{\bar{\pi}}$ such that $\delta^{\otimes i}_{\bar{\pi}} \cap \bar{F}^{\otimes}_j \neq \emptyset$ for each accepting set
-    $\bar{F}^{\otimes}_j$, there exist a number $\bar{l} > 0$, a state $\hat{s}^{\otimes}$ in $Post(T^{\otimes}_{\bar{\pi}}) \cap R^{\otimes i}_{\bar{\pi}}$, and a subset of transient states $\{ s^{\otimes}_1, \ldots , s^{\otimes}_{\bar{l}-1} \} \subset T^\otimes_{\bar{\pi}}$ such that $p(s^{\otimes}_{init}, s^{\otimes}_1)>0$, $p(s^{\otimes}_{i}, s^{\otimes}_{i+1})>0$ for $i \in \{ 1,...,\bar{l}-2 \}$, and $p(s^{\otimes}_{\bar{l}-1}, \hat{s}^{\otimes})>0$ by the property of transient states.
-    Hence, it holds that $p^{\bar{l}}(s^{\otimes}_{init}, \hat{s}^{\otimes}) > 0$ for the state $\hat{s}^{\otimes}$. Thus, by ignoring rewards in $T^{\otimes}_{\bar{\pi}}$, we have
+    \item Assume that the initial state $s_{init}$ is in the set of transient states $T_{\bar{\pi}}^{\otimes}$.
+    $P^{M^{\otimes}}_{\bar{\pi}}(s_{init} \models \varphi) > 0$ holds by the definition of $\bar{\pi}$. For a recurrent class $R^{\otimes i}_{\bar{\pi}}$ such that $\delta^{\otimes i}_{\bar{\pi}} \cap \bar{F}^{\otimes}_j \neq \emptyset$ for each accepting set
+    $\bar{F}^{\otimes}_j$, there exist a number $\bar{l} > 0$, a state $\hat{s}$ in $Post(T^{\otimes}_{\bar{\pi}}) \cap R^{\otimes i}_{\bar{\pi}}$, and a subset of transient states $\{ s_1, \ldots , s_{\bar{l}-1} \} \subset T^\otimes_{\bar{\pi}}$ such that $p(s_{init}, s_1)>0$, $p(s_{i}, s_{i+1})>0$ for $i \in \{ 1,...,\bar{l}-2 \}$, and $p(s_{\bar{l}-1}, \hat{s})>0$ by the property of transient states.
+    Hence, it holds that $p^{\bar{l}}(s_{init}, \hat{s}) > 0$ for the state $\hat{s}^{\otimes}$. Thus, by ignoring rewards in $T^{\otimes}_{\bar{\pi}}$, we have
      \begin{align}
-        V^{\bar{\pi}}(s^{\otimes}_{init}) %\nonumber \\
-        \geq\ & \gamma^{\bar{l}} p^{\bar{l}}(s^{\otimes}_{init}, \hat{s}^{\otimes}) \sum_{k=0}^{\infty} \sum_{s^{\otimes \prime} \in R^{\otimes i}_{\bar{\pi}}} \gamma^k p^k(\hat{s}^{\otimes}, s^{\otimes \prime}) \nonumber \\
-        & \sum_{s^{\otimes \prime \prime} \in R^{\otimes i}_{\bar{\pi}}} P^{\otimes}_{\bar{\pi}}(s^{\otimes \prime \prime} | s^{\otimes \prime}) \mathcal{R}(s^{\otimes \prime}, a, s^{\otimes \prime \prime}) \nonumber \\
-        >\ & \gamma^{\bar{l}} p^{\bar{l}}(s^{\otimes}_{init}, \hat{s}^{\otimes}) r_p \bar{p} \gamma^{\bar{k}^{\prime}}  p^{\bar{k}^{\prime}}(\hat{s}^{\otimes},\hat{s}^{\otimes}) \frac{1}{ 1 - \gamma^{\bar{k}^{\prime}} }, \nonumber
+        V^{\bar{\pi}}(s_{init}) %\nonumber \\
+        \geq\ & \gamma^{\bar{l}} p^{\bar{l}}(s_{init}, \hat{s}) \sum_{k=0}^{\infty} \sum_{s^{\prime} \in R^{\otimes i}_{\bar{\pi}}} \gamma^k p^k(\hat{s}, s^{\prime}) \nonumber \\
+        & \sum_{s^{\prime \prime} \in R^{\otimes i}_{\bar{\pi}}} P^{\otimes}_{\bar{\pi}}(s^{\prime \prime} | s^{\prime}) \mathcal{R}(s^{\prime}, a, s^{\prime \prime}) \nonumber \\
+        >\ & \gamma^{\bar{l}} p^{\bar{l}}(s_{init}, \hat{s}) r_p \bar{p} \frac{\gamma^{\bar{k}^{\prime}}}{ 1 - \gamma^{\bar{k}^{\prime}} }, \nonumber
      \end{align}
-     where $\bar{k}^{\prime}  \geq n$ is a constant and $0<\bar{p}< p^{k \bar{k}^{\prime}}(\hat{s}^{\otimes}, \hat{s}^{\otimes})$ for any $k \in (0, \infty]$.
-     Therefore, for any $\bar{m} \in (V^{\pi^{\ast}}(s^{\otimes}_{init}), \infty)$ and any $r_p < \infty$, there exists $\gamma^{\ast}<1$ such that $\gamma > \gamma^{\ast}$ implies
+     where $\bar{k}^{\prime}  \geq n$ is a constant and $0<\bar{p}< p^{k \bar{k}^{\prime}}(\hat{s}, \hat{s})$ for any $k \in (0, \infty]$.
+     Therefore, for any $r_p < \infty$ and any $\bar{m} \in (V^{\pi^{\ast}}(s_{init}), \infty)$, there exists $\gamma^{\ast}<1$ such that $\gamma > \gamma^{\ast}$ implies
 %     \begin{align*}
 %     V^{\bar{\pi}}(s^{\otimes}_{init}) > \\P^{M^{\otimes}}_{\bar{\pi}}(s^{\otimes}_{init} \models \varphi) \gamma^{\bar{l}} p^{\bar{l}}(s^{\otimes}_{init}, \hat{s}^{\otimes}) r_p \bar{p} \gamma^{\bar{k}^{\prime}} p^{\bar{k}^{\prime}}(\hat{s}^{\otimes},\hat{s}^{\otimes}) \frac{1}{ 1 - \gamma^{\bar{k}^{\prime}} } > \bar{m}
 %     \end{align*}
-     $V^{\bar{\pi}}(s^{\otimes}_{init}) > \gamma^{\bar{l}} p^{\bar{l}}(s^{\otimes}_{init}, \hat{s}^{\otimes}) r_p \bar{p} \gamma^{\bar{k}^{\prime}} p^{\bar{k}^{\prime}}(\hat{s}^{\otimes},\hat{s}^{\otimes}) \frac{1}{ 1 - \gamma^{\bar{k}^{\prime}} } > \bar{m}$.
+     $V^{\bar{\pi}}(s_{init}) > \gamma^{\bar{l}} p^{\bar{l}}(s_{init}, \hat{s}) \frac{r_p \bar{p} \gamma^{\bar{k}^{\prime}}}{ 1 - \gamma^{\bar{k}^{\prime}} } > \bar{m}$.
   \end{enumerate}
 
 The results contradict the optimality assumption of $\pi^{\ast}$.
@@ -516,6 +536,7 @@ Theorem \ref{theorem1} implies that for the product MDP $M^{\otimes}$ of an MDP 
     \label{Grid1}
 \end{figure}
 
+\begin{comment}
 \begin{figure}[htbp]
    \centering
    \vspace{2mm}
@@ -533,6 +554,7 @@ Theorem \ref{theorem1} implies that for the product MDP $M^{\otimes}$ of an MDP 
    \caption{The augmented automaton for the tLDGBA in Fig.~\ref{automaton} recognizing the LTL formula $\text{{\bf GF}}a \wedge \text{{\bf GF}}b \wedge \text{{\bf G}}\neg c$, where the initial state is $(x_0, (0,0)^T )$. Red arcs are accepting transitions that are numbered in accordance with the accepting sets they belong to. All states corresponding to $x_1$ are merged into $(x_1, (*,*)^T )$.}
    \label{automaton_aug}
 \end{figure}
+\end{comment}
 
 In this section, we compare our proposed method with the method in \cite{HAK2019,HKAKPL2019} and the method using tLDBA. In the method using tLDBA, the reward function given by like Def.\ \ref{def10}, namely it is based on the one accepting set of the corresponding product MDP.
 We consider a path planning problem of a robot in an environment consisting of eight rooms and one corridor as shown in Fig.\ \ref{Grid1}. The state $s_7$ is the initial state and the action space is specified with $\mathcal{A}(s) = \{ Right,\ Left,\ Up,\ Down \}$ for any state $s \neq s_4$ and $\mathcal{A}(s_4) = \{ to\_s_0,\ to\_s_1,\ to\_s_2,$ $\ to\_s_3,\ to\_s_5,\ to\_s_6,\ to\_s_7,\ to\_s_8 \}$, where $to\_s_i$ means attempting to go to the state $s_i$ for $i \in \{0,\ 1,\ 2,\ 3,\ 5,\ 6,\ 7,\ 8 \}$. The robot moves in the intended direction with probability 0.9 and it stays in the same state with probability 0.1 if it is in the state $s_4$. In the states other than $s_4$, it moves in the intended direction with probability 0.9 and it moves in the opposite direction to that it intended to go with probability 0.1. If the robot tries to go to outside the environment, it stays in the same state. The labeling function is as follows.
@@ -541,18 +563,18 @@ We consider a path planning problem of a robot in an environment consisting of e
       \left\{
       \begin{aligned}
         & \{ c \} &  & \text{if }s^{\prime} = s_i,\ i \in \{ 2,3,5,6 \}, \nonumber \\
-        & \{ b_1 \} &  & \text{if }(s,a,s^{\prime})=(s_4,to\_s_0,s_0), \nonumber \\
-        & \{ b_2 \} &  & \text{if }(s,a,s^{\prime})=(s_4,to\_s_8, s_8), \nonumber \\
+        & \{ a \} &  & \text{if }(s,a,s^{\prime})=(s_4,to\_s_0,s_0), \nonumber \\
+        & \{ b \} &  & \text{if }(s,a,s^{\prime})=(s_4,to\_s_8, s_8), \nonumber \\
         & \emptyset &  & \text{otherwise}.
       \end{aligned}
       \right.
     \end{align*}
 
-In the example, the robot tries to take two transitions that we want to occur infinitely often, represented by arcs labeled by \{$b_1$\} and \{$b_2$\}, while avoiding unsafe transitions represented by the arcs labeled by \{{\it c}\}. This is formally specified by the following LTL formula.
+In the example, the robot tries to take two transitions that we want to occur infinitely often, represented by arcs labeled by \{$a$\} and \{$b$\}, while avoiding unsafe transitions represented by the arcs labeled by \{{\it c}\}. This is formally specified by the following LTL formula.
 \begin{align*}
-  \varphi = \text{{\bf GF}}b_1 \wedge \text{{\bf GF}}b_2 \wedge \text{{\bf G}}\neg c.
+  \varphi = \text{{\bf GF}}a \wedge \text{{\bf GF}}b \wedge \text{{\bf G}}\neg c.
 \end{align*}
-The above LTL formula requires the robot to keep on entering the two rooms $s_0$ and $s_8$ from the corridor $s_4$ regardless of the order of entries, while avoiding entering the four rooms $s_2$, $s_3$, $s_5$, and $s_6$.
+The above LTL formula requires the robot to keep on entering the two rooms $s_0$ and $s_8$ from the corridor $s_4$ regardless of the order of entries, while avoiding entering the four rooms $s_2$, $s_3$, $s_5$, and $s_6$. They have two accepting sets.
 
 %We use Owl \cite{Owl} to obtain the tLDBA corresponding to the LTL formula.
 The tLDBA $B_{\varphi} = (X, x_{init},\Sigma,\delta,\mathcal{F})$ and its augmented automaton $\bar{B}_{\varphi} = (\bar{X},\bar{x}_{init},\bar{\Sigma},\bar{\delta},\bar{\mathcal{F}})$ are shown in Figs.\ \ref{automaton} and \ref{automaton_aug}, respectively. Specifically, the acceptance condition ${\mathcal F}$ of the tLDBA is given by ${\mathcal F} = \{ F_1,F_2 \}$, where $F_1=\{ (x_0, \{ a \}, x_0),\ (x_0, \{ a,b \}, x_0) \}$ and $F_2 = \{ (x_0, \{ b \}, x_0),\ (x_0, \{ a,b \}, x_0) \}$.
@@ -560,15 +582,14 @@ The tLDBA $B_{\varphi} = (X, x_{init},\Sigma,\delta,\mathcal{F})$ and its augmen
 For the three methods, we use Q-learning\footnote{We employ Q-learning here but any algorithm that maximizes the discounted expected reward can be applied to our proposed method.} with $\varepsilon$-greedy policy and gradually reduce $\varepsilon$ to 0 to learn an optimal policy asymptotically.
 We set the positive reward $r_p = 2$, the epsilon greedy parameter $ \varepsilon = \frac{0.95}{n_t(s^{\otimes})}$, where $n_t(s^{\otimes})$ is the number of visits to state $s^{\otimes}$ within $t$ time steps \cite{Singh1998}, and the discount factor $\gamma = 0.95$. The learning rate $\alpha$ varies in accordance with {\it the Robbins-Monro condition}. We train the agent in 10000 iterations and 1000 episodes for 20 learning sessions.
 
-%We also evaluate the method in \cite{HAK2019}.
-% They use state-based LDBAs for LTL formulas and construct the product MDP of an MDP and a state-based LDBA to synthesize a policy satisfying the LTL formula. They proposed the accepting frontier function $Acc : X \times 2^X \rightarrow 2^X $ where $X$ is the set of states of the state-based LDBA. Under initializing a set of states $ \mathbb{F} $ with the union of the all accepting sets of the state-based LDBA, the function receives the state $x$ after each transition and the set $\mathbb{F}$. If $x$ is in $\mathbb{F}$, then $Acc$ removes the accepting sets containing $x$ from $\mathbb{F}$. The reward function is based on the varying set $\mathbb{F}$.
-%We conduct the same example with their method using the tLDBA instead and the same parameters.
+ In \cite{HAK2019,HKAKPL2019}, the accepting frontier function is proposed, which is $Acc : X \times 2^X \rightarrow 2^X $ where $X$ is the set of states of the state-based LDBA. Under initializing a set of states $ \mathbb{F} $ with the union of the all accepting sets of the state-based LDBA, the function receives the state $x$ after each transition and the set $\mathbb{F}$. If $x$ is in $\mathbb{F}$, then $Acc$ removes the accepting sets containing $x$ from $\mathbb{F}$. For the product MDP of an MDP $M$ and an state-based LDBA $B_{\varphi}$, the reward function depends on the removed states of $B_{\varphi}$.
+%We conduct the same example with their method using the tLDGBA instead.
 
 Fig.\ \ref{result} shows the average rewards obtained by our proposed method and the method using tLDBA, respectively. Both of methods eventually acquire an optimal policy satisfying $\varphi$. As can be seen from Fig.\ \ref{result}, however, our proposed method converges faster. It suggest that our proposed method is expected to be more sample efficient than using tLDBA. It is expected that such learning delays are remarkable as the number of accepting sets increases.
 
 Fig.\ \ref{optimal} shows the obtained optimal policies by our proposed method and the method in \cite{HAK2019,HKAKPL2019}, respectively.
 
-The result for the method in \cite{HAK2019,HKAKPL2019} is due to that it is impossible the transitions labeled by $\{ a \}$ and $\{ b \}$ occur from $s_4$ infinitely often by any positional policy with the tLDGBA. In detail, the state of the tLDGBA is always $x_0$ while the agent does not move to states $s_2$, $s_3$, $s_5$, and $s_6$. Thus, the state of the product MDP is always $(s_4, x_0)$ while the agent stays in $s_4$. While our proposed method can recognize the previous visits as a state. Thus, our proposed method can synthesize a positional policy satisfying $\varphi$ on the product MDP, while the method in \cite{HAK2019, HKAKPL2019} cannot.
+The result for the method in \cite{HAK2019,HKAKPL2019} is due to that it is impossible the transitions labeled by $\{ a \}$ and $\{ b \}$ occur from $s_4$ infinitely often by any positional policy with the tLDGBA shown in Fig.\ \ref{automaton}. In detail, the state of the tLDGBA is always $x_0$ while the agent does not move to states $s_2$, $s_3$, $s_5$, and $s_6$. Thus, the state of the product MDP is always $(s_4, x_0)$ while the agent stays in $s_4$. While our proposed method can recognize the previous visits as a state. Thus, our proposed method can synthesize a positional policy satisfying $\varphi$ on the product MDP, while the method in \cite{HAK2019, HKAKPL2019} cannot depending on a tLDGBA associated with $\varphi$. That is, in order to obtain a positional policy satisfying a given LTL formula $\varphi$ with the method in \cite{HAK2019,HKAKPL2019}, we may have to make an LDGBA associated with $\varphi$ redundant. However, the redundancy can cause a sparsity of rewards or large search space or something bad.
 % Therefore, the method in \cite{HAK2019} may not synthesize positional policies satisfying LTL specifications on the product MDP depending on the settings of MDPs or LTL specifications.
 
 \begin{figure}[tbp]
