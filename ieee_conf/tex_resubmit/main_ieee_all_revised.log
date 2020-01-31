@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.sjis) (TeX Live 2019/W32TeX) (preloaded format=platex 2019.9.9)  31 JAN 2020 21:04
+This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.sjis) (TeX Live 2019/W32TeX) (preloaded format=platex 2019.9.9)  31 JAN 2020 23:25
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -623,7 +623,10 @@ Underfull \hbox (badness 4416) in paragraph at lines 338--367
 \OT1/ptm/m/n/10 and $\OML/cmm/m/it/10 s[] \OT1/cmr/m/n/10 = (\OML/cmm/m/it/10 s[]; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[]; v[]\OT1/cmr/m/n/10 ))$\OT1/ptm/m/n/10 , $\OML/cmm/m/it/10 ^^N[] \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s[]; a; s[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 2
  []
 
-Excluding 'comment' comment. [3] Excluding 'comment' comment. Excluding 'comment' comment. [4]
+Excluding 'comment' comment. [3] Excluding 'comment' comment. Excluding 'comment' comment.
+Underfull \vbox (badness 4168) has occurred while \output is active []
+
+ [4]
 File: MDP_corridor.png Graphic file (type eps)
  <MDP_corridor.png> Excluding 'comment' comment.
 LaTeX Font Info:    Try loading font information for OMS+ptm on input line 573.
@@ -649,7 +652,7 @@ Overfull \hbox (15.00514pt too wide) in paragraph at lines 616--627
  [][][][] 
  []
 
-Excluding 'comment' comment.
+Excluding 'comment' comment. [6]
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -661,7 +664,9 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the US letter (8.5in X 11in) paper size.
 
-[6] (./main_ieee_all_revised.aux)
+[7
+
+] (./main_ieee_all_revised.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -669,10 +674,10 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Here is how much of TeX's memory you used:
  14165 strings out of 493215
  256505 string characters out of 6145921
- 487907 words of memory out of 5000000
+ 489907 words of memory out of 5000000
  18065 multiletter control sequences out of 15000+600000
  574838 words of font info for 147 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
  32i,18n,32p,1252b,437s stack positions out of 5000i,500n,10000p,500000b,80000s
 
-Output written on main_ieee_all_revised.dvi (6 pages, 64104 bytes).
+Output written on main_ieee_all_revised.dvi (7 pages, 65020 bytes).

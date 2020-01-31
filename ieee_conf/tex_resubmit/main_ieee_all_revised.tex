@@ -128,7 +128,7 @@ Section IV presents a numerical example for which the previous method cannot lea
 Reinforcement learning (RL) is a useful approach to learning an optimal policy from sample behaviors of the controlled system \cite{Sutton}.
 In RL, we use a reward function that assigns a reward to each transition in the behaviors and evaluate a control policy by the return that is an expected (discounted) sum of the rewards along the behaviors.
 Thus, to apply RL to the synthesis of a control policy for the LTL specification, it is an important issue how to introduce the reward function.
-Previously, a reward function based on the acceptance condition of a Rabin automaton was proposed in \cite{Sadigh2014}. They converted a given LTL specification to a Rabin automaton and introduced the reward function that assigns a positive and negative value to observations corresponding to an acceptance pair of the Rabin automaton. It was applied to a control problem where the controller optimizes a given control cost under the LTL constraint \cite{HU2015}. It is known that the LTL specification is converted into an $\omega$-automaton such as a nondeterministic B\"{u}chi automaton and a deterministic Rabin automaton \cite{BK2008,Belta2017}. A B\"{u}chi automaton (BA) and a generalized one (GBA) are also an $\omega$-automaton. When constructing a BA from a GBA, however, the order of visits to accepting sets of the GBA is fixed. The construction causes the sparsity of the reward based on the acceptance condition of a BA. It is critical against an RL-based controller synthesis.
+Previously, a reward function based on the acceptance condition of a Rabin automaton was proposed in \cite{Sadigh2014}. They converted a given LTL specification to a Rabin automaton. Then, they introduced the reward function that assigns a positive and negative value according to an acceptance pair of the Rabin automaton and make the reward functions for each acceptance pair of the Rabin automaton. It was applied to a control problem where the controller optimizes a given control cost under the LTL constraint \cite{HU2015}. It is known that the LTL specification is converted into an $\omega$-automaton such as a nondeterministic B\"{u}chi automaton and a deterministic Rabin automaton \cite{BK2008,Belta2017}. A B\"{u}chi automaton (BA) and a generalized one (GBA) are also an $\omega$-automaton. When constructing a BA from a GBA, however, the order of visits to accepting sets of the GBA is fixed. The construction causes the sparsity of the reward based on the acceptance condition of a BA. It is critical against an RL-based controller synthesis.
 
 Recently, a limit-deterministic B\"{u}chi automaton (LDBA) or a generalized one (LDGBA) is paid much attention to as an $\omega$-automaton corresponding to the LTL specification \cite{SEJK2016}.
 The RL-based approaches to the synthesis of a control policy using LDBAs or LDGBAs have been proposed in \cite{HAK2019,Hahn2019,HKAKPL2019,BWZP2019}.
@@ -136,9 +136,9 @@ The RL-based approaches to the synthesis of a control policy using LDBAs or LDGB
 To deal with the acceptance condition of an LDGBA that accepts behaviors visiting all accepting sets infinitely often, the accepting frontier function was introduced in \cite{HAK2019,HKAKPL2019}. The reward function is defined based on the function.
 However, the function is memoryless, that is, it does not provide the information of accepting sets that have been visited, which is important to improve learning performance.
 In this letter, we propose a novel method to augment an LDBA converted from a given LTL formula.
-Then, we define a reward function based on the acceptance condition of the product MDP of the augmented LDBA and the controlled system.
+Then, we define a reward function based on the acceptance condition of the product MDP of the augmented LDBA and the controlled system represented as the MDP.
 % based on the acceptance condition of the augmented automaton, embedded in the product MDP, which enables us to
-As a result, we can improve the sparsity of rewards and expand the class of policies that satisfy the LTL specification compared to \cite{HAK2019}.
+As a result, we relax the sparsity of rewards and expand the class of policies that satisfy the LTL specification on the product MDP compared to \cite{HAK2019}.
 
 The rest of the letter is organized as follows.
 Section II reviews an MDP, LTL, and automata.
@@ -383,7 +383,7 @@ The augmented tLDGBA $\bar{B}_{\varphi}$ keeps track of previous visits to the a
   \label{def10}
 \end{definition}
 
-The reward can be obtained if the first visits to the accepting sets is occurred regardless of its orders after a reset to $v=\bm{0}$.
+Intuitively, the reward can be obtained if the first visits to the accepting sets of the original tLDGBA is occurred after a reset to $v=\bm{0}$.
 
 \begin{remark}
   \begin{comment}
@@ -422,7 +422,7 @@ For a Markov chain $MC^{\otimes}_{\pi}$ induced by a product MDP $M^{\otimes}$ w
     \sum_{k=0}^{\infty} p^k((s,a,s^{\prime}),(s,a,s^{\prime})) = \infty,
     \label{eq15}
   \end{align}
-  where $p^k((s,a,s^{\prime}),(s,a,s^{ \prime}))$ is the probability that the transition $(s,a,s^{\prime})$ occurs again after the occurrence of itself in $k$ time steps. Eq. (\ref{eq15}) means that the agent obtains a reward infinitely often. This contradicts the definition of the acceptance condition of the product MDP $M^{\otimes}$.
+  where $p^k((s,a,s^{\prime}),(s,a,s^{ \prime}))$ is the probability that the transition $(s,a,s^{\prime})$ occurs again after the occurrence of itself in $k$ time steps. Eq. (\ref{eq15}) means that the agent obtains a reward infinitely often. However, a state $s$ cannot be returned without visit to all accepting sets of the original tLDGBA by the definition of the update rule of the binary-valued vector $v$. That is, This contradicts the definition of the acceptance condition of the product MDP $M^{\otimes}$.
 \end{proof}
 
 Lemma \ref{lemma1} implies that for an LTL formula $\varphi$ if a path $\rho$ under a policy $\pi$ does not satisfy $\varphi$, then the agent obtains no reward in recurrent classes; otherwise there exists at least one recurrent class where the agent obtains rewards infinitely often.
@@ -498,7 +498,7 @@ whereas all states in $R(MC^{\otimes}_{\bar{\pi}})$ are positive recurrent becau
 The results contradict the optimality assumption of $\pi^{\ast}$.
 \end{proof}
 
-Theorem \ref{theorem1} implies that for the product MDP $M^{\otimes}$ of an MDP $M$ and an augmented tLDBA corresponding to the given LTL formula $\varphi$, we can obtain a feasible positional policy satisfying $\varphi$ on $M^{\otimes}$ by an algorithm maximizing the expected discounted reward with large enough discount factor if there exists a positional policy on $M^{\otimes}$ satisfying $\varphi$ with non-zero probability.
+Theorem \ref{theorem1} implies that for the product MDP $M^{\otimes}$ of an MDP $M$ and an augmented tLDBA corresponding to the given LTL formula $\varphi$, we can obtain a feasible positional policy satisfying $\varphi$ on $M^{\otimes}$ by an algorithm maximizing the expected discounted reward with a discount factor sufficiently large if there exists a positional policy on $M^{\otimes}$ satisfying $\varphi$ with non-zero probability.
 
 %We show the overall procedure in our proposed method in Algorithm \ref{alg1}. We employ Q-learning in Algorithm \ref{alg1}, but any algorithms maximizing the discounted expected reward can be applied to our proposed method.
 %\begin{algorithm}
@@ -585,11 +585,11 @@ We set the positive reward $r_p = 2$, the epsilon greedy parameter $ \varepsilon
  In \cite{HAK2019,HKAKPL2019}, the accepting frontier function is proposed, which is $Acc : X \times 2^X \rightarrow 2^X $ where $X$ is the set of states of the state-based LDBA. Under initializing a set of states $ \mathbb{F} $ with the union of the all accepting sets of the state-based LDBA, the function receives the state $x$ after each transition and the set $\mathbb{F}$. If $x$ is in $\mathbb{F}$, then $Acc$ removes the accepting sets containing $x$ from $\mathbb{F}$. For the product MDP of an MDP $M$ and an state-based LDBA $B_{\varphi}$, the reward function depends on the removed states of $B_{\varphi}$.
 %We conduct the same example with their method using the tLDGBA instead.
 
-Fig.\ \ref{result} shows the average rewards obtained by our proposed method and the method using tLDBA, respectively. Both of methods eventually acquire an optimal policy satisfying $\varphi$. As can be seen from Fig.\ \ref{result}, however, our proposed method converges faster. It suggest that our proposed method is expected to be more sample efficient than using tLDBA. It is expected that such learning delays are remarkable as the number of accepting sets increases.
+Fig.\ \ref{result} shows the average rewards obtained by our proposed method and the method using tLDBA, respectively. Note that theoretical convergence values of the average reward for both methods are different. Both of methods eventually acquire an optimal policy satisfying $\varphi$. As can be seen from Fig.\ \ref{result}, however, our proposed method converges faster. It suggest that our proposed method is expected to be more sample efficient than using tLDBA. It is expected that such learning delays are remarkable as the number of accepting sets increases.
 
 Fig.\ \ref{optimal} shows the obtained optimal policies by our proposed method and the method in \cite{HAK2019,HKAKPL2019}, respectively.
 
-The result for the method in \cite{HAK2019,HKAKPL2019} is due to that it is impossible the transitions labeled by $\{ a \}$ and $\{ b \}$ occur from $s_4$ infinitely often by any positional policy with the tLDGBA shown in Fig.\ \ref{automaton}. In detail, the state of the tLDGBA is always $x_0$ while the agent does not move to states $s_2$, $s_3$, $s_5$, and $s_6$. Thus, the state of the product MDP is always $(s_4, x_0)$ while the agent stays in $s_4$. While our proposed method can recognize the previous visits as a state. Thus, our proposed method can synthesize a positional policy satisfying $\varphi$ on the product MDP, while the method in \cite{HAK2019, HKAKPL2019} cannot depending on a tLDGBA associated with $\varphi$. That is, in order to obtain a positional policy satisfying a given LTL formula $\varphi$ with the method in \cite{HAK2019,HKAKPL2019}, we may have to make an LDGBA associated with $\varphi$ redundant. However, the redundancy can cause a sparsity of rewards or large search space or something bad.
+The result for the method in \cite{HAK2019,HKAKPL2019} is due to that it is impossible the transitions labeled by $\{ a \}$ and $\{ b \}$ occur from $s_4$ infinitely often by any positional policy with the tLDGBA shown in Fig.\ \ref{automaton}. In detail, the state of the tLDGBA is always $x_0$ while the agent does not move to states $s_2$, $s_3$, $s_5$, and $s_6$. Thus, the state of the product MDP is always $(s_4, x_0)$ while the agent is in $s_4$. Thus, the agent cannot visit both of $s_0$ and $s_8$ by a deterministic action selection at $s_4$. While our proposed method can recognize the previous visits as a state. Thus, our proposed method can synthesize a positional policy satisfying $\varphi$ on the product MDP, while the method in \cite{HAK2019, HKAKPL2019} cannot depending on a tLDGBA associated with $\varphi$. That is, in order to obtain a positional policy satisfying a given LTL formula $\varphi$ with the method in \cite{HAK2019,HKAKPL2019}, we may have to make a redundant LDGBA associated with $\varphi$ heuristically. However, the heuristic redundancy can cause a sparsity of rewards or a search space larger than necessary or something bad.
 % Therefore, the method in \cite{HAK2019} may not synthesize positional policies satisfying LTL specifications on the product MDP depending on the settings of MDPs or LTL specifications.
 
 \begin{figure}[tbp]
@@ -607,7 +607,7 @@ The result for the method in \cite{HAK2019,HKAKPL2019} is due to that it is impo
    \includegraphics[bb=0 0 461 346, height = 3.4cm, width=4.2cm]{ep_1000_it_10000_MDP3_gamma_095_nts_c095_ldba_20times.png}
  \end{minipage}
 \end{tabular}
- \caption{The arithmetic mean of average reward in each episode for 20 learning sessions obtained from our proposed method (left) and the method using tLDBA (right). They are plotted per 100 episodes and the green areas represent the range of standard deviations. Each theoretical optimal convergence value are about }
+ \caption{The arithmetic mean of average reward in each episode for 20 learning sessions obtained from our proposed method (left) and the method using tLDBA (right). They are plotted per 100 episodes and the green areas represent the range of standard deviations. }
  \label{result}
 \end{figure}
 

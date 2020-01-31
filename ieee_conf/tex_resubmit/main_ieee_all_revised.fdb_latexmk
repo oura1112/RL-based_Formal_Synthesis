@@ -1,12 +1,12 @@
 # Fdb version 3
-["dvipdf"] 1580472248 "main_ieee_all_revised.dvi" "main_ieee_all_revised.pdf" "main_ieee_all_revised" 1580472251
-  "main_ieee_all_revised.dvi" 1580472248 64104 7dcce3c33d27a4d8867cdc4b8ac24375 "latex"
+["dvipdf"] 1580480716 "main_ieee_all_revised.dvi" "main_ieee_all_revised.pdf" "main_ieee_all_revised" 1580480720
+  "main_ieee_all_revised.dvi" 1580480716 65020 bd51bf106eea743b83ef8906198504e2 "latex"
   (generated)
   "main_ieee_all_revised.pdf"
-["latex"] 1580472246 "main_ieee_all_revised.tex" "main_ieee_all_revised.dvi" "main_ieee_all_revised" 1580472251
+["latex"] 1580480714 "main_ieee_all_revised.tex" "main_ieee_all_revised.dvi" "main_ieee_all_revised" 1580480720
   "Abate_policy.png" 1578372970 8562 259390f41d8d8c09a15a15cd53a4f6b3 ""
-  "MDP_corridor.PNG" 1580212054 15712 64cbda04067635616255b1feb7f02bae ""
-  "MDP_corridor.png" 1580212054 15712 64cbda04067635616255b1feb7f02bae ""
+  "MDP_corridor.PNG" 1580473234 15421 d36587df6a8a03bfaa4c47a93437abb8 ""
+  "MDP_corridor.png" 1580473234 15421 d36587df6a8a03bfaa4c47a93437abb8 ""
   "c:/w32tex/share/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/adobe/times/ptmb7t.tfm" 1064858046 2172 fd0c924230362ff848a33632ed45dc23 ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/adobe/times/ptmbi7t.tfm" 1064858046 2228 e564491c42a4540b5ebb710a75ff306c ""
@@ -103,11 +103,11 @@
   "ieeeconf.cls" 1578372970 202166 0f3e3448afe589ee826b9e8b13c8f08f ""
   "ldgba.pdf" 1578372970 7644 4b28959d88bec0b22c01d50c8a1bcfb8 ""
   "ldgba_original.pdf" 1578372970 4747 1df07183e3250df3beca16fd27061ff4 ""
-  "main_ieee_all_revised.aux" 1580472248 3937 96110bd7556fecf58f4c687b41ccdb34 "latex"
-  "main_ieee_all_revised.tex" 1580472244 65599 4b9fcfe1061b312ad054d25ab8fc0a47 ""
+  "main_ieee_all_revised.aux" 1580480716 3884 54f3f4cf76e0a6f5a57569909c0ce848 "latex"
+  "main_ieee_all_revised.tex" 1580480714 66077 b67dcd751a9511361adfb6bb9399e724 ""
   "nul" 0 0 d41d8cd98f00b204e9800998ecf8427e ""
   "proposed_policy.png" 1578372970 9025 932453edadd7645402707695cfa45510 ""
   (generated)
-  "main_ieee_all_revised.aux"
   "main_ieee_all_revised.dvi"
+  "main_ieee_all_revised.aux"
   "main_ieee_all_revised.log"
