@@ -1,4 +1,4 @@
-\documentclass[10pt]{article}
+ \documentclass[10pt]{article}
 
 \usepackage{amsfonts,amsmath,amssymb,amsthm}
 \usepackage{bm}
@@ -145,24 +145,23 @@ For a Markov chain $MC^{\otimes}_{SV}$ induced by a product MDP $D^{\otimes}$ wi
   \begin{align}
     V^{\bar{SV}}(s^{\otimes}_{init}) = \mathbb{E}^{SV}[ {\sum_{k=0}^{\infty}} \gamma^k \mathcal{R}(s_k, \pi_k, e_k, s_{k+1}) | s_0 = s^{\otimes}_{init} ]
   \end{align}
-    For each path $\rho = s_0 \pi_0 e_0 s_1 \ldots s_i \pi_i e_i s_{i+1} \ldots \in S (2^E E S)^{\omega}$, the stopping time $\hat{k}$ of first returning to the initial state is defined as $\hat{k}(\rho) = \min \{ i > 0 ; s_i = s_0 \}$. Recall that the state set $S^{\otimes}$ is finite, hence all of the recurrent classes are positive recurrent \cite{ISP}. We consider the worst scenario in this case. It holds that
+    For each path $\rho = s_0 \pi_0 e_0 s_1 \ldots s_i \pi_i e_i s_{i+1} \ldots \in S (2^E E S)^{\omega}$, the stopping time $\hat{k}$ of first returning to the initial state is defined as $\hat{k}(\rho) = \min \{ i > 0 ; s_i = s_0 \}$. Recall that the state set $S^{\otimes}$ is finite, hence all of the recurrent classes are positive recurrent \cite{ISP}. We have
+    % We consider the worst scenario in this case. It holds that
 
     \begin{align}
       V^{\bar{SV}}(s^{\otimes}_{init})
        > & \mathbb{E}^{\bar{SV}} [ \gamma^{\hat{k}-1} r_p + \gamma^{\hat{k}-2} r_p + \ldots + \gamma^{\hat{k}-n} r_p + \gamma^{\hat{k}-1} V^{\bar{SV}}(s^{\otimes}_{init}) | s_0 = s^{\otimes}_{init} ] \nonumber \\
        > & \mathbb{E}^{\bar{SV}} [ \gamma^{\hat{k}-1} r_p + \gamma^{\hat{k}-1} V^{\bar{SV}}(s^{\otimes}_{init}) | s_0 = s^{\otimes}_{init} ] \nonumber \\
-       \geq & \gamma^{\mathbb{E}^{\bar{SV}}[\hat{k} - 1 | s_0 = s^{\otimes}_{init} ]} r_p + \gamma^{\mathbb{E}^{\bar{SV}}[ \hat{k} - 1 | s_0 = s^{\otimes}_{init} ]} V^{\bar{SV}}(s^{\otimes}_{init}). \label{ineq_VSVbar1}
-   \intertext{Let $\hat{K}_1$ be $\lceil \mathbb{E}^{\bar{SV}}[\hat{k} | s_0 = s^{\otimes}_{init} ] \rceil$ and $\hat{K}_1 < \infty$ holds by the property of the positive recurrence \cite{SM}, where $\lceil i \rceil = \min \{ n \in \mathbb{Z} ; i \leq n \} $.}
-   \intertext{Thus,}
+       \geq & \gamma^{\mathbb{E}^{\bar{SV}}[\hat{k} - 1 | s_0 = s^{\otimes}_{init} ]} r_p + \gamma^{\mathbb{E}^{\bar{SV}}[ \hat{k} - 1 | s_0 = s^{\otimes}_{init} ]} V^{\bar{SV}}(s^{\otimes}_{init}), \label{ineq_VSVbar1}
+   \intertext{where Eq.\ (\ref{ineq_VSVbar1}) holds since it holds that $\mathbb{E}^{\bar{SV}} [ \gamma^{\hat{k}} | s_0 = s^{\otimes}_{init} ] \geq \gamma^{\mathbb{E}^{\bar{SV}}[\hat{k} | s_0 = s^{\otimes}_{init} ]}$ by Jensen's inequality. Let $\hat{K}_1 = \min \{ n \in \mathbb{N}_0 ; \mathbb{E}^{\bar{SV}}[\hat{k} | s_0 = s^{\otimes}_{init} ] \leq n \}$. We then have $\gamma^{\hat{K}_1} < \gamma^{\mathbb{E}^{\bar{SV}}[\hat{k} | s_0 = s^{\otimes}_{init} ]}$ and $\frac{1}{1 - \gamma^{\hat{K}_1}} < \frac{1}{1 - \gamma^{\mathbb{E}^{\bar{SV}}[\hat{k} | s_0 = s^{\otimes}_{init} ]}}$ for any $\gamma \in (0,1)$. Thus,}
     V^{\bar{SV}}(s^{\otimes}_{init})
        > & \frac{ \gamma^{\mathbb{E}^{\bar{SV}}[\hat{k} - 1 | s_0 = s^{\otimes}_{init} ]} r_p } { 1 - \gamma^{\mathbb{E}^{\bar{SV}}[\hat{k} - 1 | s_0 = s^{\otimes}_{init} ]}} \nonumber \\
        > &\frac{ \gamma^{\hat{K}_1 - 1} r_p }{ 1 - \gamma^{\hat{K}_1 - 1}} ,
     \label{ineq_VSVbar2}
    \end{align}
- where Eq.\ (\ref{ineq_VSVbar1}) holds since it holds that $\mathbb{E}^{\bar{SV}} [ \gamma^{\hat{k}} | s_0 = s^{\otimes}_{init} ] \geq \gamma^{\mathbb{E}^{\bar{SV}}[\hat{k} | s_0 = s^{\otimes}_{init} ]}$ by Jensen's inequality, and Eq.\ (\ref{ineq_VSVbar2}) holds since it holds that $\gamma^{\hat{K}_1} < \gamma^{\mathbb{E}^{\bar{SV}}[\hat{k} | s_0 = s^{\otimes}_{init} ]}$ and $\frac{1}{1 - \gamma^{\hat{K}_1}} < \frac{1}{1 - \gamma^{\mathbb{E}^{\bar{SV}}[\hat{k} | s_0 = s^{\otimes}_{init} ]}}$ for any $\gamma \in (0,1)$.
- For a bounded reward function $\mathcal{R}_1$, we define $r^{\ast}_p(\gamma)$ and $r^{\ast}_{sink}(\gamma,r_p)$ as $r^{\ast}_p(\gamma) = \frac{ \hat{K_1} - 1 }{ \gamma^{\hat{K}_1 -1 }}||\mathcal{R}_1||_{\infty} + 1$ and $r^{\ast}_{sink}(\gamma,r_p) \leq - \frac{Pr^{M^{\otimes}}_{SV^{\ast}}(s^{\otimes}_{init} \models \varphi)}{ \gamma^l p^l (s^{\otimes}_{init}, s^{\otimes}_{sink})} (r_p + ||\mathcal{R}_1||_{\infty}) - 1$, respectively. Note that $r^{\ast}_p$ and $r^{\ast}_{sink}$ are monotonically decreases and increases with respect to $\gamma$, respectively. In other words, $\gamma > \gamma^{\prime}$ implies that $r^{\ast}_p(\gamma) < r^{\ast}_p(\gamma^{\prime})$ and $r^{\ast}_{sink}(\gamma, r_p) > r^{\ast}_{sink}(\gamma^{\prime},r_p)$.
+We define $r^{\ast}_p(\gamma)$ and $r^{\ast}_{sink}(\gamma,r_p)$ as $r^{\ast}_p(\gamma) = \frac{ \hat{K_1} - 1 }{ \gamma^{\hat{K}_1 -1 }}||\mathcal{R}_1||_{\infty} + 1$ and $r^{\ast}_{sink}(\gamma,r_p) = - \frac{Pr^{M^{\otimes}}_{SV^{\ast}}(s^{\otimes}_{init} \models \varphi)}{ \gamma^l p^l (s^{\otimes}_{init}, s^{\otimes}_{sink})} (r_p + ||\mathcal{R}_1||_{\infty}) - 1$, respectively. Note that $r^{\ast}_p$ and $r^{\ast}_{sink}$ are monotonically decreases and increases with respect to $\gamma$, respectively. In other words, $\gamma > \gamma^{\prime}$ implies that $r^{\ast}_p(\gamma) < r^{\ast}_p(\gamma^{\prime})$ and $r^{\ast}_{sink}(\gamma, r_p) > r^{\ast}_{sink}(\gamma^{\prime},r_p)$ for any $r_p \in (0,\infty)$.
  Then, we set $\gamma^{\ast}$ to satisfy $ \frac{ {\gamma^{\ast}}^{\hat{K}_1 -1} }{1 - {\gamma^{\ast}}^{\hat{K}_1 -1}} > m(r^{\ast}_p(\gamma^{\ast}))$, where $m(r^{\ast}_p(\gamma^{\ast})) = \max \{ \bar{m}(r^{\ast}_p(\gamma^{\ast})), \bar{m}^{\prime}(r^{\ast}_p(\gamma^{\ast})) \}$.
-Under the above settings, for any positive reward $r_p > r^{\ast}_p(\gamma^{\ast})$ and any negative reward $r_{sink} < r^{\ast}_{sink}(\gamma^{\ast}, r_p)$, we select a discount factor $\gamma \in (\gamma^{\ast}, 1)$. Then, we have $r_p > r^{\ast}_p(\gamma) $ and $r_{sink} < r^{\ast}_{sink}(\gamma, r_p)$, and hence it holds that
+Under the above settings, for a bounded reward function $\mathcal{R}_1$, any positive reward $r_p > r^{\ast}_p(\gamma^{\ast})$, and any negative reward $r_{sink} < r^{\ast}_{sink}(\gamma^{\ast}, r_p)$, we select a discount factor $\gamma \in (\gamma^{\ast}, 1)$. Then, we have $r_p > r^{\ast}_p(\gamma) = \frac{ \hat{K}_1 -1 }{ {\gamma}^{\hat{K}_1 -1} } ||\mathcal{R}_1||_{\infty} + 1$ and $r_{sink} < r^{\ast}_{sink}(\gamma, r_p) < - \frac{Pr^{M^{\otimes}}_{SV^{\ast}}(s^{\otimes}_{init} \models \varphi)}{ \gamma^l p^l (s^{\otimes}_{init}, s^{\otimes}_{sink})} (r_p + ||\mathcal{R}_1||_{\infty})$, and hence it holds that
 
 \begin{align}
   V^{\bar{SV}}(s^{\otimes}_{init}) - V^{SV^{\ast}}(s^{\otimes}_{init})
@@ -170,7 +169,7 @@ Under the above settings, for any positive reward $r_p > r^{\ast}_p(\gamma^{\ast
    = & \frac{ \gamma^{\hat{K}_1 - 1}}{ 1 - \gamma^{\hat{K}_1 - 1}} (r_p - \frac{ \Sigma_{k=0}^{\hat{K}_1 -2} {\gamma}^k }{ {\gamma}^{\hat{K}_1 -1} } ||\mathcal{R}_1||_{\infty} ) - m(r_p) \nonumber \\
    > & \frac{ \gamma^{\hat{K}_1 - 1}}{ 1 - \gamma^{\hat{K}_1 - 1}} (r_p - \frac{ \hat{K}_1 -1 }{ {\gamma}^{\hat{K}_1 -1} } ||\mathcal{R}_1||_{\infty} ) - m(r_p). \nonumber \\
    > & \frac{ \gamma^{\hat{K}_1 - 1}}{ 1 - \gamma^{\hat{K}_1 - 1}} - m(r_p), \nonumber \\
-\intertext{Therefore, when $\gamma$ approaches 1 sufficiently, we have }
+\intertext{Therefore, when $\gamma$ goes to 1, we have }
   V^{\bar{SV}}(s^{\otimes}_{init}) - V^{SV^{\ast}}(s^{\otimes}_{init}) > & 0.
 \end{align}
 
@@ -206,8 +205,8 @@ Under the above settings, for any positive reward $r_p > r^{\ast}_p(\gamma^{\ast
       = & \mathbb{E}^{SV}[ {\sum_{k=0}^{\infty}} \gamma^k \mathcal{R}(s_k, \bar{SV}(s_k), e_k, s_{k+1}) | s_0 = s^{\otimes}_{init} ] \nonumber \\
       \geq & \mathbb{E}^{SV}[ \gamma^l \sum_{k=0}^{\infty} \gamma^k \mathcal{R}(s_{k+l}, \bar{SV}(s_{k+l}), e_{k+l}, s_{k+l+1}) | s_0 = s^{\otimes}_{init} ] \nonumber \\
       > & \gamma^{l^{\prime}} p^{l^{\prime}}(s^{\otimes}_{init}, \hat{s}^{\otimes}) \mathbb{E}^{\bar{SV}} [ \gamma^{\hat{k}-1} r_p + \gamma^{\hat{k}-1} V^{\bar{SV}}(\hat{s}^{\otimes}) | s_{l^{\prime}} = \hat{s}^{\otimes} ] \nonumber \\
-      \geq & \gamma^{l^{\prime}} p^{l^{\prime}}(s^{\otimes}_{init}, \hat{s}^{\otimes}) \{ \gamma^{\mathbb{E}^{\bar{SV}}[\hat{k} - 1 | s_{l^{\prime}} = \hat{s}^{\otimes} ]} r_p + \gamma^{\mathbb{E}^{\bar{SV}}[\hat{k} - 1 | s_{l^{\prime}} = \hat{s}^{\otimes} ]} V^{\bar{SV}}(\hat{s}^{\otimes}) \}. \nonumber \\
-   \intertext{As with the case 1, we have}
+      \geq & \gamma^{l^{\prime}} p^{l^{\prime}}(s^{\otimes}_{init}, \hat{s}^{\otimes}) \{ \gamma^{\mathbb{E}^{\bar{SV}}[\hat{k} - 1 | s_{l^{\prime}} = \hat{s}^{\otimes} ]} r_p + \gamma^{\mathbb{E}^{\bar{SV}}[\hat{k} - 1 | s_{l^{\prime}} = \hat{s}^{\otimes} ]} V^{\bar{SV}}(\hat{s}^{\otimes}) \}. \label{ineq_VSVbar2} \nonumber \\
+   \intertext{where Eq.\ (\ref{ineq_VSVbar2}) holds since it holds that $\mathbb{E}^{\bar{SV}} [ \gamma^{\hat{k}} | s_{l^{\prime}} = \hat{s}^{\otimes} ] \geq \gamma^{\mathbb{E}^{\bar{SV}}[\hat{k} | s_{l^{\prime}} = \hat{s}^{\otimes} ]}$ by Jensen's inequality. Let $\hat{K}_2 = \min \{ n \in \mathbb{N}_0 ; \mathbb{E}^{\bar{SV}}[\hat{k} | s_{l^{\prime}} = \hat{s}^{\otimes} ] \leq n \}$. We then have $\gamma^{\hat{K}_2} < \gamma^{\mathbb{E}^{\bar{SV}}[\hat{k} | s_{l^{\prime}} = \hat{s}^{\otimes} ]}$ and $\frac{1}{1 - \gamma^{\hat{K}_2}} < \frac{1}{1 - \gamma^{\mathbb{E}^{\bar{SV}}[\hat{k} | s_{l^{\prime}} = \hat{s}^{\otimes} ]}}$ for any $\gamma \in (0,1)$. Thus, we have}
     V^{\bar{SV}}(s^{\otimes}_{init})
       > & \gamma^{l^{\prime}} p^{l^{\prime}}(s^{\otimes}_{init}, \hat{s}^{\otimes}) \frac{ \gamma^{\mathbb{E}^{\bar{SV}}[\hat{k} - 1 | s_{l^{\prime}} = \hat{s}^{\otimes} ]} r_p } { 1 - \gamma^{\mathbb{E}^{\bar{SV}}[\hat{k} - 1 | s_{l^{\prime}} = \hat{s}^{\otimes}]}} \nonumber \\
       > & \gamma^{l^{\prime}} p^{l^{\prime}}(s^{\otimes}_{init}, \hat{s}^{\otimes}) \frac{ \gamma^{\hat{K} - 1} r_p }{ 1 - \gamma^{\hat{K} - 1}}
