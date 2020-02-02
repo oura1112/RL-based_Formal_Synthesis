@@ -1,9 +1,9 @@
 # Fdb version 3
-["dvipdf"] 1579296691 "main_thesis.dvi" "main_thesis.pdf" "main_thesis" 1579296698
-  "main_thesis.dvi" 1579296691 111064 b592dfbb11589025100d4f6f8314a767 "latex"
+["dvipdf"] 1580580154 "main_thesis.dvi" "main_thesis.pdf" "main_thesis" 1580580158
+  "main_thesis.dvi" 1580580154 113868 a2cff76bdc924440c839ce03a952cc54 "latex"
   (generated)
   "main_thesis.pdf"
-["latex"] 1579296685 "main_thesis.tex" "main_thesis.dvi" "main_thesis" 1579296698
+["latex"] 1580580150 "main_thesis.tex" "main_thesis.dvi" "main_thesis" 1580580158
   "Abate_policy.png" 1578498604 8562 259390f41d8d8c09a15a15cd53a4f6b3 ""
   "MDP_corridor.PNG" 1578498604 12036 b7670ce6e9ea1a633408317c520a965d ""
   "MDP_corridor.png" 1578498604 12036 b7670ce6e9ea1a633408317c520a965d ""
@@ -79,6 +79,8 @@
   "c:/w32tex/share/texmf-dist/web2c/eptex/platex.fmt" 1524714577 4473763 7bc72e65b5b4d9fa2d2b248e6ab8b8ec ""
   "c:/w32tex/share/texmf-dist/web2c/texmf.cnf" 1518859120 32699 6adc13c376251eb7d184d2675f4e7970 ""
   "cat_mouse.png" 1578498605 34006 b1363f6df978ac0ea1ba0406f774208a ""
+  "chap1.tex" 1580579263 4244 067c5bb0cf048ddab88019469ee3ea51 ""
+  "chap2.tex" 1580579998 27026 13959ae5b26c7082b68f4c52926ec0ba ""
   "ep_1000_it_10000_MDP3_gamma_095_nts_c095_abate_20times.png" 1578498605 20519 de53e97f99c34612b45619c01d8a9088 ""
   "ep_1000_it_10000_MDP3_gamma_095_re2_ini22_nts_c095_20times.png" 1578498605 30368 326658acf6fa4dfc80fc594040e760f2 ""
   "extractbb -B cropbox -O cat_mouse.png" 0 -1 0 ""
@@ -91,9 +93,9 @@
   "ldgba.pdf" 1578498605 7644 4b28959d88bec0b22c01d50c8a1bcfb8 ""
   "ldgba_original.pdf" 1578498605 4747 1df07183e3250df3beca16fd27061ff4 ""
   "learning_TD_v_15000_5000_rn2_05.png" 1578498605 28652 aa4e85eeb75639f908bc63ecaff8ca60 ""
-  "main_thesis.aux" 1579296691 8488 8051915ffcd8e2171a3a2fe5bc03726c ""
-  "main_thesis.tex" 1579296685 78784 f50040ba19f6e089069a07aa5691b28f ""
-  "main_thesis.toc" 1579296691 1477 2615d20bdbec0a46f9a47c30e98fe3bb ""
+  "main_thesis.aux" 1580580154 8411 35fd0e7b60d670b7952fb01ade64eff3 ""
+  "main_thesis.tex" 1580580146 50923 ed590d27237f7258ae92fb2415d32fc8 ""
+  "main_thesis.toc" 1580580154 1174 82f0b7e61b25b8a41b2c7b594878e9ef ""
   "max_Q_value_TD.png" 1578498605 21461 7b32a31f6179c0e5ffb1a4768a9a21b5 ""
   "max_Q_value_TD_rn2_1.png" 1578498605 30069 106c1ea3b0bb0b3d37b1493cdad6a54d ""
   "proposed_policy.png" 1578498605 9025 932453edadd7645402707695cfa45510 ""
@@ -102,7 +104,7 @@
   "simulate_TD_v_15000_5000_rn2_05.png" 1578498605 28198 c7dae64b6145bd436be169179ed881f0 ""
   "thesis.sty" 1577462111 4457 19dfc45703e3907faa88afdc81deb305 ""
   (generated)
-  "main_thesis.dvi"
   "main_thesis.aux"
   "main_thesis.toc"
+  "main_thesis.dvi"
   "main_thesis.log"

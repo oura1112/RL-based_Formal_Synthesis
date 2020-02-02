@@ -1,0 +1,7 @@
+PWD C:/Users/ooura/Documents/GitHub/Chap2/B_thesis
+INPUT c:/w32tex/share/texmf-dist/web2c/texmf.cnf
+INPUT c:/w32tex/share/texmf-dist/web2c/eptex/platex.fmt
+INPUT chap2.tex
+OUTPUT chap2.log
+OUTPUT chap2.dvi
+INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm

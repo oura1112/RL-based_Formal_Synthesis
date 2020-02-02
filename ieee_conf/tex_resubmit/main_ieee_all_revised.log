@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.0-180226-2.6 (utf8.sjis) (TeX Live 2018/W32TeX) (preloaded format=platex 2018.4.26)  2 FEB 2020 00:00
+This is e-pTeX, Version 3.14159265-p3.8.0-180226-2.6 (utf8.sjis) (TeX Live 2018/W32TeX) (preloaded format=platex 2018.4.26)  2 FEB 2020 01:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -398,27 +398,27 @@ Excluding 'comment' comment. [1
 
 
 ] Excluding 'comment' comment. Excluding 'comment' comment. [2] Excluding 'comment' comment. Excluding 'comment' comment.
-Underfull \hbox (badness 10000) in paragraph at lines 314--315
+Underfull \hbox (badness 10000) in paragraph at lines 316--317
 \OT1/ptm/m/n/10 its aug-mented au-toma-ton is a tLDGBA $[]$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 314--315
+Underfull \hbox (badness 10000) in paragraph at lines 316--317
 \OT1/ptm/m/n/10 = $\OT1/cmr/m/n/10 ([]\OML/cmm/m/it/10 ; []; []; []; []\OT1/cmr/m/n/10 )$\OT1/ptm/m/n/10 , where $[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 X \OMS/cmsy/m/n/10 ^^B \OML/cmm/m/it/10 V$\OT1/ptm/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 1902) in paragraph at lines 314--315
+Underfull \hbox (badness 1902) in paragraph at lines 316--317
 [] \OT1/cmr/m/n/10 = (\OML/cmm/m/it/10 x[]; \OT1/cmr/bx/n/10 0\OT1/cmr/m/n/10 )$\OT1/ptm/m/n/10 , $[] \OT1/cmr/m/n/10 = ^^F$\OT1/ptm/m/n/10 , $[]$ is de-fined as $[]$ =
  []
 
 
-Underfull \hbox (badness 2503) in paragraph at lines 314--315
+Underfull \hbox (badness 2503) in paragraph at lines 316--317
 \OMS/cmsy/m/n/10 f\OT1/cmr/m/n/10 ((\OML/cmm/m/it/10 x; v\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ; []; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[]; v[]\OT1/cmr/m/n/10 )) \OMS/cmsy/m/n/10 2 [] ^^B [] ^^B [] \OT1/cmr/m/n/10 ;  (\OML/cmm/m/it/10 x; []; x[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 2
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 314--315
+Underfull \hbox (badness 10000) in paragraph at lines 316--317
 \OML/cmm/m/it/10 ^^N;  v[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 reset\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 Max\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 v; visitf\OT1/cmr/m/n/10 ((\OML/cmm/m/it/10 x; []; x[]\OT1/cmr/m/n/10 ))))\OMS/cmsy/m/n/10 g$\OT1/ptm/m/n/10 , and
  []
 
@@ -426,33 +426,33 @@ File: ldgba_original.pdf Graphic file (type eps)
 <ldgba_original.pdf>
 File: ldgba.pdf Graphic file (type eps)
  <ldgba.pdf> Excluding 'comment' comment. Excluding 'comment' comment.
-Underfull \hbox (badness 10000) in paragraph at lines 338--367
+Underfull \hbox (badness 10000) in paragraph at lines 340--369
 []\OT1/ptm/m/n/10 Given an aug-mented tLDGBA $[]$
  []
 
 
-Underfull \hbox (badness 3439) in paragraph at lines 338--367
+Underfull \hbox (badness 3439) in paragraph at lines 340--369
 \OT1/ptm/m/n/10 and an MDP $\OML/cmm/m/it/10 M$\OT1/ptm/m/n/10 , a tu-ple $\OML/cmm/m/it/10 M \OMS/cmsy/m/n/10 
  [] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 M[] \OT1/cmr/m/n/10 =
  []
 
 
-Underfull \hbox (badness 2343) in paragraph at lines 338--367
+Underfull \hbox (badness 2343) in paragraph at lines 340--369
 \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 S[]; A[]; s[]; P[]; ^^N[]; \OMS/cmsy/m/n/10 F[]\OT1/cmr/m/n/10 )$ \OT1/ptm/m/n/10 is a prod-uct MDP, where
  []
 
 
-Underfull \hbox (badness 1803) in paragraph at lines 338--367
+Underfull \hbox (badness 1803) in paragraph at lines 340--369
 \OT1/ptm/m/n/10 prob-a-bil-ity de-fined as $\OML/cmm/m/it/10 P[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s[]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 s[]; a\OT1/cmr/m/n/10 ) = \OML/cmm/m/it/10 P\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s[]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 s; a\OT1/cmr/m/n/10 )$ \OT1/ptm/m/n/10 if
  []
 
 
-Underfull \hbox (badness 1577) in paragraph at lines 338--367
+Underfull \hbox (badness 1577) in paragraph at lines 340--369
 \OT1/ptm/m/n/10 if $\OML/cmm/m/it/10 s  \OT1/cmr/m/n/10 =  \OML/cmm/m/it/10 s[]; v  \OT1/cmr/m/n/10 =  \OML/cmm/m/it/10 v[]; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x; "[]; x[]\OT1/cmr/m/n/10 )  \OMS/cmsy/m/n/10 2  []\OML/cmm/m/it/10 ;$ \OT1/ptm/m/n/10 and $\OML/cmm/m/it/10 a \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 "[]$\OT1/ptm/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 4416) in paragraph at lines 338--367
+Underfull \hbox (badness 4416) in paragraph at lines 340--369
 \OT1/ptm/m/n/10 and $\OML/cmm/m/it/10 s[] \OT1/cmr/m/n/10 = (\OML/cmm/m/it/10 s[]; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[]; v[]\OT1/cmr/m/n/10 ))$\OT1/ptm/m/n/10 , $\OML/cmm/m/it/10 ^^N[] \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s[]; a; s[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 2
  []
 
@@ -462,18 +462,18 @@ Underfull \vbox (badness 1147) has occurred while \output is active []
  [3] Excluding 'comment' comment. Excluding 'comment' comment. Excluding 'comment' comment. [4]
 File: MDP_corridor.png Graphic file (type eps)
  <MDP_corridor.png> Excluding 'comment' comment.
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 573.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 575.
  (c:/w32tex/share/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 573.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 575.
  [5]
 File: ep_1000_it_10000_MDP3_gamma_095_re2_ini22_nts_c095_20times_no2.png Graphic file (type eps)
  <ep_1000_it_10000_MDP3_gamma_095_re2_ini22_nts_c095_20times_no2.png>
 File: ep_1000_it_10000_MDP3_gamma_095_nts_c095_ldba_20times.png Graphic file (type eps)
  <ep_1000_it_10000_MDP3_gamma_095_nts_c095_ldba_20times.png>
-Overfull \hbox (15.50006pt too wide) in paragraph at lines 597--610
+Overfull \hbox (15.50006pt too wide) in paragraph at lines 601--614
  [][][][] 
  []
 
@@ -481,7 +481,7 @@ File: proposed_policy.png Graphic file (type eps)
 <proposed_policy.png>
 File: Abate_policy.png Graphic file (type eps)
  <Abate_policy.png>
-Overfull \hbox (15.00513pt too wide) in paragraph at lines 616--627
+Overfull \hbox (15.00513pt too wide) in paragraph at lines 620--631
  [][][][] 
  []
 
@@ -505,12 +505,12 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 4385 strings out of 493281
- 59570 string characters out of 6146979
- 244783 words of memory out of 5000000
- 8243 multiletter control sequences out of 15000+600000
+ 4384 strings out of 493281
+ 59561 string characters out of 6146979
+ 244779 words of memory out of 5000000
+ 8242 multiletter control sequences out of 15000+600000
  46140 words of font info for 137 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
  27i,18n,32p,1252b,437s stack positions out of 5000i,500n,10000p,500000b,80000s
 
-Output written on main_ieee_all_revised.dvi (7 pages, 65400 bytes).
+Output written on main_ieee_all_revised.dvi (7 pages, 64944 bytes).

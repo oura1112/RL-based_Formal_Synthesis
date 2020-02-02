@@ -1,0 +1,23 @@
+Temporal logic has been developed in computer engineering as a useful formalism of formal specifications  \cite{BK2008,Clarke2018}.
+A merit of temporal logics is its resemblance to natural languages and it has been widely used in several other areas of engineering. Especially, a complicated mission or task in computer-controlled systems such as robots can be described by a temporal logic specification precisely and many synthesis algorithms of a controller or a planner that satisfies the specification have been proposed \cite{KB2008,Gazit2009,WTM2012a,SU2018}.
+Linear temporal logic (LTL) is often used as a specification language because of its rich expressiveness.  It can explain many important $\omega$-regular properties such as liveness, safety, and persistence \cite{BK2008}.
+It is known that the LTL specification is converted into an $\omega$-automaton such as a nondeterministic B\"{u}chi automaton and a deterministic Rabin automaton \cite{BK2008,Belta2017}.
+Previously, in the synthesis of a control policy for the LTL specification,  we model a controlled system by a transition system that abstracts its dynamics, construct a product automaton of the transition system and the $\omega$-automaton corresponding to the LTL specification, and compute a winning strategy of a game over the product automaton \cite{Belta2017}.
+
+Because of inherent stochasticity of controlled systems, we often use a Markov decision process (MDP) as a finite-state abstraction of the controlled systems \cite{Puterman}.
+In the case where the probabilities are unknown a priori, we have two approaches to the synthesis of the control policy. One is robust control where we assume that state transition probabilities are in uncertainty sets \cite{WTM2012} while the other is learning using samples \cite{Sadigh2014}.
+
+Reinforcement learning (RL) is a useful approach to learning an optimal policy from sample behaviors of the controlled system \cite{Sutton}.
+In RL, we use a reward function that assigns a reward to each transition in the behaviors and evaluate a control policy by the return that is an expected (discounted) sum of the rewards along the behaviors.
+Thus, to apply RL to the synthesis of a control policy for the LTL specification, it is an important issue how to introduce the reward function, which depends on the acceptance condition of an $\omega$-automaton converted from the LTL specification.
+A reward function based on the acceptance condition of a Rabin automaton was proposed in \cite{Sadigh2014}. It was applied to a control problem where the controller optimizes a given control cost under the LTL constraint \cite{HU2015}.
+
+Recently, a limit-deterministic B\"{u}chi automaton (LDBA) or generalized one (LDGBA) is paid much attention to as an $\omega$-automaton corresponding to the LTL specification \cite{SEJK2016}.
+The RL-based approaches to the synthesis of a control policy using LDBAs have been proposed in \cite{HAK2019,Hahn2019,HKAKPL2019,BWZP2019}.
+In \cite{Hahn2019,BWZP2019}, they use a LDBA. However, when constructing a B\"{u}chi automaton (BA) from a generalized B\"{u}chi automaton (GBA), the order of visits to accepting sets of the BA is fixed. The construction causes the sparsity of the reward based on the acceptance condition of a BA.
+On the other hand, to deal with the acceptance condition of an LDGBA that accepts behaviors visiting all accepting sets infinitely often, the accepting frontier function was introduced in \cite{HAK2019,HKAKPL2019}. The reward function is defined based on the function.
+However, the function is memoryless, that is, it does not provide the information of accepting sets that have been visited, which is important to improve learning performance.
+In this letter, we propose a novel method to augment an LDGBA converted from a given LTL formula.
+Then, we define a reward function based on the acceptance condition of the product MDP of the augmented LDGBA and the controlled system.
+% based on the acceptance condition of the augmented automaton, embedded in the product MDP, which enables us to
+As a result, we can improve the sparsity of rewards and expand the class of policies that satisfy the LTL specification compared to \cite{HAK2019}.

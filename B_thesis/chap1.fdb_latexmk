@@ -1,0 +1,14 @@
+# Fdb version 3
+["dvipdf"] 1580579576 "chap1.dvi" "chap1.pdf" "chap1" 1580579577
+  "chap1.dvi" 1580579576 972 43d5851a6ea2bc7cf602a2cbbd37582d "latex"
+  (generated)
+  "chap1.pdf"
+["latex"] 1580579575 "chap1.tex" "chap1.dvi" "chap1" 1580579577
+  "c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1136768653 1328 c834bbb027764024c09d3d2bf908b5f0 ""
+  "c:/w32tex/share/texmf-dist/web2c/eptex/platex.fmt" 1524714577 4473763 7bc72e65b5b4d9fa2d2b248e6ab8b8ec ""
+  "c:/w32tex/share/texmf-dist/web2c/texmf.cnf" 1518859120 32699 6adc13c376251eb7d184d2675f4e7970 ""
+  "chap1.aux" 1580579204 9 a94a2480d3289e625eea47cd1b285758 ""
+  "chap1.tex" 1580579263 4244 067c5bb0cf048ddab88019469ee3ea51 ""
+  (generated)
+  "chap1.log"
+  "chap1.dvi"

@@ -1,0 +1,270 @@
+\section{Markov Decision Processes}
+
+We define a controlled system as a labeled Markov decision process.
+
+\begin{definition}[Labeled Markov Decision Process]
+A (labeled) Markov decision process (MDP) is a tuple $M$ = $(S, A, \mathcal{A}, P, s_{init}, AP, L)$, where S is a finite set of states, $A$ is a finite set of actions, $\mathcal{A} : S \rightarrow 2^A$ is a mapping that maps each state to the set of possible actions at the state, $P:S \times S \times A \rightarrow [0,1]$ is a transition probability such that $\sum_{s' \in S} P(s'|s,a) = 1$ for any state $s \in S$ and any action $a \in \mathcal{A}(s) $, $s_{init} \in S$ is the initial state, $AP$ is a finite set of atomic propositions, and $L : S \times A \times S\ \rightarrow\ 2^{AP}$ is a labeling function that assigns a set of atomic propositions to each transition $(s, a, s') \in S \times A \times S$.
+
+In the MDP $M$, an infinite path starting from a state $s_0 \in S$ is defined as a sequence $\rho\ =\ s_0a_0s_1 \ldots\ \in S (A S)^{\omega}$ such that $P(s_{i+1}|s_i, a_i) > 0$ for any $ i \in \mathbb{N}_0$, where $\mathbb{N}_0$ is the set of natural numbers including zero.  A finite path is a finite sequence in $S (A S)^*$. In addition, we sometimes represent $\rho$ as $\rho_{init}$ to emphasize that $\rho$ starts from $s_0 = s_{init}$.
+For a path $\rho\ =\ s_0a_0s_1 \ldots$, we define the corresponding labeled path $L(\rho)\ =\ L(s_0,a_0,s_1)L(s_1,a_1,s_2) \ldots \in (2^{AP})^{\omega}$. $InfPath^{M}\ ( \text{resp., }FinPath^{M})$ is defined as the set of infinite (resp., finite) paths starting from $s_0=s_{init}$ in the MDP $M$. For each finite path $\rho$, $last(\rho)$ denotes its last state.
+\label{MDP}
+\end{definition}
+
+\begin{definition}[Policy]
+  A policy on an MDP $M$ is defined as a mapping $\pi:FinPath^{M} \times \mathcal{A}(last(\rho)) \rightarrow [0,1]$. A policy $\pi$ is a {\it positional} policy if for any $ \rho \in FinPath^{M}$ and any $ a \in \mathcal{A}(last(\rho))$, it holds that $\pi(\rho, a)=\pi(last(\rho),a)$ and there exists $ a' \in \mathcal{A}(last(\rho))$ such that
+  \begin{align*}
+    \pi(\rho, a) =
+    \left\{
+    \begin{aligned}
+      1 &   & &\text{if}\ a=a',\\
+      0 &   & &\text{otherwise}.
+    \end{aligned}
+    \right.
+  \end{align*}
+\end{definition}
+
+Let $InfPath^{M}_{\pi}$ (resp., $FinPath^{M}_{\pi}$) be the set of infinite (resp., finite) paths starting from $s_0=s_{init}$ in the MDP $M$ under a policy $\pi$. The behavior of an MDP $M$ under a policy $\pi$ is defined on a probability space $(InfPath^{M}_{\pi}, \mathcal{F}_{InfPath^{M}_{\pi}}, Pr^{M}_{\pi})$. % over the set of infinite paths $InfPath^{M}_{\pi}$ on the MDP $M$ with the policy $\pi$.
+
+\begin{definition}[Markov chain]
+  A Markov chain induced by an MDP $M$ with a positional policy $\pi$ is a tuple $MC_{\pi} = (S_{\pi},P_{\pi},s_0,AP,L)$, where $S_{\pi} = S$, $P_{\pi}(s'|s) = P(s'|s,a)$ for $s, s^{\prime} \in S$ and $a \in \mathcal{A}(s)$ such that $\pi(s,a) = 1$.
+  The state set $S_{\pi}$ of $MC_{\pi}$ can be represented as a disjoint union of a set of transient states $T_{\pi}$ and closed irreducible sets of recurrent states $R^j_{\pi}$ with $j \in \{ 1, \ldots ,h \}$, as $ S_{\pi} = T_{\pi} \sqcup R^1_{\pi} \sqcup \ldots \sqcup R^h_{\pi} $ \cite{ESS}.
+  In the following, we say a ``recurrent class'' instead of a ``closed irreducible set of recurrent states'' for simplicity.
+\end{definition}
+
+In an MDP $M$, we define a reward function $\mathcal{R}:S \times A \times S \rightarrow \mathbb{R}$, where $\mathbb{R}$ is the set of real numbers. The function denotes the immediate scalar bounded reward received after the agent performs an action $a$ at a state $s$ and reaches a next state $s'$ as a result.
+
+\section{Reinforcement Learning}
+
+Reinforcement learning is the theoretical framework to find a policy maximizing or minimizing an objective function through the iterative interactions between the learner referred to the agent and the controlled system referred to the environment. The interaction is that the agent takes an action on the environment and the environment returns a observation such as a immediate reward or next state. In this section, since we use model-free method in this thesis, we refer the model-free reinforcement learning, which find a policy maximizing or minimizing an objective function without inference the environment implicitly.
+
+\subsection{Objective functions and an Optimal policy}
+
+\begin{definition}[Expected discounted reward for MDPs]
+  For a policy $\pi$ on an MDP $M$, any state $s \in S$, and a reward function $\mathcal{R}$, we define the expected discounted reward as
+  \begin{align*}
+    V^{\pi}(s)= \mathbb{E}^{\pi}[\sum_{n=0}^{\infty}\gamma^n \mathcal{R}(S_n, A_n, S_{n+1})|S_0 = s],
+  \end{align*}
+where $\mathbb{E}^{\pi}$ denotes the expected value given that the agent follows the policy $\pi$ from the state $s$ and $\gamma \in [0,1)$ is a discount factor. Intuitively, the magnitude of the discount factor $\gamma$ determines how much we consider rewards received in the future. The function $V^{\pi}(s)$ is often referred to as a state-value function under the policy $\pi$. For any state-action pair $(s,a) \in S \times A$, we define an action-value function $Q^{\pi}(s,a)$ under the policy $\pi$ as follows.
+  \begin{align*}
+    Q^{\pi}(s,a)= \mathbb{E}^{\pi}[\sum_{n=0}^{\infty}\gamma^n \mathcal{R}(S_n, A_n, S_{n+1})|&S_0 = s, A_0 = a].
+  \end{align*}
+
+  We have the following recursively equation for the state-value function and the action-value function.
+
+  \begin{align}
+    V^{\pi}(s) = & \mathbb{E}^{\pi}[\sum_{n=0}^{\infty}\gamma^n \mathcal{R}(S_n, A_n, S_{n+1})|S_0 = s] \nonumber \\
+     = & \sum_{a \in \mathcal{A}(s)} \pi(s,a) \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \mathbb{E}^{\pi}[\sum_{n=0}^{\infty}\gamma^n \mathcal{R}(S_n, A_n, S_{n+1})|S_0 = s, A_0 = a, S_1 = s^{\prime}] \nonumber \\
+     = & \sum_{a \in \mathcal{A}(s)} \pi(s,a) \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \{ \mathcal{R}(s, a, s^{\prime}) + \gamma \mathbb{E}^{\pi}[\sum_{n=0}^{\infty}\gamma^n \mathcal{R}(S_n, A_n, S_{n+1})|S_1 = s^{\prime}] \} \nonumber \\
+    = & \sum_{a \in \mathcal{A}(s)} \pi(s,a) \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \{ \mathcal{R}(s, a, s^{\prime}) + \gamma V^{\pi}(s^{\prime}) \},
+    \label{V_pi}
+  \end{align}
+\end{definition}
+
+by the definition of the action-value function, it holds that
+
+\begin{align}
+  Q^{\pi}(s,a) = & \max_{a \in \mathcal{A}(s)}V^{\pi}(s) \nonumber \\
+               = & \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \{ \mathcal{R}(s, a, s^{\prime}) + \gamma V^{\pi}(s^{\prime}) \} \nonumber \\
+               = & \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \{ \mathcal{R}(s, a, s^{\prime}) + \gamma \sum_{a^{\prime} \in \mathcal{A}(s^{\prime})} \pi(s^{\prime}, a^{\prime}) Q^{\pi}(s^{\prime},a^{\prime}) \}.
+ \label{Q_pi}
+\end{align}
+ The above equations are called the {\it Bellman equation}.
+
+\begin{definition}[Optimal policy]
+  For any state $s \in S$, a policy $\pi^{\ast}$ is optimal if
+  \begin{align*}
+    \pi^{\ast} \in \argmax_{\pi \in \Pi^{pos}} V^{\pi}(s),
+  \end{align*}
+where $\Pi^{pos}$ is the set of positional policies over the state set $S$.
+
+We have the following {\it Bellman optimality functions} by the definition of optimal policies.
+
+\begin{align}
+  V^{\ast}(s) := & V^{\pi^{\ast}}(s) \nonumber \\
+               = & \max_{\pi \in \Pi^{pos}} V^{\pi}(s) \nonumber \\
+                    = & \max_{\pi \in \Pi^{pos}} \sum_{a \in \mathcal{A}(s)} \pi(s,a) \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \{ \mathcal{R}(s, a, s^{\prime}) + \gamma V^{\pi}(s^{\prime}) \} \nonumber \\
+                    = & \max_{a \in \mathcal{A}(s)} [ \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \{ \mathcal{R}(s, a, s^{\prime}) + \gamma V^{\pi^{\ast}}(s^{\prime}) \} ],
+\label{opt_V}
+\end{align}
+
+\begin{align}
+  Q^{\ast}(s,a) := & Q^{\pi^{\ast}}(s,a) \nonumber \\
+                = & \max_{\pi \in \Pi^{pos}} Q^{\pi}(s,a) \nonumber \\
+                      = & \max_{\pi \in \Pi^{pos}} \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \{ \mathcal{R}(s, a, s^{\prime}) + \gamma \sum_{a^{\prime} \in \mathcal{A}(s^{\prime})} \pi(s^{\prime}, a^{\prime}) Q^{\pi}(s^{\prime},a^{\prime}) \} \nonumber \\
+                      = & \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \{ \mathcal{R}(s, a, s^{\prime}) + \gamma \max_{\pi \in \Pi^{pos}} \sum_{a^{\prime} \in \mathcal{A}(s^{\prime})} \pi(s^{\prime}, a^{\prime}) Q^{\pi}(s^{\prime},a^{\prime}) \} \nonumber \\
+                      = & \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \{ \mathcal{R}(s, a, s^{\prime}) + \gamma \max_{a \in \mathcal{A}(s^{\prime})} Q^{\pi}(s^{\prime},a^{\prime}) \}.
+\label{opt_Q}
+\end{align}
+\label{opt_pol}
+\end{definition}
+
+We call $V^{\ast}$ and $Q^{\ast}$ the optimal state-value function and the optimal action-value function, respectively. $V^{\ast}(s)$ represents $Q^{\ast}(s,a)$ with an optimal action at the first step. Therefor, for any state $s \in S$, we have
+
+\begin{align*}
+  V^{\ast}(s) = \max_{a \in \mathcal{A}(s)} Q^{\ast}(s,a)
+\end{align*}
+
+In words, the set of optimal policies under $V^{\ast}$ and the set of optimal polisies under $Q^{\ast}$ are the same.
+
+If we know the full and accurate information of the MDP such as the transition probability or the reward function, we can obtain an optimal policy by solving Eqs. \ref{opt_V} or \ref{opt_Q} directly. we usually use {\it Dynamic Programming} by solving recursively equation such as Eqs \ref{opt_V} or \ref{opt_Q}. To find $V^{\pi}$ or $Q^{\pi}$ for a policy $\pi$ to solve Eqs. \ref{V_pi} or \ref{Q_pi} is referred to {\it Policy Evaluation}. For any state $s \in S$ or any state-action pair $(s,a) \in S \times A$, to update the policy $\pi$ to increase the value of $V^{\pi}(s)$ or $Q^{\pi}(s,a)$ is referred to {\it Policy Improvement}. The method to find an optimal policy to update optimal value function repeatedly in accordance with Eqs. \ref{opt_V} ar \ref{opt_Q} is referred to {\it Value Iteration}. The method to find an optimal policy to repeat policy evaluation and policy improvement alternately is referred to {\it Policy Iteration}.
+
+\subsection{Temporal Difference Learning}
+
+If the MDP $M$ is unknown, we can not use dynamic programming such as value iteration or policy iteration to obtain an optimal policy. In the case that the MDP $M$ is unknown, we often use   reinforcement learning to find an optimal policy instead of dynamic programming.
+
+Temporal difference learning (TD-learning) is the basic method of model-free reinforcement learning. The method does not require the prior knowledge about the environment and utilize a raw experience by one step. Unlike dynamic programing, we update a value function using the experience in an on-line and incremental manner as follows.
+
+\begin{align}
+  \hat{V}^{\pi_k}(s_k) \leftarrow \hat{V}^{\pi_k}(s_k) + \alpha_k \{ r_{k+1} + \hat{V}^{\pi_k}(s_{k+1}) - \hat{V}^{\pi_k}(s_k) \},
+\end{align}
+where $\pi_k$, $s_k$, and $\alpha_k$ arre the policy, the state, and the learning ratio at the time step $k$ such that $\alpha \in (0,1]$, respectively, and $r_{k+1} = \mathcal{R}(s_k, a_k, s_{k+1})$. The quantity in the curly bracket in the right hand side is called {\it TD-error}
+
+\begin{align}
+  \Delta_k = r_{k+1} + \hat{V}^{\pi_k}(s_{k+1}) - \hat{V}^{\pi_k}(s_k).
+\end{align}
+
+TD-error represents the difference between the current estimated value function and the better estimated value function of current state based on the actual experience, namely $r_{k+1} + \hat{V}^{\pi_k}(s_{k+1})$. Intuitively, as the value function repeatedly updated, the errors is gradually reduced. Hence, the magnitude of the learning ratio $\alpha_k$ describes how much we influence the better estimated value at the current state based on the most recent experience on the current value at the current state. The overall procedure TD-learning for a state-value function is given by Algoritym .
+
+TD-learning methods for an action-value function are classified as two main learning methods that are referred to {\it Q-learning} and {\it SARSA}.
+
+
+
+\section{Stochastic Discrete Event Systems}
+We represent a stochastic discrete event system (DES) as an MDP.
+
+\begin{definition}[Stochastic discrete event system]
+A DES is a tuple $D$ = $(S, E, \mathcal{E}, P_T, P_E, s_{init}, AP, L)$, where S is a finite set of states; $E$ is a finite set of events; $\mathcal{E} : S \rightarrow E$ is a mapping that maps each state to the set of feasible events at the state; $P_T:S \times S \times E \rightarrow [0,1]$ is a transition probability such that $\sum_{s' \in S} P_T(s'|s,e) = 1$ for any state $s \in S$ and any event $e \in \mathcal{E}(s) $ and $P_T(s'|s,e) = 0$ for any $e \notin \mathcal{E}(s)$; $P_E : E \times S \times 2^E \rightarrow [0,1]$ is the probability that an event occurs under a subset $\pi \in \mathcal{E}(s)$ of events allowed to occur at the state $s \in S$ such that $\Sigma_{e \in \pi} P_E(e|s,\pi) = 1$ and we call the subset the control pattern; for any $(s^{\prime}, s, \pi) \in S \times S \times 2^E$, we define the probability $P : S \times S \times 2^{E} \rightarrow [0,1]$ such that $P(s'|s,\pi) = \sum_{e \in \pi}P_E(e|s,\pi) P_T(s^{\prime}|s,e)$ and $\Sigma_{s^{\prime} \in S} P(s'|s,\pi) = 1$; $s_{init} \in S$ is the initial state; $AP$ is a finite set of atomic propositions; and $L : S \times E \times S \rightarrow 2^{AP}$ is a labeling function that assigns a set of atomic propositions to each transition $(s, e, s') \in S \times E \times S$. We assume that $E$ can be partitioned into the set of controllable events $E_c$ and the set of uncontrollable events $E_{uc}$ such that $E_c \cup E_{uc} = E$ and $E_c \cap E_{uc} = \emptyset$. Note that each event $e$ occurs probabilistically depending on only the current state and the subset of feasible events at the state given by a controller.
+
+
+
+In the DES $D$, an infinite path for the DES starting from a state $s_0 \in S$ is defined as a sequence $\rho^D\ =\ s_0\pi_0e_0s_1 \ldots\ \in S (2^E E S)^{\omega}$ such that $P_E(e_i|s_i, \pi_i) > 0$ and $P_T(s_{i+1}|s_i, e_i) > 0$ for any $ i \in \mathbb{N}_0$. A finite path for the DES is a finite sequence in $S (2^E E S)^*$. In addition, we sometimes represent $\rho^D$ as $\rho^D_{init}$ to emphasize that $\rho^D$ starts from $s_0 = s_{init}$.
+For a path $\rho^D\ =\ s_0\pi_0e_0s_1 \ldots$, we define the corresponding labeled path $L(\rho^D)\ =\ L(s_0,e_0,s_1)L(s_1,e_1,s_2) \ldots \in (2^{AP})^{\omega}$.
+For simplicity, we often represent infinite (resp., finite) path for the DES as infinite (resp., finite) path and omit superscript $D$ of the paths.
+% We define the set of finite labeled paths as $\mathcal{L}(M) = \{ L(\rho) \in (2^{AP})^{\omega} ; \rho = s_0e_0s_1 \ldots \in S(ES)^{\ast},\ P(s_{i+1}|s_i, e_i) > 0,\ i \in \mathbb{N}_0  \}.
+ $InfPath^{D}\ ( \text{resp., }FinPath^{D})$ is defined as the set of infinite (resp., finite) paths starting from $s_0=s_{init}$ in the DES $D$. For each finite path $\rho$, $last(\rho)$ denotes its last state.
+\end{definition}
+
+We define the supervisor as a controller for the DES that restricts the behaviors of the DES to satisfy a given specification.
+
+\begin{definition}[Supervisor]
+For the DES $D$,  a supervisor $SV : FinPath^{D} \rightarrow 2^E$ is defined as a mapping that maps each finite path to a set of allowed events at the finite path and we call the set the control pattern. In the following, the supervisor we consider is {\it state-based}, namely for any $\rho \in FinPath^{D}$, $SV(\rho) = SV(last(\rho))$. Note that the relation $E_{uc} \subset SV(\rho) \subset E$ holds for any $\rho \in FinPath^D$.
+Let $InfPath^{D}_{SV}$ (resp., $FinPath^{D}_{SV}$) be the set of infinite (resp., finite) paths starting from $s_0=s_{init}$ in the DES $D$ under a supervisor $SV$. The behavior of an DES $D$ under a supervisor $SV$ is defined on a probability space $(InfPath^{D}_{SV}, \mathcal{F}_{InfPath^{D}_{SV}}, Pr^{D}_{SV})$.
+\end{definition}
+
+We consider the objective function similar to the {\it Bellamn optimality function} defined by the definition \ref{opt_pol}.
+\begin{definition}[Optimal value function for DESs]
+
+  From the view point of reinforcement learning, the DES can be interpreted as the environment controlled by the supervisor and the supervisor can be interpreted as the policy. We introduce the two following assumptions.
+
+  \begin{enumerate}
+    \item The relative frequency of occurrence of each event does not depend on the control pattern.
+    \item We define a reward function $\mathcal{R} : S \times 2^E \times E \times S \rightarrow \mathbb{R}$ and the reward $\mathcal{R}$ can be decomposed into $\mathcal{R}_1$ and $\mathcal{R}_2$. The first reward $\mathcal{R}_1 : S \times 2^E \rightarrow \mathbb{R}$ is determined by the control pattern selected by the supervisor, which depends on only the control pattern and the current state. The second reward $\mathcal{R}_2 : S \times E \times S \rightarrow \mathbb{R}$ is determined by the occurrence of an event and the corresponding state transition. For any $(s,\pi,e,s^{\prime}) \in S \times 2^E \times E \times S$, we then have
+    \begin{align}
+      \mathcal{R}(s,\pi,e,s^{\prime}) = \mathcal{R}_1(s,\pi) + \mathcal{R}_2(s,e,s^{\prime}).
+    \end{align}
+  \end{enumerate}
+  Under the above assumptions, we have the following {\it Bellman optimality equation}.
+
+  \begin{align}
+    Q^{\ast}(s,\pi) = & \sum_{s^{\prime} \in S} P(s^{\prime}|s,\pi)\left \{ \mathcal{R}(s,\pi,e,s^{\prime}) + \gamma \max_{\pi^{\prime} \in 2^{\mathcal{E}(s^{\prime})}} Q^{\ast}(s^{\prime},\pi^{\prime}) \right \} \nonumber \\
+    = & \sum_{s^{\prime} \in S} \sum_{e \in \pi} P_E(e|s,\pi) P_T(s^{\prime}|s,e) \left \{ \mathcal{R}_1(s,\pi) + \mathcal{R}_2(s,e,s^{\prime}) + \gamma \max_{\pi^{\prime} \in 2^{\mathcal{E}(s^{\prime})}} Q^{\ast}(s^{\prime},\pi^{\prime}) \right \} \nonumber \\
+    = & \mathcal{R}_1(s,\pi) + \sum_{e \in \pi} P_E(e|s,\pi) \sum_{s^{\prime \in S}} P_T(s^{\prime}|s,e) \left \{ \mathcal{R}_2(s^{\prime}|s,e) + \gamma \max_{\pi^{\prime} \in 2^{\mathcal{E}(s^{\prime})}} Q^{\ast}(s^{\prime}, \pi^{\prime}) \right \},
+  \end{align}
+  where $\gamma \in [0,1)$.
+
+  We introduce the following function. $T^{\ast} : S \times E \rightarrow \mathbb{R}$ such that
+  \begin{align}
+    T^{\ast}(s,e) = \sum_{s^{\prime \in S}} P_T(s^{\prime}|s,e) \left \{ \mathcal{R}_2(s^{\prime}|s,e) + \gamma \max_{\pi^{\prime} \in 2^{\mathcal{E}(s^{\prime})}} Q^{\ast}(s^{\prime}, \pi^{\prime}) \right \}.
+  \end{align}
+  We then have
+  \begin{align}
+    Q^{\ast}(s,\pi) = \mathcal{R}_1(s,\pi) + \sum_{e \in \pi}P_E(e|s,\pi) T^{\ast}(s,e).
+  \end{align}
+
+\end{definition}
+
+\begin{definition}[Optimal supervisor]
+We define an optimal supervisor $SV^{\ast}$ as follows. For any state $s \in S$,
+\begin{align}
+  SV^{\ast}(s) = \pi \in \argmax_{\pi \in \mathcal{E}(s)} Q^{\ast}(s,\pi),
+\end{align}
+\end{definition}
+
+\section{Linear Temporal Logic and Automata}
+
+In our proposed method, we use linear temporal logic (LTL) formulas to describe various constraints or properties and to systematically assign corresponding rewards.
+%For some complicated constraints, it is hard to assign such a corresponding reward function and to find a policy satisfying an LTL formula by the conventional reward assignments.
+LTL formulas are constructed from a set of atomic propositions, Boolean operators, and temporal operators. We use the standard notations for the Boolean operators: $\top$ (true), $\neg$ (negation), and $\land$ (conjunction).
+LTL formulas over a set of atomic propositions $AP$ are recursively defined as
+\begin{align*}
+  \varphi ::=\top\ |\ \alpha \in AP\ |\ \varphi_1 \land \varphi_2\ |\ \neg \varphi\ |\ \text{{\bf X}} \varphi\ |\ \varphi_1 \text{{\bf U}} \varphi_2,
+\end{align*}
+where $\varphi$, $\varphi_1$, and $\varphi_2$ are LTL formulas.
+Additional Boolean operators are defined as $\perp := \neg \top $, $\varphi_1 \lor \varphi_2 := \neg(\neg \varphi_1 \land \neg \varphi)$, and $\varphi_1 \Rightarrow \varphi_2 := \neg \varphi_1 \lor \varphi_2$.
+The operators {\bf X} and {\bf U} are called ``next" and ``until", respectively.
+Using the operator {\bf U}, we define two temporal operators: (1) {\it eventually}, $\text{{\bf F}} \varphi := \top \text{{\bf U}} \varphi $ and (2) {\it always}, $\text{{\bf G}} \varphi := \neg \text{{\bf F}} \neg \varphi$.
+
+Let $ M $ be an MDP.
+For an infinite path $\rho = s_0a_0s_1 \ldots $ of $ M $ with $ s_0 \in S $, let $\rho[i]$ be the $i$-th state of $\rho$ i.e., $\rho[i]=s_i$ and let $\rho[i:]$ be the $i$-th suffix $\rho[i:]=s_ia_is_{i+1} \ldots $. We define the $i$-th state and $i$-th suffix of the infinite path for a DES in the same way.
+% let $\rho[:i]$ be the $i$-th prefix $\rho[:i]=s_0 \ldots s_{i-1}a_{i-1}s_i$,and let $\rho[i:j]$ be the finite sequence $\rho[i:j]=s_ia_is_{i+1} \ldots s_{j-1}a_{j-1}s_{j}$.
+\begin{definition}[LTL semantics]
+	For an LTL formula $\varphi$, an MDP $M$, and an infinite path $\rho = s_0a_0s_1 \ldots$ of $ M $ with $ s_0 \in S $, the satisfaction relation $M,\rho \models \varphi$ is recursively defined as follows.
+	\begin{alignat}{2}
+	& M, \rho \models \top,\nonumber \\
+	& M, \rho \models \alpha \in AP &&\Leftrightarrow \alpha \in L(s_0,a_0,s_1),\nonumber \\
+	& M, \rho \models \varphi_1 \land \varphi_2 &&\Leftrightarrow M, \rho \models \varphi_1 \land M, \rho \models \varphi_2,\nonumber \\
+	& M, \rho \models \neg \varphi &&\Leftrightarrow M, \rho \not\models \varphi,\nonumber \\
+	& M, \rho \models \text{{\bf X}}\varphi &&\Leftrightarrow M, \rho[1:] \models \varphi,\nonumber \\
+	& M, \rho \models \varphi_1 \text{{\bf U}} \varphi_2 &&\Leftrightarrow \exists j \geq 0, \ M, \rho[j:] \models \varphi_2 \land \forall i, 0\leq i < j, \ M, \rho[i:] \models \varphi_1.\nonumber
+	\end{alignat}
+The next operator {\bf X} requires that $\varphi$ is satisfied by the next state suffix of $\rho$. The until operator {\bf U} requires that $\varphi_1$ holds true until $\varphi_2$ becomes true over the path $\rho$. For the path in a DES, we define the LTL semantics in the same way.
+Using the operator {\bf U} we can define two temporal operators: (1) {\it eventually}, $\text{{\bf F}} \varphi := \top \text{{\bf U}} \varphi $ and (2) {\it always}, $\text{{\bf G}} \varphi := \neg \text{{\bf F}} \neg \varphi$.
+In the following, we write $ \rho \models \varphi $ for simplicity without referring to MDP $ M $ and DES $D$.
+%For an LTL formula $ \varphi $ over $ AP $,
+%we denote by $ \mathcal{L}(\varphi) \subset (2^{AP})^\omega $ the set of all words that satisfy $\varphi$.
+
+
+For any policy $\pi$ and any supervisor $SV$, we denote the probability of all paths starting from $s_{init}$ on the MDP $M$ (resp., DES) that satisfy an LTL formula $\varphi$ under the policy $\pi$ (resp., the supervisor $SV$) as follows.
+\begin{align*}
+Pr^{M}_{\pi}(s_{init} \! \models \varphi) := Pr^{M}_{\pi}(\{ \rho_{init} \! \in \! InfPath^{M}_{\pi} ; \rho_{init} \! \models \varphi \}), \\
+Pr^{D}_{SV}(s_{init} \! \models \varphi) := Pr^{D}_{SV}(\{ \rho_{init} \! \in \! InfPath^{D}_{SV} ; \rho_{init} \! \models \varphi \}).
+\end{align*}
+We say that an LTL formula $\varphi$ is satisfied by a positional policy $\pi$ (resp., a supervisor $SV$) if
+\begin{align*}
+Pr^{M}_{\pi}(s_{init} \models \varphi) > 0,  \\
+Pr^{D}_{SV}(s_{init} \models \varphi) > 0.
+\end{align*}
+
+
+
+\label{def5}
+\end{definition}
+
+Any LTL formula $\varphi$ can be converted into various automata, namely finite state machines that recognize %$\mathcal{L}$($\varphi$).
+all words satisfying $\varphi$.
+ We define a generalized B\"{u}chi automaton at the beginning, and then introduce a limit-deterministic B\"{u}chi automaton.
+
+\begin{definition}[Transition-based generalized B\"{u}chi automaton]
+  A transition-based generalized B\"{u}chi automaton (tGBA) is a tuple $B = (X,\ x_{init},\ \Sigma,\ \delta,\ \mathcal{F})$, where $X$ is a finite set of states, $x_{init} \in X$ is the initial state, $\Sigma$ is an input alphabet, $\delta \subset  X\times \Sigma \times X$ is a set of transitions, and $\mathcal{F} = \{F_1,\ldots,F_n\}$ is an acceptance condition, where for each $ j \in \{1,\ldots,n\}$, $F_j \subset \delta$ is a set of accepting transitions and called an accepting set.
+
+  Let $\Sigma^{\omega}$ be the set of all infinite words over $\Sigma$ and let an infinite run be an infinite sequence $r = x_0\sigma_0x_1 \ldots \in X (\Sigma X)^{\omega}$ where $(x_i, \sigma_{i}, x_{i+1}) \in \delta\ $ for any $ i\in \mathbb{N}_0$. An infinite word $w = \sigma_0\sigma_1 \ldots \in \Sigma^{\omega}$ is accepted by $B_{\varphi}$ if and only if there exists an infinite run $r = x_0 \sigma_0 x_1 \ldots$ starting from $x_0 = x_{init}$ such that $inf(r) \cap F_j \neq \emptyset\ $ for each $F_j \in \mathcal{F}$, where $inf(r)$ is the set of transitions that occur infinitely often in the run $r$.
+\end{definition}
+
+\begin{definition}[Sink state]
+A sink state in state set $X$ of an augmented tLDBA $\bar{B}_{\varphi} = (\bar{X}, \bar{x}_{init},\bar{\Sigma},\bar{\delta},\bar{\mathcal{F}})$ is defined as a state such that there exist no accepting transition of $\bar{B}_{\varphi}$ that is accessible from the state. We denote the set of sink states as $Sink Set$.
+\end{definition}
+
+\begin{definition}[Transition-based limit-deterministic generalized B\"{u}chi automaton]
+  A tGBA $B = (X, x_{init},\Sigma,\delta,\mathcal{F})$ is limit-deterministic (tLDBA) if the following conditions hold.
+  \begin{itemize}
+    \item $\exists X_{initial},\ X_{final} \subset X$ s.t. $X=X_{initial} \cup X_{final} \land X_{initial} \cap X_{final} = \emptyset$,
+    \item $F_j \subset X_{final} \times \Sigma \times X_{final}$, $\forall j \in \{ 1,...,n \}$,
+    \item $| \{ (x, \sigma, x^{\prime}) \! \in \! \delta; x^{\prime} \! \in \! X_{initial} \} | \! \leq \! 1$, $\forall x \! \in \! X_{initial}, \forall \sigma \! \in \! \Sigma$,
+    \item $| \{ (x, \sigma, x^{\prime}) \in \delta; x^{\prime} \in X_{final} \} | \! \leq \! 1$, $\forall x \! \in \! X_{final}, \forall \sigma \! \in \! \Sigma$,
+    \item $| \{ (x, \sigma, x^{\prime}) \in \delta; x^{\prime} \in X_{initial} \} |$=0, $\forall x \! \in \! X_{final}, \forall \sigma \! \in \! \Sigma$.
+  \end{itemize}
+\end{definition}
+A tLDBA is a tGBA whose state set can be partitioned into the initial part $X_{initial}$ and the final part $X_{final}$, and they are connected by a single ``guess". The final part has all accepting sets. The transitions in each part are deterministic.
+It is known that, for any LTL formula $ \varphi $, there exists a tLDBA that accepts all words satisfying $\varphi$ \cite{SEJK2016}.
+%in $ \mathcal{L}(\varphi) $ \cite{SEJK2016}.
+In particular, we represent a tLGBA recognizing an LTL formula $\varphi$ as $B_{\varphi}$, whose input alphabet is given by $ \Sigma = 2^{AP} $.
