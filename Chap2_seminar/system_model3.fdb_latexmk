@@ -1,9 +1,9 @@
 # Fdb version 3
-["dvipdf"] 1579280407 "system_model3.dvi" "system_model3.pdf" "system_model3" 1579280411
-  "system_model3.dvi" 1579280406 32084 0a95dbc2a5dec35e03291f39e5365c72 "latex"
+["dvipdf"] 1580664208 "system_model3.dvi" "system_model3.pdf" "system_model3" 1580664212
+  "system_model3.dvi" 1580664208 31212 c22ea0247c09b7e59529f89d0479e0ef "latex"
   (generated)
   "system_model3.pdf"
-["latex"] 1579280398 "system_model3.tex" "system_model3.dvi" "system_model3" 1579280411
+["latex"] 1580664205 "system_model3.tex" "system_model3.dvi" "system_model3" 1580664212
   "c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/goth10.tfm" 1519818042 1196 5981e79c37b2cfd27b3612a6783cd4b6 ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/min10.tfm" 1519818042 1196 1be730212205a270378fba11a44765dc ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/min8.tfm" 1519818042 1196 d5b431ce76e19b70391960a9dd08fa4f ""
@@ -65,21 +65,13 @@
   "c:/w32tex/share/texmf-dist/web2c/texmf.cnf" 1518859120 32699 6adc13c376251eb7d184d2675f4e7970 ""
   "cat_mouse.png" 1577462111 34006 b1363f6df978ac0ea1ba0406f774208a ""
   "extractbb -B cropbox -O cat_mouse.png" 0 -1 0 ""
-  "extractbb -B cropbox -O learning_TD_v_15000_5000_rn2_05.png" 0 -1 0 ""
-  "extractbb -B cropbox -O max_Q_value_TD.png" 0 -1 0 ""
-  "extractbb -B cropbox -O max_Q_value_TD_rn2_1.png" 0 -1 0 ""
-  "extractbb -B cropbox -O simulate_TD_v_10000_5000_rn2_1.png" 0 -1 0 ""
-  "extractbb -B cropbox -O simulate_TD_v_15000_5000.png" 0 -1 0 ""
-  "extractbb -B cropbox -O simulate_TD_v_15000_5000_rn2_05.png" 0 -1 0 ""
+  "extractbb -B cropbox -O max_Q_value_15000_5000_rn_all_rsink_1000.png" 0 -1 0 ""
+  "extractbb -B cropbox -O simulate_TD_v_15000_5000_rn_all_rsink_1000.png" 0 -1 0 ""
   "ldgba_original.pdf" 1577462111 4747 1df07183e3250df3beca16fd27061ff4 ""
-  "learning_TD_v_15000_5000_rn2_05.png" 1578498605 28652 aa4e85eeb75639f908bc63ecaff8ca60 ""
-  "max_Q_value_TD.png" 1578498605 21461 7b32a31f6179c0e5ffb1a4768a9a21b5 ""
-  "max_Q_value_TD_rn2_1.png" 1578498605 30069 106c1ea3b0bb0b3d37b1493cdad6a54d ""
-  "simulate_TD_v_10000_5000_rn2_1.png" 1578498605 26679 540494d80fd6b90b1a2b9e56c843cb82 ""
-  "simulate_TD_v_15000_5000.png" 1578498605 27288 02c92f3e55dcc693cd570a5f3bdbf3ff ""
-  "simulate_TD_v_15000_5000_rn2_05.png" 1578498605 28198 c7dae64b6145bd436be169179ed881f0 ""
-  "system_model3.aux" 1579280406 2799 fd7fed079bdc987b933645b14ad611f5 ""
-  "system_model3.tex" 1579280396 24149 1fa91b2563a7f6ee6c974528265d9953 ""
+  "max_Q_value_15000_5000_rn_all_rsink_1000.png" 1580660593 198969 320d4e4339fd72e5d8b741d0ef325f97 ""
+  "simulate_TD_v_15000_5000_rn_all_rsink_1000.png" 1580660870 205355 56c9558d4b9475b1352d181940c52067 ""
+  "system_model3.aux" 1580664208 2062 29726d79e0d1af0306b6d9b830a105e5 ""
+  "system_model3.tex" 1580664205 25543 2990f9a94b1812d79635048c98915ab9 ""
   (generated)
   "system_model3.dvi"
   "system_model3.aux"

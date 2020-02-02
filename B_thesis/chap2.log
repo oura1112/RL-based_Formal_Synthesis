@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.0-180226-2.6 (utf8.sjis) (TeX Live 2018/W32TeX) (preloaded format=platex 2018.4.26)  2 FEB 2020 02:59
+This is e-pTeX, Version 3.14159265-p3.8.0-180226-2.6 (utf8.sjis) (TeX Live 2018/W32TeX) (preloaded format=platex 2018.4.26)  2 FEB 2020 18:45
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -7246,7 +7246,7 @@ LaTeX Warning: Reference `opt_Q' on page  undefined on input line 109.
 ./chap2.tex:109: Undefined control sequence.
 <write> ...ing: Reference `V_pi' on page \thepage 
                                                   \space undefined\on@line .^^J
-l.109 ...r a policy $\pi$ to solve Eqs. \ref{V_pi}
+l.109 ...a policy $\pi$ by solving Eqs. \ref{V_pi}
                                                    or \ref{Q_pi} is referred...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -7260,7 +7260,7 @@ LaTeX Warning: Reference `V_pi' on page  undefined on input line 109.
 ./chap2.tex:109: Undefined control sequence.
 <write> ...ing: Reference `Q_pi' on page \thepage 
                                                   \space undefined\on@line .^^J
-l.109 ...i$ to solve Eqs. \ref{V_pi} or \ref{Q_pi}
+l.109 ... by solving Eqs. \ref{V_pi} or \ref{Q_pi}
                                                    is referred to {\it Polic...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -7756,13 +7756,18 @@ Overfull \hbox (6.05905pt too wide) in paragraph at lines 109--110
  []
 
 
-Overfull \hbox (8.88892pt too wide) in paragraph at lines 109--110
-\OT1/cmr/m/n/10 to
+Overfull \hbox (10.55559pt too wide) in paragraph at lines 109--110
+\OT1/cmr/m/n/10 by
  []
 
 
-Overfull \hbox (21.1667pt too wide) in paragraph at lines 109--110
-\OT1/cmr/m/n/10 solve
+Overfull \hbox (20.33337pt too wide) in paragraph at lines 109--110
+\OT1/cmr/m/n/10 solv-
+ []
+
+
+Overfull \hbox (13.33337pt too wide) in paragraph at lines 109--110
+\OT1/cmr/m/n/10 ing
  []
 
 
@@ -8036,13 +8041,13 @@ Overfull \hbox (33.05565pt too wide) in paragraph at lines 109--110
  []
 
 
-Overfull \hbox (8.88892pt too wide) in paragraph at lines 109--110
-\OT1/cmr/m/n/10 to
+Overfull \hbox (18.33339pt too wide) in paragraph at lines 109--110
+\OT1/cmr/m/n/10 that
  []
 
 
-Overfull \hbox (16.66672pt too wide) in paragraph at lines 109--110
-\OT1/cmr/m/n/10 find
+Overfull \hbox (20.61116pt too wide) in paragraph at lines 109--110
+\OT1/cmr/m/n/10 finds
  []
 
 
@@ -8076,8 +8081,8 @@ Overfull \hbox (12.50003pt too wide) in paragraph at lines 109--110
  []
 
 
-Overfull \hbox (8.88892pt too wide) in paragraph at lines 109--110
-\OT1/cmr/m/n/10 to
+Overfull \hbox (10.55559pt too wide) in paragraph at lines 109--110
+\OT1/cmr/m/n/10 by
  []
 
 
@@ -8086,8 +8091,13 @@ Overfull \hbox (14.44447pt too wide) in paragraph at lines 109--110
  []
 
 
-Overfull \hbox (18.88893pt too wide) in paragraph at lines 109--110
-\OT1/cmr/m/n/10 date
+Overfull \hbox (17.77782pt too wide) in paragraph at lines 109--110
+\OT1/cmr/m/n/10 dat-
+ []
+
+
+Overfull \hbox (13.33337pt too wide) in paragraph at lines 109--110
+\OT1/cmr/m/n/10 ing
  []
 
 
@@ -8236,13 +8246,13 @@ Overfull \hbox (33.05565pt too wide) in paragraph at lines 109--110
  []
 
 
-Overfull \hbox (8.88892pt too wide) in paragraph at lines 109--110
-\OT1/cmr/m/n/10 to
+Overfull \hbox (18.33339pt too wide) in paragraph at lines 109--110
+\OT1/cmr/m/n/10 that
  []
 
 
-Overfull \hbox (16.66672pt too wide) in paragraph at lines 109--110
-\OT1/cmr/m/n/10 find
+Overfull \hbox (20.61116pt too wide) in paragraph at lines 109--110
+\OT1/cmr/m/n/10 finds
  []
 
 
@@ -8276,8 +8286,8 @@ Overfull \hbox (12.50003pt too wide) in paragraph at lines 109--110
  []
 
 
-Overfull \hbox (8.88892pt too wide) in paragraph at lines 109--110
-\OT1/cmr/m/n/10 to
+Overfull \hbox (10.55559pt too wide) in paragraph at lines 109--110
+\OT1/cmr/m/n/10 by
  []
 
 
@@ -8286,8 +8296,13 @@ Overfull \hbox (11.69444pt too wide) in paragraph at lines 109--110
  []
 
 
-Overfull \hbox (19.16672pt too wide) in paragraph at lines 109--110
-\OT1/cmr/m/n/10 peat
+Overfull \hbox (22.50005pt too wide) in paragraph at lines 109--110
+\OT1/cmr/m/n/10 peat-
+ []
+
+
+Overfull \hbox (13.33337pt too wide) in paragraph at lines 109--110
+\OT1/cmr/m/n/10 ing
  []
 
 
@@ -14707,6 +14722,20 @@ Overfull \hbox (20.0pt too wide) in paragraph at lines 159--159
  []
 
 
+./chap2.tex:160: LaTeX Error: The font size command \normalsize is not defined:
+               there is probably something wrong with the class file.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.160     \item T
+                 he relative frequency of occurrence of each event does not ...
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[4]
 Overfull \hbox (17.22224pt too wide) in paragraph at lines 160--161
 \OT1/cmr/m/n/10 The
  []
@@ -14821,21 +14850,6 @@ Overfull \hbox (20.58337pt too wide) in paragraph at lines 160--161
 \OT1/cmr/m/n/10 tern. 
  []
 
-
-./chap2.tex:161: LaTeX Error: The font size command \normalsize is not defined:
-               there is probably something wrong with the class file.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.161     \item W
-                 e define a reward function $\mathcal{R} : S \times 2^E \tim...
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-[4]
 ./chap2.tex:161: Undefined control sequence.
 l.161 ...2^E \times E \times S \rightarrow \mathbb
                                                   {R}$ and the reward $\math...
@@ -21920,9 +21934,9 @@ LaTeX Warning: Citation `SEJK2016' on page  undefined on input line 268.
 Here is how much of TeX's memory you used:
  27 strings out of 493281
  249 string characters out of 6146979
- 95024 words of memory out of 5000000
+ 96040 words of memory out of 5000000
  4056 multiletter control sequences out of 15000+600000
  7819 words of font info for 32 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
- 21i,8n,25p,1631b,156s stack positions out of 5000i,500n,10000p,500000b,80000s
-Output written on chap2.dvi (5 pages, 36484 bytes).
+ 21i,8n,25p,1631b,148s stack positions out of 5000i,500n,10000p,500000b,80000s
+Output written on chap2.dvi (5 pages, 36480 bytes).

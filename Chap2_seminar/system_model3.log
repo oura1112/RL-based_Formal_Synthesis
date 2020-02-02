@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.0-180226-2.6 (utf8.sjis) (TeX Live 2018/W32TeX) (preloaded format=platex 2018.4.26)  18 JAN 2020 01:59
+This is e-pTeX, Version 3.14159265-p3.8.0-180226-2.6 (utf8.sjis) (TeX Live 2018/W32TeX) (preloaded format=platex 2018.4.26)  3 FEB 2020 02:23
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -219,8 +219,8 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 44.
  (c:/w32tex/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Overfull \hbox (53.44884pt too wide) in paragraph at lines 44--45
-\OT1/cmr/m/n/10 la-beled Markov de-ci-sion pro-cess (MDP). A DES is a tu-ple $\OML/cmm/m/it/10 M$ \OT1/cmr/m/n/10 = $(\OML/cmm/m/it/10 S; E; \OMS/cmsy/m/n/10 E\OML/cmm/m/it/10 ; P[]; P[]; s[]; AP; L\OT1/cmr/m/n/10 )$,
+Overfull \hbox (40.5975pt too wide) in paragraph at lines 44--48
+\OT1/cmr/m/n/10 la-beled Markov de-ci-sion pro-cess (MDP). A DES is a tu-ple $\OML/cmm/m/it/10 D$ \OT1/cmr/m/n/10 = $(\OML/cmm/m/it/10 S; E; P[]; P[]; s[]; AP; L\OT1/cmr/m/n/10 )$,
  []
 
 [1
@@ -228,30 +228,30 @@ Overfull \hbox (53.44884pt too wide) in paragraph at lines 44--45
 ]
 
 LaTeX Font Warning: Font shape `JT1/mc/m/it' undefined
-(Font)              using `JT1/mc/m/n' instead on input line 78.
+(Font)              using `JT1/mc/m/n' instead on input line 95.
 
 
 LaTeX Font Warning: Font shape `JY1/mc/m/it' undefined
-(Font)              using `JY1/mc/m/n' instead on input line 78.
+(Font)              using `JY1/mc/m/n' instead on input line 95.
 
 
-Overfull \hbox (33.9969pt too wide) detected at line 97
+Overfull \hbox (33.9969pt too wide) detected at line 102
 []
  []
 
 [2] [3]
-Underfull \hbox (badness 10000) in paragraph at lines 203--204
+Underfull \hbox (badness 10000) in paragraph at lines 211--212
 [] []$\OML/cmm/m/it/10 T\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s[]; e\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10   \OT1/cmr/m/n/10 (1 \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 ^^K\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 T\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s[]; e\OT1/cmr/m/n/10 ) + \OML/cmm/m/it/10 ^^K\OMS/cmsy/m/n/10 fR[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s[]; e; s[]\OT1/cmr/m/n/10 ) +
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 206.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 214.
 (c:/w32tex/share/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 206.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 214.
  [4]
-Overfull \hbox (5.71494pt too wide) in paragraph at lines 217--218
+Overfull \hbox (5.71494pt too wide) in paragraph at lines 225--226
 \OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 m[]; m[]; m[]; m[]; c[]; c[]; c[]; c[]\OMS/cmsy/m/n/10 g$\OT1/cmr/m/n/10 , where $\OML/cmm/m/it/10 E[] \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 m[]; m[]; m[]; m[]; c[]; c[]; c[]\OMS/cmsy/m/n/10 g$ \OT1/cmr/m/n/10 and $\OML/cmm/m/it/10 E[] \OT1/cmr/m/n/10 =
  []
 
@@ -260,30 +260,23 @@ File: cat_mouse.png Graphic file (type bmp)
 <cat_mouse.png>
 File: ldgba_original.pdf Graphic file (type pdf)
 <ldgba_original.pdf>
-File: max_Q_value_TD.png Graphic file (type bmp)
-<max_Q_value_TD.png>
-File: learning_TD_v_15000_5000_rn2_05.png Graphic file (type bmp)
-<learning_TD_v_15000_5000_rn2_05.png>
-File: max_Q_value_TD_rn2_1.png Graphic file (type bmp)
-<max_Q_value_TD_rn2_1.png>
-File: simulate_TD_v_15000_5000.png Graphic file (type bmp)
-<simulate_TD_v_15000_5000.png>
-File: simulate_TD_v_15000_5000_rn2_05.png Graphic file (type bmp)
-<simulate_TD_v_15000_5000_rn2_05.png>
-File: simulate_TD_v_10000_5000_rn2_1.png Graphic file (type bmp)
-<simulate_TD_v_10000_5000_rn2_1.png>
- Excluding 'comment' comment. [6] [7] [8] [9] [10] (./system_model3.aux)
+File: max_Q_value_15000_5000_rn_all_rsink_1000.png Graphic file (type bmp)
+<max_Q_value_15000_5000_rn_all_rsink_1000.png>
+ Excluding 'comment' comment.
+File: simulate_TD_v_15000_5000_rn_all_rsink_1000.png Graphic file (type bmp)
+<simulate_TD_v_15000_5000_rn_all_rsink_1000.png>
+ Excluding 'comment' comment. Excluding 'comment' comment. [6] [7] [8] [9] (./system_model3.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 3517 strings out of 493281
- 45465 string characters out of 6146979
- 124720 words of memory out of 5000000
- 7395 multiletter control sequences out of 15000+600000
+ 3497 strings out of 493281
+ 44955 string characters out of 6146979
+ 124687 words of memory out of 5000000
+ 7383 multiletter control sequences out of 15000+600000
  14606 words of font info for 58 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
- 27i,21n,32p,1805b,571s stack positions out of 5000i,500n,10000p,500000b,80000s
+ 27i,21n,32p,1054b,571s stack positions out of 5000i,500n,10000p,500000b,80000s
 
-Output written on system_model3.dvi (10 pages, 32084 bytes).
+Output written on system_model3.dvi (9 pages, 31212 bytes).

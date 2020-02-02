@@ -99,16 +99,8 @@ INPUT c:/w32tex/share/texmf-dist/tex/latex/base/omscmr.fd
 INPUT cat_mouse.png
 INPUT extractbb -B cropbox -O cat_mouse.png
 INPUT ldgba_original.pdf
-INPUT max_Q_value_TD.png
-INPUT extractbb -B cropbox -O max_Q_value_TD.png
-INPUT learning_TD_v_15000_5000_rn2_05.png
-INPUT extractbb -B cropbox -O learning_TD_v_15000_5000_rn2_05.png
-INPUT max_Q_value_TD_rn2_1.png
-INPUT extractbb -B cropbox -O max_Q_value_TD_rn2_1.png
-INPUT simulate_TD_v_15000_5000.png
-INPUT extractbb -B cropbox -O simulate_TD_v_15000_5000.png
-INPUT simulate_TD_v_15000_5000_rn2_05.png
-INPUT extractbb -B cropbox -O simulate_TD_v_15000_5000_rn2_05.png
-INPUT simulate_TD_v_10000_5000_rn2_1.png
-INPUT extractbb -B cropbox -O simulate_TD_v_10000_5000_rn2_1.png
+INPUT max_Q_value_15000_5000_rn_all_rsink_1000.png
+INPUT extractbb -B cropbox -O max_Q_value_15000_5000_rn_all_rsink_1000.png
+INPUT simulate_TD_v_15000_5000_rn_all_rsink_1000.png
+INPUT extractbb -B cropbox -O simulate_TD_v_15000_5000_rn_all_rsink_1000.png
 INPUT system_model3.aux

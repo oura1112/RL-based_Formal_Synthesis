@@ -9,6 +9,7 @@
 \contentsline {section}{\numberline {2.4}Linear Temporal Logic and Automata}{9}
 \contentsline {chapter}{\numberline {3}Reinforcement-Learning-Based Synthesis of Control Policy}{12}
 \contentsline {section}{\numberline {3.1}Example}{14}
+\contentsline {section}{\numberline {3.2}Conclusions}{16}
 \contentsline {chapter}{\numberline {4}4th Chapter}{18}
 \contentsline {section}{\numberline {4.1}Reinforcement-learning-based Synthesis of Supervisor}{18}
 \contentsline {section}{\numberline {4.2}Example}{19}
