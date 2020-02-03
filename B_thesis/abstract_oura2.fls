@@ -153,10 +153,10 @@ INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/tgoth10.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/jis/jisg.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmss12.tfm
-INPUT c:/w32tex/share/texmf-dist/tex/latex/base/omscmr.fd
-INPUT c:/w32tex/share/texmf-dist/tex/latex/base/omscmr.fd
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/tmin10.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/tmin10.tfm
+INPUT c:/w32tex/share/texmf-dist/tex/latex/base/omscmr.fd
+INPUT c:/w32tex/share/texmf-dist/tex/latex/base/omscmr.fd
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
 OUTPUT abstract_oura2.dvi
 INPUT abstract_oura2.aux
