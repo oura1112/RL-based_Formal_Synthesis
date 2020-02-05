@@ -1,0 +1,9 @@
+\begin{proof}[Proof of lemma \ref{lemma3-1}]
+Suppose that $MC^{\otimes}_{\pi}$ satisfies neither conditions 1 nor 2. Then, there exist a policy $\pi$, $i \in \{ 1, \ldots ,h \}$, and $j_1$, $j_2$ $\in \{ 1, \ldots ,n \}$ such that $\delta^{\otimes i}_{\pi} \cap \bar{F}^{\otimes}_{j_1} = \emptyset$ and $\delta^{\otimes i}_{\pi} \cap \bar{F}^{\otimes}_{j_2} \neq \emptyset$. In other words, there exists a nonempty and proper subset $J \in 2^{\{ 1, \ldots ,n \}} \setminus \{ \{ 1, \ldots ,n \}, \emptyset \}$ such that $ \delta^{\otimes i}_{\pi} \cap \bar{F}^{\otimes}_j \neq \emptyset $ for any $j \in J$.
+ For any transition $ (s,a,s^{\prime}) \in \delta^{\otimes i}_{\pi} \cap \bar{F}^{\otimes}_j$, the following equation holds by the properties of the recurrent states in $MC^{\otimes}_{\pi}$\cite{ESS}.
+\begin{align}
+  \sum_{k=0}^{\infty} p^k((s,a,s^{\prime}),(s,a,s^{\prime})) = \infty,
+  \label{eq15}
+\end{align}
+where $p^k((s,a,s^{\prime}),(s,a,s^{ \prime}))$ is the probability that the transition $(s,a,s^{\prime})$ reoccurs after it occurs in $k$ time steps. Eq. (\ref{eq15}) means that all transition in $R^{\otimes i}_{\pi}$ occurs infinitely often. However, the memory state $v$ is never reset in $R^{\otimes i}_{\pi}$ by the assumption. This directly contradicts Eq.\ (\ref{eq15}).
+\end{proof}

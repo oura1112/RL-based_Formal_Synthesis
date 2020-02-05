@@ -1,0 +1,193 @@
+
+\begin{definition}
+  Given an augmented tLDBA $\bar{B}_{\varphi} = (\bar{X}, \bar{x}_{init},\bar{\Sigma},\bar{\delta},\bar{\mathcal{F}})$ and a DES $D$, a tuple $D \otimes \bar{B}_{\varphi} = D^{\otimes} = (S^{\otimes}, E^{\otimes}, s_{init}^{\otimes}, P^{\otimes}_T, P^{\otimes}_E, \delta^{\otimes}, {\mathcal F}^{\otimes})$ is a product DES, where
+  $S^{\otimes} = S \times \bar{X}$ is the finite set of states and we represent $s$ and $\bar{x}$ corresponding with $s^{\otimes} = (s,\bar{x}) \in S^{\otimes}$ as $\mysps$ and $\myspq$, respectively; $E^{\otimes}=E \cup \{ \varepsilon_{\bar{x}^{\prime}} ; \exists \bar{x}^{\prime} \text{s.t.} (\bar{x}, \varepsilon, \bar{x}^{\prime}) \in \bar{\delta} \} $ is the finite set of events, where $\varepsilon_{\bar{x}^{\prime}}$ is the event that represents an $\varepsilon$-transition to $\bar{x}^{\prime} \in \bar{X}$; $s_{init}^{\otimes} = (s_{init},\bar{x}_{init})$ is the initial states, $P^{\otimes}_T : S^{\otimes} \times S^{\otimes} \times E^{\otimes} \rightarrow [0,1]$ is the transition probability defined as
+  \begin{align}
+    P^{\otimes}_T(s^{\otimes \prime} | s^{\otimes}, e) =
+    \left\{
+    \begin{aligned}
+      &P_T(s^{\prime} | s, e) &   &\text{if}\  (\bar{x}, L((s,e,s^{\prime})), \bar{x}^{\prime}) \in \bar{\delta}, e \in \mathcal{E}(s) \\
+      &1 &   &\text{if}\ s=s^{\prime}, (\bar{x}, \varepsilon, \bar{x}^{\prime}) \in \delta, e= \varepsilon_{\bar{x}^{\prime}} \\
+      &0 &   &\text{otherwise} ,
+    \end{aligned}
+    \right. \nonumber
+  \end{align}
+  where $s^{\otimes} = (s,(x,v))$ and $s^{\otimes \prime} = (s^{\prime}, (x^{\prime}, v^{\prime}))$.
+  $P^{\otimes}_E : E^{\otimes} \times S^{\otimes} \times 2^{E^{\otimes}} \rightarrow [0,1]$ is the probability of the occurrence of the event defined as $P^{\otimes}_E(e | s^{\otimes}, \pi) = P_E(e | s, \pi)$, $\delta^{\otimes} = \{ (s^{\otimes}, e, s^{\otimes \prime}) \in S^{\otimes} \times E^{\otimes} \times S^{\otimes} ; P^{\otimes}_T(s^{\otimes \prime} | s^{\otimes}, e) > 0 \}$ is the set of transitions, and ${\mathcal F}^{\otimes} = \{ \bar{F}^{\otimes}_1, \ldots ,\bar{F}^{\otimes}_n \}$ is the acceptance condition, where $\bar{F}^{\otimes}_i = \{ ((s,\bar{x}), e, (s^{\prime}, \bar{x}^{\prime})) \in \delta^{\otimes}\ ;\ (\bar{x}, L(s,e,s^{\prime}), \bar{x}^{\prime}) \in \bar{F}_i \}$ for each $ i \in \{ 1, \ldots ,n \}$.
+\end{definition}
+
+\begin{definition}
+  The two reward functions $\mathcal{R}_1 : S^{\otimes} \times 2^{E^{\otimes}} \rightarrow \mathbb{R}$ and $\mathcal{R}_2 : S^{\otimes} \times E^{\otimes} \times S^{\otimes} \rightarrow \mathbb{R}$ are defined as follows.
+  \begin{align}
+    \mathcal{R}_1 (s^{\otimes}, \pi) =
+    \left\{
+    \begin{aligned}
+      & r_{n}|\pi| & &\text{if} \ \myspq \notin SinkSet , \\
+      & 0 & &\text{otherwise},
+    \end{aligned}
+    \right.
+  \end{align}
+  where $|E|$ means the number of elements in the set $E$ and $r_{n}$ is a positive value.
+  \begin{align}
+    \mathcal{R}_2(s^{\otimes}, e, s^{\otimes \prime}) =
+    \left\{
+    \begin{aligned}
+      &r_p & & \text{if}\ \exists j \in \! \{ 1, \ldots ,n \},\ (s^{\otimes}, e, s^{\otimes \prime}) \in \bar{F}^{\otimes}_j \!,\\
+      &r_{sink} & & \text{if}\ \myspdq \in SinkSet,\\
+      &0 & & \text{otherwise},
+    \end{aligned}
+    \right.
+  \end{align}
+  where $r_p$ and $r_{sink}$ are the positive and negative value, respectively.
+  \label{reward_def}
+\end{definition}
+
+\section{Learning Algorithm}
+We make the supervisor learn how to give the control patterns to satisfy an LTL specification while keeping costs associated with disabled events low. We use Q-learning to estimate the function $T^{\ast}$. We then use Bayesian inference to robustly estimate the probability $P_E$. For the inference, we model $P_E$ as Categorical distribution as $p^k_{s,\pi,e}$, where $p^k_{s,\pi,e}$ represents the estimated probability of $P_E(e|s,\pi)$ at the time step $k$ and the prior distribution $\phi^k_{s,\pi}$ for the distribution of the parameter of $p^k_{s,\pi,e}$ is defined as Dirichlet.
+%Let $\mathcal{P}_{s,\pi}$ be the collection of the estimated probabilities of $P_E(e|s,\pi)$ with respect to all $e \in \pi$.
+
+In the following, we distinguish events by numbering them as $\{ e^1, \ldots, e^{|E|} \}$ . In order to reflect the events disabled by the supervisor on the estimated probability of an event occurrence, we introduce the function $RestProb : (0,1)^{|E|} \times 2^E \rightarrow [0,1]^{|E|}$ defined as
+
+\begin{align}
+  RestProb(\phi^k_{s,\pi},\pi)_i =
+  \left\{
+  \begin{aligned}
+    & \frac{\phi^{k,i}_{s,\pi}}{\sum_{e^j \in \pi} \phi^j_{s,\pi}} \  &\text{if}\ e^i \in \pi,\\
+    &0   \ &\text{otherwise},
+  \end{aligned}
+  \right.
+\end{align}
+where $\phi^{k,i}_{s,\pi}$ is the $i$-th element of $\phi^k_{s,\pi}$ and $RestProb(\phi^k_{s,\pi},\pi)_i$ is the $i$-th element of $RestProb(\phi^k_{s,\pi},\pi)$.
+
+We denote the probability vector of an event occurrence at the time step $k$ as $p^k_{s,\pi} = (p^k_{s,\pi,e^1}, \ldots, p^k_{s,\pi,e^{|E|}})$, where $s \in S$ and $\pi \in \mathcal{E}(s)$ is the state and the control pattern at the time step $k$. Let $n^k_{s,\pi,e}$ be the number of the occurrence of the event $e \in E$ up to the time step $k$ at the state $s \in S$ under the control pattern $\pi \in \mathcal{E}(s)$ and let $n^k_{s,\pi} = (n^k_{s,\pi,e_1}, \ldots, n^k_{s,\pi,e_{|E|}})$.
+% and let $\bar{p}^k_{s,\pi}$ denote the expected value of $p^k_{s,\pi}$.
+We sample the parameter $\phi^k_{s,\pi}$ of the posterior distribution of an event occurrence from the Dirichlet distribution $Dir(\cdot|n^k_{s,\pi})$. Then, we obtain the estimated probability vector $p^k_{s,\pi}$ of an event occurrence by $RestProb$ from the sampled parameter $\phi^k_{s,\pi}$ and the control pattern $\pi$.
+%We repeat the procedure until $||p^k_{s,\pi} - \bar{p}^k_{s,\pi}||_1 < \xi^k_{s,\pi}$ holds.
+
+The overall procedure of the inference is shown in Algorithm \ref{bayes}.
+
+\begin{algorithm}[H]
+ \caption{$P_E$ inference.}
+ \begin{algorithmic}[1]
+ \renewcommand{\algorithmicrequire}{\textbf{Input:}}
+ \renewcommand{\algorithmicensure}{\textbf{Output:}}
+ \REQUIRE the event occurrence count $n^k_{s,\pi}$, a threshold $\xi^k_{s,\pi}$ for $p^k_{s,\pi}$
+ \ENSURE  the posterior distribution $p^k_{s,\pi}$
+  %\REPEAT
+  \STATE $\phi^k_{s,\pi} \sim Dir(\cdot|n^k_{s,\pi})$
+  \STATE $p^k_{s,\pi} = RestProb(\phi^k_{s,\pi},\pi)$
+  %\UNTIL $||p^k_{s,\pi} - \bar{p}^k_{s,\pi}||_1 < \xi^k_{s,\pi}$
+ \end{algorithmic}
+ \label{bayes}
+ \end{algorithm}
+
+Under the estimation of $P_E$, we use TD-learning to estimate $Q^{\ast}$ with the TD-error defined as $\mathcal{R}_1(s^{\otimes},\pi) + \sum_{e \in \pi} p_{\mysps,\pi,e} T(s^{\otimes},e) - Q(s^{\otimes},\pi)$.
+
+We show the overall procedure of the learning algorithm in Algorithm \ref{alg1}.
+
+\begin{algorithm}[H]
+ \caption{RL-based synthesis of a supervisor satisfying the given LTL specification.}
+ \begin{algorithmic}[1]
+ \renewcommand{\algorithmicrequire}{\textbf{Input:}}
+ \renewcommand{\algorithmicensure}{\textbf{Output:}}
+ \REQUIRE LTL formula $\varphi$, DES $M$
+ \ENSURE  optimal supervisor $SV^{\ast}$ on the product DES $M^{\otimes}$
+  \STATE Convert $\varphi$ into tLDGBA $B_{\varphi}$.
+  \STATE Augment $B_{\varphi}$ to $\bar{B}_{\varphi}$.
+  \STATE Construct the product DES $M^{\otimes}$ of $M$ and $\bar{B}_{\varphi}$.
+  \STATE Initialize $T:S^{\otimes} \times E^{\otimes} \rightarrow \mathbb{R}$.
+  \STATE Initialize $Q:S^{\otimes} \times 2^{E^{\otimes}} \rightarrow \mathbb{R}$.
+  \STATE Initialize $n:S \times 2^{E} \times E \rightarrow \mathbb{R}$.
+  \STATE initialize $\xi:S \times 2^{E} \rightarrow \mathbb{R}$.
+  \STATE Initialize episode length $L$.
+  \WHILE {$Q$ is not converged}
+  \STATE $s^{\otimes} \leftarrow (s_{init},(x_{init},\bm{0}))$.
+  \STATE $t \leftarrow 0$
+  \WHILE {$t <L$ and $\myspq \notin SinkSet$ }
+  \STATE Choose the control pattern $\pi \in 2^{\mathcal{E}(s^{\otimes})}$ by the supervisor $SV$.
+  \STATE Observe the occurrence of the event $e \in E$.
+  \STATE Observe the next state $s^{\otimes \prime}$.
+  \STATE $T(s^{\otimes},e) \leftarrow (1-\alpha)T(s^{\otimes},e) + \alpha \{\mathcal{R}_2(s^{\otimes},e,s^{\otimes \prime}) + \gamma \max_{\pi^{\prime} \in 2^{\mathcal{E}(s^{\otimes \prime})}}Q(s^{\otimes \prime},\pi^{\prime})\}$
+  \STATE $n(\mysps, \pi, e) \leftarrow n(\mysps, \pi, e) + 1$
+  \STATE Obtain $p_{\mysps,\pi}$ from $n$ by the $P_E$ inference.
+  \STATE $Q(s^{\otimes},\pi) = (1-\beta)Q(s^{\otimes},\pi) + \beta \{\mathcal{R}_1(s^{\otimes},\pi) + \sum_{e \in \pi} p_{\mysps,\pi,e} T(s^{\otimes},e)$\}
+  \STATE $s^{\otimes} \leftarrow s^{\otimes \prime}$
+  \STATE $t \leftarrow t + 1$
+  %\STATE Update $\xi(s^{\otimes}, \pi)$
+  \ENDWHILE
+  \ENDWHILE
+ \end{algorithmic}
+ \label{alg1}
+ \end{algorithm}
+
+\section{Example}
+We evaluate the algorithm by the maze of the cat and the mouse shown in Fig.\ \ref{cat_mouse}. At the beginning, we define the settings for the example. The corresponding DES is as follows. The state set is $S = \{ (s^{cat}, s^{mouse}) ; s^{cat},s^{mouse} \in \{ s_0,s_1,s_2,s_3 \} \}$. The set of events (to open the corresponding door) is $E = \{ m_0, m_1, m_2, m_3, c_0, c_1, c_2, c_3 \}$, where $E_{c} = \{ m_0, m_1, m_2, m_3, c_0, c_1, c_2 \}$ and $E_{uc} = \{ c_3 \}$ and $\mathcal{E}(s) = E$ for any $s \in S$. The initial state is $s_{init} = (s_0, s_2)$. If the door of the room with the cat (resp., mouse) opens, the cat (resp., mouse) moves, with probability 0.95, to the room next to the room through the door or stays in the same room with probability 0.05. Otherwise, the cat (resp., mouse) stays in the same room with probability 1. The labeling function is
+
+\begin{align}
+   L((s, a, s^{\prime})) =
+    \left\{
+    \begin{aligned}
+      & \{ a \} &  & \text{if }s_c^{\prime} = s_1, \nonumber \\
+      & \{ b \} &  & \text{if }s_m^{\prime} = s_1, \nonumber \\
+      & \{ c \} &  & \text{if }s_c^{\prime} = s_m^{\prime}, \nonumber \\
+      & \emptyset &  & \text{otherwise},
+    \end{aligned}
+    \right.
+\end{align}
+where $s_c^{\prime}$ and $s_m^{\prime}$ is the next room where the cat and the mouse is, respectively, i.e., $s^{\prime} = (s_c^{\prime},s_m^{\prime})$.
+
+In the example, we want the supervisor to learn to give control patterns satisfying that the cat and the mouse take the food in the room 1 ($s_1$) avoiding they come across. This is formally specified by the following LTL formula.
+\begin{align*}
+  \varphi = \text{{\bf GF}}a \wedge \text{{\bf GF}}b \wedge \text{{\bf G}}\neg c.
+\end{align*}
+The tLDGBA $B_{\varphi} = (X, x_{init},\Sigma,\delta,\mathcal{F})$ corresponding to $\varphi$ is shown in Fig.\ \ref{tldba}. $B_{\varphi}$ has the acceptance condition of two accepting sets.
+
+We use $\varepsilon$-greedy policy and gradually reduce $\varepsilon$ to 0 to learn an optimal supervisor asymptotically.
+We set the rewards $r_p = 10$, $r_{n} = 0.1, 0.7, and 1.2$, and $r_{sink} = -1000$; the epsilon greedy parameter $ \varepsilon = \frac{1}{ \sqrt{episode} }$, where $episode$ is the number of the current episode; and the discount factor $\gamma = 0.99$. %$\xi^k_{s^{\otimes},\pi}$ is initially set to 1 and changes to 0.6 during 1/3 to 2/3 of all episodes and to 0.3 after 2/3 of all episodes for any $(s^{\otimes},\pi) \in S^{\otimes} \times 2^{E^{\otimes}}$.
+The learning rate $\alpha$ and $\beta$ vary in accordance with {\it the Robbins-Monro condition}. We train supervisors 5000 iterations and 15000 episodes.
+
+Fig.\ \ref{result1} shows the estimated optimal state values at the initial state $V(s^{\otimes}_{init})$ with $r_{n} = 0.1, 0.7,$ and $1.2$, respectively, for each episode when learning 5000 iterations and 15000 episodes by the algorithm \ref{alg1}.
+Fig.\ \ref{sim1} shows the average rewards from $\mathcal{R}_2$ and the average rewards from $\mathcal{R}_1$ with $r_{n} = 0.1, 0.7,$ and $1.2$, respectively, of 5000 iterations and 1000 episodes by the supervisor obtained from the learning.
+
+Fig.\ \ref{result1} suggests the three supervisors becomes optimal as the episode progresses.
+Fig.\ \ref{sim1} suggests the three supervisors obtained from the learning satisfy $\varphi$ and there is no sink recurrent class under the supervisors. The latter is implied by the stable average rewards.
+Furthermore, Fig.\ \ref{sim1} suggests that there is a trade-off between the frequency of visits to accepting sets of a augmented tLDGBA corresponding to a given LTL formula and the number of enabling events. Moreover, we can consider how much we see it important to enable events and how often the event occurs that leads to the satisfaction of a given LTL formula by changing the magnitude of the reward for control patterns and the reward for the LTL formula relatively.
+
+\begin{figure}[htbp]
+   \centering
+   \vspace{2mm}
+%   \includegraphics[bb=140 498 368 682,width=5cm]{automaton1.pdf}
+   \includegraphics[width=7cm]{cat_mouse.png}
+   \caption{The maze of the cat and the mouse. the initial state of the cat and the mouse is $s_0$ and $s_2$, respectively. the food for them is in the room 1 ($s_1$).}
+   \label{cat_mouse}
+\end{figure}
+
+\begin{figure}[htbp]
+   \centering
+   \vspace{2mm}
+%   \includegraphics[bb=140 498 368 682,width=5cm]{automaton1.pdf}
+   \includegraphics[bb=0 0 247 80,scale=0.85]{ldgba_original.pdf}
+   \caption{The tLDGBA recognizing the LTL formula $\text{{\bf GF}}a \wedge \text{{\bf GF}}b \wedge \text{{\bf G}}\neg c$, where the initial state is $x_0$. Red arcs are accepting transitions that are numbered in accordance with the accepting sets they belong to, e.g., \textcircled{\scriptsize 1}$a \land \neg b \land \neg c$ means the transition labeled by it belongs to the accepting set $F_1$.}
+   \label{tldba}
+\end{figure}
+
+\begin{figure}[H]
+   \centering
+   \vspace{2mm}
+%   \includegraphics[bb=140 498 368 682,width=5cm]{automaton1.pdf}
+   \includegraphics[width = 12cm]{max_Q_value_15000_5000_rn_all_rsink_1000.png}
+   \caption{The estimated optimal state values at the initial state $V(s^{\otimes}_{init})$ with $r_{n} = 0.1$ (left above), $r_n = 0.7$ (right above), and $r_n = 1.2$ (below) when using Algorithm \ref{alg1}.}
+   \label{result1}
+\end{figure}
+
+\begin{figure}[H] %htbp
+   \centering
+   \vspace{2mm}
+%   \includegraphics[bb=140 498 368 682,width=5cm]{automaton1.pdf}
+   \includegraphics[width = 12cm]{simulate_TD_v_15000_5000_rn_all_rsink_1000.png}
+   \caption{The average rewards of $\mathcal{R}_1$ and average rewards of $\mathcal{R}_2$ by the supervisor obtained from the learning with $r_{n} = 0.1$ (left above), $r_n = 0.7$ (right above), and $r_n = 1.2$ (below).}
+   \label{sim1}
+\end{figure}
+
+\section{Conclusion}
+In this chapter, we proposed a novel RL-method for the synthesis of a supervisor for an LTL specification using an augmented limit-deterministic generalized automaton. The proposed method synthesize a supervisor satisfying a given LTL specification and ensure the safety with probability 1 under the supervisor if such supervisors exist. The following arguments are future works. (i) We investigate the method synthesizing a supervisor that maximizes the satisfaction probability. (ii) We expand our proposed method to a hierarchical control. (iii) We apply our proposed method to multiagent systems.

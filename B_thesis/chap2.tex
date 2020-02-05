@@ -3,10 +3,10 @@
 We define a controlled system as a labeled Markov decision process.
 
 \begin{definition}[Labeled Markov Decision Process]
-A (labeled) Markov decision process (MDP) is a tuple $M$ = $(S, A, \mathcal{A}, P, s_{init}, AP, L)$, where S is a finite set of states, $A$ is a finite set of actions, $\mathcal{A} : S \rightarrow 2^A$ is a mapping that maps each state to the set of possible actions at the state, $P:S \times S \times A \rightarrow [0,1]$ is a transition probability such that $\sum_{s' \in S} P(s'|s,a) = 1$ for any state $s \in S$ and any action $a \in \mathcal{A}(s) $, $s_{init} \in S$ is the initial state, $AP$ is a finite set of atomic propositions, and $L : S \times A \times S\ \rightarrow\ 2^{AP}$ is a labeling function that assigns a set of atomic propositions to each transition $(s, a, s') \in S \times A \times S$.
+  A (labeled) Markov decision process (MDP) is a tuple $M$ = $(S, A, P, s_{init}, AP, L)$, where S is a finite set of states, $A$ is a finite set of actions, $P:S \times S \times A \rightarrow [0,1]$ is a transition probability function, $s_{init} \in S$ is the initial state, $AP$ is a finite set of atomic propositions, and $L : S \times A \times S\ \rightarrow\ 2^{AP}$ is a labeling function that assigns a set of atomic propositions to each transition. Let $\mathcal{A}(s) = \{ a \in A ; \exists s^{\prime} \in S \text{ s.t. } P(s^{\prime} | s,a) \neq 0 \}$. Note that $\sum_{s' \in S} P(s'|s,a) = 1$ holds for any state $s \in S$ and action $a \in \mathcal{A}(s)$.
 
-In the MDP $M$, an infinite path starting from a state $s_0 \in S$ is defined as a sequence $\rho\ =\ s_0a_0s_1 \ldots\ \in S (A S)^{\omega}$ such that $P(s_{i+1}|s_i, a_i) > 0$ for any $ i \in \mathbb{N}_0$, where $\mathbb{N}_0$ is the set of natural numbers including zero.  A finite path is a finite sequence in $S (A S)^*$. In addition, we sometimes represent $\rho$ as $\rho_{init}$ to emphasize that $\rho$ starts from $s_0 = s_{init}$.
-For a path $\rho\ =\ s_0a_0s_1 \ldots$, we define the corresponding labeled path $L(\rho)\ =\ L(s_0,a_0,s_1)L(s_1,a_1,s_2) \ldots \in (2^{AP})^{\omega}$. $InfPath^{M}\ ( \text{resp., }FinPath^{M})$ is defined as the set of infinite (resp., finite) paths starting from $s_0=s_{init}$ in the MDP $M$. For each finite path $\rho$, $last(\rho)$ denotes its last state.
+  In the MDP $M$, an infinite path starting from a state $s_0 \in S$ is defined as a sequence $\rho\ =\ s_0a_0s_1 \ldots\ \in S (A S)^{\omega}$ such that $P(s_{i+1}|s_i, a_i) > 0$ for any $ i \in \mathbb{N}_0$. A finite path is a finite sequence in $S (A S)^{\ast}$. In addition, we sometimes represent $\rho$ as $\rho_{init}$ to emphasize that $\rho$ starts from $s_0 = s_{init}$.
+  For a path $\rho\ =\ s_0a_0s_1 \ldots$, we define the corresponding labeled path $L(\rho)\ =\ L(s_0,a_0,s_1)L(s_1,a_1,s_2) \ldots \in (2^{AP})^{\omega}$. $InfPath^{M}\ ( \text{resp., }FinPath^{M})$ is defined as the set of infinite (resp., finite) paths starting from $s_0=s_{init}$ in the MDP $M$. For each finite path $\rho$, $last(\rho)$ denotes its last state.
 \label{MDP}
 \end{definition}
 
@@ -110,36 +110,45 @@ If we know the full and accurate information of the MDP such as the transition p
 
 \subsection{Temporal Difference Learning}
 
-If the MDP $M$ is unknown, we can not use dynamic programming such as value iteration or policy iteration to obtain an optimal policy. In the case that the MDP $M$ is unknown, we often use   reinforcement learning to find an optimal policy instead of dynamic programming.
+If the MDP $M$ is unknown, we can not use Dynamic programming such as value iteration or policy iteration to obtain an optimal policy. In the case that the MDP $M$ is unknown, we often use   reinforcement learning to find an optimal policy instead of dynamic programming.
 
 Temporal difference learning (TD-learning) is the basic method of model-free reinforcement learning. The method does not require the prior knowledge about the environment and utilize a raw experience by one step. Unlike dynamic programing, we update a value function using the experience in an on-line and incremental manner as follows.
 
 \begin{align}
   \hat{V}^{\pi_k}(s_k) \leftarrow \hat{V}^{\pi_k}(s_k) + \alpha_k \{ r_{k+1} + \hat{V}^{\pi_k}(s_{k+1}) - \hat{V}^{\pi_k}(s_k) \},
 \end{align}
-where $\pi_k$, $s_k$, and $\alpha_k$ arre the policy, the state, and the learning ratio at the time step $k$ such that $\alpha \in (0,1]$, respectively, and $r_{k+1} = \mathcal{R}(s_k, a_k, s_{k+1})$. The quantity in the curly bracket in the right hand side is called {\it TD-error}
+where $\pi_k$, $s_k$, and $\alpha_k$ are the policy, the state, and the learning ratio at the time step $k$, respectively, and $r_{k+1} = \mathcal{R}(s_k, a_k, s_{k+1})$. Note that $\alpha_k \in [0,1]$ for any $k \in \mathcal{N}_0$. The quantity in the curly bracket in the right hand side is called {\it TD-error}
 
 \begin{align}
   \Delta_k = r_{k+1} + \hat{V}^{\pi_k}(s_{k+1}) - \hat{V}^{\pi_k}(s_k).
 \end{align}
 
-TD-error represents the difference between the current estimated value function and the better estimated value function of current state based on the actual experience, namely $r_{k+1} + \hat{V}^{\pi_k}(s_{k+1})$. Intuitively, as the value function repeatedly updated, the errors is gradually reduced. Hence, the magnitude of the learning ratio $\alpha_k$ describes how much we influence the better estimated value at the current state based on the most recent experience on the current value at the current state. The overall procedure TD-learning for a state-value function is given by Algoritym .
+TD-error represents the difference between the current estimated value function and the better estimated value function of current state based on the actual experience, namely $r_{k+1} + \hat{V}^{\pi_k}(s_{k+1})$. Intuitively, as the value function repeatedly updated, the errors is gradually reduced. Hence, the magnitude of the learning ratio $\alpha_k$ describes how much we influence the better estimated value at the current state based on the most recent experience on the current estimated value at the current state.
 
 TD-learning methods for an action-value function are classified as two main learning methods that are referred to {\it Q-learning} and {\it SARSA}.
+In Q-learning, we do not use the actual action at the next state to update the current estimated state-action value at the current state-action pair. Instead we use the optimal action at the next state to update the estimated state-action value function. That is, the way of update the estimated state-action value function $\hat{Q}^{\pi_k}(s_k, a_k)$ at time step $k$ as follows
 
+\begin{align}
+  \hat{Q}^{\pi_k}(s_k,a_k) \leftarrow \hat{Q}^{\pi_k}(s_k,a_k) + \alpha_k \{ r_{k+1} + \max_{a^{\prime} \in \mathcal{A}(s_{k+1})} \hat{Q}^{\pi_k}(s_{k+1}, a^{\prime}) - \hat{Q}^{\pi_k}(s_k,a_k) \}.
+\end{align}
 
+On the other hand, in SARSA, we use the actual action at the next state to update the current estimated state-action value function. That is,
+
+\begin{align}
+  \hat{Q}^{\pi_k}(s_k,a_k) \leftarrow \hat{Q}^{\pi_k}(s_k,a_k) + \alpha_k \{ r_{k+1} + \hat{Q}^{\pi_k}(s_{k+1}, a_{k+1}) - \hat{Q}^{\pi_k}(s_k,a_k) \}.
+\end{align}
 
 \section{Stochastic Discrete Event Systems}
 We represent a stochastic discrete event system (DES) as an MDP.
 
-\begin{definition}[Stochastic discrete event system]
-A DES is a tuple $D$ = $(S, E, \mathcal{E}, P_T, P_E, s_{init}, AP, L)$, where S is a finite set of states; $E$ is a finite set of events; $\mathcal{E} : S \rightarrow E$ is a mapping that maps each state to the set of feasible events at the state; $P_T:S \times S \times E \rightarrow [0,1]$ is a transition probability such that $\sum_{s' \in S} P_T(s'|s,e) = 1$ for any state $s \in S$ and any event $e \in \mathcal{E}(s) $ and $P_T(s'|s,e) = 0$ for any $e \notin \mathcal{E}(s)$; $P_E : E \times S \times 2^E \rightarrow [0,1]$ is the probability that an event occurs under a subset $\pi \in \mathcal{E}(s)$ of events allowed to occur at the state $s \in S$ such that $\Sigma_{e \in \pi} P_E(e|s,\pi) = 1$ and we call the subset the control pattern; for any $(s^{\prime}, s, \pi) \in S \times S \times 2^E$, we define the probability $P : S \times S \times 2^{E} \rightarrow [0,1]$ such that $P(s'|s,\pi) = \sum_{e \in \pi}P_E(e|s,\pi) P_T(s^{\prime}|s,e)$ and $\Sigma_{s^{\prime} \in S} P(s'|s,\pi) = 1$; $s_{init} \in S$ is the initial state; $AP$ is a finite set of atomic propositions; and $L : S \times E \times S \rightarrow 2^{AP}$ is a labeling function that assigns a set of atomic propositions to each transition $(s, e, s') \in S \times E \times S$. We assume that $E$ can be partitioned into the set of controllable events $E_c$ and the set of uncontrollable events $E_{uc}$ such that $E_c \cup E_{uc} = E$ and $E_c \cap E_{uc} = \emptyset$. Note that each event $e$ occurs probabilistically depending on only the current state and the subset of feasible events at the state given by a controller.
+\begin{definition}
+We represent a probabilistic discrete event system (DES) as a labeled Markov decision process (MDP). A DES is a tuple $D$ = $(S, E, P_T, P_E, s_{init}, AP, L)$, where S is a finite set of states; $E$ is a finite set of events; $P_T:S \times S \times E \rightarrow [0,1]$ is a transition probability; $P_E : E \times S \times 2^E \rightarrow [0,1]$ is the probability of an event occurrence under a state $s \in S$ and a subset $\pi \in \mathcal{E}(s)$; for any $(s^{\prime}, s, \pi) \in S \times S \times 2^E$, we define the probability $P : S \times S \times 2^{E} \rightarrow [0,1]$ such that $P(s'|s,\pi) = \sum_{e \in \pi}P_E(e|s,\pi) P_T(s^{\prime}|s,e)$; $s_{init} \in S$ is the initial state; $AP$ is a finite set of atomic propositions; and $L : S \times E \times S \rightarrow 2^{AP}$ is a labeling function that assigns a set of atomic propositions to each transition $(s, e, s') \in S \times E \times S$.
+Let $\mathcal{E}(s) = \{ e \in E ; \exists s^{\prime} \in S \text{ s.t. } P_T (s^{\prime} | s, e) \neq 0 \}$.
+Note that $\sum_{s' \in S} P_T(s'|s,e) = 1$ holds for any state $s \in S$ and event $e \in E$, $\Sigma_{e \in \pi} P_E(e|s,\pi) = 1$ holds for any state $s \in S$ and a subset $\pi \in 2^E$, and $\Sigma_{s^{\prime} \in S} P(s'|s,\pi) = 1$ holds for any state $s \in S$ and a subset $\pi \in 2^E$.
+We assume that $E$ can be partitioned into the set of controllable events $E_c$ and the set of uncontrollable events $E_{uc}$ such that $E_c \cup E_{uc} = E$ and $E_c \cap E_{uc} = \emptyset$. Note that each event $e$ occurs probabilistically depending on only the current state and the subset of feasible events at the state given by a controller.
 
-
-
-In the DES $D$, an infinite path for the DES starting from a state $s_0 \in S$ is defined as a sequence $\rho^D\ =\ s_0\pi_0e_0s_1 \ldots\ \in S (2^E E S)^{\omega}$ such that $P_E(e_i|s_i, \pi_i) > 0$ and $P_T(s_{i+1}|s_i, e_i) > 0$ for any $ i \in \mathbb{N}_0$. A finite path for the DES is a finite sequence in $S (2^E E S)^*$. In addition, we sometimes represent $\rho^D$ as $\rho^D_{init}$ to emphasize that $\rho^D$ starts from $s_0 = s_{init}$.
-For a path $\rho^D\ =\ s_0\pi_0e_0s_1 \ldots$, we define the corresponding labeled path $L(\rho^D)\ =\ L(s_0,e_0,s_1)L(s_1,e_1,s_2) \ldots \in (2^{AP})^{\omega}$.
-For simplicity, we often represent infinite (resp., finite) path for the DES as infinite (resp., finite) path and omit superscript $D$ of the paths.
+In the DES $D$, an infinite path starting from a state $s_0 \in S$ is defined as a sequence $\rho\ =\ s_0\pi_0e_0s_1 \ldots\ \in S (2^E E S)^{\omega}$ such that $P_T(e_{i}|s_i, \pi_i) > 0$ and $P_T(s_{i+1}|s_i, e_i) > 0$ for any $ i \in \mathbb{N}_0$. A finite path is a finite sequence in $S (2^E E S)^*$. In addition, we sometimes represent $\rho$ as $\rho_{init}$ to emphasize that $\rho$ starts from $s_0 = s_{init}$.
+For a path $\rho\ =\ s_0\pi_0e_0s_1 \ldots$, we define the corresponding labeled path $L(\rho)\ =\ L(s_0,e_0,s_1)L(s_1,e_1,s_2) \ldots \in (2^{AP})^{\omega}$.
 % We define the set of finite labeled paths as $\mathcal{L}(M) = \{ L(\rho) \in (2^{AP})^{\omega} ; \rho = s_0e_0s_1 \ldots \in S(ES)^{\ast},\ P(s_{i+1}|s_i, e_i) > 0,\ i \in \mathbb{N}_0  \}.
  $InfPath^{D}\ ( \text{resp., }FinPath^{D})$ is defined as the set of infinite (resp., finite) paths starting from $s_0=s_{init}$ in the DES $D$. For each finite path $\rho$, $last(\rho)$ denotes its last state.
 \end{definition}
@@ -147,7 +156,7 @@ For simplicity, we often represent infinite (resp., finite) path for the DES as 
 We define the supervisor as a controller for the DES that restricts the behaviors of the DES to satisfy a given specification.
 
 \begin{definition}[Supervisor]
-For the DES $D$,  a supervisor $SV : FinPath^{D} \rightarrow 2^E$ is defined as a mapping that maps each finite path to a set of allowed events at the finite path and we call the set the control pattern. In the following, the supervisor we consider is {\it state-based}, namely for any $\rho \in FinPath^{D}$, $SV(\rho) = SV(last(\rho))$. Note that the relation $E_{uc} \subset SV(\rho) \subset E$ holds for any $\rho \in FinPath^D$.
+For the DES $D$, a supervisor $SV : FinPath^{D} \rightarrow 2^E$ is defined as a mapping that maps each finite path to a set of enabled events at the finite path and we call the set a control pattern. A supervisor is positional if $SV(\rho) = SV(last(\rho))$ for any $\rho \in InfPath^D$. Note that the relation $E_{uc} \subset SV(\rho) \subset E$ holds for any $\rho \in FinPath^D$.
 Let $InfPath^{D}_{SV}$ (resp., $FinPath^{D}_{SV}$) be the set of infinite (resp., finite) paths starting from $s_0=s_{init}$ in the DES $D$ under a supervisor $SV$. The behavior of an DES $D$ under a supervisor $SV$ is defined on a probability space $(InfPath^{D}_{SV}, \mathcal{F}_{InfPath^{D}_{SV}}, Pr^{D}_{SV})$.
 \end{definition}
 
@@ -242,29 +251,29 @@ Pr^{D}_{SV}(s_{init} \models \varphi) > 0.
 
 Any LTL formula $\varphi$ can be converted into various automata, namely finite state machines that recognize %$\mathcal{L}$($\varphi$).
 all words satisfying $\varphi$.
- We define a generalized B\"{u}chi automaton at the beginning, and then introduce a limit-deterministic B\"{u}chi automaton.
+ We define a generalized B\"{u}chi automaton at the beginning, and then introduce a limit-deterministic B\"{u}chi automaton \cite{HKAKPL2019}.
 
-\begin{definition}[Transition-based generalized B\"{u}chi automaton]
-  A transition-based generalized B\"{u}chi automaton (tGBA) is a tuple $B = (X,\ x_{init},\ \Sigma,\ \delta,\ \mathcal{F})$, where $X$ is a finite set of states, $x_{init} \in X$ is the initial state, $\Sigma$ is an input alphabet, $\delta \subset  X\times \Sigma \times X$ is a set of transitions, and $\mathcal{F} = \{F_1,\ldots,F_n\}$ is an acceptance condition, where for each $ j \in \{1,\ldots,n\}$, $F_j \subset \delta$ is a set of accepting transitions and called an accepting set.
+ \begin{definition}[Transition-based generalized B\"{u}chi automata]
+   A transition-based generalized B\"{u}chi automaton (tGBA) is a tuple $B = (X,\ x_{init},\ \Sigma,\ \delta,\ \mathcal{F})$, where $X$ is a finite set of states, $x_{init} \in X$ is the initial state, $\Sigma$ is an input alphabet including $\varepsilon$, $\delta \subset  X\times \Sigma \times X$ is a set of transitions, and $\mathcal{F} = \{F_1,\ldots,F_n\}$ is an acceptance condition, where for each $ j \in \{1,\ldots,n\}$, $F_j \subset \delta$ is a set of accepting transitions and called an accepting set. We refer to a tGBA with one accepting set as a tBA.
 
-  Let $\Sigma^{\omega}$ be the set of all infinite words over $\Sigma$ and let an infinite run be an infinite sequence $r = x_0\sigma_0x_1 \ldots \in X (\Sigma X)^{\omega}$ where $(x_i, \sigma_{i}, x_{i+1}) \in \delta\ $ for any $ i\in \mathbb{N}_0$. An infinite word $w = \sigma_0\sigma_1 \ldots \in \Sigma^{\omega}$ is accepted by $B_{\varphi}$ if and only if there exists an infinite run $r = x_0 \sigma_0 x_1 \ldots$ starting from $x_0 = x_{init}$ such that $inf(r) \cap F_j \neq \emptyset\ $ for each $F_j \in \mathcal{F}$, where $inf(r)$ is the set of transitions that occur infinitely often in the run $r$.
-\end{definition}
+   Let $\Sigma^{\omega}$ be the set of all infinite words over $\Sigma$ and let an infinite run be an infinite sequence $r = x_0\sigma_0x_1 \ldots \in X (\Sigma X)^{\omega}$ where $(x_i, \sigma_{i}, x_{i+1}) \in \delta\ $ for any $ i\in \mathbb{N}_0$. An infinite word $w = \sigma_0\sigma_1 \ldots \in \Sigma^{\omega}$ is accepted by $B_{\varphi}$ if and only if there exists an infinite run $r = x_0 \sigma_0 x_1 \ldots$ starting from $x_0 = x_{init}$ such that $inf(r) \cap F_j \neq \emptyset\ $ for each $F_j \in \mathcal{F}$, where $inf(r)$ is the set of transitions that occur infinitely often in the run $r$.
+ \end{definition}
 
 \begin{definition}[Sink state]
 A sink state in state set $X$ of an augmented tLDBA $\bar{B}_{\varphi} = (\bar{X}, \bar{x}_{init},\bar{\Sigma},\bar{\delta},\bar{\mathcal{F}})$ is defined as a state such that there exist no accepting transition of $\bar{B}_{\varphi}$ that is accessible from the state. We denote the set of sink states as $Sink Set$.
 \end{definition}
 
-\begin{definition}[Transition-based limit-deterministic generalized B\"{u}chi automaton]
-  A tGBA $B = (X, x_{init},\Sigma,\delta,\mathcal{F})$ is limit-deterministic (tLDBA) if the following conditions hold.
+\begin{definition}[Limit-deterministic generalized B\"{u}chi automata]
+  A transition-based limit-deterministic generalized B\"{u}chi automaton (tLDGBA) is a tGBA $B = (X, x_{init},\Sigma,\delta,\mathcal{F})$ such that $X$ is partitioned into two disjoint sets $X_{initial}$ and $X_{final}$ such that
   \begin{itemize}
-    \item $\exists X_{initial},\ X_{final} \subset X$ s.t. $X=X_{initial} \cup X_{final} \land X_{initial} \cap X_{final} = \emptyset$,
     \item $F_j \subset X_{final} \times \Sigma \times X_{final}$, $\forall j \in \{ 1,...,n \}$,
-    \item $| \{ (x, \sigma, x^{\prime}) \! \in \! \delta; x^{\prime} \! \in \! X_{initial} \} | \! \leq \! 1$, $\forall x \! \in \! X_{initial}, \forall \sigma \! \in \! \Sigma$,
+    %\item $| \{ (x, \sigma, x^{\prime}) \! \in \! \delta; x^{\prime} \! \in \! X_{initial} \} | \! \leq \! 1$, $\forall x \! \in \! X_{initial}, \forall \sigma \! \in \! \Sigma$,
     \item $| \{ (x, \sigma, x^{\prime}) \in \delta; x^{\prime} \in X_{final} \} | \! \leq \! 1$, $\forall x \! \in \! X_{final}, \forall \sigma \! \in \! \Sigma$,
     \item $| \{ (x, \sigma, x^{\prime}) \in \delta; x^{\prime} \in X_{initial} \} |$=0, $\forall x \! \in \! X_{final}, \forall \sigma \! \in \! \Sigma$.
-  \end{itemize}
+    \item there are $\varepsilon$-transitions into $X_{final}$ from $X_{initial}$.
+\end{itemize}
 \end{definition}
-A tLDBA is a tGBA whose state set can be partitioned into the initial part $X_{initial}$ and the final part $X_{final}$, and they are connected by a single ``guess". The final part has all accepting sets. The transitions in each part are deterministic.
-It is known that, for any LTL formula $ \varphi $, there exists a tLDBA that accepts all words satisfying $\varphi$ \cite{SEJK2016}.
+  An $\varepsilon$-transition enables the tLDGBA to change its state with no input. Then, the $\varepsilon$-transitions reflect the single ``guess" from $X_{initial}$ to $X_{final}$. Note that by the construction in \cite{SEJK2016}, the transitions in each part are deterministic except for $\varepsilon$-transitions into $X_{final}$ from $X_{intial}$.
+It is known that, for any LTL formula $ \varphi $, there exists a tLDGBA that accepts all words satisfying $\varphi$ \cite{SEJK2016}. We refer to a tLDGBA with one accepting set as a tLDBA.
 %in $ \mathcal{L}(\varphi) $ \cite{SEJK2016}.
-In particular, we represent a tLGBA recognizing an LTL formula $\varphi$ as $B_{\varphi}$, whose input alphabet is given by $ \Sigma = 2^{AP} $.
+In particular, we represent a tLDGBA recognizing an LTL formula $\varphi$ as $B_{\varphi}$, whose input alphabet is given by $ \Sigma = 2^{AP} \cup \{ \varepsilon \} $.

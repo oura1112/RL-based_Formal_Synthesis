@@ -1,4 +1,4 @@
-PWD C:/Users/ooura/Documents/GitHub/Chap2/Chap2_seminar
+PWD C:/Users/oura/Documents/GitHub/Chap2/Chap2_seminar
 INPUT c:/w32tex/share/texmf-dist/web2c/texmf.cnf
 INPUT c:/w32tex/share/texmf-dist/web2c/eptex/platex.fmt
 INPUT system_model3.tex
@@ -62,6 +62,7 @@ INPUT c:/w32tex/share/texmf-dist/tex/latex/comment/comment.sty
 INPUT system_model3.aux
 INPUT system_model3.aux
 OUTPUT system_model3.aux
+INPUT c:/w32tex/share/texmf-dist/fonts/map/fontname/texfonts.map
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/tmin10.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/min10.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmr12.tfm

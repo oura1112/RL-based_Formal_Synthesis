@@ -1,19 +1,20 @@
-\contentsline {chapter}{Abstract}{i}
-\contentsline {chapter}{\numberline {1}Introduction}{1}
-\contentsline {chapter}{\numberline {2}Preliminaries}{3}
-\contentsline {section}{\numberline {2.1}Markov Decision Processes}{3}
-\contentsline {section}{\numberline {2.2}Reinforcement Learning}{4}
-\contentsline {subsection}{\numberline {2.2.1}Objective functions and an Optimal policy}{4}
-\contentsline {subsection}{\numberline {2.2.2}Temporal Difference Learning}{6}
-\contentsline {section}{\numberline {2.3}Stochastic Discrete Event Systems}{7}
-\contentsline {section}{\numberline {2.4}Linear Temporal Logic and Automata}{9}
-\contentsline {chapter}{\numberline {3}Reinforcement-Learning-Based Synthesis of Control Policy}{12}
-\contentsline {section}{\numberline {3.1}Example}{14}
-\contentsline {section}{\numberline {3.2}Conclusions}{16}
-\contentsline {chapter}{\numberline {4}4th Chapter}{18}
-\contentsline {section}{\numberline {4.1}Reinforcement-learning-based Synthesis of Supervisor}{18}
-\contentsline {section}{\numberline {4.2}Example}{19}
-\contentsline {chapter}{\numberline {5}Conclusions}{25}
-\contentsline {chapter}{\numberline {A}Proofs}{26}
-\contentsline {chapter}{Acknowledgment}{29}
-\contentsline {chapter}{References}{30}
+\contentsline {chapter}{Abstract}{i}% 
+\contentsline {chapter}{\numberline {1}Introduction}{1}% 
+\contentsline {chapter}{\numberline {2}Preliminaries}{3}% 
+\contentsline {section}{\numberline {2.1}Markov Decision Processes}{3}% 
+\contentsline {section}{\numberline {2.2}Reinforcement Learning}{4}% 
+\contentsline {subsection}{\numberline {2.2.1}Objective functions and an Optimal policy}{4}% 
+\contentsline {subsection}{\numberline {2.2.2}Temporal Difference Learning}{6}% 
+\contentsline {section}{\numberline {2.3}Stochastic Discrete Event Systems}{7}% 
+\contentsline {section}{\numberline {2.4}Linear Temporal Logic and Automata}{9}% 
+\contentsline {chapter}{\numberline {3}Reinforcement learning based control policy synthesis for LTL specifications}{12}% 
+\contentsline {section}{\numberline {3.1}Augmentation of tLDGBAs and Synthesis Method}{12}% 
+\contentsline {section}{\numberline {3.2}Example}{14}% 
+\contentsline {section}{\numberline {3.3}Conclusions}{17}% 
+\contentsline {chapter}{\numberline {4}Reinforcement learning based supervisor synthesis for LTL specifications}{18}% 
+\contentsline {section}{\numberline {4.1}Learning Algorithm}{19}% 
+\contentsline {section}{\numberline {4.2}Example}{21}% 
+\contentsline {section}{\numberline {4.3}Conclusion}{24}% 
+\contentsline {chapter}{\numberline {A}Proofs}{25}% 
+\contentsline {chapter}{Acknowledgment}{28}% 
+\contentsline {chapter}{References}{29}% 

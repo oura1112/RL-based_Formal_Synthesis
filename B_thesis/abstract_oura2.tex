@@ -95,7 +95,8 @@ LTL論理式$\varphi$に対する遷移ベースのLDGBA（tLDGBA）は$B_{\varp
 状態集合$X$は2つの部分集合$X_{initial}$と$X_{final}$に分割でき，$X_{initial}$内と$X_{final}$内の遷移は決定的である．$X_{initial}$から$X_{final}$への遷移は非決定的で，それらは$\varepsilon$-遷移で表現される．また，全ての$F_i$の要素は$X_{final}$内の遷移である．$X_{final}$から$X_{initial}$への遷移は存在しない．
 
 $V$を$n$次元2値ベクトルの集合とする．$\bm{1},\bm{0}$を，各々すべての要素が$1,0$のベクトルとする．$B_{\varphi}$を拡張するため，以下に３つの関数$visitf: \delta \to V$, $reset:V \to V$, $Max:V \times V \to V$を導入する．
-任意の$e \in \delta$に対して，$visitf(e) = (v_1,\ldots,v_n)^T$，ここで
+任意の$e \in \delta$に対して，$visitf(e) = (v_1,\ldots,v_n)^T$，
+ここで各$i \in \{ 1,\dots, n \}$に対して
 %$e\in F_i$ならば$v_i = 1$，それ以外ならば$v_i = 0$である．
 %\begin{comment}
 \begin{align}
@@ -121,11 +122,11 @@ $V$を$n$次元2値ベクトルの集合とする．$\bm{1},\bm{0}$を，各々�
   \right. \nonumber
 \end{align}
 %\end{comment}
-任意の$v,u \in V$に対して，
+任意の$v,u \in V$に対して，$Max(v,u) = (l_1, \ldots, l_n)^T$,
+ここで各$i \in \{ 1,\dots, n \}$に対して
 \begin{align}
-Max(v,u) = (l_1, \ldots, l_n)^T, \nonumber 
+  l_i = \max \{ v_i, u_i \}．
 \end{align}
-ここで各$i \in \{ 1,\dots, n \}$に対して$l_i = \max \{ v_i, u_i \}$．
 
 $B_\varphi = (X,x_{init},\Sigma,\delta,\mathcal{F})$に対する拡張オートマトンを次のtLDGBA $\bar{B}_{\varphi} = (\bar{X},\bar{x}_{init},\bar{\Sigma},\bar{\delta},\bar{\mathcal{F}})$で定義する．
 ．
@@ -134,13 +135,13 @@ $B_\varphi = (X,x_{init},\Sigma,\delta,\mathcal{F})$に対する拡張オート�
   \item $\bar{x}_{init} = (x_{init}, \bm{0})$ : 初期状態.
   \item $\bar{\Sigma} = \Sigma$ : 文字の有限集合.
   \item $\bar{\delta}$ = $\{ ((x,v), \bar{\sigma}, (x^{\prime},v^{\prime})) \in \bar{X} \times \bar{\Sigma} \times \bar{X}\ ;\ (x,\bar{\sigma},x^{\prime}) \in \delta,\ v^{\prime} = reset(Max(v,visitf((x,\bar{\sigma},x^{\prime})))) \}$: 状態遷移の集合.
-  \item $\mathcal{\bar{F}} = \{ \bar{F_1}, \ldots ,\bar{F_n} \}$ : 受理条件．各$j \in \{ 1,\ldots,n \}$に対して$\bar{F_j} = \{ ((x,v), \bar{\sigma}, (x^{\prime},v^{\prime})) \in \bar{\delta}\ ;\ (x, \bar{\sigma}, x^{\prime}) \in F_j,\ v_j = 0,\ visitf((x, \bar{\sigma}, x^{\prime}))_j = 1\}$と定義される．ここで，$visitf((x, \bar{\sigma}, x^{\prime}))_j$は$visitf((x, \bar{\sigma}, x^{\prime}))$の$j$番目の要素を表す.
+  \item $\mathcal{\bar{F}} = \{ \bar{F_1}, \ldots ,\bar{F_n} \}$ : 受理条件．各$j \in \{ 1,\ldots,n \}$に対して$\bar{F_j} = \{ ((x,v), \bar{\sigma}, (x^{\prime},v^{\prime})) \in \bar{\delta}\ ;\ (x, \bar{\sigma}, x^{\prime}) \in F_j,\ v_j = 0\}$と定義される．
 \end{itemize}
 
 MDP $M$と拡張tLDGBA $\bar{B}_{\varphi}$による合成MDP $M^{\otimes} = M \otimes \bar{B}_{\varphi}$を次の$(S^{\otimes}, A^{\otimes}, s_{init}^{\otimes}, P^{\otimes}, \delta^{\otimes}, {\mathcal F}^{\otimes})$で定義する．
 \begin{itemize}
   \item $S^{\otimes} = S \times \bar{X}$ : 状態の有限集合.
-  \item $A^{\otimes}=A \cup \{ \varepsilon_{x^{\prime}} ; \exists x^{\prime}\! \in \! X \text{ s.t. } (x,\varepsilon_{x^{\prime}}, x^{\prime}) \in \delta \}$ : 行動の有限集合．ここで，$\varepsilon_{x^{\prime}}$は$\varepsilon$-遷移 $(x,\varepsilon_{x^{\prime}}, x^{\prime}) \in \delta$に対する行動である．
+  \item $A^{\otimes}=A \cup \{ \varepsilon_{x^{\prime}} ; \exists x^{\prime}\! \in \! X \text{ s.t. } (\bar{x}, \varepsilon, \bar{x}^{\prime})\! \in \! \bar{\delta} \}$ : 行動の有限集合．ここで，$\varepsilon_{x^{\prime}}$は$\varepsilon$-遷移 $(\bar{x}, \varepsilon, \bar{x}^{\prime})\! \in \! \bar{\delta}$に対する行動である．
   \item $s^{\otimes}_{init} = (s_{init},\bar{x}_{init})$ : 合成MDPの初期状態．
   \item $P^{\otimes} : S^{\otimes} \times S^{\otimes} \times A^{\otimes} \to [0,1] $ : 状態の遷移確率．以下のように定義される．
   \begin{align}
@@ -149,7 +150,7 @@ MDP $M$と拡張tLDGBA $\bar{B}_{\varphi}$による合成MDP $M^{\otimes} = M \o
     \left\{
     \begin{aligned}
       &P(s^{\prime} | s, a) &   &\text{if}\  (\bar{x}, L((s,a,s^{\prime})), \bar{x}^{\prime}) \in \bar{\delta}, a \in \mathcal{A}(s)，\\
-      &1 &   &\text{if}\ s\!=\!s^{\prime},v\!=\!v^{\prime},(x, \varepsilon_{x^{\prime}}, x^{\prime})\! \in \! \delta, a=\varepsilon_{x^{\prime}}，\\
+      &1 &   &\text{if}\ s\!=\!s^{\prime}, (\bar{x}, \varepsilon, \bar{x}^{\prime})\! \in \! \bar{\delta}, a=\varepsilon_{x^{\prime}}，\\
       &0 &   &\text{otherwise},
     \end{aligned}
     \right. \nonumber

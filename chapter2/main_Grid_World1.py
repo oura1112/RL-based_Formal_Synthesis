@@ -19,7 +19,7 @@ mpl.style.use('seaborn-whitegrid')
 #env = product_Grid_World1.Product_Grid1(init_c_state=0, init_m_state=2, init_q=0, init_v = [0,0])
 #agent = Supervisor.Supervisor(env)
 
-#Proposed 禁止事象にコストをかける. ambiguity set を用いる
+#Proposed 禁止事象にコストをかける. ambiguity set を用いる -> 許可事象に報酬
 env = product_Grid_World1.Product_Grid1(init_c_state=0, init_m_state=2, init_q=0, init_v = [0,0])
 agent = Supervisor_ambiguous.Supervisor(env)
 
