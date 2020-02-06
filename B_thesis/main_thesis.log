@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.sjis) (TeX Live 2019/W32TeX) (preloaded format=platex 2019.9.9)  5 FEB 2020 17:44
+This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.sjis) (TeX Live 2019/W32TeX) (preloaded format=platex 2019.9.9)  6 FEB 2020 22:32
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -449,13 +449,17 @@ File: max_Q_value_15000_5000_rn_all_rsink_1000.png Graphic file (type bmp)
  [22]
 File: simulate_TD_v_15000_5000_rn_all_rsink_1000.png Graphic file (type bmp)
 <simulate_TD_v_15000_5000_rn_all_rsink_1000.png>
- [23]) [24]
+) [23] [24]
+5
+(./chap5.tex) [25
+
+]
 A
 (./proof_of_lemma3_1.tex) (./proof_of_thm3_1.tex
 
-LaTeX Warning: Reference `lemma1' on page 25 undefined on input line 3.
+LaTeX Warning: Reference `lemma1' on page 26 undefined on input line 3.
 
-[25
+[26
 
 ]
 Underfull \hbox (badness 1303) in paragraph at lines 28--30
@@ -467,32 +471,32 @@ Underfull \hbox (badness 1742) in paragraph at lines 28--30
 \OT1/cmr/m/n/10 [[]]. Ob-vi-ously, $\OML/cmm/m/it/10 p[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s[]; s[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^U \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 p[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s[]; s[]\OT1/cmr/m/n/10 ))[] \OML/cmm/m/it/10 > \OT1/cmr/m/n/10 0$ holds for any
  []
 
-[26]) [27] [28
+[27]) [28] [29
 
-] [29
+] [30
 
 ]
-Underfull \hbox (badness 1675) in paragraph at lines 223--226
+Underfull \hbox (badness 1675) in paragraph at lines 225--228
 []\OT1/cmr/m/n/10 A. K. Bozkurt, Y. Wang, M. Za-vlanos, and M. Pa-jic, ``Con-trol syn-the-sis
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 230--232
+Underfull \hbox (badness 10000) in paragraph at lines 232--234
 []\OT1/cmr/m/n/10 L. Breuer, ``In-tro-duc-tion to Stochas-tic Pro-cesses'', [On-line]. Avail-able:
  []
 
-[30] (./main_thesis.aux)
+[31] (./main_thesis.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 3897 strings out of 493215
- 49931 string characters out of 6145921
+ 3900 strings out of 493215
+ 49956 string characters out of 6145921
  128113 words of memory out of 5000000
  7787 multiletter control sequences out of 15000+600000
  27581 words of font info for 123 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
- 28i,21n,32p,1008b,571s stack positions out of 5000i,500n,10000p,500000b,80000s
+ 28i,21n,32p,1007b,571s stack positions out of 5000i,500n,10000p,500000b,80000s
 
-Output written on main_thesis.dvi (33 pages, 120636 bytes).
+Output written on main_thesis.dvi (34 pages, 120108 bytes).

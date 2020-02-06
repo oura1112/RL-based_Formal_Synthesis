@@ -352,7 +352,8 @@ correctly in this example.
 \end{review point}
 
 \begin{reply}
-  We revised the statement of the results and added the comparison to tLDBA. The result for the method in \cite{HAK2019, HKAKPL2019} is because that it is impossible the transitions labeled by $\{ a \}$ and $\{ b \}$ occur from $s_4$ infinitely often by any positional policy with the tLDGBA shown in Fig.\ 1. In detail, the state of the tLDBA is always $x_0$ while the agent does not move to states $s_2$, $s_3$, $s_5$, and $s_6$. Thus, the state of the product MDP is always $(s_4, x_0)$ while the agent stays in $s_4$. While our proposed method can recognize the previous visits as a state. Thus, our proposed method can synthesize a positional policy satisfying $\varphi$ on the product MDP, while the method in \cite{HAK2019, HKAKPL2019} cannot. %Therefore, the method in \cite{HAK2019} may not synthesize positional policies satisfying LTL specifications on the product MDP depending on the settings of MDPs or LTL specifications.
+  We revised the statement of the results. The result for the method in \cite{HAK2019,HKAKPL2019} is because it is impossible the transitions labeled with $\{ a \}$ and $\{ b \}$ occur from $s_4$ infinitely often by any positional policy with $B_{\varphi}$ shown in Fig.\ 1. In detail, the state of the $B_{\varphi}$ is always $x_0$ while the agent does not move to bad states $s_2$, $s_3$, $s_5$, and $s_6$. Thus, unless the bad states are visited, the product state is always $(s_4, x_0)$ while the agent is in $s_4$. Thus, the agent cannot visit both of $s_0$ and $s_8$ by a deterministic action selection at $s_4$. While our proposed method can recognize the previous visits as a state. Thus, our proposed method can synthesize a positional policy satisfying $\varphi$ on the product MDP, while the method in \cite{HAK2019, HKAKPL2019} cannot. That is, in order to obtain a positional policy satisfying a given LTL formula $\varphi$ with the method in \cite{HAK2019,HKAKPL2019}, we may have to make a redundant LDGBA associated with $\varphi$ heuristically. However, the heuristic redundancy can cause a sparsity of rewards and a search space larger than necessary, and so on.
+  %Therefore, the method in \cite{HAK2019} may not synthesize positional policies satisfying LTL specifications on the product MDP depending on the settings of MDPs or LTL specifications.
 \end{reply}
 
 \begin{review point}
@@ -360,7 +361,7 @@ correctly in this example.
 \end{review point}
 
 \begin{reply}
-
+  For simplicity, we omitted the superscripts $^{\otimes}$ with product states in the proof of Theorem 1.
 \end{reply}
 
 \begin{review point}
@@ -385,7 +386,7 @@ helpful to include a paragraph that describes the notation.
 \end{review point}
 
 \begin{reply}
-
+  For simplicity, we omitted the superscripts $^{\otimes}$ with product states in the proof of Theorem 1.
 \end{reply}
 
 \begin{review point}

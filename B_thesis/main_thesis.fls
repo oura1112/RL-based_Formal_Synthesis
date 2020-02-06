@@ -194,6 +194,8 @@ INPUT max_Q_value_15000_5000_rn_all_rsink_1000.png
 INPUT extractbb -B cropbox -O max_Q_value_15000_5000_rn_all_rsink_1000.png
 INPUT simulate_TD_v_15000_5000_rn_all_rsink_1000.png
 INPUT extractbb -B cropbox -O simulate_TD_v_15000_5000_rn_all_rsink_1000.png
+INPUT chap5.tex
+INPUT chap5.tex
 INPUT proof_of_lemma3_1.tex
 INPUT proof_of_lemma3_1.tex
 INPUT proof_of_thm3_1.tex

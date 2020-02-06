@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.sjis) (TeX Live 2019/W32TeX) (preloaded format=platex 2019.9.9)  5 FEB 2020 21:41
+This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.sjis) (TeX Live 2019/W32TeX) (preloaded format=platex 2019.9.9)  6 FEB 2020 00:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -250,11 +250,11 @@ Overfull \hbox (28.98625pt too wide) in paragraph at lines 74--76
 ) [8] [9]
 
 LaTeX Font Warning: Font shape `JT1/mc/m/it' undefined
-(Font)              using `JT1/mc/m/n' instead on input line 415.
+(Font)              using `JT1/mc/m/n' instead on input line 416.
 
 
 LaTeX Font Warning: Font shape `JY1/mc/m/it' undefined
-(Font)              using `JY1/mc/m/n' instead on input line 415.
+(Font)              using `JY1/mc/m/n' instead on input line 416.
 
 [10] [11] (./lcss_reply.aux)
 
@@ -270,4 +270,4 @@ Here is how much of TeX's memory you used:
  929 hyphenation exceptions out of 8191
  27i,6n,32p,1772b,391s stack positions out of 5000i,500n,10000p,500000b,80000s
 
-Output written on lcss_reply.dvi (11 pages, 45724 bytes).
+Output written on lcss_reply.dvi (11 pages, 46592 bytes).

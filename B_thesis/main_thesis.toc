@@ -10,11 +10,10 @@
 \contentsline {chapter}{\numberline {3}Reinforcement learning based control policy synthesis for LTL specifications}{12}% 
 \contentsline {section}{\numberline {3.1}Augmentation of tLDGBAs and Synthesis Method}{12}% 
 \contentsline {section}{\numberline {3.2}Example}{14}% 
-\contentsline {section}{\numberline {3.3}Conclusions}{17}% 
 \contentsline {chapter}{\numberline {4}Reinforcement learning based supervisor synthesis for LTL specifications}{18}% 
 \contentsline {section}{\numberline {4.1}Learning Algorithm}{19}% 
 \contentsline {section}{\numberline {4.2}Example}{21}% 
-\contentsline {section}{\numberline {4.3}Conclusion}{24}% 
-\contentsline {chapter}{\numberline {A}Proofs}{25}% 
-\contentsline {chapter}{Acknowledgment}{28}% 
-\contentsline {chapter}{References}{29}% 
+\contentsline {chapter}{\numberline {5}Conclusions}{25}% 
+\contentsline {chapter}{\numberline {A}Proofs}{26}% 
+\contentsline {chapter}{Acknowledgment}{29}% 
+\contentsline {chapter}{References}{30}% 

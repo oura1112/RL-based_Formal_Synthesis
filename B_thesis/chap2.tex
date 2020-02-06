@@ -35,7 +35,7 @@ In an MDP $M$, we define a reward function $\mathcal{R}:S \times A \times S \rig
 
 \section{Reinforcement Learning}
 
-Reinforcement learning is the theoretical framework to find a policy maximizing or minimizing an objective function through the iterative interactions between the learner referred to the agent and the controlled system referred to the environment. The interaction is that the agent takes an action on the environment and the environment returns a observation such as a immediate reward or next state. In this section, since we use model-free method in this thesis, we refer the model-free reinforcement learning, which find a policy maximizing or minimizing an objective function without inference the environment implicitly.
+Reinforcement learning is the theoretical framework to find a policy maximizing or minimizing an objective function through the iterative interactions between the learner referred to the agent and the controlled system referred to the environment. The interaction is that the agent takes an action on the environment and the environment returns a observation such as a immediate reward or next state. In this section, since we use model-free method in this thesis, we refer the model-free reinforcement learning, which find a policy maximizing or minimizing an objective function without explicit estimations for the environment.
 
 \subsection{Objective functions and an Optimal policy}
 
@@ -106,7 +106,7 @@ We call $V^{\ast}$ and $Q^{\ast}$ the optimal state-value function and the optim
 
 In words, the set of optimal policies under $V^{\ast}$ and the set of optimal polisies under $Q^{\ast}$ are the same.
 
-If we know the full and accurate information of the MDP such as the transition probability or the reward function, we can obtain an optimal policy by solving Eqs. \ref{opt_V} or \ref{opt_Q} directly. we usually use {\it Dynamic Programming} by solving recursively equation such as Eqs \ref{opt_V} or \ref{opt_Q}. To find $V^{\pi}$ or $Q^{\pi}$ for a policy $\pi$ by solving Eqs. \ref{V_pi} or \ref{Q_pi} is referred to {\it Policy Evaluation}. For any state $s \in S$ or any state-action pair $(s,a) \in S \times A$, to update the policy $\pi$ to increase the value of $V^{\pi}(s)$ or $Q^{\pi}(s,a)$ is referred to {\it Policy Improvement}. The method that finds an optimal policy by updating optimal value function repeatedly in accordance with Eqs. \ref{opt_V} ar \ref{opt_Q} is referred to {\it Value Iteration}. The method that finds an optimal policy by repeating policy evaluation and policy improvement alternately is referred to {\it Policy Iteration}.
+If we know the full and accurate information of an MDP such as the transition probability or the reward function, we can obtain an optimal policy by solving Eqs. \ref{opt_V} or \ref{opt_Q} directly. we usually use {\it Dynamic Programming} by solving recursively equation such as Eqs \ref{opt_V} or \ref{opt_Q}. To find $V^{\pi}$ or $Q^{\pi}$ for a policy $\pi$ by solving Eqs. \ref{V_pi} or \ref{Q_pi} is referred to {\it Policy Evaluation}. For any state $s \in S$ or any state-action pair $(s,a) \in S \times A$, to update the policy $\pi$ to increase the value of $V^{\pi}(s)$ or $Q^{\pi}(s,a)$ is referred to {\it Policy Improvement}. The method that finds an optimal policy by updating optimal value function repeatedly in accordance with Eqs. \ref{opt_V} ar \ref{opt_Q} is referred to {\it Value Iteration}. The method that finds an optimal policy by repeating policy evaluation and policy improvement alternately is referred to {\it Policy Iteration}.
 
 \subsection{Temporal Difference Learning}
 
@@ -117,16 +117,16 @@ Temporal difference learning (TD-learning) is the basic method of model-free rei
 \begin{align}
   \hat{V}^{\pi_k}(s_k) \leftarrow \hat{V}^{\pi_k}(s_k) + \alpha_k \{ r_{k+1} + \hat{V}^{\pi_k}(s_{k+1}) - \hat{V}^{\pi_k}(s_k) \},
 \end{align}
-where $\pi_k$, $s_k$, and $\alpha_k$ are the policy, the state, and the learning ratio at the time step $k$, respectively, and $r_{k+1} = \mathcal{R}(s_k, a_k, s_{k+1})$. Note that $\alpha_k \in [0,1]$ for any $k \in \mathcal{N}_0$. The quantity in the curly bracket in the right hand side is called {\it TD-error}
+where $\pi_k$, $s_k$, and $\alpha_k$ are the policy, the state, and the learning ratio at the time step $k$, respectively, and $r_{k+1} = \mathcal{R}(s_k, a_k, s_{k+1})$. Note that $\alpha_k \in [0,1]$ for any $k \in \mathbb{N}_0$. The quantity in the curly bracket in the right hand side is called {\it TD-error}
 
 \begin{align}
   \Delta_k = r_{k+1} + \hat{V}^{\pi_k}(s_{k+1}) - \hat{V}^{\pi_k}(s_k).
 \end{align}
 
-TD-error represents the difference between the current estimated value function and the better estimated value function of current state based on the actual experience, namely $r_{k+1} + \hat{V}^{\pi_k}(s_{k+1})$. Intuitively, as the value function repeatedly updated, the errors is gradually reduced. Hence, the magnitude of the learning ratio $\alpha_k$ describes how much we influence the better estimated value at the current state based on the most recent experience on the current estimated value at the current state.
+TD-error represents the difference between the current estimated value function and the better estimated value function of a current state based on an actual experience, namely $r_{k+1} + \hat{V}^{\pi_k}(s_{k+1})$. Intuitively, as the value function repeatedly is updated, the errors is gradually reduced. Hence, the magnitude of the learning ratio $\alpha_k$ describes how much we influence the better estimated value at the current state based on the most recent experience on the current estimated value at the current state.
 
 TD-learning methods for an action-value function are classified as two main learning methods that are referred to {\it Q-learning} and {\it SARSA}.
-In Q-learning, we do not use the actual action at the next state to update the current estimated state-action value at the current state-action pair. Instead we use the optimal action at the next state to update the estimated state-action value function. That is, the way of update the estimated state-action value function $\hat{Q}^{\pi_k}(s_k, a_k)$ at time step $k$ as follows
+In Q-learning, we do not use the actual action at the next state to update the current estimated state-action value at the current state-action pair. Instead we use the optimal action at the next state to update the estimated state-action value function. That is, the way of update the estimated state-action value function $\hat{Q}^{\pi_k}(s_k, a_k)$ at time step $k$ is as follows
 
 \begin{align}
   \hat{Q}^{\pi_k}(s_k,a_k) \leftarrow \hat{Q}^{\pi_k}(s_k,a_k) + \alpha_k \{ r_{k+1} + \max_{a^{\prime} \in \mathcal{A}(s_{k+1})} \hat{Q}^{\pi_k}(s_{k+1}, a^{\prime}) - \hat{Q}^{\pi_k}(s_k,a_k) \}.
@@ -160,7 +160,7 @@ For the DES $D$, a supervisor $SV : FinPath^{D} \rightarrow 2^E$ is defined as a
 Let $InfPath^{D}_{SV}$ (resp., $FinPath^{D}_{SV}$) be the set of infinite (resp., finite) paths starting from $s_0=s_{init}$ in the DES $D$ under a supervisor $SV$. The behavior of an DES $D$ under a supervisor $SV$ is defined on a probability space $(InfPath^{D}_{SV}, \mathcal{F}_{InfPath^{D}_{SV}}, Pr^{D}_{SV})$.
 \end{definition}
 
-We consider the objective function similar to the {\it Bellamn optimality function} defined by the definition \ref{opt_pol}.
+We consider the objective function similar to the {\it Bellman optimality function} defined by the definition \ref{opt_pol}.
 \begin{definition}[Optimal value function for DESs]
 
   From the view point of reinforcement learning, the DES can be interpreted as the environment controlled by the supervisor and the supervisor can be interpreted as the policy. We introduce the two following assumptions.
