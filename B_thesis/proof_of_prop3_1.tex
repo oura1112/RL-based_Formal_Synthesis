@@ -1,0 +1,79 @@
+\begin{proof}[Proof of Proposition\ref{lemma3-1}]
+  First we show $ \mathcal{L}(B) \subseteq \mathcal{L}(\bar{B}) $, then show $ \mathcal{L}(B) \supseteq \mathcal{L}(\bar{B}) $, concluding $ \mathcal{L}(B) = \mathcal{L}(\bar{B}) $. \\
+  \begin{itemize}
+  	\item $ \mathcal{L}(B) \subseteq \mathcal{L}(\bar{B}) $:
+  %	First, we show $ \mathcal{L}(B) \subseteq \mathcal{L}(\bar{B}) $.
+  	Consider any $ w = \sigma_0 \sigma_1 \ldots \in \mathcal{L}(B) $.
+  	Then, there exists a run $ r = x_0 \sigma_0 x_1 \sigma_1 x_2 \ldots \in X(\Sigma X)^\omega $ of $ B $ such that $ x_0 = x_{init} $ and $ inf(r) \cap F_j \neq \emptyset $ for each $ F_j \in \mathcal{F} $.
+  	Recall that $ \Sigma = \bar{\Sigma} $.
+  	For the run $ r $, we construct a sequence $ \bar{r} = \bar{x}_0 \bar{\sigma}_0 \bar{x}_1 \bar{\sigma}_1 \bar{x}_2 \ldots \in \bar{X}(\bar{\Sigma} \bar{X})^\omega $ satisfying $ \bar{x}_i = (x_i, {v}_i) $ and $ \bar{\sigma}_i = \sigma_i $ for any $ i \in \mathbb{N} $, where
+  	\[
+  	\ {v}_0 = \mathbf{0} \text{ and } \forall i \in \mathbb{N}, \ {v}_{i+1} = reset \Big( Max \big( {v}_i, visitf((x_i,\bar{\sigma}_i,x_{i+1})) \big) \Big).
+  	\]
+  	Clearly from the construction, we have $ (\bar{x}_i, \bar{\sigma}_i, \bar{x}_{i+1}) \in \bar{\delta} $ for any $ i \in \mathbb{N} $.
+  	Thus, $ \bar{r} $ is a run of $ \bar{B} $ starting from $ \bar{x}_0 = (x_{init}, \mathbf{0}) = \bar{x}_{init} $.
+
+  	We now show that $ inf(\bar{r}) \cap \bar{F}_j \neq \emptyset $ for each $ \bar{F}_j \in \bar{\mathcal{F}} $.
+  	Since $ inf(r) \cap F_j \neq \emptyset $ for each $ F_j \in \mathcal{F} $, we have
+  	\begin{equation*}
+  %	\label{eq:inf_rbar}
+  %	\forall F_j \in \mathcal{F}, \
+  	\forall j \in \{ 1, \ldots, n \}, \
+  	inf(\bar{r}) \cap \{ \big((x, {v}), \bar{\sigma}, (x', {v}')\big) \in \bar{\delta}: visitf( (x, \bar{\sigma}, x'))_j = 1 \} \neq \emptyset.
+  	\end{equation*}
+  	By the construction of $ \bar{r} $, therefore, there are infinitely many indices $ l \in \mathbb{N} $ with $ v_l = \mathbf{0} $.
+  %	\begin{equation*}
+  %%	\label{eq:inf_reset}
+  %	\forall k \in \mathbb{N}, \ \exists l \geq k, \ {v}_l = \mathbf{0}.
+  %	\end{equation*}
+  	Let $ l_1, l_2 \in \mathbb{N} $ be arbitrary nonnegative integers such that $ l_1 < l_2 $, $ v_{l_1} = v_{l_2} = \mathbf{0} $, and $ v_{l'} \neq \mathbf{0} $ for any $ l' \in \{ l_1+1, \ldots, l_2-1\} $.
+  	Then, %for each $ j \in \{1, \ldots, n\} $,
+  	\[
+  	\forall j \in \{1, \ldots, n\}, \ \exists k \in \{  l_1, l_1+1, \ldots, l_2-1 \}, \
+  	(x_k, \sigma_k, x_{k+1}) \in F_j \land (v_k)_j = 0 ,
+  	\]
+  	where $ (v_k)_j $ is the $ j $-th element of $ v_k $.
+  	Hence, we have $ inf(\bar{r}) \cap \bar{F}_j \neq \emptyset $ for each $ \bar{F}_j \in \bar{\mathcal{F}} $, which implies $ w \in \mathcal{L}(\bar{B}) $.
+
+  %	\item % by contradiction
+  %	Suppose that there exists $ \bar{F}_{\bar{j}} \in \bar{\mathcal{F}} $ such that $ inf(\bar{r}) \cap \bar{F}_{\bar{j}} = \emptyset $, which means that
+  %	\[
+  %	\exists k' \in \mathbb{N}, \ \forall l' \geq k', \   (x_{l'}, \bar{\sigma}_{l'}, x_{l'+1}) \notin F_{\bar{j}} \lor (\bar{v}_{l'})_{\bar{j}} = 1 .
+  %	%	\land visitf \big( (x_{l'}, \bar{\sigma}_{l'}, x_{l'+1}) \big)_{\bar{j}}=1
+  %	\]
+  %	Since $ inf(r) \cap F_{\bar{j}} \neq \emptyset $, there are infinitely many transitions with $ (x_{l'}, \bar{\sigma}_{l'}, x_{l'+1}) \in F_{\bar{j}} $ in the run $ \bar{r} $.
+  %	Then, after some time step $ \bar{l} \in \mathbb{N} $, $ \bar{v}_{\bar{j}} $ keeps the same value $ 1 $.
+  %	On the other hand, we have
+  %	\begin{equation}
+  %	\label{eq:inf_rbar}
+  %	\forall F_j \in \mathcal{F}, \
+  %	inf(\bar{r}) \cap \{ \big((x, \bar{v}), \bar{\sigma}, (x', \bar{v}')\big) \in \bar{\delta}: visitf( (x, \bar{\sigma}, x'))_j = 1 \} \neq \emptyset
+  %	\end{equation}
+  %	because $ inf(r) \cap F_j \neq \emptyset $ for each $ F_j \in \mathcal{F} $.
+  %	Thus,
+  %	\begin{equation}
+  %	\label{eq:inf_reset}
+  %	\forall k \in \mathbb{N}, \ \exists l \geq k, \ \bar{v}_l = \mathbf{0},
+  %	\end{equation}
+  %	which yields contradiction.
+  %	Therefore, for the word $ w $, there exists a run $ \bar{r} = \bar{x}_0 \bar{\sigma}_0 \bar{x}_1 \bar{\sigma}_1 \bar{x}_2 \ldots  $ of $ \bar{B} $ such that $ \bar{x}_0 = \bar{x}_{init} $ and $ inf(\bar{r}) \cap \bar{F}_j \neq \emptyset $ for each $ \bar{F}_j \in \bar{\mathcal{F}} $.
+  %	We conclude that $ w \in \mathcal{L}(\bar{B}) $.
+
+  	\item $ \mathcal{L}(B) \supseteq \mathcal{L}(\bar{B}) $:
+  %	Next, we show $ \mathcal{L}(B) \supseteq \mathcal{L}(\bar{B}) $.
+  	Consider any $ \bar{w} \in \bar{\sigma}_0 \bar{\sigma}_1 \ldots \in \mathcal{L}(\bar{B}) $.
+  	Then, there exists a run $ \bar{r} = \bar{x}_0 \bar{\sigma}_0 \bar{x}_1 \bar{\sigma}_1 \bar{x}_2 \ldots \in \bar{X}(\bar{\Sigma} \bar{X})^\omega $ of $ \bar{B} $ such that $ \bar{x}_0 = \bar{x}_{init} $ and $ inf(\bar{r}) \cap \bar{F}_j \neq \emptyset $ for each $ \bar{F}_j \in \bar{\mathcal{F}} $, i.e.,
+  	\begin{equation}
+  	\label{eq:inf_r}
+  	\forall j \in \{1, \ldots, n\}, \
+  %	\bar{F}_j \in \bar{\mathcal{F}}, \ %\Big(
+  	\forall k \in \mathbb{N}, \ \exists l \geq k, \
+  	( [\![ \bar{x}_l ]\!]_X , \bar{\sigma}_l, [\![ \bar{x}_{l+1} ]\!]_X) \in F_j \land (\bar{v}_l)_j = 0 ,
+  %	\Big),
+  	\end{equation}
+  	where $ [\![ (x,v) ]\!]_X = x $ for each $ (x,v) \in \bar{X} $.
+  	For the run $ \bar{r} $, we construct a sequence $ r = x_0 \sigma_0 x_1 \sigma_1 x_2 \ldots \in X(\Sigma X)^\omega $ such that $ x_i = [\![ \bar{x}_i ]\!]_X $ and $ \sigma_i = \bar{\sigma}_i $ for any $ i \in \mathbb{N} $.
+  	It is clear that $ r $ is a run of $ B $ starting from $ x_0 = x_{init} $.
+  	It holds by Eq.~\eqref{eq:inf_r} that $ inf(r) \cap F_j \neq \emptyset $ for each $ F_j \in \mathcal{F} $, which implies $ \bar{w} \in \mathcal{L}(B) $.
+  \end{itemize}
+\end{proof}

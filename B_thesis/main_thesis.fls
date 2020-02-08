@@ -144,7 +144,7 @@ INPUT c:/w32tex/share/texmf-dist/tex/latex/base/omscmr.fd
 INPUT c:/w32tex/share/texmf-dist/tex/latex/base/omscmr.fd
 INPUT chap3.tex
 INPUT chap3.tex
-INPUT MDP_corridor.PNG
+INPUT ldgba_original.pdf
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmr6.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmmi9.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmmi6.tfm
@@ -165,6 +165,11 @@ INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy9.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy6.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/jis/jisg.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/jis/jisg.tfm
+INPUT c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/tgoth10.tfm
+INPUT c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/tmin10.tfm
+INPUT c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/tgoth10.tfm
+INPUT ldgba.pdf
+INPUT MDP_corridor.PNG
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmmi8.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm
@@ -174,28 +179,20 @@ INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmmib8.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy8.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/jis/jisg.tfm
-INPUT c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/tmin10.tfm
-INPUT ep_1000_it_10000_MDP3_gamma_095_re2_ini22_nts_c095_20times_no2.png
-INPUT extractbb -B cropbox -O ep_1000_it_10000_MDP3_gamma_095_re2_ini22_nts_c095_20times_no2.png
-INPUT ep_1000_it_10000_MDP3_gamma_095_nts_c095_ldba_20times.png
-INPUT extractbb -B cropbox -O ep_1000_it_10000_MDP3_gamma_095_nts_c095_ldba_20times.png
 INPUT proposed_policy.png
-INPUT extractbb -B cropbox -O proposed_policy.png
 INPUT Abate_policy.png
-INPUT extractbb -B cropbox -O Abate_policy.png
 INPUT chap4.tex
 INPUT chap4.tex
 INPUT cat_mouse.png
 INPUT extractbb -B cropbox -O cat_mouse.png
-INPUT ldgba_original.pdf
-INPUT c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/tgoth10.tfm
-INPUT c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/tgoth10.tfm
 INPUT max_Q_value_15000_5000_rn_all_rsink_1000.png
 INPUT extractbb -B cropbox -O max_Q_value_15000_5000_rn_all_rsink_1000.png
 INPUT simulate_TD_v_15000_5000_rn_all_rsink_1000.png
 INPUT extractbb -B cropbox -O simulate_TD_v_15000_5000_rn_all_rsink_1000.png
 INPUT chap5.tex
 INPUT chap5.tex
+INPUT proof_of_prop3_1.tex
+INPUT proof_of_prop3_1.tex
 INPUT proof_of_lemma3_1.tex
 INPUT proof_of_lemma3_1.tex
 INPUT proof_of_thm3_1.tex

@@ -1,0 +1,10 @@
+PWD C:/Users/oura/Documents/GitHub/Chap2/B_thesis
+INPUT c:/w32tex/share/texmf-dist/web2c/texmf.cnf
+INPUT c:/w32tex/share/texmf-dist/web2c/eptex/platex.fmt
+INPUT chap3.tex
+OUTPUT chap3.log
+OUTPUT chap3.dvi
+INPUT c:/w32tex/share/texmf-dist/fonts/map/fontname/texfonts.map
+INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
+INPUT c:/w32tex/share/texmf-dist/tex/latex/base/omscmr.fd
+INPUT c:/w32tex/share/texmf-dist/tex/latex/base/omscmr.fd

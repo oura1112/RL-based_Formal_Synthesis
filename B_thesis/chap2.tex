@@ -138,67 +138,6 @@ On the other hand, in SARSA, we use the actual action at the next state to updat
   \hat{Q}^{\pi_k}(s_k,a_k) \leftarrow \hat{Q}^{\pi_k}(s_k,a_k) + \alpha_k \{ r_{k+1} + \hat{Q}^{\pi_k}(s_{k+1}, a_{k+1}) - \hat{Q}^{\pi_k}(s_k,a_k) \}.
 \end{align}
 
-\section{Stochastic Discrete Event Systems}
-We represent a stochastic discrete event system (DES) as an MDP.
-
-\begin{definition}
-We represent a probabilistic discrete event system (DES) as a labeled Markov decision process (MDP). A DES is a tuple $D$ = $(S, E, P_T, P_E, s_{init}, AP, L)$, where S is a finite set of states; $E$ is a finite set of events; $P_T:S \times S \times E \rightarrow [0,1]$ is a transition probability; $P_E : E \times S \times 2^E \rightarrow [0,1]$ is the probability of an event occurrence under a state $s \in S$ and a subset $\pi \in \mathcal{E}(s)$; for any $(s^{\prime}, s, \pi) \in S \times S \times 2^E$, we define the probability $P : S \times S \times 2^{E} \rightarrow [0,1]$ such that $P(s'|s,\pi) = \sum_{e \in \pi}P_E(e|s,\pi) P_T(s^{\prime}|s,e)$; $s_{init} \in S$ is the initial state; $AP$ is a finite set of atomic propositions; and $L : S \times E \times S \rightarrow 2^{AP}$ is a labeling function that assigns a set of atomic propositions to each transition $(s, e, s') \in S \times E \times S$.
-Let $\mathcal{E}(s) = \{ e \in E ; \exists s^{\prime} \in S \text{ s.t. } P_T (s^{\prime} | s, e) \neq 0 \}$.
-Note that $\sum_{s' \in S} P_T(s'|s,e) = 1$ holds for any state $s \in S$ and event $e \in E$, $\Sigma_{e \in \pi} P_E(e|s,\pi) = 1$ holds for any state $s \in S$ and a subset $\pi \in 2^E$, and $\Sigma_{s^{\prime} \in S} P(s'|s,\pi) = 1$ holds for any state $s \in S$ and a subset $\pi \in 2^E$.
-We assume that $E$ can be partitioned into the set of controllable events $E_c$ and the set of uncontrollable events $E_{uc}$ such that $E_c \cup E_{uc} = E$ and $E_c \cap E_{uc} = \emptyset$. Note that each event $e$ occurs probabilistically depending on only the current state and the subset of feasible events at the state given by a controller.
-
-In the DES $D$, an infinite path starting from a state $s_0 \in S$ is defined as a sequence $\rho\ =\ s_0\pi_0e_0s_1 \ldots\ \in S (2^E E S)^{\omega}$ such that $P_T(e_{i}|s_i, \pi_i) > 0$ and $P_T(s_{i+1}|s_i, e_i) > 0$ for any $ i \in \mathbb{N}_0$. A finite path is a finite sequence in $S (2^E E S)^*$. In addition, we sometimes represent $\rho$ as $\rho_{init}$ to emphasize that $\rho$ starts from $s_0 = s_{init}$.
-For a path $\rho\ =\ s_0\pi_0e_0s_1 \ldots$, we define the corresponding labeled path $L(\rho)\ =\ L(s_0,e_0,s_1)L(s_1,e_1,s_2) \ldots \in (2^{AP})^{\omega}$.
-% We define the set of finite labeled paths as $\mathcal{L}(M) = \{ L(\rho) \in (2^{AP})^{\omega} ; \rho = s_0e_0s_1 \ldots \in S(ES)^{\ast},\ P(s_{i+1}|s_i, e_i) > 0,\ i \in \mathbb{N}_0  \}.
- $InfPath^{D}\ ( \text{resp., }FinPath^{D})$ is defined as the set of infinite (resp., finite) paths starting from $s_0=s_{init}$ in the DES $D$. For each finite path $\rho$, $last(\rho)$ denotes its last state.
-\end{definition}
-
-We define the supervisor as a controller for the DES that restricts the behaviors of the DES to satisfy a given specification.
-
-\begin{definition}[Supervisor]
-For the DES $D$, a supervisor $SV : FinPath^{D} \rightarrow 2^E$ is defined as a mapping that maps each finite path to a set of enabled events at the finite path and we call the set a control pattern. A supervisor is positional if $SV(\rho) = SV(last(\rho))$ for any $\rho \in InfPath^D$. Note that the relation $E_{uc} \subset SV(\rho) \subset E$ holds for any $\rho \in FinPath^D$.
-Let $InfPath^{D}_{SV}$ (resp., $FinPath^{D}_{SV}$) be the set of infinite (resp., finite) paths starting from $s_0=s_{init}$ in the DES $D$ under a supervisor $SV$. The behavior of an DES $D$ under a supervisor $SV$ is defined on a probability space $(InfPath^{D}_{SV}, \mathcal{F}_{InfPath^{D}_{SV}}, Pr^{D}_{SV})$.
-\end{definition}
-
-We consider the objective function similar to the {\it Bellman optimality function} defined by the definition \ref{opt_pol}.
-\begin{definition}[Optimal value function for DESs]
-
-  From the view point of reinforcement learning, the DES can be interpreted as the environment controlled by the supervisor and the supervisor can be interpreted as the policy. We introduce the two following assumptions.
-
-  \begin{enumerate}
-    \item The relative frequency of occurrence of each event does not depend on the control pattern.
-    \item We define a reward function $\mathcal{R} : S \times 2^E \times E \times S \rightarrow \mathbb{R}$ and the reward $\mathcal{R}$ can be decomposed into $\mathcal{R}_1$ and $\mathcal{R}_2$. The first reward $\mathcal{R}_1 : S \times 2^E \rightarrow \mathbb{R}$ is determined by the control pattern selected by the supervisor, which depends on only the control pattern and the current state. The second reward $\mathcal{R}_2 : S \times E \times S \rightarrow \mathbb{R}$ is determined by the occurrence of an event and the corresponding state transition. For any $(s,\pi,e,s^{\prime}) \in S \times 2^E \times E \times S$, we then have
-    \begin{align}
-      \mathcal{R}(s,\pi,e,s^{\prime}) = \mathcal{R}_1(s,\pi) + \mathcal{R}_2(s,e,s^{\prime}).
-    \end{align}
-  \end{enumerate}
-  Under the above assumptions, we have the following {\it Bellman optimality equation}.
-
-  \begin{align}
-    Q^{\ast}(s,\pi) = & \sum_{s^{\prime} \in S} P(s^{\prime}|s,\pi)\left \{ \mathcal{R}(s,\pi,e,s^{\prime}) + \gamma \max_{\pi^{\prime} \in 2^{\mathcal{E}(s^{\prime})}} Q^{\ast}(s^{\prime},\pi^{\prime}) \right \} \nonumber \\
-    = & \sum_{s^{\prime} \in S} \sum_{e \in \pi} P_E(e|s,\pi) P_T(s^{\prime}|s,e) \left \{ \mathcal{R}_1(s,\pi) + \mathcal{R}_2(s,e,s^{\prime}) + \gamma \max_{\pi^{\prime} \in 2^{\mathcal{E}(s^{\prime})}} Q^{\ast}(s^{\prime},\pi^{\prime}) \right \} \nonumber \\
-    = & \mathcal{R}_1(s,\pi) + \sum_{e \in \pi} P_E(e|s,\pi) \sum_{s^{\prime \in S}} P_T(s^{\prime}|s,e) \left \{ \mathcal{R}_2(s^{\prime}|s,e) + \gamma \max_{\pi^{\prime} \in 2^{\mathcal{E}(s^{\prime})}} Q^{\ast}(s^{\prime}, \pi^{\prime}) \right \},
-  \end{align}
-  where $\gamma \in [0,1)$.
-
-  We introduce the following function. $T^{\ast} : S \times E \rightarrow \mathbb{R}$ such that
-  \begin{align}
-    T^{\ast}(s,e) = \sum_{s^{\prime \in S}} P_T(s^{\prime}|s,e) \left \{ \mathcal{R}_2(s^{\prime}|s,e) + \gamma \max_{\pi^{\prime} \in 2^{\mathcal{E}(s^{\prime})}} Q^{\ast}(s^{\prime}, \pi^{\prime}) \right \}.
-  \end{align}
-  We then have
-  \begin{align}
-    Q^{\ast}(s,\pi) = \mathcal{R}_1(s,\pi) + \sum_{e \in \pi}P_E(e|s,\pi) T^{\ast}(s,e).
-  \end{align}
-
-\end{definition}
-
-\begin{definition}[Optimal supervisor]
-We define an optimal supervisor $SV^{\ast}$ as follows. For any state $s \in S$,
-\begin{align}
-  SV^{\ast}(s) = \pi \in \argmax_{\pi \in \mathcal{E}(s)} Q^{\ast}(s,\pi),
-\end{align}
-\end{definition}
-
 \section{Linear Temporal Logic and Automata}
 
 In our proposed method, we use linear temporal logic (LTL) formulas to describe various constraints or properties and to systematically assign corresponding rewards.
@@ -233,15 +172,13 @@ In the following, we write $ \rho \models \varphi $ for simplicity without refer
 %we denote by $ \mathcal{L}(\varphi) \subset (2^{AP})^\omega $ the set of all words that satisfy $\varphi$.
 
 
-For any policy $\pi$ and any supervisor $SV$, we denote the probability of all paths starting from $s_{init}$ on the MDP $M$ (resp., DES) that satisfy an LTL formula $\varphi$ under the policy $\pi$ (resp., the supervisor $SV$) as follows.
+For any policy $\pi$, the probability of all paths starting from $s_{init}$ on the MDP $M$ that satisfy an LTL formula $\varphi$ under the policy $\pi$, or the satisfaction probability is defined as follows.
 \begin{align*}
-Pr^{M}_{\pi}(s_{init} \! \models \varphi) := Pr^{M}_{\pi}(\{ \rho_{init} \! \in \! InfPath^{M}_{\pi} ; \rho_{init} \! \models \varphi \}), \\
-Pr^{D}_{SV}(s_{init} \! \models \varphi) := Pr^{D}_{SV}(\{ \rho_{init} \! \in \! InfPath^{D}_{SV} ; \rho_{init} \! \models \varphi \}).
+Pr^{M}_{\pi}(s_{init} \! \models \varphi) := Pr^{M}_{\pi}(\{ \rho_{init} \! \in \! InfPath^{M}_{\pi} ; \rho_{init} \! \models \varphi \}).
 \end{align*}
 We say that an LTL formula $\varphi$ is satisfied by a positional policy $\pi$ (resp., a supervisor $SV$) if
 \begin{align*}
-Pr^{M}_{\pi}(s_{init} \models \varphi) > 0,  \\
-Pr^{D}_{SV}(s_{init} \models \varphi) > 0.
+Pr^{M}_{\pi}(s_{init} \models \varphi) > 0.
 \end{align*}
 
 
