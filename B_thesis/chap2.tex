@@ -35,7 +35,7 @@ In an MDP $M$, we define a reward function $\mathcal{R}:S \times A \times S \rig
 
 \section{Reinforcement Learning}
 
-Reinforcement learning is the theoretical framework to find a policy maximizing or minimizing an objective function through the iterative interactions between the learner referred to the agent and the controlled system referred to the environment. The interaction is that the agent takes an action on the environment and the environment returns a observation such as a immediate reward or next state. In this section, since we use model-free method in this thesis, we refer the model-free reinforcement learning, which find a policy maximizing or minimizing an objective function without explicit estimations for the environment.
+Reinforcement learning is the theoretical framework to find a policy maximizing or minimizing an objective function through the iterative interactions between the learner referred to the agent and the controlled system referred to the environment. The interaction is that the agent takes an action on the environment and the environment returns a observation such as a immediate reward or next state. In this section, since we use model-free method in this thesis, we refer the model-free reinforcement learning method, which find a policy maximizing or minimizing an objective function without explicit estimations for the environment.
 
 \subsection{Objective functions and an Optimal policy}
 
@@ -63,8 +63,8 @@ where $\mathbb{E}^{\pi}$ denotes the expected value given that the agent follows
 by the definition of the action-value function, it holds that
 
 \begin{align}
-  Q^{\pi}(s,a) = & \max_{a \in \mathcal{A}(s)}V^{\pi}(s) \nonumber \\
-               = & \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \{ \mathcal{R}(s, a, s^{\prime}) + \gamma V^{\pi}(s^{\prime}) \} \nonumber \\
+  V^{\pi}(s) = & \sum_{a \in \mathcal{A}(s)} \pi(s,a) Q^{\pi}(s,a) \nonumber \\
+  \Leftrightarrow  Q^{\pi}(s,a) = & \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \{ \mathcal{R}(s, a, s^{\prime}) + \gamma V^{\pi}(s^{\prime}) \} \nonumber \\
                = & \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \{ \mathcal{R}(s, a, s^{\prime}) + \gamma \sum_{a^{\prime} \in \mathcal{A}(s^{\prime})} \pi(s^{\prime}, a^{\prime}) Q^{\pi}(s^{\prime},a^{\prime}) \}.
  \label{Q_pi}
 \end{align}
@@ -110,7 +110,7 @@ If we know the full and accurate information of an MDP such as the transition pr
 
 \subsection{Temporal Difference Learning}
 
-If the MDP $M$ is unknown, we can not use Dynamic programming such as value iteration or policy iteration to obtain an optimal policy. In the case that the MDP $M$ is unknown, we often use   reinforcement learning to find an optimal policy instead of dynamic programming.
+If the MDP $M$ is unknown, we can not use Dynamic programming such as value iteration or policy iteration to obtain an optimal policy. When the MDP $M$ is unknown, we often use   reinforcement learning to find an optimal policy instead of dynamic programming.
 
 Temporal difference learning (TD-learning) is the basic method of model-free reinforcement learning. The method does not require the prior knowledge about the environment and utilize a raw experience by one step. Unlike dynamic programing, we update a value function using the experience in an on-line and incremental manner as follows.
 

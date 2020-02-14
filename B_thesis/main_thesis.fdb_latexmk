@@ -1,9 +1,9 @@
 # Fdb version 3
-["dvipdf"] 1581165323 "main_thesis.dvi" "main_thesis.pdf" "main_thesis" 1581165327
-  "main_thesis.dvi" 1581165323 130700 f84b5eba4e7ad9ab456d111f3801a9a2 "latex"
+["dvipdf"] 1581662001 "main_thesis.dvi" "main_thesis.pdf" "main_thesis" 1581662006
+  "main_thesis.dvi" 1581662001 130772 7af013c620b3bf7bc929719afb83bf02 "latex"
   (generated)
   "main_thesis.pdf"
-["latex"] 1581165321 "main_thesis.tex" "main_thesis.dvi" "main_thesis" 1581165327
+["latex"] 1581661998 "main_thesis.tex" "main_thesis.dvi" "main_thesis" 1581662005
   "Abate_policy.png" 1579091410 8562 259390f41d8d8c09a15a15cd53a4f6b3 ""
   "MDP_corridor.PNG" 1579091410 12036 b7670ce6e9ea1a633408317c520a965d ""
   "MDP_corridor.png" 1579091410 12036 b7670ce6e9ea1a633408317c520a965d ""
@@ -87,16 +87,16 @@
   "c:/w32tex/share/texmf-dist/web2c/texmf.cnf" 1569228113 36614 36bcba4138d21dc48ee03f08b1e2dd36 ""
   "cat_mouse.png" 1579091410 34006 b1363f6df978ac0ea1ba0406f774208a ""
   "chap1.tex" 1580714429 4244 067c5bb0cf048ddab88019469ee3ea51 ""
-  "chap2.tex" 1581067030 21053 a846fdfc5a1aff242a12155da95ef39c ""
+  "chap2.tex" 1581661994 21087 7a71fdc4292a717b5863806ecd6e2685 ""
   "chap3.tex" 1581154043 24832 0e46701e25cb7467ed495c0a71603b27 ""
-  "chap4.tex" 1581165315 22172 a0d4d36a741b6328fbe1067208a36ac9 ""
+  "chap4.tex" 1581473744 22174 735afa313136783af74201c56addfc1f ""
   "chap5.tex" 1581067223 936 a754e0f1b7d9f7503fb7daa4e21c7751 ""
   "ep_1000_it_10000_MDP3_gamma_095_re2_ini22_nts_c095_20times_no3.png" 0 -1 0 ""
   "ldgba.pdf" 1579091410 7644 4b28959d88bec0b22c01d50c8a1bcfb8 ""
   "ldgba_original.pdf" 1579091410 4747 1df07183e3250df3beca16fd27061ff4 ""
-  "main_thesis.aux" 1581165323 8071 e57fbcf5748c8f8c81dad62a8b2a7d67 "latex"
-  "main_thesis.tex" 1581072894 10313 58dcf97a665ad4d74a87b04b42745fe0 ""
-  "main_thesis.toc" 1581165323 1412 7de529f81ba5956dfedba2b18582267a "latex"
+  "main_thesis.aux" 1581662001 8073 f42f882838b9719529eb699edfa10682 "latex"
+  "main_thesis.tex" 1581320061 10300 1d64273a7a43cce65b0439fe91ea8860 ""
+  "main_thesis.toc" 1581662001 1412 7de529f81ba5956dfedba2b18582267a "latex"
   "max_Q_value_15000_5000_rn_all_rsink_1000.png" 1580714429 198969 320d4e4339fd72e5d8b741d0ef325f97 ""
   "proof_of_lemma3_1.tex" 1581072963 1319 e05258b1c898a82fdd1116f45054f5a2 ""
   "proof_of_prop3_1.tex" 1581073606 5856 f19172f117307c02402442e2baf564d2 ""
@@ -107,7 +107,7 @@
   "thesis.sty" 1578372970 4457 19dfc45703e3907faa88afdc81deb305 ""
   "thesis_abstract.tex" 1580815816 1031 ef3d394860c518a38cf3175f5febe930 ""
   (generated)
-  "main_thesis.dvi"
   "main_thesis.log"
-  "main_thesis.toc"
   "main_thesis.aux"
+  "main_thesis.toc"
+  "main_thesis.dvi"

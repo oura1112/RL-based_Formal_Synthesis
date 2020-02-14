@@ -84,14 +84,14 @@
 
 \section{緒論}
 %マルコフ決定過程（MDP)に対して線形時相論理式（LTL式）で与えた制約を満たす強化学習法が提案されている．
-近年，LTL論理式を満たす$\omega$列を受理するオートマトンとして（一般化）limit-deterministic B\"{u}chi オートマトン（LD(G)BA)が注目されており，LD(G)BAを用いたMDPに対する制御器の強化学習法が提案されている \cite{HAK2019,Hahn2019}．本研究では，報酬関数のスパース性を緩和する拡張LDGBAを提案し，割引率を十分1に近づけることでLTL論理式を満たす最適方策が学習できることを示す．
+近年，LTL式を満たす$\omega$列を受理するオートマトンとして（一般化）limit-deterministic B\"{u}chi オートマトン（LD(G)BA)が注目されており，LD(G)BAを用いたMDPに対する制御器の強化学習法が提案されている \cite{HAK2019,Hahn2019}．本研究では，報酬関数のスパース性を緩和する拡張LDGBAを提案し，割引率を十分1に近づけることでLTL式を満たす最適方策が学習できることを示す．
 
 \section{拡張LDGBAと制御器の強化学習}
 制御対象はラベル付きMDP $M$ = $(S, A, P, s_{init}, AP, L)$でモデル化する．
 ただし，$S$は状態の有限集合，$A$は行動の有限集合，$P : S \times S \times A \to [0,1]$は状態の遷移確率，$s_{init} \in S$はシステムの初期状態，$AP$は原子命題の有限集合，$L : S \times A \times S \to 2^{AP}$は各遷移に原子命題を割り当てるラベル関数である．
 状態$s$で行動$a$を起こしたときに，状態$s^{\prime}$に遷移する確率が$P(s^{\prime}|s,a)$である．
 
-LTL論理式$\varphi$に対する遷移ベースのLDGBA（tLDGBA）は$B_{\varphi}= (X,\ x_{init},\ \Sigma,\ \delta,\ \mathcal{F})$で表現される．ただし，$X$は状態の有限集合，$x_{init}$は初期状態，$\Sigma$は文字の有限集合，$\delta$は状態遷移の集合，$\mathcal{F}=\{ F_j \} _{j=1}^{n}$は受理条件であり，各$j\in\{ 1,\ldots,  n \}$に対して$F_j \subset \delta$である．
+LTL式$\varphi$に対する遷移ベースのLDGBA（tLDGBA）は$B_{\varphi}= (X,\ x_{init},\ \Sigma,\ \delta,\ \mathcal{F})$で表現される．ただし，$X$は状態の有限集合，$x_{init}$は初期状態，$\Sigma$は文字の有限集合，$\delta$は状態遷移の集合，$\mathcal{F}=\{ F_j \} _{j=1}^{n}$は受理条件であり，各$j\in\{ 1,\ldots,  n \}$に対して$F_j \subset \delta$である．
 状態集合$X$は2つの部分集合$X_{initial}$と$X_{final}$に分割でき，$X_{initial}$内と$X_{final}$内の遷移は決定的である．$X_{initial}$から$X_{final}$への遷移は非決定的で，それらは$\varepsilon$-遷移で表現される．また，全ての$F_i$の要素は$X_{final}$内の遷移である．$X_{final}$から$X_{initial}$への遷移は存在しない．
 
 $V$を$n$次元2値ベクトルの集合とする．$\bm{1},\bm{0}$を，各々すべての要素が$1,0$のベクトルとする．$B_{\varphi}$を拡張するため，以下に３つの関数$visitf: \delta \to V$, $reset:V \to V$, $Max:V \times V \to V$を導入する．
@@ -129,7 +129,6 @@ $V$を$n$次元2値ベクトルの集合とする．$\bm{1},\bm{0}$を，各々�
 \end{align}
 
 $B_\varphi = (X,x_{init},\Sigma,\delta,\mathcal{F})$に対する拡張オートマトンを次のtLDGBA $\bar{B}_{\varphi} = (\bar{X},\bar{x}_{init},\bar{\Sigma},\bar{\delta},\bar{\mathcal{F}})$で定義する．
-．
 \begin{itemize}
   \item $\bar{X} = X \times V$ : 状態の有限集合.
   \item $\bar{x}_{init} = (x_{init}, \bm{0})$ : 初期状態.
@@ -173,18 +172,18 @@ MDP $M$と拡張tLDGBA $\bar{B}_{\varphi}$による合成MDP $M^{\otimes} = M \o
 
 \section{主結果}
 \begin{theorem}
-  MDP $M$と与えられたLTL論理式$\varphi$に対応する拡張tLDGBA $\bar{B}_{\varphi}$の合成MDP $M^{\otimes}$及び式(\ref{reward})で与えられる報酬関数に対して，$M^{\otimes}$上に$\varphi$を確率非0で満たす確定的定常方策が存在すれば，ある割引率$\gamma^{\ast}$が存在し，任意の$\gamma>\gamma^{\ast}$の下で状態価値関数を最大化するアルゴリズムはそのような方策の一つを見つける．
+  MDP $M$と与えられたLTL式$\varphi$に対応する拡張tLDGBA $\bar{B}_{\varphi}$の合成MDP $M^{\otimes}$及び式(\ref{reward})で与えられる報酬関数に対して，$M^{\otimes}$上に$\varphi$を確率非0で満たす確定的定常方策が存在すれば，ある割引率$\gamma^{\ast}$が存在し，任意の$\gamma>\gamma^{\ast}$の下で状態価値関数を最大化するアルゴリズムはそのような方策の一つを見つける．
 \end{theorem}
 
 \section{結論}
-本研究では報酬関数のスパース性を緩和するオートマトンを提案し，それを用いた学習によりLTL論理式を確率非0で満たす方策が得られることを示した．LTLの充足確率を最大化するアルゴリズムを示すことが今後の課題の一つである．
+本研究では報酬関数のスパース性を緩和するオートマトンを提案し，それを用いた学習によりLTL式を確率非0で満たす方策が得られることを示した．LTLの充足確率を最大化するアルゴリズムを示すことが今後の課題の一つである．
 
 \begin{thebibliography}{9}
   \bibitem{HAK2019}
-  M.\ Hasanbeig, et.al,
+  M.\ Hasanbeig, et al.,
   ``Logically-constrained reinforcement learning,'' \textit{arXiv:1801.08099v8}, Feb.\ 2019.
   \bibitem{Hahn2019}
-  E.\ M.\ Hahn, et.al
+  E.\ M.\ Hahn, et al.
   ``Omega-regular objective in model-free reinforcement learning,''
   \textit{Lecture Notes in Computer Science}, no.\ 11427, pp.\ 395--412, 2019.
 \end{thebibliography}

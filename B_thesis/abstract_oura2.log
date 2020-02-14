@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.sjis) (TeX Live 2019/W32TeX) (preloaded format=platex 2019.9.9)  7 FEB 2020 20:24
+This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.sjis) (TeX Live 2019/W32TeX) (preloaded format=platex 2019.9.9)  12 FEB 2020 11:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -482,6 +482,6 @@ Here is how much of TeX's memory you used:
  11928 multiletter control sequences out of 15000+600000
  18395 words of font info for 81 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
- 28i,17n,32p,406b,333s stack positions out of 5000i,500n,10000p,500000b,80000s
+ 28i,17n,32p,398b,333s stack positions out of 5000i,500n,10000p,500000b,80000s
 
-Output written on abstract_oura2.dvi (1 page, 14648 bytes).
+Output written on abstract_oura2.dvi (1 page, 14616 bytes).
