@@ -36,7 +36,6 @@ than what I meant? Nonetheless, before continuing with evaluating the
 paper, I believe that this issue needs to be cleared up.
 
 方策はproduct MDP上で考えること，報酬は定義に従ったものであることを定理1に追記．
-(新しい補題を加えて表現を変えたほうがいいかも)
 
 
 For the sake of completeness, let me also list my other comments (some
@@ -68,7 +67,7 @@ MDPの定義に追記．
 - the notion of a formula being "satisfied" if it is satisfied with any
 non-zero probability (instead of 1) is counterintuitive
 
-根底にある目的として，充足確率を最大化することを念頭に置いているため．
+根底にある目的として，充足確率を最大化することを念頭に置いているためこの定義にしている．
 
 
 - the introductory section is not clear about the ultimate purpose and
@@ -76,6 +75,8 @@ contribution of the paper: is it to improve RL performance for LTL
 specifications? If so, OK, but that should be stated clearly.
 
 introで，最終目標とcontributionをより明確にする．
+メインのcontributionはaugmented LDGBAを提案したことにより，報酬のスパース性を緩和しつつ，元のMDP上に有限記憶で与えられたLTL式を満たす
+方策が存在すれば，そのMDPやLTLに依存せずにproduct MDP上でLTLを満たす方策が得られるようにしたこと．
 
 
 - the sentence "In general, there are uncertainties in a controlled
