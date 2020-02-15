@@ -41,9 +41,9 @@
 \section{System Model}
 
 \begin{definition}
-We represent a probabilistic discrete event system (DES) as a labeled Markov decision process (MDP). A DES is a tuple $D$ = $(S, E, P_T, P_E, s_{init}, AP, L)$, where S is a finite set of states; $E$ is a finite set of events; $P_T:S \times S \times E \rightarrow [0,1]$ is a transition probability; $P_E : E \times S \times 2^E \rightarrow [0,1]$ is the probability of an event occurrence under a state $s \in S$ and a subset $\pi \in \mathcal{E}(s)$; for any $(s^{\prime}, s, \pi) \in S \times S \times 2^E$, we define the probability $P : S \times S \times 2^{E} \rightarrow [0,1]$ such that $P(s'|s,\pi) = \sum_{e \in \pi}P_E(e|s,\pi) P_T(s^{\prime}|s,e)$ and $\Sigma_{s^{\prime} \in S} P(s'|s,\pi) = 1$; $s_{init} \in S$ is the initial state; $AP$ is a finite set of atomic propositions; and $L : S \times E \times S \rightarrow 2^{AP}$ is a labeling function that assigns a set of atomic propositions to each transition $(s, e, s') \in S \times E \times S$.
-Let $\mathcal{E}(s) = \{ e \in E ; \text{the event $e$ is feasible at the state $s$} \}$.
-Note that $\sum_{s' \in S} P_T(s'|s,e) = 1$ holds for any state $s \in S$ and any event $e \in \mathcal{E}(s) $, $P_T(s'|s,e) = 0$ for any $e \notin \mathcal{E}(s)$, and $\Sigma_{e \in \pi} P_E(e|s,\pi) = 1$ and we call the subset the control pattern.
+We represent a probabilistic discrete event system (DES) as a labeled Markov decision process (MDP). A DES is a tuple $D$ = $(S, E, P_T, P_E, s_{init}, AP, L)$, where S is a finite set of states; $E$ is a finite set of events; $P_T:S \times S \times E \rightarrow [0,1]$ is a transition probability; $P_E : E \times S \times 2^E \rightarrow [0,1]$ is the probability of an event occurrence under a state $s \in S$ and a subset $\pi \in \mathcal{E}(s)$; for any $(s^{\prime}, s, \pi) \in S \times S \times 2^E$, we define the probability $P : S \times S \times 2^{E} \rightarrow [0,1]$ such that $P(s'|s,\pi) = \sum_{e \in \pi}P_E(e|s,\pi) P_T(s^{\prime}|s,e)$; $s_{init} \in S$ is the initial state; $AP$ is a finite set of atomic propositions; and $L : S \times E \times S \rightarrow 2^{AP}$ is a labeling function that assigns a set of atomic propositions to each transition $(s, e, s') \in S \times E \times S$.
+Let $\mathcal{E}(s) = \{ e \in E ; \exists s^{\prime} \in S \text{ s.t. } P_T (s^{\prime} | s, e) \neq 0 \}$.
+Note that $\sum_{s' \in S} P_T(s'|s,e) = 1$ holds for any state $s \in S$ and event $e \in E$, $\Sigma_{e \in \pi} P_E(e|s,\pi) = 1$ holds for any state $s \in S$ and a subset $\pi \in 2^E$, and $\Sigma_{s^{\prime} \in S} P(s'|s,\pi) = 1$ holds for any state $s \in S$ and a subset $\pi \in 2^E$.
 We assume that $E$ can be partitioned into the set of controllable events $E_c$ and the set of uncontrollable events $E_{uc}$ such that $E_c \cup E_{uc} = E$ and $E_c \cap E_{uc} = \emptyset$. Note that each event $e$ occurs probabilistically depending on only the current state and the subset of feasible events at the state given by a controller.
 
 In the DES $D$, an infinite path starting from a state $s_0 \in S$ is defined as a sequence $\rho\ =\ s_0\pi_0e_0s_1 \ldots\ \in S (2^E E S)^{\omega}$ such that $P_T(e_{i}|s_i, \pi_i) > 0$ and $P_T(s_{i+1}|s_i, e_i) > 0$ for any $ i \in \mathbb{N}_0$. A finite path is a finite sequence in $S (2^E E S)^*$. In addition, we sometimes represent $\rho$ as $\rho_{init}$ to emphasize that $\rho$ starts from $s_0 = s_{init}$.
@@ -55,7 +55,7 @@ For a path $\rho\ =\ s_0\pi_0e_0s_1 \ldots$, we define the corresponding labeled
 We define the supervisor as a controller for the DES that restricts the behaviors of the DES to satisfy a given specification.
 
 \begin{definition}
-For the DES $D$, a supervisor $SV : FinPath^{D} \rightarrow 2^E$ is defined as a mapping that maps each finite path to a set of enabled events at the finite path and we call the set a control pattern. A supervisor is positional if $SV(\rho) = SV(last(\rho))$ for any $\rho \in InfPath^D$. Note that the relation $E_{uc} \subset SV(\rho) \subset E$ holds for any $\rho \in FinPath^M$.
+For the DES $D$, a supervisor $SV : FinPath^{D} \rightarrow 2^E$ is defined as a mapping that maps each finite path to a set of enabled events at the finite path and we call the set a control pattern. A supervisor is positional if $SV(\rho) = SV(last(\rho))$ for any $\rho \in InfPath^D$. Note that the relation $E_{uc} \subset SV(\rho) \subset E$ holds for any $\rho \in FinPath^D$.
 \end{definition}
 
 
@@ -65,13 +65,13 @@ For the DES $D$, a supervisor $SV : FinPath^{D} \rightarrow 2^E$ is defined as a
 
 \begin{definition}
   Given an augmented tLDBA $\bar{B}_{\varphi} = (\bar{X}, \bar{x}_{init},\bar{\Sigma},\bar{\delta},\bar{\mathcal{F}})$ and a DES $D$, a tuple $D \otimes \bar{B}_{\varphi} = D^{\otimes} = (S^{\otimes}, E^{\otimes}, s_{init}^{\otimes}, P^{\otimes}_T, P^{\otimes}_E, \delta^{\otimes}, {\mathcal F}^{\otimes})$ is a product DES, where
-  $S^{\otimes} = S \times \bar{X}$ is the finite set of states and we represent $s$ and $\bar{x}$ corresponding with $s^{\otimes} = (s,\bar{x}) \in S^{\otimes}$ as $\mysps$ and $\myspq$, respectively; $E^{\otimes}=E \cup \{ \varepsilon_{x^{\prime}} ; \exists x^{\prime} \text{s.t.} (x, \varepsilon_{x^{\prime}}, x^{\prime}) \in \delta \} $ is the finite set of events, where $\varepsilon_{x^{\prime}}$ is the action that represents an $\varepsilon$-transition to $x^{\prime} \in X$; $s_{init}^{\otimes} = (s_{init},\bar{x}_{init})$ is the initial states, $P^{\otimes}_T : S^{\otimes} \times S^{\otimes} \times E^{\otimes} \rightarrow [0,1]$ is the transition probability defined as
+  $S^{\otimes} = S \times \bar{X}$ is the finite set of states and we represent $s$ and $\bar{x}$ corresponding with $s^{\otimes} = (s,\bar{x}) \in S^{\otimes}$ as $\mysps$ and $\myspq$, respectively; $E^{\otimes}=E \cup \{ \varepsilon_{\bar{x}^{\prime}} ; \exists \bar{x}^{\prime} \text{s.t.} (\bar{x}, \varepsilon, \bar{x}^{\prime}) \in \bar{\delta} \} $ is the finite set of events, where $\varepsilon_{\bar{x}^{\prime}}$ is the event that represents an $\varepsilon$-transition to $\bar{x}^{\prime} \in \bar{X}$; $s_{init}^{\otimes} = (s_{init},\bar{x}_{init})$ is the initial states, $P^{\otimes}_T : S^{\otimes} \times S^{\otimes} \times E^{\otimes} \rightarrow [0,1]$ is the transition probability defined as
   \begin{align}
     P^{\otimes}_T(s^{\otimes \prime} | s^{\otimes}, e) =
     \left\{
     \begin{aligned}
-      &P_T(s^{\prime} | s, e) &   &\text{if}\  (\bar{x}, L((s,e,s^{\prime})), \bar{x}^{\prime}) \in \bar{\delta}, a \in \mathcal{A}(s) \\
-      &1 &   &\text{if}\ s=s^{\prime}, v=v^{\prime}, (x, \varepsilon_{x^{\prime}}, x^{\prime}) \in \delta, a= \varepsilon_{x^{\prime}} \\
+      &P_T(s^{\prime} | s, e) &   &\text{if}\  (\bar{x}, L((s,e,s^{\prime})), \bar{x}^{\prime}) \in \bar{\delta}, e \in \mathcal{E}(s) \\
+      &1 &   &\text{if}\ s=s^{\prime}, (\bar{x}, \varepsilon, \bar{x}^{\prime}) \in \delta, e= \varepsilon_{\bar{x}^{\prime}} \\
       &0 &   &\text{otherwise} ,
     \end{aligned}
     \right. \nonumber

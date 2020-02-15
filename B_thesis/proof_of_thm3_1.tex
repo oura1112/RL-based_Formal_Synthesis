@@ -1,0 +1,52 @@
+\begin{proof}[Proof of Theorem \ref{theorem3-1}]
+  Suppose that $\pi^{\ast}$ is an optimal policy but does not satisfy the LTL formula $\varphi$. Then, for any recurrent class $R^{\otimes i}_{{\pi}^{\ast}}$ in the Markov chain $MC^{\otimes}_{{\pi}^{\ast}}$ and any accepting set $\bar{F}^{\otimes}_j$ of the product MDP $M^{\otimes}$,  $\delta^{\otimes i}_{\pi^{\ast}} \cap \bar{F}^{\otimes}_j = \emptyset$
+  holds by Lemma \ref{lemma1}. Thus, the agent under the policy $\pi^{\ast}$ can obtain rewards only in the set of transient states. We consider the best scenario in the assumption. Let $p^k(s,s^{\prime})$ be the probability of going to a state $s^{\prime}$ in $k$ time steps after leaving the state $s$, and let $Post(T^{\otimes}_{\pi})$ be the set of states in recurrent classes that can be transitioned from states in $T^{\otimes}_{\pi}$ by one action. For the initial state $s_{init}$ in the set of transient states, it holds that
+  \begin{align}
+    V^{\pi^{\ast}}\!(s_{init})
+     =\ & \sum_{k=0}^{\infty} \sum_{s \in T^{\otimes}_{\pi^{\ast}}} \gamma^k p^k(s_{init}, s)  \sum_{s^{\prime} \in T^{\otimes}_{\pi^{\ast}} \cup Post(T^{\otimes}_{\pi^{\ast}})} P^{\otimes}_{\pi^{\ast}}(s^{\prime}| s) \mathcal{R}(s, a, s^{\prime})\nonumber \\
+     \leq\ & r_p \sum_{k=0}^{\infty} \sum_{s \in T^{\otimes}_{\pi^{\ast}}} \gamma^k p^k(s_{init}, s), \nonumber
+  \label{eqth11}
+  \end{align}
+  where the action $a$ is selected by $\pi^{\ast}$. By the property of the transient states, for any state $s^{\otimes}$ in $T^{\otimes}_{\pi^{\ast}}$, there exists a bounded positive value $m$ such that $ \sum_{k=0}^{\infty} \gamma^k p^k(s_{init}, s) \leq \sum_{k=0}^{\infty} p^k(s_{init}, s) < m$ \cite{ESS}. Therefore, there exists a bounded positive value $\bar{m}$ such that $V^{\pi^{\ast}}(s_{init}) < \bar{m}$.
+  Let $\bar{\pi}$ be a positional policy satisfying $\varphi$. We consider the following two cases.
+  \begin{enumerate}
+    \vspace{2mm}
+    \item Assume that the initial state $s_{init}$ is in a recurrent class $R^{\otimes i}_{\bar{\pi}}$ for some $ i \in \{1,\ldots,h\} $.
+    For any accepting set $\bar{F}^{\otimes}_j$, $\delta^{\otimes i}_{\bar{\pi}} \cap \bar{F}^{\otimes}_j \neq \emptyset$ holds by the definition of $\bar{\pi}$. The expected discounted reward for $s_{init}$ is given by
+    \begin{align}
+      V^{\bar{\pi}}(s_{init})
+       &= \sum_{k=0}^{\infty} \sum_{s \in R^{\otimes i}_{\bar{\pi}}} \gamma^k p^k(s_{init}, s) \sum_{s^{\prime} \in R^{\otimes i}_{\bar{\pi}}}  P^{\otimes}_{\bar{\pi}}(s^{\prime}\ |\ s) \mathcal{R}(s, a, s^{\prime}), \nonumber
+    \end{align}
+    where the action $a$ is selected by $\bar{\pi}$. Since $s_{init}$ is in $R^{\otimes i}_{\bar{\pi}}$, there exists a positive number $\bar{k} = \min \{ k\ ;\ k \geq n, p^{k}(s_{init}, s_{init}) > 0 \}$ \cite{ESS}. We consider the worst scenario in this case. It holds that
+    \begin{align}
+      V^{\bar{\pi}}(s_{init})
+       \geq & \sum_{k=n}^{\infty} p^{k}(s_{init}, s_{init}) \sum_{i=1}^{n} \gamma^{k-i} r_p \nonumber \\
+       \geq & \sum_{k=1}^{\infty} p^{k \bar{k}}(s_{init}, s_{init}) \sum_{i=0}^{n-1} \gamma^{k \bar{k} - i} r_p \nonumber \\
+       > & r_p \sum_{k=1}^{\infty} \gamma^{k \bar{k}} p^{k \bar{k}}(s_{init}, s_{init}), \nonumber
+    \end{align}
+whereas all states in $R(MC^{\otimes}_{\bar{\pi}})$ are positive recurrent because $|S^{\otimes}| < \infty$ \cite{ISP}. Obviously, $p^{k \bar{k}}(s_{init}, s_{init}) \geq (p^{\bar{k}}(s_{init}, s_{init}))^k > 0$ holds for any $k \in (0, \infty)$ by the Chapman-Kolmogorov equation \cite{ESS}. Furthermore, we have $\lim_{k \rightarrow \infty} p^{k \bar{k}}(s_{init}, s_{init}) > 0$ by the property of irreducibility and positive recurrence \cite{SM}. Hence, there exists $\bar{p}$ such that $0<\bar{p}<p^{k \bar{k}}(s_{init}, s_{init})$ for any $k \in (0, \infty]$ and we have
+    \begin{align}
+       V^{\bar{\pi}}(s_{init}) > & r_p \bar{p} \frac{\gamma^{\bar{k}}}{ 1 - \gamma^{\bar{k}} }. \nonumber
+    \end{align}
+
+    Therefore, for any $\bar{m} \in (V^{\pi^{\ast}}(s_{init}), \infty)$ and any $r_p < \infty$, there exists $\gamma^{\ast}<1$ such that $\gamma > \gamma^{\ast}$ implies $V^{\bar{\pi}}(s_{init}) > r_p \bar{p} \frac{\gamma^{\bar{k}}}{ 1 - \gamma^{\bar{k}} } > \bar{m}.$
+
+    \item Assume that the initial state $s_{init}$ is in the set of transient states $T_{\bar{\pi}}^{\otimes}$.
+    $P^{M^{\otimes}}_{\bar{\pi}}(s_{init} \models \varphi) > 0$ holds by the definition of $\bar{\pi}$. For a recurrent class $R^{\otimes i}_{\bar{\pi}}$ such that $\delta^{\otimes i}_{\bar{\pi}} \cap \bar{F}^{\otimes}_j \neq \emptyset$ for each accepting set
+    $\bar{F}^{\otimes}_j$, there exist a number $\bar{l} > 0$, a state $\hat{s}$ in $Post(T^{\otimes}_{\bar{\pi}}) \cap R^{\otimes i}_{\bar{\pi}}$, and a subset of transient states $\{ s_1, \ldots , s_{\bar{l}-1} \} \subset T^\otimes_{\bar{\pi}}$ such that $p(s_{init}, s_1)>0$, $p(s_{i}, s_{i+1})>0$ for $i \in \{ 1,...,\bar{l}-2 \}$, and $p(s_{\bar{l}-1}, \hat{s})>0$ by the property of transient states.
+    Hence, it holds that $p^{\bar{l}}(s_{init}, \hat{s}) > 0$ for the state $\hat{s}^{\otimes}$. Thus, by ignoring rewards in $T^{\otimes}_{\bar{\pi}}$, we have
+     \begin{align}
+        V^{\bar{\pi}}(s_{init}) %\nonumber \\
+        \geq\ & \gamma^{\bar{l}} p^{\bar{l}}(s_{init}, \hat{s}) \sum_{k=0}^{\infty} \sum_{s^{\prime} \in R^{\otimes i}_{\bar{\pi}}} \gamma^k p^k(\hat{s}, s^{\prime}) \sum_{s^{\prime \prime} \in R^{\otimes i}_{\bar{\pi}}} P^{\otimes}_{\bar{\pi}}(s^{\prime \prime} | s^{\prime}) \mathcal{R}(s^{\prime}, a, s^{\prime \prime}) \nonumber \\
+        >\ & \gamma^{\bar{l}} p^{\bar{l}}(s_{init}, \hat{s}) r_p \bar{p} \frac{\gamma^{\bar{k}^{\prime}}}{ 1 - \gamma^{\bar{k}^{\prime}} }, \nonumber
+     \end{align}
+     where $\bar{k}^{\prime}  \geq n$ is a constant and $0<\bar{p}< p^{k \bar{k}^{\prime}}(\hat{s}, \hat{s})$ for any $k \in (0, \infty]$.
+     Therefore, for any $r_p < \infty$ and any $\bar{m} \in (V^{\pi^{\ast}}(s_{init}), \infty)$, there exists $\gamma^{\ast}<1$ such that $\gamma > \gamma^{\ast}$ implies
+%     \begin{align*}
+%     V^{\bar{\pi}}(s^{\otimes}_{init}) > \\P^{M^{\otimes}}_{\bar{\pi}}(s^{\otimes}_{init} \models \varphi) \gamma^{\bar{l}} p^{\bar{l}}(s^{\otimes}_{init}, \hat{s}^{\otimes}) r_p \bar{p} \gamma^{\bar{k}^{\prime}} p^{\bar{k}^{\prime}}(\hat{s}^{\otimes},\hat{s}^{\otimes}) \frac{1}{ 1 - \gamma^{\bar{k}^{\prime}} } > \bar{m}
+%     \end{align*}
+     $V^{\bar{\pi}}(s_{init}) > \gamma^{\bar{l}} p^{\bar{l}}(s_{init}, \hat{s}) \frac{r_p \bar{p} \gamma^{\bar{k}^{\prime}}}{ 1 - \gamma^{\bar{k}^{\prime}} } > \bar{m}$.
+  \end{enumerate}
+
+The results contradict the optimality assumption of $\pi^{\ast}$.
+\end{proof}

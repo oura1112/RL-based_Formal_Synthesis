@@ -1,0 +1,16 @@
+# Fdb version 3
+["dvipdf"] 1580811773 "chap4.dvi" "chap4.pdf" "chap4" 1580811774
+  "chap4.dvi" 1580811772 12536 fb2ac8bb1ed83e664f68ea4c27b65036 "latex"
+  (generated)
+  "chap4.pdf"
+["latex"] 1580811771 "chap4.tex" "chap4.dvi" "chap4" 1580811774
+  "c:/w32tex/share/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
+  "c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1136768653 1328 c834bbb027764024c09d3d2bf908b5f0 ""
+  "c:/w32tex/share/texmf-dist/tex/latex/base/omscmr.fd" 1544442308 2472 aa08940f0a4dc6c24ae9f943b04ae0b9 ""
+  "c:/w32tex/share/texmf-dist/web2c/eptex/platex.fmt" 1567983041 4528567 607c2d5550c5e089833aedf81dffed8f ""
+  "c:/w32tex/share/texmf-dist/web2c/texmf.cnf" 1569228113 36614 36bcba4138d21dc48ee03f08b1e2dd36 ""
+  "chap4.aux" 1580810208 9 a94a2480d3289e625eea47cd1b285758 ""
+  "chap4.tex" 1580811771 15335 0da5ff0e358d8df1cb3cb75aa496a3e2 ""
+  (generated)
+  "chap4.dvi"
+  "chap4.log"
