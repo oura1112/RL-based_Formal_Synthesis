@@ -27,7 +27,7 @@ Let $InfPath^{M}_{\pi}$ (resp., $FinPath^{M}_{\pi}$) be the set of infinite (res
 
 \begin{definition}[Markov chain]
   A Markov chain induced by an MDP $M$ with a positional policy $\pi$ is a tuple $MC_{\pi} = (S_{\pi},P_{\pi},s_0,AP,L)$, where $S_{\pi} = S$, $P_{\pi}(s'|s) = P(s'|s,a)$ for $s, s^{\prime} \in S$ and $a \in \mathcal{A}(s)$ such that $\pi(s,a) = 1$.
-  The state set $S_{\pi}$ of $MC_{\pi}$ can be represented as a disjoint union of a set of transient states $T_{\pi}$ and closed irreducible sets of recurrent states $R^j_{\pi}$ with $j \in \{ 1, \ldots ,h \}$, as $ S_{\pi} = T_{\pi} \sqcup R^1_{\pi} \sqcup \ldots \sqcup R^h_{\pi} $ \cite{ESS}.
+  The state set $S_{\pi}$ of $MC_{\pi}$ can be represented as a disjoint union of a set of transient states $T_{\pi}$ and closed irreducible sets of recurrent states $R^j_{\pi}$ with $j \in \{ 1, \ldots ,h \}$, i.e., $ S_{\pi} = T_{\pi} \cup R^1_{\pi} \cup \ldots \cup R^h_{\pi} $ \cite{ESS}.
   In the following, we say a ``recurrent class'' instead of a ``closed irreducible set of recurrent states'' for simplicity.
 \end{definition}
 
@@ -35,16 +35,16 @@ In an MDP $M$, we define a reward function $\mathcal{R}:S \times A \times S \rig
 
 \section{Reinforcement Learning}
 
-Reinforcement learning is the theoretical framework to find a policy maximizing or minimizing an objective function through the iterative interactions between the learner referred to the agent and the controlled system referred to the environment. The interaction is that the agent takes an action on the environment and the environment returns a observation such as a immediate reward or next state. In this section, since we use model-free method in this thesis, we refer the model-free reinforcement learning method, which find a policy maximizing or minimizing an objective function without explicit estimations for the environment.
+Reinforcement learning is the theoretical framework to find a policy maximizing or minimizing an objective function through the iterative interactions between the learner referred to the agent and the controlled system referred to the environment. The interaction is that the agent takes an action on the environment and the environment returns an observation such as an immediate reward or a next state. In this section, since we use model-free reinforcement learning methods in this thesis, we introduce the model-free reinforcement learning methods, which find a policy maximizing or minimizing the objective function without explicit estimations of the environment.
 
 \subsection{Objective functions and an Optimal policy}
 
-\begin{definition}[Expected discounted reward for MDPs]
+\begin{definition}[Expected discounted reward]
   For a policy $\pi$ on an MDP $M$, any state $s \in S$, and a reward function $\mathcal{R}$, we define the expected discounted reward as
   \begin{align*}
     V^{\pi}(s)= \mathbb{E}^{\pi}[\sum_{n=0}^{\infty}\gamma^n \mathcal{R}(S_n, A_n, S_{n+1})|S_0 = s],
   \end{align*}
-where $\mathbb{E}^{\pi}$ denotes the expected value given that the agent follows the policy $\pi$ from the state $s$ and $\gamma \in [0,1)$ is a discount factor. Intuitively, the magnitude of the discount factor $\gamma$ determines how much we consider rewards received in the future. The function $V^{\pi}(s)$ is often referred to as a state-value function under the policy $\pi$. For any state-action pair $(s,a) \in S \times A$, we define an action-value function $Q^{\pi}(s,a)$ under the policy $\pi$ as follows.
+where $\mathbb{E}^{\pi}$ denotes the expected value given that the agent follows the policy $\pi$ from the state $s$ and $\gamma \in [0,1)$ is a discount factor. Intuitively, the magnitude of the discount factor $\gamma$ determines how much we consider rewards received in the future. The closer $\gamma$ is to 0, the more important the rewards of near future are. On the other hand, the rewards of far future are also important when $\gamma$ is closer to 1. The function $V^{\pi}(s)$ is often referred to as a state-value function under the policy $\pi$. For any state-action pair $(s,a) \in S \times A$, we define an action-value function $Q^{\pi}(s,a)$ under the policy $\pi$ as follows.
   \begin{align*}
     Q^{\pi}(s,a)= \mathbb{E}^{\pi}[\sum_{n=0}^{\infty}\gamma^n \mathcal{R}(S_n, A_n, S_{n+1})|&S_0 = s, A_0 = a].
   \end{align*}
@@ -60,15 +60,15 @@ where $\mathbb{E}^{\pi}$ denotes the expected value given that the agent follows
   \end{align}
 \end{definition}
 
-by the definition of the action-value function, it holds that
+by the definition of the action-value function, we have
 
 \begin{align}
   V^{\pi}(s) = & \sum_{a \in \mathcal{A}(s)} \pi(s,a) Q^{\pi}(s,a) \nonumber \\
-  \Leftrightarrow  Q^{\pi}(s,a) = & \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \{ \mathcal{R}(s, a, s^{\prime}) + \gamma V^{\pi}(s^{\prime}) \} \nonumber \\
+  Q^{\pi}(s,a) = & \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \{ \mathcal{R}(s, a, s^{\prime}) + \gamma V^{\pi}(s^{\prime}) \} \nonumber \\
                = & \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \{ \mathcal{R}(s, a, s^{\prime}) + \gamma \sum_{a^{\prime} \in \mathcal{A}(s^{\prime})} \pi(s^{\prime}, a^{\prime}) Q^{\pi}(s^{\prime},a^{\prime}) \}.
  \label{Q_pi}
 \end{align}
- The above equations are called the {\it Bellman equation}.
+ The above equations are called the {\it Bellman equations}.
 
 \begin{definition}[Optimal policy]
   For any state $s \in S$, a policy $\pi^{\ast}$ is optimal if
@@ -98,41 +98,41 @@ We have the following {\it Bellman optimality functions} by the definition of op
 \label{opt_pol}
 \end{definition}
 
-We call $V^{\ast}$ and $Q^{\ast}$ the optimal state-value function and the optimal action-value function, respectively. $V^{\ast}(s)$ represents $Q^{\ast}(s,a)$ with an optimal action at the first step. Therefor, for any state $s \in S$, we have
+We call $V^{\ast}$ and $Q^{\ast}$ the optimal state-value function and the optimal action-value function, respectively. $V^{\ast}(s)$ represents $Q^{\ast}(s,a)$ with an optimal action at the first step. Therefore, for any state $s \in S$, we have
 
 \begin{align*}
-  V^{\ast}(s) = \max_{a \in \mathcal{A}(s)} Q^{\ast}(s,a)
+  V^{\ast}(s) = \max_{a \in \mathcal{A}(s)} Q^{\ast}(s,a).
 \end{align*}
 
-In words, the set of optimal policies under $V^{\ast}$ and the set of optimal polisies under $Q^{\ast}$ are the same.
+In words, the set of optimal policies under $V^{\ast}$ and the set of optimal policies under $Q^{\ast}$ are the same.
 
-If we know the full and accurate information of an MDP such as the transition probability or the reward function, we can obtain an optimal policy by solving Eqs. \ref{opt_V} or \ref{opt_Q} directly. we usually use {\it Dynamic Programming} by solving recursively equation such as Eqs \ref{opt_V} or \ref{opt_Q}. To find $V^{\pi}$ or $Q^{\pi}$ for a policy $\pi$ by solving Eqs. \ref{V_pi} or \ref{Q_pi} is referred to {\it Policy Evaluation}. For any state $s \in S$ or any state-action pair $(s,a) \in S \times A$, to update the policy $\pi$ to increase the value of $V^{\pi}(s)$ or $Q^{\pi}(s,a)$ is referred to {\it Policy Improvement}. The method that finds an optimal policy by updating optimal value function repeatedly in accordance with Eqs. \ref{opt_V} ar \ref{opt_Q} is referred to {\it Value Iteration}. The method that finds an optimal policy by repeating policy evaluation and policy improvement alternately is referred to {\it Policy Iteration}.
+If we know the full and accurate information of an MDP such as the transition probability or the reward function, we can obtain an optimal policy by solving Eqs. (\ref{opt_V}) or (\ref{opt_Q}) directly. We usually use {\it Dynamic Programming} by solving recursively Eq.\ (\ref{opt_V}) or Eq.\ (\ref{opt_Q}). To find $V^{\pi}$ or $Q^{\pi}$ for a policy $\pi$ by solving Eq. (\ref{V_pi}) or Eq.\ (\ref{Q_pi}) is referred to {\it Policy Evaluation}. For any state $s \in S$ or any state-action pair $(s,a) \in S \times A$, the update of the policy $\pi$ in order to increase the value of $V^{\pi}(s)$ or $Q^{\pi}(s,a)$ is referred to {\it Policy Improvement}. The method that finds an optimal policy by updating the optimal value function repeatedly in accordance with Eqs. (\ref{opt_V}) or (\ref{opt_Q}) is referred to {\it Value Iteration}. The method that finds an optimal policy by repeating policy evaluation and policy improvement alternately is referred to {\it Policy Iteration}.
 
 \subsection{Temporal Difference Learning}
 
 If the MDP $M$ is unknown, we can not use Dynamic programming such as value iteration or policy iteration to obtain an optimal policy. When the MDP $M$ is unknown, we often use   reinforcement learning to find an optimal policy instead of dynamic programming.
 
-Temporal difference learning (TD-learning) is the basic method of model-free reinforcement learning. The method does not require the prior knowledge about the environment and utilize a raw experience by one step. Unlike dynamic programing, we update a value function using the experience in an on-line and incremental manner as follows.
+Temporal difference learning (TD-learning) is the basic method of model-free reinforcement learning. The method does not require the prior knowledge about the environment and utilizes a raw experience by one step. Unlike dynamic programing, we update a value function using the experience in an on-line manner as follows.
 
 \begin{align}
   \hat{V}^{\pi_k}(s_k) \leftarrow \hat{V}^{\pi_k}(s_k) + \alpha_k \{ r_{k+1} + \hat{V}^{\pi_k}(s_{k+1}) - \hat{V}^{\pi_k}(s_k) \},
 \end{align}
-where $\pi_k$, $s_k$, and $\alpha_k$ are the policy, the state, and the learning ratio at the time step $k$, respectively, and $r_{k+1} = \mathcal{R}(s_k, a_k, s_{k+1})$. Note that $\alpha_k \in [0,1]$ for any $k \in \mathbb{N}_0$. The quantity in the curly bracket in the right hand side is called {\it TD-error}
+where $\pi_k$, $s_k$, and $\alpha_k$ are the policy, the state, and the learning ratio at the time step $k$, respectively, and $r_{k+1} = \mathcal{R}(s_k, a_k, s_{k+1})$. Note that $\alpha_k \in [0,1]$ for any $k \in \mathbb{N}_0$. The quantity in the curly bracket in the right hand side is called a {\it TD-error}:
 
 \begin{align}
   \Delta_k = r_{k+1} + \hat{V}^{\pi_k}(s_{k+1}) - \hat{V}^{\pi_k}(s_k).
 \end{align}
 
-TD-error represents the difference between the current estimated value function and the better estimated value function of a current state based on an actual experience, namely $r_{k+1} + \hat{V}^{\pi_k}(s_{k+1})$. Intuitively, as the value function repeatedly is updated, the errors is gradually reduced. Hence, the magnitude of the learning ratio $\alpha_k$ describes how much we influence the better estimated value at the current state based on the most recent experience on the current estimated value at the current state.
+The TD-error at time step $k$ represents the difference between the current estimated value of $s_k$ and the better estimated value of $s_k$ based on the actual experience, namely $r_{k+1} + \hat{V}^{\pi_k}(s_{k+1})$. Intuitively, each time the value function is updated, the TD errors are gradually reduced and the estimated value function converges to the true value function under the policy $\pi$ if $\pi_k$ goes to a policy $\pi$. Hence, the magnitude of the learning ratio $\alpha_k$ describes how much we influence the most recent experience on updating the current estimated value.
 
-TD-learning methods for an action-value function are classified as two main learning methods that are referred to {\it Q-learning} and {\it SARSA}.
-In Q-learning, we do not use the actual action at the next state to update the current estimated state-action value at the current state-action pair. Instead we use the optimal action at the next state to update the estimated state-action value function. That is, the way of update the estimated state-action value function $\hat{Q}^{\pi_k}(s_k, a_k)$ at time step $k$ is as follows
+TD-learning methods for an action-value function are classified into two main learning methods {\it Q-learning} and {\it SARSA}.
+In Q-learning, we do not use the actual action at the next state to update the current estimated state-action value of the current state-action pair. Instead, we use the optimal action at the next state to update the current estimated state-action value of the current state-action pair. Thus, the way of update the estimated state-action value $\hat{Q}^{\pi_k}(s_k, a_k)$ at time step $k$ is as follows.
 
 \begin{align}
   \hat{Q}^{\pi_k}(s_k,a_k) \leftarrow \hat{Q}^{\pi_k}(s_k,a_k) + \alpha_k \{ r_{k+1} + \max_{a^{\prime} \in \mathcal{A}(s_{k+1})} \hat{Q}^{\pi_k}(s_{k+1}, a^{\prime}) - \hat{Q}^{\pi_k}(s_k,a_k) \}.
 \end{align}
 
-On the other hand, in SARSA, we use the actual action at the next state to update the current estimated state-action value function. That is,
+On the other hand, in SARSA, we use the actual action at the next state to update the current estimated state-action value of the current state-action pair. That is,
 
 \begin{align}
   \hat{Q}^{\pi_k}(s_k,a_k) \leftarrow \hat{Q}^{\pi_k}(s_k,a_k) + \alpha_k \{ r_{k+1} + \hat{Q}^{\pi_k}(s_{k+1}, a_{k+1}) - \hat{Q}^{\pi_k}(s_k,a_k) \}.
@@ -197,7 +197,7 @@ all words satisfying $\varphi$.
  \end{definition}
 
 \begin{definition}[Sink state]
-A sink state in state set $X$ of an augmented tLDBA $\bar{B}_{\varphi} = (\bar{X}, \bar{x}_{init},\bar{\Sigma},\bar{\delta},\bar{\mathcal{F}})$ is defined as a state such that there exist no accepting transition of $\bar{B}_{\varphi}$ that is accessible from the state. We denote the set of sink states as $Sink Set$.
+A sink state in state set $X$ of a tLDBA $B = (X, x_{init}, \Sigma, \delta, \mathcal{F})$ is defined as a state such that there exist no accepting transition of $B$ that is accessible from the state. We denote the set of sink states as $Sink Set$.
 \end{definition}
 
 \begin{definition}[Limit-deterministic generalized B\"{u}chi automata]
@@ -205,12 +205,14 @@ A sink state in state set $X$ of an augmented tLDBA $\bar{B}_{\varphi} = (\bar{X
   \begin{itemize}
     \item $F_j \subset X_{final} \times \Sigma \times X_{final}$, $\forall j \in \{ 1,...,n \}$,
     %\item $| \{ (x, \sigma, x^{\prime}) \! \in \! \delta; x^{\prime} \! \in \! X_{initial} \} | \! \leq \! 1$, $\forall x \! \in \! X_{initial}, \forall \sigma \! \in \! \Sigma$,
-    \item $| \{ (x, \sigma, x^{\prime}) \in \delta; x^{\prime} \in X_{final} \} | \! \leq \! 1$, $\forall x \! \in \! X_{final}, \forall \sigma \! \in \! \Sigma$,
-    \item $| \{ (x, \sigma, x^{\prime}) \in \delta; x^{\prime} \in X_{initial} \} |$=0, $\forall x \! \in \! X_{final}, \forall \sigma \! \in \! \Sigma$.
-    \item there are $\varepsilon$-transitions into $X_{final}$ from $X_{initial}$.
+    \item $| \{ (x, \sigma, x^{\prime}) \in \delta; \sigma \! \in \! \Sigma, x^{\prime} \in X_{final} \} | \! = \! 1$, $\forall x \! \in \! X_{final}$,
+    \item $| \{ (x, \sigma, x^{\prime}) \in \delta; \sigma \! \in \! \Sigma, x^{\prime} \in X_{initial} \} |$=0, $\forall x \! \in \! X_{final}$,
+    \item
+    $ \forall (x, \varepsilon, x') \in \delta, \ x \in X_{initial} \land x' \in X_{final} $.
+    % there are $\varepsilon$-transitions into $X_{final}$ from $X_{initial}$.
 \end{itemize}
 \end{definition}
-  An $\varepsilon$-transition enables the tLDGBA to change its state with no input. Then, the $\varepsilon$-transitions reflect the single ``guess" from $X_{initial}$ to $X_{final}$. Note that by the construction in \cite{SEJK2016}, the transitions in each part are deterministic except for $\varepsilon$-transitions into $X_{final}$ from $X_{intial}$.
+  An $\varepsilon$-transition enables the tLDGBA to change its state with no input. Then, $\varepsilon$-transitions reflect a single ``guess" from $X_{initial}$ to $X_{final}$. Note that by the construction in \cite{SEJK2016}, the transitions in each part are deterministic except for $\varepsilon$-transitions from $X_{intial}$ to $X_{final}$.
 It is known that, for any LTL formula $ \varphi $, there exists a tLDGBA that accepts all words satisfying $\varphi$ \cite{SEJK2016}. We refer to a tLDGBA with one accepting set as a tLDBA.
 %in $ \mathcal{L}(\varphi) $ \cite{SEJK2016}.
-In particular, we represent a tLDGBA recognizing an LTL formula $\varphi$ as $B_{\varphi}$, whose input alphabet is given by $ \Sigma = 2^{AP} \cup \{ \varepsilon \} $.
+In particular, we denote a tLDGBA recognizing an LTL formula $\varphi$ by $B_{\varphi}$, whose input alphabet is given by $ \Sigma = 2^{AP} \cup \{ \varepsilon \} $.

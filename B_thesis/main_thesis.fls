@@ -1,11 +1,10 @@
-PWD C:/Users/oura/Documents/GitHub/Chap2/B_thesis
+PWD C:/Users/ooura/Documents/GitHub/Chap2/B_thesis
 INPUT c:/w32tex/share/texmf-dist/web2c/texmf.cnf
 INPUT c:/w32tex/share/texmf-dist/web2c/eptex/platex.fmt
 INPUT main_thesis.tex
 OUTPUT main_thesis.log
 INPUT c:/w32tex/share/texmf-dist/tex/platex/jsclasses/jsbook.cls
 INPUT c:/w32tex/share/texmf-dist/tex/platex/jsclasses/jsbook.cls
-INPUT c:/w32tex/share/texmf-dist/fonts/map/fontname/texfonts.map
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/tmin10.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/jis/jis.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/tmin10.tfm
@@ -179,6 +178,8 @@ INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmmib8.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy8.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/jis/jisg.tfm
+INPUT ep_1000_it_10000_MDP3_gamma_095_re2_ini22_nts_c095_100times_per50_no2.png
+INPUT ep_1000_it_10000_MDP3_gamma_095_nts_c095_ldba_100times_per50.png
 INPUT proposed_policy.png
 INPUT Abate_policy.png
 INPUT chap4.tex

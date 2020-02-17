@@ -62,7 +62,7 @@ Practically, states in a strongly connected component that contains no accepting
    \centering
 %   \vspace{2mm}
 %   \includegraphics[bb=140 498 368 682,width=5cm]{automaton1.pdf}
-   \includegraphics[bb=0 0 247 80,scale=0.75]{ldgba_original.pdf}
+   \includegraphics[bb=0 0 247 80,scale=0.8]{ldgba_original.pdf}
    \caption{The tLDGBA recognizing the LTL formula $\text{{\bf GF}}a \wedge \text{{\bf GF}}b \wedge \text{{\bf G}}\neg c$, where the initial state is $x_0$. Red arcs are accepting transitions that are numbered in accordance with the accepting sets they belong to.}
    % e.g., \textcircled{\scriptsize 1}$a \land \neg b \land \neg c$ means the transition labeled by it belongs to the accepting set $F_1$.}
    \label{automaton}
@@ -70,7 +70,7 @@ Practically, states in a strongly connected component that contains no accepting
 \begin{figure}[htbp]
    \centering
 %   \includegraphics[bb=0 0 374 207,height=4cm, width=7cm]{ldgba.pdf}
-   \includegraphics[bb=0 0 326 207,scale=0.75]{ldgba.pdf}
+   \includegraphics[bb=0 0 326 207,scale=0.8]{ldgba.pdf}
    \caption{The augmented automaton for the tLDGBA in Fig.~\ref{automaton} recognizing the LTL formula $\text{{\bf GF}}a \wedge \text{{\bf GF}}b \wedge \text{{\bf G}}\neg c$, where the initial state is $(x_0, (0,0)^T )$. Red arcs are accepting transitions that are numbered in accordance with the accepting sets they belong to. All states corresponding to $x_1$ are merged into $(x_1, (*,*)^T )$.}
    \label{automaton_aug}
 \end{figure}
@@ -132,7 +132,7 @@ We modify the standard definition of a product MDP to deal with $\varepsilon$-tr
 %The reward assignments are based on the acceptance conditions of the product MDP.
 Under the product MDP $M^{\otimes}$ and the reward function $\mathcal{R}$, which is based on the acceptance condition of $ M^\otimes $, we show that if there exists a positional policy $\pi$ satisfying the LTL specification $\varphi$, maximizing the expected discounted reward produces a policy satisfying $\varphi$.
 
-For a Markov chain $MC^{\otimes}_{\pi}$ induced by a product MDP $M^{\otimes}$ with a positional policy $\pi$, let $S^{\otimes}_{\pi}= T^{\otimes}_{\pi} \sqcup R^{\otimes 1}_{\pi} \sqcup \ldots \sqcup R^{\otimes h}_{\pi}$ be the set of states in $MC^{\otimes}_{\pi}$, where $T^{\otimes}_{\pi}$ is the set of transient states and $R^{\otimes i}_{\pi}$ is the recurrent class for each $i \in \{ 1, \ldots ,h \}$, and let $R(MC^{\otimes}_{\pi})$ be the set of all recurrent classes in $MC^{\otimes}_{\pi}$. Let $\delta^{\otimes}_{\pi,i}$ be the set of transtions in a recurrent class $R^{\otimes i}_{\pi}$, namely $\delta^{\otimes}_{\pi,i} = \{ (s^{\otimes},a,s^{\otimes \prime}) \in \delta^{\otimes} ; s^{\otimes} \in R^{\otimes i}_{\pi},\ P^{\otimes}(s^{\otimes \prime}|s^{\otimes},a) > 0 \}$, and let $P^{\otimes}_{\pi}$ : $S^{\otimes}_{\pi} \times S^{\otimes}_{\pi} \rightarrow [0,1]$ be the transition probability under $\pi$.
+For a Markov chain $MC^{\otimes}_{\pi}$ induced by a product MDP $M^{\otimes}$ with a positional policy $\pi$, let $S^{\otimes}_{\pi}= T^{\otimes}_{\pi} \cup R^{\otimes 1}_{\pi} \cup \ldots \cup R^{\otimes h}_{\pi}$ be the set of states in $MC^{\otimes}_{\pi}$, where $T^{\otimes}_{\pi}$ is the set of transient states and $R^{\otimes i}_{\pi}$ is the recurrent class for each $i \in \{ 1, \ldots ,h \}$, and let $R(MC^{\otimes}_{\pi})$ be the set of all recurrent classes in $MC^{\otimes}_{\pi}$. Let $\delta^{\otimes}_{\pi,i}$ be the set of transtions in a recurrent class $R^{\otimes i}_{\pi}$, namely $\delta^{\otimes}_{\pi,i} = \{ (s^{\otimes},a,s^{\otimes \prime}) \in \delta^{\otimes} ; s^{\otimes} \in R^{\otimes i}_{\pi},\ P^{\otimes}(s^{\otimes \prime}|s^{\otimes},a) > 0 \}$, and let $P^{\otimes}_{\pi}$ : $S^{\otimes}_{\pi} \times S^{\otimes}_{\pi} \rightarrow [0,1]$ be the transition probability under $\pi$.
 
 \begin{lemma}
   For any policy $\pi$ and any recurrent class $R^{\otimes i}_{\pi}$ in the Markov chain $MC^{\otimes}_{\pi}$,
@@ -146,7 +146,7 @@ For a Markov chain $MC^{\otimes}_{\pi}$ induced by a product MDP $M^{\otimes}$ w
 \end{lemma}
 The proof of Lemma \ref{lemma3-1} is shown in Appendix A.
 
-Lemma \ref{lemma3-1} implies that for an LTL formula $\varphi$ if a path $\rho$ under a policy $\pi$ does not satisfy $\varphi$, then the agent obtains no reward in recurrent classes; otherwise there exists at least one recurrent class where the agent obtains rewards infinitely often.
+Lemma \ref{lemma3-1} implies that, for an LTL formula $\varphi$ if a path $\rho$ under a policy $\pi$ does not satisfy $\varphi$, then the agent obtains no reward in recurrent classes; otherwise there exists at least one recurrent class where the agent obtains rewards infinitely often.
 
 \begin{theorem}
   Let $M^{\otimes}$ be the product MDP corresponding to an MDP $M$ and an LTL formula $\varphi$. If there exists a positional policy satisfying $\varphi$, then there exists a discount factor $\gamma^{\ast}$ such that any algorithm that maximizes the expected reward with $\gamma > \gamma^{\ast}$ will find a positional policy satisfying $\varphi$.
@@ -216,7 +216,7 @@ We show the overall procedure of our proposed method in Algorithm \ref{syn_pol}.
 \end{comment}
 
 In this section,
-we apply the proposed method to a path planning problem of a robot in an environment consisting of eight rooms and one corridor as shown in Fig.\ \ref{Grid1}. The state $s_7$ is the initial state and the action space is specified with $\mathcal{A}(s) = \{ Right, Left, Up, Down \}$ for any state $s \neq s_4$ and $\mathcal{A}(s_4) = \{ to\_s_0, to\_s_1, to\_s_2, to\_s_3, to\_s_5, $ $to\_s_6, to\_s_7, to\_s_8 \}$, where $to\_s_i$ means attempting to go to the state $s_i$ for $i \in \{0,\ 1,\ 2,\ 3,\ 5,\ 6,\ 7,\ 8 \}$. The robot moves in the intended direction with probability 0.9 and it stays in the same state with probability 0.1 if it is in the state $s_4$. In the states other than $s_4$, it moves in the intended direction with probability 0.9 and it moves in the opposite direction to that it intended to go with probability 0.1. If the robot tries to go to outside the environment, it stays in the same state. The labeling function is as follows.
+we apply the proposed method to a path planning problem of a robot in an environment consisting of eight rooms and one corridor as shown in Fig.\ \ref{Grid1}. The state $s_7$ is the initial state and the action space is specified with $\mathcal{A}(s) = \{ Right, Left, Up, Down \}$ for any state $s \neq s_4$ and $\mathcal{A}(s_4) = \{ to\_s_0, to\_s_1, to\_s_2, to\_s_3, to\_s_5, $ $to\_s_6, to\_s_7, to\_s_8 \}$, where $to\_s_i$ means attempting to go to the state $s_i$ for $i \in \{0,\ 1,\ 2,\ 3,\ 5,\ 6,\ 7,\ 8 \}$. The robot moves in the intended direction with probability 0.9 and it stays in the same state with probability 0.1 if it is in the state $s_4$. In the states other than $s_4$, it moves in the intended direction with probability 0.9 and it moves in the opposite direction with probability 0.1. If the robot tries to go to outside the environment, it stays in the same state. The labeling function is as follows.
 \begin{align*}
       & L((s, act, s^{\prime})) =
       \left\{
@@ -248,16 +248,16 @@ We set the positive reward $r_p = 2$, the epsilon greedy parameter $ \varepsilon
   \begin{minipage}{0.5\hsize}
      \centering
 %     \includegraphics[width=4.5cm]{ep_1000_it_10000_MDP3_gamma_095_re2_ini22_nts_c095_20times.png}
-     \includegraphics[bb=0 0 461 346, height = 3.3cm, width=4.2cm]{ep_1000_it_10000_MDP3_gamma_095_re2_ini22_nts_c095_20times_no3.png}
+     \includegraphics[bb=0 0 461 346, height = 3.8cm, width=5cm]{ep_1000_it_10000_MDP3_gamma_095_re2_ini22_nts_c095_100times_per50_no2.png}
  \end{minipage}
 
  \begin{minipage}{0.5\hsize}
    \centering
 %   \includegraphics[width=4.5cm]{ep_1000_it_10000_MDP3_gamma_095_nts_c095_abate_20times.png}
-   \includegraphics[bb=0 0 461 346, height = 3.3cm, width=4.2cm]{tex_resubmit/ep_1000_it_10000_MDP3_gamma_095_nts_c095_ldba_20times_no4.png}
+   \includegraphics[bb=0 0 461 346, height = 3.8cm, width=5cm]{ep_1000_it_10000_MDP3_gamma_095_nts_c095_ldba_100times_per50.png}
  \end{minipage}
 \end{tabular}
- \caption{The mean of average reward in each episode for 20 learning sessions obtained from our proposed method (left) and the method using tLDBA (right). They are plotted per 100 episodes and the green areas represent the range of standard deviations. }
+ \caption{The mean of average reward in each episode for 20 learning sessions obtained from our proposed method (left) and the method using tLDBA (right). They are plotted per 50 episodes and the green areas represent the range of standard deviations. }
  \label{result}
 \end{figure}
 
@@ -289,7 +289,7 @@ Fig.\ \ref{result} shows the average rewards obtained by our proposed method and
 %Note that the theoretical convergence values of the average reward for both methods are different.
 Both methods eventually acquire an optimal policy satisfying $\varphi$. As shown in Fig.\ \ref{result}, however, our proposed method converges faster. This is because the order of entrance to the rooms $s_0$ and $s_8$ is determined according to the tLDBA.
 %This is because the ratio of the number of accepting transitions to that of all transitions in $\bar{B}_{\varphi}$ is greater than $B^{\prime}_{\varphi}$.
-That is, using $\bar{B}_{\varphi}$ lessens the sparsity of rewards than using $B^{\prime}_{\varphi}$.
+Moreover, the number of transitions with a positive reward in $\bar{B}_\varphi$ is larger than that in $B_\varphi'$.
 
 % \subsubsection{vs. tLDGBA with accepting frontier function}
 %  In, the accepting frontier function is proposed.
