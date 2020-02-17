@@ -63,7 +63,7 @@ where $\mathbb{E}^{\pi}$ denotes the expected value given that the agent follows
 by the definition of the action-value function, we have
 
 \begin{align}
-  V^{\pi}(s) = & \sum_{a \in \mathcal{A}(s)} \pi(s,a) Q^{\pi}(s,a) \nonumber \\
+  V^{\pi}(s) = & \sum_{a \in \mathcal{A}(s)} \pi(s,a) Q^{\pi}(s,a), \nonumber \\
   Q^{\pi}(s,a) = & \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \{ \mathcal{R}(s, a, s^{\prime}) + \gamma V^{\pi}(s^{\prime}) \} \nonumber \\
                = & \sum_{s^{\prime} \in S} P(s^{\prime}|s,a) \{ \mathcal{R}(s, a, s^{\prime}) + \gamma \sum_{a^{\prime} \in \mathcal{A}(s^{\prime})} \pi(s^{\prime}, a^{\prime}) Q^{\pi}(s^{\prime},a^{\prime}) \}.
  \label{Q_pi}
