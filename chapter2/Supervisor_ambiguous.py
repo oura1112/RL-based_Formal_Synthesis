@@ -240,7 +240,7 @@ class Supervisor():
         return np.argmax(self.Q[s_m][s_c][q][v])
 
             
-    def learn(self, env, episode_count=15000, step_count=5000, gamma=0.99, learning_rate_inv=1, session=1):
+    def learn(self, env, episode_count=15000, step_count=5000, gamma=0.9999, gamma_b = 0.99, learning_rate_inv=1, session=1):
         
         total_reward_mean_m = []
         total_reward_mean_std = []
@@ -353,14 +353,20 @@ class Supervisor():
                             break_event = event
                             break_n_state = [s_c_next, s_m_next]
                         break_point = 1
+                        v_next = 0
                         reward = -1000
                         
                     #s_next = self.coord_to_snum(s_next)
                     
                     #価値関数やパラメータの更新 T -> Q
+                    
+                    if reward > 0:
+                        gamma_ = gamma_b
+                    else :
+                        gamma_ = gamma
 
                     #ambiguity setに基づくTの更新
-                    gain_T = reward + gamma * max(self.Q[s_m_next][s_c_next][automaton_transit[2]][v_next])
+                    gain_T = reward + gamma_ * max(self.Q[s_m_next][s_c_next][automaton_transit[2]][v_next]) #gamma -> step_count
                     estimated_T = self.T[s_m][s_c][automaton_transit[0]][v][event]
                     self.Nt[s_m][s_c][automaton_transit[0]][v][event] += 1
                     self.T[s_m][s_c][automaton_transit[0]][v][event] += 1/(self.Nt[s_m][s_c][automaton_transit[0]][v][event])*(gain_T - estimated_T)
@@ -659,8 +665,8 @@ class Supervisor():
                 q = automaton_transit[2]
                 v = v_next
                 
-                total_reward += reward
-                total_cost += enable_reward #prohibit_cost #
+                total_reward += bool(reward)
+                total_cost +=  len(control_pi) #enable_reward #prohibit_cost #
                 count += 1
                 #print("reward = {}, V = {}".format(reward, ))
             total_reward_mean.append(total_reward/step_count)
@@ -703,11 +709,11 @@ class Supervisor():
         #ax1.fill_between(x_axis, total_reward_mean_ - total_reward_std_, total_reward_mean_ + total_reward_std_, alpha = 0.2, color = "g")
         #ax2.fill_between(x_axis, total_cost_mean_ - total_cost_std_, total_cost_mean_ + total_cost_std_, alpha = 0.2, color = "g")
         
-        ax1.set_ylim(0,4)
-        ax2.set_ylim(0,2)
+        ax1.set_ylim(0,1)
+        ax2.set_ylim(0,8)
 
-        ax1.set_ylabel("Average Reward for R2")
+        ax1.set_ylabel("Average frequency of accepting traisition occurrences")
         ax2.set_xlabel("Episode Count")
-        ax2.set_ylabel("Average reward for R1")
+        ax2.set_ylabel("Average number of enabled events")
 
         plt.show()

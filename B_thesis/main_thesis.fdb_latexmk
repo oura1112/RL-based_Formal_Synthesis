@@ -1,9 +1,9 @@
 # Fdb version 3
-["dvipdf"] 1581910795 "main_thesis.dvi" "main_thesis.pdf" "main_thesis" 1581910799
-  "main_thesis.dvi" 1581910795 131700 136babb7f6a598e131907fee1da4c926 "latex"
+["dvipdf"] 1581932315 "main_thesis.dvi" "main_thesis.pdf" "main_thesis" 1581932319
+  "main_thesis.dvi" 1581932315 131716 3ccbfd88a46c4cf1250d3150e8c6d4a0 "latex"
   (generated)
   "main_thesis.pdf"
-["latex"] 1581910793 "main_thesis.tex" "main_thesis.dvi" "main_thesis" 1581910799
+["latex"] 1581932313 "main_thesis.tex" "main_thesis.dvi" "main_thesis" 1581932319
   "Abate_policy.png" 1579091410 8562 259390f41d8d8c09a15a15cd53a4f6b3 ""
   "MDP_corridor.PNG" 1579091410 12036 b7670ce6e9ea1a633408317c520a965d ""
   "MDP_corridor.png" 1579091410 12036 b7670ce6e9ea1a633408317c520a965d ""
@@ -95,9 +95,9 @@
   "ep_1000_it_10000_MDP3_gamma_095_re2_ini22_nts_c095_100times_per50_no2.png" 1581909847 28731 f40447d9ef865948277c011e844b6b87 ""
   "ldgba.pdf" 1579091410 7644 4b28959d88bec0b22c01d50c8a1bcfb8 ""
   "ldgba_original.pdf" 1579091410 4747 1df07183e3250df3beca16fd27061ff4 ""
-  "main_thesis.aux" 1581910795 8072 1c77694a13dde022f515290eb098f1b4 "latex"
-  "main_thesis.tex" 1581910789 10523 3a78f5f7b6106f94ffae1a1d8de9a581 ""
-  "main_thesis.toc" 1581910795 1412 a94095ec35487b403a9101ab4e4cfe22 "latex"
+  "main_thesis.aux" 1581932315 8072 1c77694a13dde022f515290eb098f1b4 "latex"
+  "main_thesis.tex" 1581932311 10527 65f7e0b5182d2137cb095f6f61f805bf ""
+  "main_thesis.toc" 1581932315 1412 a94095ec35487b403a9101ab4e4cfe22 "latex"
   "max_Q_value_15000_5000_rn_all_rsink_1000.png" 1580714429 198969 320d4e4339fd72e5d8b741d0ef325f97 ""
   "proof_of_lemma3_1.tex" 1581072963 1319 e05258b1c898a82fdd1116f45054f5a2 ""
   "proof_of_prop3_1.tex" 1581073606 5856 f19172f117307c02402442e2baf564d2 ""
@@ -105,9 +105,9 @@
   "proposed_policy.png" 1579091410 9025 932453edadd7645402707695cfa45510 ""
   "simulate_TD_v_15000_5000_rn_all_rsink_1000.png" 1580714429 205355 56c9558d4b9475b1352d181940c52067 ""
   "thesis.sty" 1578372970 4457 19dfc45703e3907faa88afdc81deb305 ""
-  "thesis_abstract.tex" 1581909848 1140 689f16392d2604af487c96b6b942d2b2 ""
+  "thesis_abstract.tex" 1581932293 1138 2226b6707fb193800f85673f664ce07d ""
   (generated)
-  "main_thesis.aux"
-  "main_thesis.toc"
   "main_thesis.log"
+  "main_thesis.toc"
+  "main_thesis.aux"
   "main_thesis.dvi"
