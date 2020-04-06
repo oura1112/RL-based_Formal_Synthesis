@@ -1,0 +1,45 @@
+	- The sentence: "we say that a formula phi is satisfied by pi
+if Pr(s_{init} \models \phi) >0." 
+	This is incorrect. The formula is ==positively satisfied by
+pi==.
+
+A. We revised it.
+
+It would be good if the author can comment on the optimization
+objective: Is the goal to maximize the probability of satisfying the
+formula? How is the definition of reward relates to the probabilty of
+satisfying the formula? 
+
+A.
+There are several ways to maximize the satisfaction probability for the use of LDBAs [..].
+The methods can be applied to our proposed method because of Lemma 1.
+
+	
+	- The tLDGBA in Fig1 does not satisfy the condition in Def. 7:
+in def 7, there is no transition to go from a state in X_initial to a
+state in X_final. However, Fig.1 the automaton has several transitions
+from x_0 to x_0, which are in both initial and final  sets. 
+
+A.
+The LTL formula \varphi = GF a \land GF b \land G \neg c can be recognized by DBAs. Thus, the tLDGBA has only final part.
+
+	
+	- The author comment on [10] that the frontier function does
+not provide information about accepting states that have been visited.
+>From my understanding,	the frontier function contains these accepting
+sets that are needed to be visited. 
+	visited accepting states =  all_accepting_states - accepting
+states in frontier function.  So it should give some information. 
+
+A.
+The information in the accepting frontier function cannot be used directly to make an action.
+In other words, the agent recognize the information of visited accepting states/transitions through only rewards.
+It leads to failure to make an optimal action such as the  example in our manuscript.
+
+
+The authors emphasized in the letter that the policy is positional. It
+is only positional after augmenting the state with the vector v. Given
+that, it is not convincing that the policy will require less memory
+than the other method.
+
+A. We mean that the policy on the product of an MDP and an augmented LDGBA does not require less memory compared to LDBA, but to LDGBA.

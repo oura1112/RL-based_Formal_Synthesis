@@ -52,7 +52,7 @@ class Product_Grid1(AugAutomaton.AugAutomaton, Grid_World1.Grid_World2):
                 accepting_frag = True
                     
         if accepting_frag == True:
-            return 10
+            return 0.01
         else :
             return 0
 
@@ -66,9 +66,9 @@ class Product_Grid1(AugAutomaton.AugAutomaton, Grid_World1.Grid_World2):
         
         for enable_event in pi:
             if enable_event in cat_doors:
-                acc_reward += 0.1
+                acc_reward += (0.0001)**2 * 100 / 7 #(1-gamma)^2 r_n / |E_c| 
             elif enable_event in mouse_doors:
-                acc_reward += 0.1
+                acc_reward += (0.0001)**2 * 100 / 7 #(1-gamma)^2 r_n / |E_c| 
         
         return acc_reward
         
