@@ -1,2 +1,2 @@
 # Chap2
-this is for chapter 2 at my research
+4年時の卒業研究のデータをまとめたリポジトリ．
