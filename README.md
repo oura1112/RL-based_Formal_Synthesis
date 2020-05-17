@@ -41,8 +41,14 @@ Grid_World1.py:
 product_Grid_World1.py:
 環境と拡張オートマトンの合成積の定義
 
-Super.py:
-エージェントの定義
+Supervisor_ambiguous.py:
+学習スーパバイザ制御器の定義
 
 main_product_Grid1.py:
 実行ファイル
+
+
+main_thesis:
+卒業論文：
+
+
