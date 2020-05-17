@@ -1,7 +1,7 @@
 # Chap2
 4年時の卒業研究のデータをまとめたリポジトリ．
 
-chap1:
+chapter1:
 
 Automaton.py:
 用いるω-automatonの定義
