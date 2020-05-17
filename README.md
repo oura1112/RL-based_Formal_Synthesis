@@ -49,6 +49,12 @@ main_product_Grid1.py:
 
 
 main_thesis:
-卒業論文：
+卒業論文．
+
+abstract_oura2.pdf:
+卒論発表のアブストラクト
+
+main_thesis.pdf:
+卒業論文
 
 
