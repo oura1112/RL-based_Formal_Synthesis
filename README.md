@@ -1,5 +1,4 @@
-# Chap2
-4年時の卒業研究のデータをまとめたリポジトリ．
+# RL-based formal sysnthesis of control policies and supervisors.
 
 chapter1:
 ω-オートマトンを用いて，与えられた時相論理制御仕様を正の確率で満たす制御方策を，強化学習に基づいて獲得する．
