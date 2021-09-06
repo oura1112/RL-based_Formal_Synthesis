@@ -1,0 +1,5 @@
+In this thesis, we propose a novel reinforcement learning method for the synthesis of a controller satisfying a control specification described by a linear temporal logic formula and apply the proposed method to supervisory control. We assume that the controlled system is modeled by a Markov decision process (MDP).
+We convert the specification to a limit-deterministic generalized B\"{u}chi automaton (LDGBA) with several accepting sets that accepts all infinite sequences satisfying the formula.
+The LDGBA is augmented so that it explicitly records the previous visits to accepting sets.
+We take a product of the augmented LDGBA and the MDP, based on which we define a reward function. The agent gets rewards whenever state transitions are in an accepting set that has not been visited for a certain number of steps and the value function is maximized when all accepting sets are visited infinitely often.
+Consequently, sparsity of rewards is relaxed and optimal circulations among the accepting sets are learned. We show that the proposed method can learn an optimal policy when the discount factor is sufficiently close to one.

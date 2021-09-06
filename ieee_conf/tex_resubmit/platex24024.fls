@@ -1,0 +1,4 @@
+PWD C:/Users/oura/Documents/GitHub/Chap2/ieee_conf/tex_resubmit
+INPUT c:/w32tex/share/texmf-dist/web2c/texmf.cnf
+INPUT c:/w32tex/share/texmf-dist/web2c/eptex/platex.fmt
+INPUT main_ieee_all_revised.tex

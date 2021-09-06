@@ -1,0 +1,25 @@
+The authors have sufficiently addressed most of my comments. However,
+there is still some concerns about the advantages of the proposed
+method compared to relevant methods. In fact, the comparison with
+[9,10] might be unfair. Specifically, the authors show that [9,10]
+cannot find a positional policy. Is the case because a tLDGBA is used?
+[9,10] seem to require a LDBA and not a tLDGBA. If this is the case,
+then the authors should compare their method to the LDBA version of
+[9,10] and show that their method is more sample-efficient.
+
+A.
+In the case using (t)LDGBA with the accepting frontier function 
+(we guess your abbriviation LDBA means state-based limit-determninistic generalized Buchi automaton), 
+when there exists a positional policy on the product of a given MDP and an LDBA converted from a given LTL formula without refinement,
+the method in [9,10] is better than our proposed method in the sense of sample efficiency. 
+However, there are several counterexample of no positional policy on the product MDP satisfying a given LTL formula. 
+We now show that there exists no positional policy even though using state-based LDGBAs unless taking some refinement.
+For the example in our manuscript, the LDGBA without refinement are as follows.
+
+学習がうまくいかないLDGBAの図
+
+We then show a heuristic refinement of the above LDGBA to make sure that there exists a positional policy satisfying on the product MDP
+
+学習がうまくいくLDGBAの図
+
+As shown the LDGBAs in Figs.?? and ??, we have to refine LDGBAs even if using state-based one in our example.

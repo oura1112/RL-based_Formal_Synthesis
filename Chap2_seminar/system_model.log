@@ -1,13 +1,18 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.8.14)  20 DEC 2019 22:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2018.4.26)  4 JAN 2020 22:10
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
 **system_model.tex
 (./system_model.tex
-LaTeX2e <2018-12-01>
-(c:/w32tex/share/texmf-local/tex/latex/ieeeconf/ieeeconf.cls
-Document Class: ieeeconf 2016/4/23 revision V1.6b by Pradeep Misra
+LaTeX2e <2018-04-01> patch level 3
+Babel <3.19> and hyphenation patterns for 84 language(s) loaded.
+(./ieeeconf.cls
+
+LaTeX Warning: You have requested document class `ieeeconf',
+               but the document class provides `cssconf'.
+
+Document Class: cssconf 2004/1/15 revision V1.6b by Pradeep Misra
 \@IEEEtrantmpdimenA=\dimen102
 \@IEEEtrantmpdimenB=\dimen103
 \@IEEEtrantmpcountA=\count80
@@ -84,7 +89,7 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <24> not available
 \@IEEEeqncolcnt=\count90
 \@IEEEtmpitemindent=\dimen112
 \c@biography=\count91
-\@IEEEtranrubishbin=\box27
+\@IEEEtranrubishbin=\box26
 ) (c:/w32tex/share/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \@emptytoks=\toks15
@@ -93,7 +98,7 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ) (c:/w32tex/share/texmf-dist/tex/latex/amsmath/amsmath.sty
-Package: amsmath 2018/12/01 v2.17b AMS math features
+Package: amsmath 2017/09/02 v2.17a AMS math features
 \@mathmargin=\skip47
 
 For additional information on amsmath, use the `?' option.
@@ -110,20 +115,20 @@ Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 Package: amsopn 2016/03/08 v2.02 operator names
 )
 \inf@bad=\count92
-LaTeX Info: Redefining \frac on input line 223.
+LaTeX Info: Redefining \frac on input line 213.
 \uproot@=\count93
 \leftroot@=\count94
-LaTeX Info: Redefining \overline on input line 385.
+LaTeX Info: Redefining \overline on input line 375.
 \classnum@=\count95
 \DOTSCASE@=\count96
-LaTeX Info: Redefining \ldots on input line 482.
-LaTeX Info: Redefining \dots on input line 485.
-LaTeX Info: Redefining \cdots on input line 606.
-\Mathstrutbox@=\box28
-\strutbox@=\box29
+LaTeX Info: Redefining \ldots on input line 472.
+LaTeX Info: Redefining \dots on input line 475.
+LaTeX Info: Redefining \cdots on input line 596.
+\Mathstrutbox@=\box27
+\strutbox@=\box28
 \big@size=\dimen115
-LaTeX Font Info:    Redeclaring font encoding OML on input line 729.
-LaTeX Font Info:    Redeclaring font encoding OMS on input line 730.
+LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
 \macc@depth=\count97
 \c@MaxMatrixCols=\count98
 \dotsspace@=\muskip10
@@ -144,8 +149,8 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 730.
 \multlinegap=\skip48
 \multlinetaggap=\skip49
 \mathdisplay@stack=\toks20
-LaTeX Info: Redefining \[ on input line 2844.
-LaTeX Info: Redefining \] on input line 2845.
+LaTeX Info: Redefining \[ on input line 2817.
+LaTeX Info: Redefining \] on input line 2818.
 ) (c:/w32tex/share/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 ) (c:/w32tex/share/texmf-dist/tex/latex/tools/bm.sty
@@ -159,9 +164,9 @@ LaTeX Info: Redefining \bm on input line 207.
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count104
 \float@exts=\toks21
-\float@box=\box30
+\float@box=\box29
 \@float@everytoks=\toks22
-\@floatcapt=\box31
+\@floatcapt=\box30
 ) (c:/w32tex/share/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
  (c:/w32tex/share/texmf-dist/tex/latex/graphics/keyval.sty
@@ -204,7 +209,7 @@ Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
 \algorithmicindent=\skip51
 ) (c:/w32tex/share/texmf-dist/tex/latex/listings/listings.sty
 \lst@mode=\count110
-\lst@gtempboxa=\box32
+\lst@gtempboxa=\box31
 \lst@token=\toks25
 \lst@length=\count111
 \lst@currlwidth=\dimen124
@@ -216,14 +221,14 @@ Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
 \lst@lineno=\count115
 \lst@maxwidth=\dimen127
  (c:/w32tex/share/texmf-dist/tex/latex/listings/lstmisc.sty
-File: lstmisc.sty 2019/09/10 1.8c (Carsten Heinz)
+File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
 \c@lstnumber=\count116
 \lst@skipnumbers=\count117
-\lst@framebox=\box33
+\lst@framebox=\box32
 ) (c:/w32tex/share/texmf-dist/tex/latex/listings/listings.cfg
-File: listings.cfg 2019/09/10 1.8c listings configuration
+File: listings.cfg 2015/06/04 1.6 listings configuration
 ))
-Package: listings 2019/09/10 1.8c (Carsten Heinz)
+Package: listings 2015/06/04 1.6 (Carsten Heinz)
  (c:/w32tex/share/texmf-dist/tex/latex/comment/comment.sty
 \CommentStream=\write3
  Excluding comment 'comment')
@@ -251,7 +256,7 @@ LaTeX Font Info:    ... okay on input line 39.
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count123
 \scratchdimen=\dimen128
-\scratchbox=\box34
+\scratchbox=\box33
 \nofMPsegments=\count124
 \nofMParguments=\count125
 \everyMPshowfont=\toks26
@@ -279,10 +284,15 @@ Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
  (c:/w32tex/share/texmf-dist/tex/generic/oberdiek/ifluatex.sty
 Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
-)))) (c:/w32tex/share/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
-Package: pdftexcmds 2019/07/25 v0.30 Utility functions of pdfTeX for LuaTeX (HO)
+)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+))) (c:/w32tex/share/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2018/01/30 v0.27 Utility functions of pdfTeX for LuaTeX (HO)
  (c:/w32tex/share/texmf-dist/tex/generic/oberdiek/ifpdf.sty
-Package: ifpdf 2018/09/07 v3.3 Provides the ifpdf switch
+Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
 )
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
@@ -315,17 +325,11 @@ Underfull \hbox (badness 5787) in paragraph at lines 63--65
  []
 
 
-Underfull \vbox (badness 3375) has occurred while \output is active []
-
-
 Overfull \hbox (13.66307pt too wide) detected at line 108
 []
  []
 
-
-Underfull \vbox (badness 1072) has occurred while \output is active []
-
- [1
+[1
 
 {c:/w32tex/share/texmf-dist/fonts/map/pdftex/updmap/pdftex.map}]
 Overfull \hbox (24.4725pt too wide) detected at line 114
@@ -367,7 +371,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 211--212
 File: cat_mouse.png Graphic file (type png)
 <use cat_mouse.png>
 Package pdftex.def Info: cat_mouse.png  used on input line 253.
-(pdftex.def)             Requested size: 199.16928pt x 135.75168pt.
+(pdftex.def)             Requested size: 113.81102pt x 77.56776pt.
 Package pdftex.def Info: Option `bb' equivalent to `viewport' with pdftex driver on input line 262.
 <ldgba_original.pdf, id=27, 247.93628pt x 80.40038pt>
 File: ldgba_original.pdf Graphic file (type pdf)
@@ -402,23 +406,21 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the US letter (8.5in X 11in) paper size.
 
-[3 <./cat_mouse.png> <./ldgba_original.pdf> <./epi20000_step20000_gamma099_ses1_re10_cost01_01_su2.png>] [4
-
- <./epi20000_step20000_gamma099_ses1_re10_cost01_01_Q-T_su2.png>] (./system_model.aux) ) 
+[3 <./cat_mouse.png> <./ldgba_original.pdf> <./epi20000_step20000_gamma099_ses1_re10_cost01_01_su2.png> <./epi20000_step20000_gamma099_ses1_re10_cost01_01_Q-T_su2.png>] (./system_model.aux) ) 
 Here is how much of TeX's memory you used:
- 4785 strings out of 492609
- 67697 string characters out of 6131386
- 166361 words of memory out of 5000000
- 8608 multiletter control sequences out of 15000+600000
+ 4786 strings out of 492649
+ 67566 string characters out of 6131955
+ 165363 words of memory out of 5000000
+ 8572 multiletter control sequences out of 15000+600000
  42371 words of font info for 98 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,19n,32p,1372b,607s stack positions out of 5000i,500n,10000p,500000b,80000s
-{c:/w32tex/share/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/w32tex/share/texmf
--dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/w32tex/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/w32tex/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/w32tex/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on system_model.pdf (4 pages, 304518 bytes).
+ 41i,19n,32p,1804b,607s stack positions out of 5000i,500n,10000p,500000b,80000s
+{c:/w32tex/share/texmf-dist/fonts/enc/dvips/psnfss/8r.enc}<c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmr7.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/w32tex/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/w32tex/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/w32tex/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/w32tex/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on system_model.pdf (3 pages, 304880 bytes).
 PDF statistics:
- 116 PDF objects out of 1000 (max. 8388607)
- 82 compressed objects within 1 object stream
+ 113 PDF objects out of 1000 (max. 8388607)
+ 80 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

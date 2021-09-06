@@ -1,0 +1,16 @@
+# Fdb version 3
+["dvipdf"] 1581868790 "chap3.dvi" "chap3.pdf" "chap3" 1581868791
+  "chap3.dvi" 1581868788 21092 1ed4cef73d51500cf0b23a95dd38562f "latex"
+  (generated)
+  "chap3.pdf"
+["latex"] 1581868787 "chap3.tex" "chap3.dvi" "chap3" 1581868791
+  "c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1136768653 1328 c834bbb027764024c09d3d2bf908b5f0 ""
+  "c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmti10.tfm" 1136768653 1480 aa8e34af0eb6a2941b776984cf1dfdc4 ""
+  "c:/w32tex/share/texmf-dist/tex/latex/base/omscmr.fd" 1524536380 2472 aa08940f0a4dc6c24ae9f943b04ae0b9 ""
+  "c:/w32tex/share/texmf-dist/web2c/eptex/platex.fmt" 1524714577 4473763 7bc72e65b5b4d9fa2d2b248e6ab8b8ec ""
+  "c:/w32tex/share/texmf-dist/web2c/texmf.cnf" 1518859120 32699 6adc13c376251eb7d184d2675f4e7970 ""
+  "chap3.aux" 1581760542 9 a94a2480d3289e625eea47cd1b285758 ""
+  "chap3.tex" 1581868786 24810 21512415fe69b242a9e87249ba5fa529 ""
+  (generated)
+  "chap3.log"
+  "chap3.dvi"

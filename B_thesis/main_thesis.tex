@@ -1,0 +1,254 @@
+
+%卒業論文用雛形
+%\documentclass[a4j,12pt,oneside,openany]{jsbook}
+% 英語なら以下を使う．
+\documentclass[a4j,12pt,oneside,openany,english,dvipdfmx]{jsbook}
+
+\usepackage{amsfonts,amsmath,amssymb}
+\usepackage{bm}
+\usepackage{float}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{color}
+%\usepackage[dvipdfmx]{hyperref}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+%\usepackage{txfonts}
+%\usepackage{ascmac, here}
+\usepackage{listings}
+\usepackage{color}
+%\usepackage{url}
+\usepackage{comment}
+
+%jsbook を report っぽくするスタイルファイル
+\usepackage{book2report}
+%定理，補題，系，例題，証明などや英語用の定義がされています．
+%自分なりにいじってください．
+\usepackage{thesis}
+% 具体的には以下のように定義されています．
+% 英語の定理環境
+%  \newtheorem{theorem}{Theorem}[chapter]
+%  \newtheorem{lemma}{Lemma}[chapter]
+%  \newtheorem{proposition}{Proposition}[chapter]
+%  \newtheorem{corollary}{Corollary}[chapter]
+%  \newtheorem{definition}{Definition}[chapter]
+%  \newtheorem{example}{Example}[chapter]
+%  \newtheorem{proof}{Proof}
+% 日本語の定理環境
+%  \newtheorem{theorem}{定理}[chapter]
+%  \newtheorem{lemma}{補題}[chapter]
+%  \newtheorem{proposition}{命題}[chapter]
+%  \newtheorem{corollary}{系}[chapter]
+%  \newtheorem{definition}{定義}[chapter]
+%  \newtheorem{example}{例}[chapter]
+%  \newtheorem{proof}{証明}
+% 証明には番号をつけず，最後は Box で終わります．
+
+\allowdisplaybreaks[1]
+
+\newcommand{\mysps}{\ensuremath{[\![s^{\otimes}]\!]}_s}
+\newcommand{\myspq}{\ensuremath{[\![s^{\otimes}]\!]}_q}
+\newcommand{\myspds}{\ensuremath{[\![s^{\otimes \prime}]\!]}_s}
+\newcommand{\myspdq}{\ensuremath{[\![s^{\otimes \prime}]\!]}_q}
+\newcommand{\argmax}{\mathop{\rm arg~max}\limits}
+\newcommand{\argmin}{\mathop{\rm arg~min}\limits}
+
+\newtheorem{notations}{Notations}
+\renewcommand{\thenotations}{\unskip}
+
+% 英語で，見出しのフォントが気に入らなかったら
+\renewcommand{\headfont}{\bfseries}
+
+%ページ数が少ないときはここを大きくしてごまかそう！！効果絶大！！
+\renewcommand{\baselinestretch}{1.1}
+
+\begin{document}
+%%%%%%%%%%%% 題目 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% ここも適当に変えてもいいと思う %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\thispagestyle{empty}
+\begin{center}
+\vspace*{5mm}
+{\Huge {\bf 特 \hspace{12pt} 別 \hspace{12pt} 研 \hspace{12pt} 究 \hspace{12pt} 報 \hspace{12pt} 告}}\\
+\vspace{2cm}
+{\Large 題\hspace{8mm}目}\\
+\vspace{1cm}
+\underline{\Large{ Reinforcement Learning based Controller synthesis}} \\
+\vspace{0.5cm}
+\underline{\Large{ for Linear Temporal Logic Specifications }} \\
+\vspace{0.5cm}
+\underline{\Large{Using Limit-Deterministic Generalized B\"{u}chi Automata}} \\
+\vspace{12mm}
+{\large 指 導 教 員}\\
+\vspace{6mm}
+\underline{\Large Professor Toshimitsu Ushio}\\
+　\\
+%\underline{\Large Associate Professor Joe Smith}\\
+\vspace{8mm}
+{\large 報 告 者}\\
+\vspace{6mm}
+\underline{\Large Ryohei Oura}\\
+\vspace{10mm}
+{\Large \today}\\
+\vspace{14mm}
+{\Large 大阪大学基礎工学部システム科学科\\知能システム学コース}\\
+\end{center}
+\clearpage
+\setcounter{page}{0}
+\pagenumbering{roman}
+
+%%%%%%%%%%%% 概要 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+  \input{thesis_abstract}
+\end{abstract}
+
+
+%%%%%%%%%%%% 目次 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\tableofcontents
+\clearpage
+\setcounter{page}{0}
+\pagenumbering{arabic}
+
+%%%%%%%%%%%% 1章 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Introduction}
+
+\input{chap1}
+
+%%%%%%%%%%%% 2nd Chapter %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Preliminaries}
+
+\begin{notations}
+  For sets $A$ and $B$, $AB$ denotes their concatenation. $A^{\omega}$ denotes the infinite concatenation of the set $A$ and $A^{\ast}$ denotes the finite one. $\mathbb{N}_0$ is the set of nonnegative integers. $\mathbb{R}_{\geq 0}$ is the set of nonnegative real numbers.
+\end{notations}
+
+\input{chap2}
+
+%%%%%%%%%%%% 3rd Chapter %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Reinforcement learning based control policy synthesis for LTL specifications}
+
+\input{chap3}
+
+%%%%%%%%%%%% 4th Chapter %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Reinforcement learning based supervisor synthesis for LTL specifications}
+
+\input{chap4}
+
+%%%%%%%%%%%% 5th Chapter %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Conclusions}
+
+\input{chap5}
+
+%%%%%%%%%%%% Appendix %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\appendix
+%%%%%%%%%%%% Appendix A %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Proofs}
+\input{proof_of_prop3_1}
+
+\input{proof_of_lemma3_1}
+
+\input{proof_of_thm3_1}
+
+%%%%%%%%%%%% 謝辞 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{acknowledgement}
+	First, I would like to express my deep sense of gratitude to my adviser Professor
+	Toshimitsu Ushio, Graduate School of Engineering Science, Osaka University,
+	for his invaluable, constructive advice and constant encouragement during this work.
+	Professor Ushio's deep knowledge and his eye for detail have inspired me much.
+
+  I deeply appreciate Ms. Ami Sakakibara, Graduate school of Engineering Science, Osaka University, for fruitful comments and support.
+
+  Finally, I offer special gratitude to my family for their constant supports.
+\end{acknowledgement}
+
+%%%%%%%%%%%% References %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%適当に変えてねー．
+\begin{thebibliography}{99}
+  \bibitem{BK2008}
+  C.\ Baier and J.-P.\ Katoen,
+  \textit{Principles of Model Checking}.
+  MIT Press, 2008.
+  \bibitem{Clarke2018}
+  E.\ M.\ Clarke, Jr., O.\ Grumberg, D.\ Kroening, D.\ Peled, and H.\ Veith,
+  \textit{Model Checking}, 2nd Edition.
+  MIT Press, 2018.
+  \bibitem{KB2008}
+  M.\ Kloetzer, C.\ Belta,
+  ``A fully automated framework for control of linear systems from temporal logic specifications,''
+  \textit{IEEE Trans.\ Autom.\ Contr.}, vol.\ 53, no.\ 1, pp.\ 287--297, 2008.
+  \bibitem{Gazit2009}
+  H.\ Kress-Gazit, G.\ E.\ Fainekos, and G.\ J.\ Pappas,
+  ``Temporal-logic-based reactive mission and motion planning,''
+  \textit{IEEE Trans.\ Robotics}, vol.\ 25, no.\ 6, pp.\ 1370--1381, 2009.
+  \bibitem{WTM2012a}
+  T.\ Wongpiromsarn, U.\ Topcu, and R.\ M.\ Murray,
+  ``Receding horizon temporal logic planning,''
+  \textit{IEEE Trans.\ Autom.\ Contr.}, vol.\ 57, no.\ 11, pp.\ 2817--2830, 2012.
+  \bibitem{SU2018}
+  A.\ Sakakibara and T.\ Ushio,
+  ``Decentralized supervision and coordination of concurrent discrete event systems under LTL constraints,''
+   in \textit{Proc.\ 14th International Workshop on Discrete Event Systems}, 2018, pp.\ 18-23.
+  \bibitem{Belta2017}
+  C.\ Belta, B.\ Yordanov, and E.\ A.\ Gol,
+  \textit{Formal Methods for Discrete-Time Dynamical Systems}.
+  Springer, 2017.
+  \bibitem{Puterman}
+  M.\ L.\ Puterman,
+  \textit{Markov Decison Processes, Discrete Stochastic Dynamic Programming}.
+  John Wiley \& Sons, Inc., 1994.
+
+  \bibitem{WTM2012}
+  E.\ M.\ Wolff, U.\ Topcu, and R.\ M.\ Murray,
+  ``Robust control of uncertain Markov decision processes with temporal logic specifications,''
+  in \textit{Proc.\ 51st IEEE Conference on Decision and Control}, 2012, pp.\ 3372--3379.
+  \bibitem{Sadigh2014}
+  D.\ Sadigh, E.\ S.\ Kim, A.\ Coogan, S.\ S.\ Sastry, and S.\ Seshia,
+  ``A learning based approach to control synthesis of Markov decision processes for linear temporal logic specifications,''
+  \textit{in Proc.\ 53rd IEEE Conference on Decision and Control}, pp.\ 1091-1096, 2014.
+  \bibitem{Sutton}
+  R.\ S.\ Sutton and A.\ G.\ Barto,
+  \textit{Reinforcement Learning: An Introduction}, 2nd Edition.
+  MIT Press, 2018.
+  \bibitem{HU2015}
+  M.\ Hiromoto and T.\ Ushio,
+  ``Learning an optimal control policy for a Markov decision process under linear temporal logic specifications,''
+  in \textit{Proc.\ 2015 IEEE Symposium on Adaptive Dynamic Programming and Reinforcement Learning}, 2015, pp.\ 548-555.
+  \bibitem{SEJK2016}
+  S.\ Sickert, J.\ Esparaza, S.\ Jaax, and J.\ K\v{r}et\`{i}nsk\'{y},
+  ``Limit-deterministic B\"{u}chi automata for linear temporal logic,''
+   in \textit{International Conference on Computer Aided Verification}, 2016, pp.\ 312-332.
+  \bibitem{HAK2019}
+  M.\ Hasanbeig, A.\ Abate, and D.\ Kroening,
+  ``Logically-constrained reinforcement learning,'' \textit{arXiv:1801.08099v8}, Feb.\ 2019.
+  \bibitem{Hahn2019}
+  E.\ M.\ Hahn, M.\ Perez, S.\ Schewe, F.\ Somenzi, A.\ Triverdi, and D.\ Wojtczak,
+  ``Omega-regular objective in model-free reinforcement learning,''
+  \textit{Lecture Notes in Computer Science}, no.\ 11427, pp.\ 395--412, 2019.
+  \bibitem{HKAKPL2019}
+  M.\ Hasanbeig, Y.\ Kantaros, A.\ Abate, D.\ Kroening, G.\ J.\ Pappas, and I.\ Lee,
+  ``Reinforcement learning for temporal logic control synthesis with probabilistic satisfaction guarantee,''
+  \textit{arXiv:1909.05304v1}, 2019.
+  \bibitem{BWZP2019}
+  A.\ K.\ Bozkurt, Y.\ Wang, M.\ Zavlanos, and M.\ Pajic,
+  ``Control synthesis from linear temporal logic specifications using model-free reinforcement learning,''
+  \textit{arXiv:1909.07299}, 2019.
+  \bibitem{ESS}
+  R.\ Durrett,
+  \textit{Essentials of Stochastic Processes}, 2nd Edition. ser. Springer texts in statistics. New York; London; Springer, 2012.
+  \bibitem{ISP}
+  L.\ Breuer,
+  ``Introduction to Stochastic Processes'', [Online]. Available: https://www.kent.ac.uk/smsas/personal/lb209/files/sp07.pdf
+  \bibitem{SM}
+  S.M.\ Ross,
+  \textit{Stochastic Processes}, 2nd Edition. University of California, Wiley, 1995.
+  \bibitem{Singh1998}
+  S. Singh, T. Jaakkola, M. L. Littman, and C. Szepes\'{v}ari,
+  ``Convergence results for single-step on-policy reinforcement learning algorithms'' \textit{Machine Learning},
+  vol.~38, no.~3, pp,~287--308, 1998.
+  \bibitem{Owl}
+  J.~Kretínsk\'{y}, T.~Meggendorfer, S.~Sickert, ``Owl: A library for $\omega$-words, automata,
+  and LTL,'' in \textit{Proc.~16th International Symposium on Automated Technology for Verification and Analysis}, 2018,  pp.~543–550.
+  %https://doi.org/10.1007/978-3-030-01090-4\_34
+\end{thebibliography}
+%\bibliographystyle{myjunsrt}
+%\bibliography{refs}
+
+\end{document}

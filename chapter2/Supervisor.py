@@ -207,15 +207,20 @@ class Supervisor():
         
         event_probs = []
         
-        event_probs_all = np.random.dirichlet(self.Nsigma[s_m][s_c][q][v])        
-        sum_probs_pi = sum(self.Nsigma[s_m][s_c][q][v][event] for event in pi)
-        
-        for event_prob, event in enumerate(event_probs_all):
+        event_probs_all = np.random.dirichlet(np.array(self.Nsigma[s_m][s_c][q][v]))        
+        sum_probs_pi = 0
+
+        #print(pi)
+        for event, event_prob in enumerate(event_probs_all):
+            #print("event_num : {}".format(event))
+            #print("event_prob : {}".format(event_prob))
             if event in pi:
                 event_probs.append(event_prob)
-                
+                sum_probs_pi += event_prob
+            #else :
+             #   print("Error!")
+        event_probs = np.array(event_probs)        
         event_probs = event_probs / sum_probs_pi
-        
         return event_probs
     
     def event_occur(self, s_m, s_c, q, v, pi):
@@ -226,7 +231,8 @@ class Supervisor():
         else :
              event = -1
         #print(type(int(event)))
-        return int(event)
+        #print(event_probs)
+        return int(event), event_probs
     
     def action_to_pi(self, control_pat, actions):
 
@@ -358,7 +364,7 @@ class Supervisor():
                     #システムに提示するコントロールパターン
                     pi.extend(self.actions_un)
                     #Product MDP内で確率的に生起する事象
-                    event = self.event_occur(s_m, s_c, q, v, pi)
+                    event, event_probs_true = self.event_occur(s_m, s_c, q, v, pi)
                     
                     #Product MDP での状態遷移と報酬の取得
                     s_c_next, s_m_next, reward, prohibit_cost, automaton_transit, v_next = env.step(event, prohibit_pi) #環境内での状態も変化する
@@ -464,7 +470,16 @@ class Supervisor():
                         pi_d = pi_d + self.actions_un
                         if (event in pi_d) and (self.prohibit_cost[s_m][s_c][automaton_transit[0]][v][control_pat_d] != 0):
                             estimated = 0
-                            event_probs = self.estimate_event_Prob(s_m, s_c, automaton_transit[0], v, pi_d)
+                            while(True) :
+                                event_probs = self.estimate_event_Prob(s_m, s_c, automaton_transit[0], v, pi_d)
+                                event_probs_mean = [self.Nsigma[s_m][s_c][automaton_transit[0]][v][event] for event in pi_d]
+                                event_mean_sum = sum(event_probs_mean)
+                                event_probs_mean = np.array(event_probs_mean) / event_mean_sum
+                                event_probs = np.array(event_probs)
+                                if np.linalg.norm(event_probs - event_probs_mean,1) < 0.5 :
+                                    break
+                            #print("estimated_event_probs : {}".format(event_probs))
+                            #print("true_event_probs : {}".format(event_probs_true))
                             for event_prob, sigma in zip(event_probs,pi_d):
                                 estimated += event_prob*self.T[s_m][s_c][automaton_transit[0]][v][sigma]
                             self.Q[s_m][s_c][automaton_transit[0]][v][control_pat_d] = self.prohibit_cost[s_m][s_c][automaton_transit[0]][v][control_pat_d] + estimated
@@ -498,7 +513,7 @@ class Supervisor():
                     #print("reward = {}, V = {}".format(reward, ))
                 total_reward_mean.append(total_reward/step_count)
                 total_cost_mean.append(total_cost/step_count)
-                #print("total_reward_mean = {}, total_cost_mean = {}".format(total_reward/step_count, total_cost/step_count))
+                print("total_reward_mean = {}, total_cost_mean = {}".format(total_reward/step_count, total_cost/step_count))
                 if break_point == 1:
                     print("break:{0}, count:{1}".format(break_count,count))
                     print(break_pi)

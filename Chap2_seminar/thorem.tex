@@ -1,0 +1,251 @@
+ \documentclass[10pt]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage{bm}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage[dvipdfmx]{hyperref}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+%\usepackage{txfonts}
+%\usepackage{ascmac, here}
+\usepackage{listings}
+\usepackage{color}
+%\usepackage{url}
+\usepackage{comment}
+
+\allowdisplaybreaks[1]
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+%\newtheorem{proof}{Proof}
+\newtheorem{prop}{Proposition}
+%\newtheorem{definition}{Definition}
+%\newtheorem*{definition*}{Definition}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+%\theoremstyle{remark}
+%\newtheorem*{remark}{Remark}
+
+\newcommand{\mysps}{\ensuremath{[\![s^{\otimes}]\!]}_s}
+\newcommand{\myspq}{\ensuremath{[\![s^{\otimes}]\!]}_x}
+\newcommand{\myspqsink}{\ensuremath{[\![s^{\otimes}_{sink}]\!]}_x}
+\newcommand{\myspds}{\ensuremath{[\![s^{\otimes \prime}]\!]}_s}
+\newcommand{\myspdq}{\ensuremath{[\![s^{\otimes \prime}]\!]}_x}
+\newcommand{\argmax}{\mathop{\rm arg~max}\limits}
+\newcommand{\argmin}{\mathop{\rm arg~min}\limits}
+
+\begin{document}
+
+\begin{definition}
+  The two reward functions $\mathcal{R}_1 : S^{\otimes} \times 2^{E^{\otimes}} \rightarrow \mathbb{R}$ and $\mathcal{R}_2 : S^{\otimes} \times E^{\otimes} \times S^{\otimes} \rightarrow \mathbb{R}$ are defined as follows.
+  \begin{align}
+    \mathcal{R}_1 (s^{\otimes}, \pi) =
+    \left\{
+    \begin{aligned}
+      & r_{n}|\pi| & &\text{if} \ \myspq \notin SinkSet , \\
+      & 0 & &\text{otherwise},
+    \end{aligned}
+    \right.
+  \end{align}
+  where $|E|$ means number of elements in the set $E$ and $r_{n}$ is a positive value.
+  \begin{align}
+    \mathcal{R}_2(s^{\otimes}, e, s^{\otimes \prime}) =
+    \left\{
+    \begin{aligned}
+      &r_p & & \text{if}\ \exists i \in \! \{ 1, \ldots ,n \},\ (s^{\otimes}, e, s^{\otimes \prime}) \in \bar{F}^{\otimes}_i \!,\\
+      &r_{sink} & & \text{if}\ \myspdq \in SinkSet,\\
+      &0 & & \text{otherwise},
+    \end{aligned}
+    \right.
+  \end{align}
+  where $r_p$ and $r_{sink}$ are the positive and negative value, respectively.
+  \label{reward_def}
+\end{definition}
+
+%Let $\bar{\mathcal{SV}}_{\varphi}$ be the set of supervisors satisfying the LTL formula $\varphi$.
+For a Markov chain $MC^{\otimes}_{SV}$ induced by a product DES $D^{\otimes}$ with a supervisor $SV$, let $S^{\otimes}_{SV}= T^{\otimes}_{SV} \cup R^{\otimes 1}_{SV} \cup \ldots \cup R^{\otimes h}_{SV}$ be the set of states in $MC^{\otimes}_{SV}$, where $T^{\otimes}_{SV}$
+is the set of transient states and $R^{\otimes i}_{SV}$ is the recurrent class for each $i \in \{ 1, \ldots ,h \}$, and let $R(MC^{\otimes}_{SV})$ be the union of all recurrent classes in $MC^{\otimes}_{SV}$. Let $\delta^{\otimes i}_{SV}$ be the set of transtions in a recurrent class $R^{\otimes i}_{SV}$, namely $\delta^{\otimes i}_{SV} = \{ (s^{\otimes}, e, s^{\otimes \prime}) \in \delta^{\otimes} ; s^{\otimes} \in R^{\otimes i}_{SV},\ P^{\otimes}_T(s^{\otimes \prime}|s^{\otimes}, e) > 0, P^{\otimes}_E(e | s^{\otimes}, SV(s^{\otimes})) > 0 \}$, and let $P^{\otimes}_{SV}$ : $S^{\otimes}_{SV} \times S^{\otimes}_{SV} \rightarrow [0,1]$ such that $P^{\otimes}_{SV} (s^{\otimes \prime} | s^{\otimes}) = \sum_{e \in SV(s^{\otimes})} P^{\otimes}_T (s^{\otimes \prime} | s^{\otimes}, e) P^{\otimes}_E (e | s^{\otimes}, SV(s^{\otimes}))$ be the transition probability under $SV$.
+
+\begin{lemma}
+  For any supervisor $SV$ and any recurrent class $R^{\otimes i}_{SV}$ in the Markov chain $MC^{\otimes}_{SV}$,
+  $MC^{\otimes}_{SV}$ satisfies one of the following conditions.
+  \vspace{2mm}
+  \begin{enumerate}
+    \item $\delta^{\otimes i}_{SV} \cap \bar{F}^{\otimes}_j \neq \emptyset\ $, $ \forall j \in \{ 1, \ldots ,n \}$,
+    \item $\delta^{\otimes i}_{SV} \cap \bar{F}^{\otimes}_j = \emptyset\ $, $ \forall j \in \{ 1, \ldots ,n \}$.
+  \end{enumerate}
+  \label{lemma3-1}
+\end{lemma}
+
+\begin{definition}
+  An accepting recurrent class is defined as the recurrent class that has at least one accepting transition in each accepting set $\bar{F}^{\otimes}_j$ with $j \in \{ 1, \ldots, n \}$. A sink recurrent class is defined as the recurrent class composed of the states $S^{\otimes}_{sink}$ satisfying $\myspqsink \in SinkSet$ for any $s^{\otimes}_{sink} \in S^{\otimes}_{sink}$.
+  %We then define the set of index of accepting recurrent classes under the supervisor $SV$ as $\mathcal{I}^{SV}_{Acc}$.
+\end{definition}
+
+\begin{theorem}
+  Let $D^{\otimes}$ be the product DES of a DES $D$ and an augmented tLDGBA converted from a given LTL formula $\varphi$. Let $\mathcal{R}_1$ be a reward function for control patterns.
+  If there exists a supervisor $SV$ satisfying  (i) $\varphi$ with non-zero probability and (ii) the safety constraints in $\varphi$ with probability 1,
+  then there exist a discount factor $\gamma^{\ast}$, a positive reward $r^{\ast}_p(\mathcal{R}_1) > ||\mathcal{R}_1||_{\infty}$, and a negative reward $r^{\ast}_{sink}(r_p, \mathcal{R}_1) < - (r_p + ||\mathcal{R}_1||_{\infty}) $ such that any algorithm that maximizes the expected discounted reward with $\gamma > \gamma^{\ast}$, $r_p > r^{\ast}_p(\mathcal{R}_1)$, and $r_{sink} < r^{\ast}_{sink}(r^{\ast}_p, \mathcal{R}_1)$ will find a supervisor satisfying (i) and (ii).
+
+  %If there exists a supervisor $SV$ satisfying $\varphi$ and it satisfies that there is no state $s^{\otimes} \in S^{\otimes}_{SV}$ reachable from initial state $s^{\otimes}_{init}$ such that $\myspq \in SinkSet$, then there exist a discount factor $\gamma^{\ast}$, a positive reward $r^{\ast}_p(\mathcal{R}_1) > ||\mathcal{R}_1||_{\infty}$, and a negative reward $r^{\ast}_{sink}(r_p, \mathcal{R}_1) < - (r_p + ||\mathcal{R}_1||_{\infty}) $ such that any algorithm that maximizes the expected discounted reward with $\gamma > \gamma^{\ast}$, $r_p > r^{\ast}_p(\mathcal{R}_1)$, and $r_{sink} < r^{\ast}_{sink}(r^{\ast}_p, \mathcal{R}_1)$ will find, with probability one, a supervisor satisfying $\varphi$ and it satisfies that there is no state $s^{\otimes} \in S^{\otimes}_{SV}$ reachable from the initial state $s^{\otimes}_{init}$ such that $\myspq \in SinkSet$.
+\end{theorem}
+
+\begin{proof}
+  Suppose that there is an algorithym by which an optimal supervisor $SV^{\ast}$ is obtained but $SV^{\ast}$ does not satisfy the LTL formula $\varphi$ or there is  a state $s^{\otimes}_{sink}$ reachable from the initial state such that $\myspqsink \in SinkSet$ under $SV^{\ast}$. Then, for any recurrent class $R^{\otimes i}_{{SV}^{\ast}}$ in the Markov chain $MC^{\otimes}_{{SV}^{\ast}}$ and any accepting set $\bar{F}^{\otimes}_j$ of the product DES $M^{\otimes}$,  $\delta^{\otimes i}_{SV^{\ast}} \cap \bar{F}^{\otimes}_j = \emptyset$
+  holds for the first case by Lemma \ref{lemma3-1} and there is a sink recurrent class $R^{\otimes i}_{SV^{\ast}}$ for the second case. We consider the two cases.
+
+ \begin{enumerate}
+  \item Assume that $SV^{\ast}$ does not satisfy the LTL formula $\varphi$.
+  By the assumption, the reward $r_p$ can be obtained only in transitions from the transient states. Let $p^k(s,s^{\prime})$ be the probability of going to a state $s^{\prime}$ in $k$ time steps after leaving the state $s$, let $Post(T^{\otimes}_{SV^{\ast}})$ be the set of the recurrent states that can be transitioned from states in $T^{\otimes}_{SV^{\ast}}$ by one event occurrence, and let $Pre(R^{\otimes}_{SV^{\ast}})$ be the set of the transient states that can transition to $R^{\otimes}_{SV}$ by one event occurrence. Let $R^{\otimes sink}_{SV^{\ast}}$ be the set of the states $s^{\otimes}_{sink}$ such that $\myspqsink \in SinkSet$. Recall that $r_{sink} < 0$. Thus, for the initial state $s^{\otimes}_{init}$ in the set of transient states, it holds that
+
+  \begin{align}
+    V^{SV^{\ast}}\!(s^{\otimes}_{init})
+    =\ & \sum_{k=0}^{\infty} \sum_{s^{\otimes} \in S^{\otimes}_{SV^{\ast}}} \gamma^k p^k(s^{\otimes}_{init}, s^{\otimes}) \sum_{s^{\otimes \prime} \in S^{\otimes}_{SV^{\ast}}} \nonumber \\
+     & \sum_{e \in SV(s^{\otimes})} P^{\otimes}_T (s^{\otimes \prime} | s^{\otimes}, e) P^{\otimes}_E (e | s^{\otimes}, SV(s^{\otimes})) \mathcal{R}(s^{\otimes}, SV(s^{\otimes}), e, s^{\otimes \prime})  \nonumber \\
+     <\ & \sum_{k=0}^{\infty} \sum_{s^{\otimes} \in T^{\otimes}_{SV^{\ast}}} \gamma^k p^k(s^{\otimes}_{init}, s^{\otimes}) \sum_{s^{\otimes \prime} \in T^{\otimes}_{SV^{\ast}} \cup ( Post(T^{\otimes}_{SV^{\ast}}) \cap (R(MC^{\otimes}_{SV^{\ast}}) \setminus R^{\otimes sink}_{SV^{\ast}})} P^{\otimes}_{SV} (s^{\otimes \prime} | s^{\otimes}) r_p \nonumber \\
+     & + \sum_{k=0}^{\infty} \sum_{s^{\otimes} \in Pre(R^{\otimes sink}_{SV^{\ast}}) \cup R^{\otimes sink}_{SV^{\ast}}} \gamma^k p^k(s^{\otimes}_{init}, s^{\otimes}) \sum_{s^{\otimes \prime} \in R^{\otimes sink}_{SV}} P^{\otimes}_{SV}(s^{\otimes \prime}|s^{\otimes}) r_{sink}  \nonumber \\
+     & + \sum_{k=0}^{\infty} \gamma^k ||\mathcal{R}_1||_{\infty} \nonumber \\
+     \leq\ & r_p \sum_{k=0}^{\infty} \sum_{s^{\otimes} \in T^{\otimes}_{SV^{\ast}}} \gamma^k p^k(s^{\otimes}_{init}, s^{\otimes}) + \sum_{k=0}^{\infty} \gamma^k ||\mathcal{R}_1||_{\infty},
+  \label{ineq_VSstar}
+  \end{align}
+
+  where, in the second inequality, the first term on the right hand side represents the assumption $r_p$ can be always obtained in transient states, the second term on the right hand side represents the assumption at least one sink recurrent class exists, the third term on the right hand side represents the assumption the full reward regarding control patterns can always obtained.
+  By the property of the transient states, for any state $s^{\otimes}$ in $T^{\otimes}_{SV^{\ast}}$, there exists a bounded positive value $m$ such that $ \sum_{k=0}^{\infty} \gamma^k p^k(s^{\otimes}_{init}, s^{\otimes}) < \sum_{k=0}^{\infty} p^k(s^{\otimes}_{init}, s^{\otimes}) < m$ \cite{ESS}. Thus, there exists a positive value $\bar{m}(r_p)$ that is a constant multiple of $r_p$ such that . Therefore, there exists a positive value $\bar{m}(r_p)$ such that $r_p \sum_{k=0}^{\infty} \sum_{s^{\otimes} \in T^{\otimes}_{SV^{\ast}}} \gamma^k p^k(s^{\otimes}_{init}, s^{\otimes}) < \bar{m}(r_p)$. $V^{SV^{\ast}}(s^{\otimes}_{init}) < \bar{m}(r_p) + \frac{1}{1-\gamma} ||\mathcal{R}_1||_{\infty}$.
+
+  \item Assume that $SV^{\ast}$ satisfies $\varphi$ but there is a state $s^{\otimes}_{sink}$ reachable from the initial state such that $\myspqsink \in SinkSet$ under $SV^{\ast}$. By the assumption, there is a sink recurrent class $R^{\otimes i}_{SV^{\ast}}$ reachable from the initial state. We consider the best scenario in the assumption. In words, we assume that the system obtains the full possible rewards of $\mathcal{R}_1$ and $r_p$ in all steps. There exist a number $l > 0$, a state $s^{\otimes}_{sink} \in Post(T^{\otimes}_{SV^{\ast}}) \cap R^{\otimes i}_{SV^{\ast}}$, and a subset of transient states $\{ s^{\otimes}_1, \ldots , s^{\otimes}_{l-1} \} \subset T^{\otimes}_{SV^{\ast}}$ such that $p(s^{\otimes}_{init}, s^{\otimes}_1)>0$, $p(s^{\otimes}_{i}, s^{\otimes}_{i+1})>0$ for $i \in \{ 1,...,l-2 \}$, and $p(s^{\otimes}_{l-1}, s^{\otimes}_{sink})>0$ by the property of transient states. By considering only paths that reach the state $s^{\otimes}_{sink} \in R^{\otimes i}_{SV^{\ast}}$ in $l$ steps out of all paths reaching sink recurrent classes, we have
+
+  \begin{align}
+    V^{SV^{\ast}}(s^{\otimes}_{init}) < & Pr^{M^{\otimes}}_{SV^{\ast}}(s^{\otimes}_{init} \models \varphi) \sum_{k=0}^{\infty} \gamma^k (r_p + ||\mathcal{R}_1||_{\infty}) + \gamma^l p^l(s^{\otimes}_{init}, s^{\otimes}_{sink}) \sum_{k=0}^{\infty} \gamma^k r_{sink} \nonumber \\
+    + & Pr^{M^{\otimes}}_{SV^{\ast}}(s^{\otimes}_{init} \not\models \varphi) (r_p + ||\mathcal{R}_1||_{\infty}) \sum_{k=0}^{\infty} \sum_{s^{\otimes} \in T^{\otimes}_{\pi^{\ast}}} \gamma^k p^k(s^{\otimes}_{init}, s^{\otimes}) \nonumber \\
+    < & \frac{1}{1-\gamma} \{ Pr^{M^{\otimes}}_{SV^{\ast}}(s^{\otimes}_{init} \models \varphi) (r_p + ||\mathcal{R}_1||_{\infty}) + \gamma^l p^l (s^{\otimes}_{init}, s^{\otimes}_{sink}) r_{sink} \} + \bar{m}^{\prime}(r_p), \nonumber
+  \end{align}
+  where $\bar{m}^{\prime}(r_p)$ is a constant multiple of $r_p$ such that $\bar{m}^{\prime}(r_p) > Pr^{M^{\otimes}}_{SV^{\ast}}(s^{\otimes}_{init} \not\models \varphi) (r_p + ||\mathcal{R}_1||_{\infty}) \sum_{k=0}^{\infty} \sum_{s^{\otimes} \in T^{\otimes}_{\pi^{\ast}}} \gamma^k p^k(s^{\otimes}_{init}, s^{\otimes})$.
+  Therefore, if it holds that $r_{sink} \leq - \frac{Pr^{M^{\otimes}}_{SV^{\ast}}(s^{\otimes}_{init} \models \varphi)}{ \gamma^l p^l (s^{\otimes}_{init}, s^{\otimes}_{sink})} (r_p + ||\mathcal{R}_1||_{\infty})$, we then have $V^{SV^{\ast}}(s^{\otimes}_{init}) < \bar{m}^{\prime}(r_p)$ for any $\gamma \in (0,1)$.
+
+\end{enumerate}
+  Let $\bar{SV}$ be a supervisor satisfying $\varphi$ and it satisfies that there is no state $s^{\otimes} \in S^{\otimes}_{\bar{SV}}$ reachable from initial state $s^{\otimes}_{init}$ such that $\myspq \in SinkSet$. We consider the following two cases.
+
+  \begin{enumerate}
+    \vspace{2mm}
+    \item Assume that the initial state $s^{\otimes}_{init}$ is in a recurrent class $R^{\otimes i}_{\bar{SV}}$ for some $ i \in \{ 1,\ldots,h \} $.
+    For any accepting set $\bar{F}^{\otimes}_j$, $\delta^{\otimes i}_{\bar{SV}} \cap \bar{F}^{\otimes}_j \neq \emptyset$ holds by the definition of $\bar{SV}$. The expected discounted reward for $s^{\otimes}_{init}$ is given by
+    %\begin{comment}
+    %\begin{align}
+    %  V^{\bar{\pi}}(s^{\otimes}_{init})
+    %   &= \sum_{k=0}^{\infty} \sum_{s^{\otimes} \in R^{\otimes i}_{\bar{SV}}} \gamma^k p^k(s^{\otimes}_{init}, s^{\otimes}) \nonumber \\
+    %   & \sum_{s^{\otimes \prime} \in R^{\otimes i}_{\bar{SV}}}  \sum_{e \in SV(s^{\otimes})} P^{\otimes}_T (s^{\otimes \prime} | s^{\otimes}, e) P^{\otimes}_E (e | s^{\otimes}, SV(s^{\otimes})) \mathcal{R}(s^{\otimes}, \bar{SV}(s^{\otimes}), e, s^{\otimes \prime}). \nonumber
+    %\end{align}
+    %\end{comment}
+
+  \begin{align}
+    V^{\bar{SV}}(s^{\otimes}_{init}) = \mathbb{E}^{SV}[ {\sum_{k=0}^{\infty}} \gamma^k \mathcal{R}(s_k, \pi_k, e_k, s_{k+1}) | s_0 = s^{\otimes}_{init} ]
+  \end{align}
+    For each path $\rho = s_0 \pi_0 e_0 s_1 \ldots s_i \pi_i e_i s_{i+1} \ldots \in S (2^E E S)^{\omega}$, the stopping time $\hat{k}$ of first returning to the initial state is defined as $\hat{k}(\rho) = \min \{ i > 0 ; s_i = s_0 \}$. Recall that the state set $S^{\otimes}$ is finite, hence all of the recurrent classes are positive recurrent \cite{ISP}. We have
+    % We consider the worst scenario in this case. It holds that
+
+    \begin{align}
+      V^{\bar{SV}}(s^{\otimes}_{init})
+       > & \mathbb{E}^{\bar{SV}} [ \gamma^{\hat{k}-1} r_p + \gamma^{\hat{k}-2} r_p + \ldots + \gamma^{\hat{k}-n} r_p + \gamma^{\hat{k}-1} V^{\bar{SV}}(s^{\otimes}_{init}) | s_0 = s^{\otimes}_{init} ] \nonumber \\
+       > & \mathbb{E}^{\bar{SV}} [ \gamma^{\hat{k}-1} r_p + \gamma^{\hat{k}-1} V^{\bar{SV}}(s^{\otimes}_{init}) | s_0 = s^{\otimes}_{init} ] \nonumber \\
+       \geq & \gamma^{\mathbb{E}^{\bar{SV}}[\hat{k} - 1 | s_0 = s^{\otimes}_{init} ]} r_p + \gamma^{\mathbb{E}^{\bar{SV}}[ \hat{k} - 1 | s_0 = s^{\otimes}_{init} ]} V^{\bar{SV}}(s^{\otimes}_{init}), \label{ineq_VSVbar1}
+   \intertext{where Eq.\ (\ref{ineq_VSVbar1}) holds since it holds that $\mathbb{E}^{\bar{SV}} [ \gamma^{\hat{k}} | s_0 = s^{\otimes}_{init} ] \geq \gamma^{\mathbb{E}^{\bar{SV}}[\hat{k} | s_0 = s^{\otimes}_{init} ]}$ by Jensen's inequality. Let $\hat{K}_1 = \min \{ n \in \mathbb{N}_0 ; \mathbb{E}^{\bar{SV}}[\hat{k} | s_0 = s^{\otimes}_{init} ] \leq n \}$. We then have $\gamma^{\hat{K}_1} < \gamma^{\mathbb{E}^{\bar{SV}}[\hat{k} | s_0 = s^{\otimes}_{init} ]}$ and $\frac{1}{1 - \gamma^{\hat{K}_1}} < \frac{1}{1 - \gamma^{\mathbb{E}^{\bar{SV}}[\hat{k} | s_0 = s^{\otimes}_{init} ]}}$ for any $\gamma \in (0,1)$. Thus,}
+    V^{\bar{SV}}(s^{\otimes}_{init})
+       > & \frac{ \gamma^{\mathbb{E}^{\bar{SV}}[\hat{k} - 1 | s_0 = s^{\otimes}_{init} ]} r_p } { 1 - \gamma^{\mathbb{E}^{\bar{SV}}[\hat{k} - 1 | s_0 = s^{\otimes}_{init} ]}} \nonumber \\
+       > &\frac{ \gamma^{\hat{K}_1 - 1} r_p }{ 1 - \gamma^{\hat{K}_1 - 1}} ,
+    \label{ineq_VSVbar2}
+   \end{align}
+We define $r^{\ast}_p(\gamma,\mathcal{R}_1)$ and $r^{\ast}_{sink}(\gamma,r_p,\mathcal{R}_1)$ as $r^{\ast}_p(\gamma,\mathcal{R}_1) = \frac{ \hat{K_1} - 1 }{ \gamma^{\hat{K}_1 -1 }}||\mathcal{R}_1||_{\infty} + 1$ and $r^{\ast}_{sink}(\gamma,r_p,\mathcal{R}_1) = - \frac{Pr^{M^{\otimes}}_{SV^{\ast}}(s^{\otimes}_{init} \models \varphi)}{ \gamma^l p^l (s^{\otimes}_{init}, s^{\otimes}_{sink})} (r_p + ||\mathcal{R}_1||_{\infty}) - 1$ for the supervisor $SV^{\ast}$, respectively. Note that $r^{\ast}_p$ and $r^{\ast}_{sink}$ are monotonically decreases and increases with respect to $\gamma$, respectively. In other words, $\gamma > \gamma^{\prime}$ implies that $r^{\ast}_p(\gamma,\mathcal{R}_1) < r^{\ast}_p(\gamma^{\prime},\mathcal{R}_1)$ and $r^{\ast}_{sink}(\gamma, r_p,\mathcal{R}_1) > r^{\ast}_{sink}(\gamma^{\prime},r_p,\mathcal{R}_1)$ for any $r_p \in (0,\infty)$ and any $\mathcal{R}_1$.
+ Then, we set $\gamma^{\ast}$ to satisfy $ \frac{ {\gamma^{\ast}}^{\hat{K}_1 -1} }{1 - {\gamma^{\ast}}^{\hat{K}_1 -1}} > m(r^{\ast}_p(\gamma^{\ast},\mathcal{R}_1))$, where $m(r^{\ast}_p(\gamma^{\ast},\mathcal{R}_1)) = \max \{ \bar{m}(r^{\ast}_p(\gamma^{\ast},\mathcal{R}_1)), \bar{m}^{\prime}(r^{\ast}_p(\gamma^{\ast},\mathcal{R}_1)) \}$.
+Under the above settings, for a reward function $\mathcal{R}_1$, any positive reward $r_p > r^{\ast}_p(\gamma^{\ast},\mathcal{R}_1)$, and any negative reward $r_{sink} < r^{\ast}_{sink}(\gamma^{\ast}, r_p,\mathcal{R}_1)$, we select a discount factor $\gamma \in (\gamma^{\ast}, 1)$. Then, we have $r_p > r^{\ast}_p(\gamma,\mathcal{R}_1) = \frac{ \hat{K}_1 -1 }{ {\gamma}^{\hat{K}_1 -1} } ||\mathcal{R}_1||_{\infty} + 1$ and $r_{sink} < r^{\ast}_{sink}(\gamma, r_p ,\mathcal{R}_1) < - \frac{Pr^{M^{\otimes}}_{SV^{\ast}}(s^{\otimes}_{init} \models \varphi)}{ \gamma^l p^l (s^{\otimes}_{init}, s^{\otimes}_{sink})} (r_p + ||\mathcal{R}_1||_{\infty})$, and hence it holds that
+
+\begin{align}
+  V^{\bar{SV}}(s^{\otimes}_{init}) - V^{SV^{\ast}}(s^{\otimes}_{init})
+   > & \frac{ \gamma^{\hat{K}_1 - 1}}{ 1 - \gamma^{\hat{K}_1 - 1}} r_p - ( m(r_p) + \frac{1}{1-\gamma} ||\mathcal{R}_1||_{\infty} ) \nonumber \\
+   = & \frac{ \gamma^{\hat{K}_1 - 1}}{ 1 - \gamma^{\hat{K}_1 - 1}} (r_p - \frac{ \Sigma_{k=0}^{\hat{K}_1 -2} {\gamma}^k }{ {\gamma}^{\hat{K}_1 -1} } ||\mathcal{R}_1||_{\infty} ) - m(r_p) \nonumber \\
+   > & \frac{ \gamma^{\hat{K}_1 - 1}}{ 1 - \gamma^{\hat{K}_1 - 1}} (r_p - \frac{ \hat{K}_1 -1 }{ {\gamma}^{\hat{K}_1 -1} } ||\mathcal{R}_1||_{\infty} ) - m(r_p). \nonumber \\
+   > & \frac{ \gamma^{\hat{K}_1 - 1}}{ 1 - \gamma^{\hat{K}_1 - 1}} - m(r_p). \nonumber \\
+\intertext{Therefore, when $\gamma$ goes to 1, we have }
+  V^{\bar{SV}}(s^{\otimes}_{init}) - V^{SV^{\ast}}(s^{\otimes}_{init}) > & 0.
+\end{align}
+
+
+\begin{comment}
+  Therefore, for any positive value $r_p > r^{\ast}_p(\gamma^{\ast})$, and negative value $r_{sink} < r^{\ast}_{sink}(\gamma^{\ast}, r_p)$, there exists a discount factor $\gamma \in (\gamma^{\ast}, 1)$ that implies $V^{\bar{SV}}(s^{\otimes}_{init}) > V^{SV^{\ast}}(s^{\otimes}_{init})$. This is because by the setting of $r^{\ast}_{sink}$, we have
+
+  \begin{align}
+    V^{\bar{SV}}(s^{\otimes}_{init}) - V^{SV^{\ast}}(s^{\otimes}_{init})
+     > & \frac{ \gamma^{\hat{K}_1 - 1}}{ 1 - \gamma^{\hat{K}_1 - 1}} r_p - ( m(r_p) + \frac{1}{1-\gamma} ||\mathcal{R}_1||_{\infty} ) \nonumber \\
+     = & \frac{ \gamma^{\hat{K}_1 - 1}}{ 1 - \gamma^{\hat{K}_1 - 1}} (r_p - \frac{ \Sigma_{k=0}^{\hat{K}_1 -2} {\gamma}^k ||\mathcal{R}_1||_{\infty} }{ {\gamma}^{\hat{K}_1 -1} } ||\mathcal{R}_1||_{\infty} ) - m(r_p), \nonumber \\
+     > & \frac{ \gamma^{\hat{K}_1 - 1}}{ 1 - \gamma^{\hat{K}_1 - 1}} (r_p - \frac{ \hat{K}_1 -1 }{ {\gamma}^{\hat{K}_1 -1} } ||\mathcal{R}_1||_{\infty} ) - m(r_p), \nonumber
+  \intertext{by the settings of $\gamma^{\ast}$ and $r^{\ast}_p$, we have}
+    V^{\bar{SV}}(s^{\otimes}_{init}) - V^{SV^{\ast}}(s^{\otimes}_{init}) > & 0.
+  \end{align}
+\end{comment}
+
+  \item Assume that the initial state $s^{\otimes}_{init}$ is in the set of transient states $T_{\bar{SV}}^{\otimes}$.$P^{M^{\otimes}}_{\bar{SV}}(s^{\otimes}_{init} \models \varphi) > 0$ holds by the definition of $\bar{SV}$. For an accepting recurrent class $R^{\otimes i}_{\bar{SV}}$, there exist a number $l^{\prime} > 0$, a state $\hat{s}^{\otimes}$ in $Post(T^{\otimes}_{\bar{SV}}) \cap R^{\otimes i}_{\bar{SV}}$, and a subset of transient states $\{ s^{\otimes}_1, \ldots , s^{\otimes}_{l^{\prime}-1} \} \subset T^{\otimes}_{\bar{SV}}$ such that $p(s^{\otimes}_{init}, s^{\otimes}_1)>0$, $p(s^{\otimes}_{i}, s^{\otimes}_{i+1})>0$ for $i \in \{ 1,...,l^{\prime}-2 \}$, and $p(s^{\otimes}_{l^{\prime}-1}, \hat{s}^{\otimes})>0$ by the property of transient states.
+    Hence, it holds that $p^{l^{\prime}}(s^{\otimes}_{init}, \hat{s}^{\otimes}) > 0$ for the state $\hat{s}^{\otimes}$. For each path $\rho = s_0 \pi_0 e_0 s_1 \ldots s_i \pi_i e_i s_{i+1} \ldots \in S (2^E E S)^{\omega}$ reaching $\hat{s}^{\otimes}$, the stopping time $\hat{k}$ of first returning to the state $\hat{s}^{\otimes}$ is defined as $\hat{k}(\rho) = \min \{ i - j_{min}(\rho) ; s_i = \hat{s}^{\otimes}, i>j_{min}(\rho)>0 \}$, where $j_{min}(\rho) = \min \{ j ; s_j = \hat{s}^{\otimes} \}$. Thus, by ignoring positive rewards in $T^{\otimes}_{\bar{SV}}$, we have
+
+    %\begin{align}
+    %  V^{\bar{\pi}}(s^{\otimes}_{init})
+    %  > & P^{M^{\otimes}}_{\bar{SV}}(s^{\otimes}_{init} \models \varphi) \{ \gamma^{\bar{l}} p^{\bar{l}}(s^{\otimes}_{init}, \hat{s}^{\otimes}) \nonumber \\
+    %  & \mathbb{E}^{\bar{SV}} [ \gamma^k r_p - (1 + \ldots + \gamma^k) ||\mathcal{R}_1||_{\infty} + \gamma^k V^{\bar{\pi}}(\hat{s}^{\otimes}) | s_{\bar{l}} = \hat{s}^{\otimes} ] - \bar{l} ||\mathcal{R}_1||_{\infty} \} \nonumber \\
+    %  \geq & P^{M^{\otimes}}_{\bar{\pi}}(s^{\otimes}_{init} \models \varphi)  [ \gamma^{\bar{l}} p^{\bar{l}}(s^{\otimes}_{init}, \hat{s}^{\otimes}) \nonumber \\
+    %  & \{ \gamma^{\mathbb{E}^{\bar{SV}}[k | s_{\bar{l}} = \hat{s}^{\otimes} ]} r_p - (1 + \ldots + \gamma^{\mathbb{E}^{\bar{SV}}[k | s_{\bar{l}} = \hat{s}^{\otimes} ]} ) ||\mathcal{R}_1||_{\infty} + \gamma^{\mathbb{E}^{\bar{SV}}[k | s_{\bar{l}} = \hat{s}^{\otimes} ]} V^{\bar{\pi}}(\hat{s}^{\otimes}) \} - \bar{l} ||\mathcal{R}_1||_{\infty} ] \nonumber \\
+    %  = & P^{M^{\otimes}}_{\bar{\pi}}(s^{\otimes}_{init} \models \varphi) [ \gamma^{\bar{l}} p^{\bar{l}}(s^{\otimes}_{init}, \hat{s}^{\otimes}) \nonumber \\
+    %  & \frac{ \gamma^{\mathbb{E}^{\bar{SV}}[k | s_{\bar{l}} = \hat{s}^{\otimes} ]} r_p - (1 + \ldots + \gamma^{\mathbb{E}^{\bar{SV}}[k | s_{\bar{l}} = \hat{s}^{\otimes} ]} ) ||\mathcal{R}_1||_{\infty} } { 1 - \gamma^{\mathbb{E}^{\bar{SV}}[k | s_{\bar{l}} = \hat{s}^{\otimes} ]}} - \bar{l} ||\mathcal{R}_1||_{\infty} ] \nonumber
+    %\end{align}
+
+    \begin{align}
+     V^{\bar{SV}}(s^{\otimes}_{init})
+      = & \mathbb{E}^{SV}[ {\sum_{k=0}^{\infty}} \gamma^k \mathcal{R}(s_k, \bar{SV}(s_k), e_k, s_{k+1}) | s_0 = s^{\otimes}_{init} ] \nonumber \\
+      \geq & \mathbb{E}^{SV}[ \gamma^l \sum_{k=0}^{\infty} \gamma^k \mathcal{R}(s_{k+l}, \bar{SV}(s_{k+l}), e_{k+l}, s_{k+l+1}) | s_0 = s^{\otimes}_{init} ] \nonumber \\
+      > & \gamma^{l^{\prime}} p^{l^{\prime}}(s^{\otimes}_{init}, \hat{s}^{\otimes}) \mathbb{E}^{\bar{SV}} [ \gamma^{\hat{k}-1} r_p + \gamma^{\hat{k}-1} V^{\bar{SV}}(\hat{s}^{\otimes}) | s_{l^{\prime}} = \hat{s}^{\otimes} ] \nonumber \\
+      \geq & \gamma^{l^{\prime}} p^{l^{\prime}}(s^{\otimes}_{init}, \hat{s}^{\otimes}) \{ \gamma^{\mathbb{E}^{\bar{SV}}[\hat{k} - 1 | s_{l^{\prime}} = \hat{s}^{\otimes} ]} r_p + \gamma^{\mathbb{E}^{\bar{SV}}[\hat{k} - 1 | s_{l^{\prime}} = \hat{s}^{\otimes} ]} V^{\bar{SV}}(\hat{s}^{\otimes}) \}. \label{ineq_VSVbar2} \nonumber \\
+   \intertext{where Eq.\ (\ref{ineq_VSVbar2}) holds since it holds that $\mathbb{E}^{\bar{SV}} [ \gamma^{\hat{k}} | s_{l^{\prime}} = \hat{s}^{\otimes} ] \geq \gamma^{\mathbb{E}^{\bar{SV}}[\hat{k} | s_{l^{\prime}} = \hat{s}^{\otimes} ]}$ by Jensen's inequality. Let $\hat{K}_2 = \min \{ n \in \mathbb{N}_0 ; \mathbb{E}^{\bar{SV}}[\hat{k} | s_{l^{\prime}} = \hat{s}^{\otimes} ] \leq n \}$. We then have $\gamma^{\hat{K}_2} < \gamma^{\mathbb{E}^{\bar{SV}}[\hat{k} | s_{l^{\prime}} = \hat{s}^{\otimes} ]}$ and $\frac{1}{1 - \gamma^{\hat{K}_2}} < \frac{1}{1 - \gamma^{\mathbb{E}^{\bar{SV}}[\hat{k} | s_{l^{\prime}} = \hat{s}^{\otimes} ]}}$ for any $\gamma \in (0,1)$. Thus, we have}
+    V^{\bar{SV}}(s^{\otimes}_{init})
+      > & \gamma^{l^{\prime}} p^{l^{\prime}}(s^{\otimes}_{init}, \hat{s}^{\otimes}) \frac{ \gamma^{\mathbb{E}^{\bar{SV}}[\hat{k} - 1 | s_{l^{\prime}} = \hat{s}^{\otimes} ]} r_p } { 1 - \gamma^{\mathbb{E}^{\bar{SV}}[\hat{k} - 1 | s_{l^{\prime}} = \hat{s}^{\otimes}]}} \nonumber \\
+      > & \gamma^{l^{\prime}} p^{l^{\prime}}(s^{\otimes}_{init}, \hat{s}^{\otimes}) \frac{ \gamma^{\hat{K}_2 - 1} r_p }{ 1 - \gamma^{\hat{K}_2 - 1}}
+    \end{align}
+    %where $\bar{l^{\prime}} = \mathbb{E}^{\bar{SV}}[l|p^l(s^{\otimes}_{init}, \hat{s}^{\otimes}) > 0]$.
+    %where the third inequality holds since it holds that $\mathbb{E}^{\bar{SV}} [ \gamma^{\hat{k}} | s_{l^{\prime}} = \hat{s}^{\otimes} ] \geq \gamma^{\mathbb{E}^{\bar{SV}}[\hat{k} | s_{l^{\prime}} = \hat{s}^{\otimes} ]}$ by Jensen's inequality, $\hat{K} = \lceil \mathbb{E}^{\bar{SV}}[\hat{k} | s_{l^{\prime}} = \hat{s}^{\otimes} ] \rceil$, and the fifth inequality holds since it holds that $\gamma^{\hat{K}} < \gamma^{\mathbb{E}^{\bar{SV}}[\hat{k} | s_{l^{\prime}} = \hat{s}^{\otimes} ]}$ and $\frac{1}{1 - \gamma^{\hat{K}}} < \frac{1}{1 - \gamma^{\mathbb{E}^{\bar{SV}}[\hat{k} | s_{l^{\prime}} = \hat{s}^{\otimes} ]}}$ for any $\gamma \in (0,1)$.
+    %We set $r^{\ast}_p$, $r^{\ast}_{sink}$, and $\gamma^{\ast}$ to satisfy $ \gamma^{l^{\prime}} p^{l^{\prime}}(s^{\otimes}_{init}, \hat{s}^{\otimes}) \frac{ \gamma^{\hat{K} - 1} }{ 1 - \gamma^{\hat{K} - 1}} r^{\ast}_p > \frac{1}{1-\gamma} ||\mathcal{R}_1||_{\infty}$ for any $\gamma \in (0,1)$, $r^{\ast}_{sink} \leq - \frac{Pr^{M^{\otimes}}_{SV^{\ast}}(s^{\otimes}_{init} \models \varphi)}{ \gamma^l p^l (s^{\otimes}_{init}, s^{\otimes}_{sink})} (r^{\ast}_p + ||\mathcal{R}_1||_{\infty})$ for any $\gamma \in (0,1)$, and $\gamma^{l^{\prime}} p^{l^{\prime}}(s^{\otimes}_{init}, \hat{s}^{\otimes}) \frac{ {\gamma^{\ast}}^{\hat{K} - 1} }{ 1 - {\gamma^{\ast}}^{\hat{K} - 1}} r^{\ast}_p - \frac{1}{1-\gamma^{\ast}} ||\mathcal{R}_1||_{\infty} > m$ for any $m>0$, respectively.
+    %Therefore, for the reward function $\mathcal{R}_1$, any positive value $r_p > r^{\ast}_p$, any negative value $r_{sink} < r^{\ast}_{sink}$, any discount factor $\gamma \in (\gamma^{\ast}, 1)$, by the setting of $r^{\ast}_{sink}$, we have
+
+    We define $\bar{r}^{\ast}_p(\gamma,\mathcal{R}_1) = \frac{1}{ \gamma^{l^{\prime}} p^{l^{\prime}}(s^{\otimes}_{init}, \hat{s}^{\otimes})} \frac{ \hat{K}_2 - 1 }{ \gamma^{\hat{K}_2 -1 }}||\mathcal{R}_1||_{\infty} + 1$.
+     Then, we set $\gamma^{\ast}$ to satisfy $ \frac{1}{ \gamma^{\ast l^{\prime}} p^{l^{\prime}}(s^{\otimes}_{init}, \hat{s}^{\otimes}) } \frac{ {\gamma^{\ast}}^{\hat{K}_2 -1} }{1 - {\gamma^{\ast}}^{\hat{K}_2 -1}} > m(r^{\ast}_p(\gamma^{\ast},\mathcal{R}_1))$, where $m(r^{\ast}_p(\gamma^{\ast},\mathcal{R}_1)) = \max \{ \bar{m}(r^{\ast}_p(\gamma^{\ast},\mathcal{R}_1)), \bar{m}^{\prime}(r^{\ast}_p(\gamma^{\ast},\mathcal{R}_1)) \}$.
+    For any positive reward $r_p > \bar{r}^{\ast}_p(\gamma^{\ast},\mathcal{R}_1)$ and any negative reward $r_{sink} < r^{\ast}_{sink}(\gamma^{\ast}, r_p,\mathcal{R}_1)$, we select a discount factor $\gamma \in (\gamma^{\ast}, 1)$.
+    Then, we have $r_p > \bar{r}^{\ast}_p(\gamma,\mathcal{R}_1) = \frac{1}{ \gamma^{l^{\prime}} p^{l^{\prime}}(s^{\otimes}_{init}, \hat{s}^{\otimes}) } \frac{ \hat{K}_2 -1 }{ {\gamma}^{\hat{K}_2 -1} } ||\mathcal{R}_1||_{\infty} + 1$ and $r_{sink} < r^{\ast}_{sink}(\gamma, r_p,\mathcal{R}_1) < - \frac{Pr^{M^{\otimes}}_{SV^{\ast}}(s^{\otimes}_{init} \models \varphi)}{ \gamma^l p^l (s^{\otimes}_{init}, s^{\otimes}_{sink})} (r_p + ||\mathcal{R}_1||_{\infty})$, and hence it holds that
+
+    \begin{align}
+      V^{\bar{SV}}(s^{\otimes}_{init}) - V^{SV^{\ast}}(s^{\otimes}_{init})
+       > & \gamma^{l^{\prime}} p^{l^{\prime}}(s^{\otimes}_{init}, \hat{s}^{\otimes}) \frac{ \gamma^{\hat{K}_2 - 1}}{ 1 - \gamma^{\hat{K}_2 - 1}} r_p - ( m(r_p) + \frac{1}{1-\gamma} ||\mathcal{R}_1||_{\infty} ) \nonumber \\
+       = & \gamma^{l^{\prime}} p^{l^{\prime}}(s^{\otimes}_{init}, \hat{s}^{\otimes}) \frac{ \gamma^{\hat{K}_2 - 1}}{ 1 - \gamma^{\hat{K}_2 - 1}} ( r_p - \frac{1}{ \gamma^{l^{\prime}} p^{l^{\prime}}(s^{\otimes}_{init}, \hat{s}^{\otimes}) } \frac{ \hat{K}_2 -1 }{ {\gamma}^{\hat{K}_2 -1} } ||\mathcal{R}_1||_{\infty} ) - m(r_p), \nonumber\\
+       > & \gamma^{l^{\prime}} p^{l^{\prime}}(s^{\otimes}_{init}, \hat{s}^{\otimes}) \frac{ \gamma^{\hat{K}_2 - 1}}{ 1 - \gamma^{\hat{K}_2 - 1}} - m(r_p). \nonumber
+    \intertext{Therefore, when $\gamma$ goes to 1, we have}
+      V^{\bar{SV}}(s^{\otimes}_{init}) - V^{SV^{\ast}}(s^{\otimes}_{init}) > & 0
+    \end{align}
+
+  \end{enumerate}
+
+  The results contradict the optimality assumption of $SV^{\ast}$
+\end{proof}
+
+\begin{thebibliography}{99}
+\bibitem{ESS}
+R.\ Durrett,
+\textit{Essentials of Stochastic Processes}, 2nd Edition. ser. Springer texts in statistics. New York; London; Springer, 2012.
+\bibitem{ISP}
+L.\ Breuer,
+``Introduction to Stochastic Processes,'' [Online]. Available: https://www.kent.ac.uk/smsas/personal/lb209/files/sp07.pdf
+\bibitem{SM}
+S.M.\ Ross,
+\textit{Stochastic Processes}, 2nd Edition. University of California, Wiley, 1995.
+
+
+\end{thebibliography}
+\end{document}

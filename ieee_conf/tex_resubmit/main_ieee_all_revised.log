@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.sjis) (TeX Live 2019/W32TeX) (preloaded format=platex 2019.9.9)  20 JAN 2020 21:16
+This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.sjis) (TeX Live 2019/W32TeX) (preloaded format=platex 2019.9.9)  5 FEB 2020 14:46
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -333,147 +333,316 @@ Package: listings 2019/09/10 1.8c (Carsten Heinz)
 LaTeX Info: Redefining \cite on input line 302.
 LaTeX Info: Redefining \nocite on input line 332.
 Package: cite 2015/02/27  v 5.5
+) (c:/w32tex/share/texmf-dist/tex/latex/lipsum/lipsum.sty (c:/w32tex/share/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2019-09-19 L3 programming layer (loader) 
+ (c:/w32tex/share/texmf-dist/tex/latex/l3kernel/expl3-code.tex
+Package: expl3 2019-09-19 L3 programming layer (code)
+\c_max_int=\count121
+\l_tmpa_int=\count122
+\l_tmpb_int=\count123
+\g_tmpa_int=\count124
+\g_tmpb_int=\count125
+\g__kernel_prg_map_int=\count126
+\c__ior_term_noprompt_ior=\count127
+\c_log_iow=\count128
+\l_iow_line_count_int=\count129
+\l__iow_line_target_int=\count130
+\l__iow_one_indent_int=\count131
+\l__iow_indent_int=\count132
+\c_zero_dim=\dimen144
+\c_max_dim=\dimen145
+\l_tmpa_dim=\dimen146
+\l_tmpb_dim=\dimen147
+\g_tmpa_dim=\dimen148
+\g_tmpb_dim=\dimen149
+\c_zero_skip=\skip52
+\c_max_skip=\skip53
+\l_tmpa_skip=\skip54
+\l_tmpb_skip=\skip55
+\g_tmpa_skip=\skip56
+\g_tmpb_skip=\skip57
+\c_zero_muskip=\muskip11
+\c_max_muskip=\muskip12
+\l_tmpa_muskip=\muskip13
+\l_tmpb_muskip=\muskip14
+\g_tmpa_muskip=\muskip15
+\g_tmpb_muskip=\muskip16
+\l_keys_choice_int=\count133
+\l__intarray_loop_int=\count134
+\c__intarray_sp_dim=\dimen150
+\g__intarray_font_int=\count135
+\c__fp_leading_shift_int=\count136
+\c__fp_middle_shift_int=\count137
+\c__fp_trailing_shift_int=\count138
+\c__fp_big_leading_shift_int=\count139
+\c__fp_big_middle_shift_int=\count140
+\c__fp_big_trailing_shift_int=\count141
+\c__fp_Bigg_leading_shift_int=\count142
+\c__fp_Bigg_middle_shift_int=\count143
+\c__fp_Bigg_trailing_shift_int=\count144
+\c__kernel_randint_max_int=\count145
+\g__fp_array_int=\count146
+\l__fp_array_loop_int=\count147
+\l__sort_length_int=\count148
+\l__sort_min_int=\count149
+\l__sort_top_int=\count150
+\l__sort_max_int=\count151
+\l__sort_true_max_int=\count152
+\l__sort_block_int=\count153
+\l__sort_begin_int=\count154
+\l__sort_end_int=\count155
+\l__sort_A_int=\count156
+\l__sort_B_int=\count157
+\l__sort_C_int=\count158
+\l__str_internal_int=\count159
+\c__str_replacement_char_int=\count160
+\l__tl_analysis_normal_int=\count161
+\l__tl_analysis_index_int=\count162
+\l__tl_analysis_nesting_int=\count163
+\l__tl_analysis_type_int=\count164
+\l__regex_internal_a_int=\count165
+\l__regex_internal_b_int=\count166
+\l__regex_internal_c_int=\count167
+\l__regex_balance_int=\count168
+\l__regex_group_level_int=\count169
+\l__regex_mode_int=\count170
+\c__regex_cs_in_class_mode_int=\count171
+\c__regex_cs_mode_int=\count172
+\l__regex_catcodes_int=\count173
+\l__regex_default_catcodes_int=\count174
+\c__regex_catcode_D_int=\count175
+\c__regex_catcode_S_int=\count176
+\c__regex_catcode_L_int=\count177
+\c__regex_catcode_O_int=\count178
+\c__regex_catcode_A_int=\count179
+\c__regex_all_catcodes_int=\count180
+\l__regex_show_lines_int=\count181
+\l__regex_min_state_int=\count182
+\l__regex_max_state_int=\count183
+\l__regex_left_state_int=\count184
+\l__regex_right_state_int=\count185
+\l__regex_capturing_group_int=\count186
+\l__regex_min_pos_int=\count187
+\l__regex_max_pos_int=\count188
+\l__regex_curr_pos_int=\count189
+\l__regex_start_pos_int=\count190
+\l__regex_success_pos_int=\count191
+\l__regex_curr_char_int=\count192
+\l__regex_curr_catcode_int=\count193
+\l__regex_last_char_int=\count194
+\l__regex_case_changed_char_int=\count195
+\l__regex_curr_state_int=\count196
+\l__regex_step_int=\count197
+\l__regex_min_active_int=\count198
+\l__regex_max_active_int=\count199
+\l__regex_replacement_csnames_int=\count266
+\l__regex_match_count_int=\count267
+\l__regex_min_submatch_int=\count268
+\l__regex_submatch_int=\count269
+\l__regex_zeroth_submatch_int=\count270
+\g__regex_trace_regex_int=\count271
+\c_empty_box=\box50
+\l_tmpa_box=\box51
+\l_tmpb_box=\box52
+\g_tmpa_box=\box53
+\g_tmpb_box=\box54
+\l__box_top_dim=\dimen151
+\l__box_bottom_dim=\dimen152
+\l__box_left_dim=\dimen153
+\l__box_right_dim=\dimen154
+\l__box_top_new_dim=\dimen155
+\l__box_bottom_new_dim=\dimen156
+\l__box_left_new_dim=\dimen157
+\l__box_right_new_dim=\dimen158
+\l__box_internal_box=\box55
+\l__coffin_internal_box=\box56
+\l__coffin_internal_dim=\dimen159
+\l__coffin_offset_x_dim=\dimen160
+\l__coffin_offset_y_dim=\dimen161
+\l__coffin_x_dim=\dimen162
+\l__coffin_y_dim=\dimen163
+\l__coffin_x_prime_dim=\dimen164
+\l__coffin_y_prime_dim=\dimen165
+\c_empty_coffin=\box57
+\l__coffin_aligned_coffin=\box58
+\l__coffin_aligned_internal_coffin=\box59
+\l_tmpa_coffin=\box60
+\l_tmpb_coffin=\box61
+\g_tmpa_coffin=\box62
+\g_tmpb_coffin=\box63
+\l__coffin_bounding_shift_dim=\dimen166
+\l__coffin_left_corner_dim=\dimen167
+\l__coffin_right_corner_dim=\dimen168
+\l__coffin_bottom_corner_dim=\dimen169
+\l__coffin_top_corner_dim=\dimen170
+\l__coffin_scaled_total_height_dim=\dimen171
+\l__coffin_scaled_width_dim=\dimen172
+\c__coffin_empty_coffin=\box64
+\l__coffin_display_coffin=\box65
+\l__coffin_display_coord_coffin=\box66
+\l__coffin_display_pole_coffin=\box67
+\l__coffin_display_offset_dim=\dimen173
+\l__coffin_display_x_dim=\dimen174
+\l__coffin_display_y_dim=\dimen175
+\g__char_data_ior=\read1
+\l__seq_internal_a_int=\count272
+\l__seq_internal_b_int=\count273
+) (c:/w32tex/share/texmf-dist/tex/latex/l3backend/l3backend-dvipdfmx.def
+File: l3backend-dvipdfmx.def 2019-04-06 v L3 backend support: dvipdfmx
+\g__graphics_track_int=\count274
+\l__pdf_internal_box=\box68
+\g__pdf_backend_object_int=\count275
+\g__pdf_backend_annotation_int=\count276
+)) (c:/w32tex/share/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+Package: xparse 2019-05-28 L3 Experimental document command parser
+\l__xparse_current_arg_int=\count277
+\g__xparse_grabber_int=\count278
+\l__xparse_m_args_int=\count279
+\l__xparse_v_nesting_int=\count280
 )
-\c@theorem=\count121
-\c@corollary=\count122
-\c@lemma=\count123
-\c@prop=\count124
-\c@definition=\count125
-\c@remark=\count126
+Package: lipsum 2019/01/02 v2.2 150 paragraphs of Lorem Ipsum dummy text
+ (c:/w32tex/share/texmf-dist/tex/latex/lipsum/lipsum.ltd.tex
+File: lipsum.ltd.tex 2019/01/02 v2.2 The Lorem ipsum dummy text
+))
+\c@theorem=\count281
+\c@corollary=\count282
+\c@lemma=\count283
+\c@prop=\count284
+\c@definition=\count285
+\c@notations=\count286
+\c@remark=\count287
  (./main_ieee_all_revised.aux)
 \openout1 = `main_ieee_all_revised.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for JY1/mc/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for JT1/mc/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for JY1/mc/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for JT1/mc/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
 LaTeX Font Info:    Font shape `JT1/mc/bx/it' in size <5> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 71.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 75.
 LaTeX Font Info:    Font shape `JY1/mc/bx/it' in size <5> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 71.
-\c@lstlisting=\count127
-LaTeX Font Info:    Try loading font information for U+msa on input line 73.
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 75.
+\c@lstlisting=\count288
+LaTeX Font Info:    Try loading font information for U+msa on input line 77.
  (c:/w32tex/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 73.
- (c:/w32tex/share/texmf-dist/tex/latex/amsfonts/umsb.fd
+LaTeX Font Info:    Try loading font information for U+msb on input line 77.
+
+(c:/w32tex/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 2608) in paragraph at lines 73--73
+Underfull \hbox (badness 2608) in paragraph at lines 77--77
 [][][]\OT1/ptm/m/n/8 The au-thors are with the Grad-u-ate School of En-gi-neer-ing Sci-
  []
 
 
-Underfull \hbox (badness 2846) in paragraph at lines 73--73
+Underfull \hbox (badness 2846) in paragraph at lines 77--77
 \OT1/ptm/m/n/8 ence, Os-aka Uni-ver-sity, Toy-on-aka 560-8531, Japan (e-mail: r-oura,
  []
 
 
 LaTeX Font Warning: Font shape `JT1/mc/m/sc' undefined
-(Font)              using `JT1/mc/m/n' instead on input line 92.
+(Font)              using `JT1/mc/m/n' instead on input line 96.
 
 
 LaTeX Font Warning: Font shape `JY1/mc/m/sc' undefined
-(Font)              using `JY1/mc/m/n' instead on input line 92.
+(Font)              using `JY1/mc/m/n' instead on input line 96.
 
-[1
+Excluding 'comment' comment. [1
 
 
-] Excluding 'comment' comment.
-Underfull \vbox (badness 1668) has occurred while \output is active []
-
- Excluding 'comment' comment. [2] Excluding 'comment' comment. Excluding 'comment' comment.
-Underfull \hbox (badness 10000) in paragraph at lines 287--316
-[]\OT1/ptm/m/n/10 Given an aug-mented tLDBA $[]$
+] Excluding 'comment' comment. Excluding 'comment' comment. [2] Excluding 'comment' comment. Excluding 'comment' comment.
+Underfull \hbox (badness 10000) in paragraph at lines 317--319
+\OT1/ptm/m/n/10 its aug-mented au-toma-ton is a tLDGBA $[]$
  []
 
 
-Underfull \hbox (badness 3439) in paragraph at lines 287--316
+Underfull \hbox (badness 10000) in paragraph at lines 317--319
+\OT1/ptm/m/n/10 = $\OT1/cmr/m/n/10 ([]\OML/cmm/m/it/10 ; []; []; []; []\OT1/cmr/m/n/10 )$\OT1/ptm/m/n/10 , where $[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 X \OMS/cmsy/m/n/10 ^^B \OML/cmm/m/it/10 V$\OT1/ptm/m/n/10 ,
+ []
+
+
+Underfull \hbox (badness 1902) in paragraph at lines 317--319
+[] \OT1/cmr/m/n/10 = (\OML/cmm/m/it/10 x[]; \OT1/cmr/bx/n/10 0\OT1/cmr/m/n/10 )$\OT1/ptm/m/n/10 , $[] \OT1/cmr/m/n/10 = ^^F$\OT1/ptm/m/n/10 , $[]$ is de-fined as $[]$ =
+ []
+
+File: ldgba_original.pdf Graphic file (type eps)
+<ldgba_original.pdf>
+File: ldgba.pdf Graphic file (type eps)
+ <ldgba.pdf> Excluding 'comment' comment. Excluding 'comment' comment.
+Underfull \hbox (badness 10000) in paragraph at lines 351--380
+[]\OT1/ptm/m/n/10 Given an aug-mented tLDGBA $[]$
+ []
+
+
+Underfull \hbox (badness 3439) in paragraph at lines 351--380
 \OT1/ptm/m/n/10 and an MDP $\OML/cmm/m/it/10 M$\OT1/ptm/m/n/10 , a tu-ple $\OML/cmm/m/it/10 M \OMS/cmsy/m/n/10 
  [] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 M[] \OT1/cmr/m/n/10 =
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 287--316
-\OT1/ptm/m/n/10 where $\OML/cmm/m/it/10 "[]$ \OT1/ptm/m/n/10 rep-re-sents the $\OML/cmm/m/it/10 "$\OT1/ptm/m/n/10 -transiton to the state
+Underfull \hbox (badness 2343) in paragraph at lines 351--380
+\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 S[]; A[]; s[]; P[]; ^^N[]; \OMS/cmsy/m/n/10 F[]\OT1/cmr/m/n/10 )$ \OT1/ptm/m/n/10 is a prod-uct MDP, where
  []
 
 
-Underfull \hbox (badness 1852) in paragraph at lines 287--316
-\OML/cmm/m/it/10 x[]  \OMS/cmsy/m/n/10 2  \OML/cmm/m/it/10 X$\OT1/ptm/m/n/10 , $\OML/cmm/m/it/10 s[] \OT1/cmr/m/n/10 = (\OML/cmm/m/it/10 s[]; []\OT1/cmr/m/n/10 )$ \OT1/ptm/m/n/10 is the ini-tial states,
+Underfull \hbox (badness 1852) in paragraph at lines 351--380
+[]  \OMS/cmsy/m/n/10 2  []$\OT1/ptm/m/n/10 , $\OML/cmm/m/it/10 s[] \OT1/cmr/m/n/10 = (\OML/cmm/m/it/10 s[]; []\OT1/cmr/m/n/10 )$ \OT1/ptm/m/n/10 is the ini-tial states,
  []
 
 
-Underfull \hbox (badness 1997) in paragraph at lines 287--316
+Underfull \hbox (badness 1997) in paragraph at lines 351--380
 \OML/cmm/m/it/10 P[] \OT1/cmr/m/n/10 : \OML/cmm/m/it/10 S[] \OMS/cmsy/m/n/10 ^^B \OML/cmm/m/it/10 S[] \OMS/cmsy/m/n/10 ^^B \OML/cmm/m/it/10 A[] \OMS/cmsy/m/n/10 ! \OT1/cmr/m/n/10 [0\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 1]$ \OT1/ptm/m/n/10 is the tran-si-tion
  []
 
 
-Underfull \hbox (badness 1803) in paragraph at lines 287--316
+Underfull \hbox (badness 1803) in paragraph at lines 351--380
 \OT1/ptm/m/n/10 prob-a-bil-ity de-fined as $\OML/cmm/m/it/10 P[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s[]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 s[]; a\OT1/cmr/m/n/10 ) = \OML/cmm/m/it/10 P\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s[]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 s; a\OT1/cmr/m/n/10 )$ \OT1/ptm/m/n/10 if
  []
 
 
-Underfull \hbox (badness 1577) in paragraph at lines 287--316
-\OT1/ptm/m/n/10 if $\OML/cmm/m/it/10 s  \OT1/cmr/m/n/10 =  \OML/cmm/m/it/10 s[]; v  \OT1/cmr/m/n/10 =  \OML/cmm/m/it/10 v[]; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x; "[]; x[]\OT1/cmr/m/n/10 )  \OMS/cmsy/m/n/10 2  []\OML/cmm/m/it/10 ;$ \OT1/ptm/m/n/10 and $\OML/cmm/m/it/10 a \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 "[]$\OT1/ptm/m/n/10 ,
+Underfull \hbox (badness 1859) in paragraph at lines 351--380
+\OT1/ptm/m/n/10 if $\OML/cmm/m/it/10 s  \OT1/cmr/m/n/10 =  \OML/cmm/m/it/10 s[]; \OT1/cmr/m/n/10 ([]\OML/cmm/m/it/10 ; "; []\OT1/cmr/m/n/10 )  \OMS/cmsy/m/n/10 2  []\OML/cmm/m/it/10 ;$ \OT1/ptm/m/n/10 and $\OML/cmm/m/it/10 a \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 "[]$\OT1/ptm/m/n/10 , oth-er-wise
  []
 
 
-Underfull \hbox (badness 4013) in paragraph at lines 287--316
-\OT1/ptm/m/n/10 where $\OML/cmm/m/it/10 s[] \OT1/cmr/m/n/10 = (\OML/cmm/m/it/10 s; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x; v\OT1/cmr/m/n/10 ))$ \OT1/ptm/m/n/10 and $\OML/cmm/m/it/10 s[] \OT1/cmr/m/n/10 = (\OML/cmm/m/it/10 s[]; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[]; v[]\OT1/cmr/m/n/10 ))$\OT1/ptm/m/n/10 ,
+Underfull \hbox (badness 10000) in paragraph at lines 351--380
+\OML/cmm/m/it/10 P[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s[]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 s[]; a\OT1/cmr/m/n/10 ) = 0$ \OT1/ptm/m/n/10 where $\OML/cmm/m/it/10 s[] \OT1/cmr/m/n/10 = (\OML/cmm/m/it/10 s; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x; v\OT1/cmr/m/n/10 ))$
  []
 
 
-Underfull \hbox (badness 3861) in paragraph at lines 333--334
-[]\OT1/ptm/m/n/10 In gen-eral, when the con-struc-tion of a
+Underfull \hbox (badness 4416) in paragraph at lines 351--380
+\OT1/ptm/m/n/10 and $\OML/cmm/m/it/10 s[] \OT1/cmr/m/n/10 = (\OML/cmm/m/it/10 s[]; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[]; v[]\OT1/cmr/m/n/10 ))$\OT1/ptm/m/n/10 , $\OML/cmm/m/it/10 ^^N[] \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s[]; a; s[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 2
  []
 
-[3] Excluding 'comment' comment.
-Underfull \vbox (badness 1968) has occurred while \output is active []
-
- [4]
-Overfull \hbox (3.14598pt too wide) detected at line 427
-[]
- []
-
-
-Underfull \hbox (badness 1424) in paragraph at lines 427--434
-\OT1/ptm/m/n/10 where $[] \OMS/cmsy/m/n/10 ^^U \OML/cmm/m/it/10 n$ \OT1/ptm/m/n/10 is a con-stant and $\OT1/cmr/m/n/10 0 \OML/cmm/m/it/10 < [] <
- []
-
+[3] Excluding 'comment' comment. Excluding 'comment' comment. Excluding 'comment' comment. [4]
 File: MDP_corridor.png Graphic file (type eps)
-<MDP_corridor.png>
-File: ldgba_original.pdf Graphic file (type eps)
- <ldgba_original.pdf>
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 482.
+ <MDP_corridor.png> Excluding 'comment' comment.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 584.
  (c:/w32tex/share/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
-LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 482.
-File: ldgba.pdf Graphic file (type eps)
- <ldgba.pdf>
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 508.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 584.
  [5]
-File: ep_1000_it_10000_MDP3_gamma_095_re2_ini22_nts_c095_20times.png Graphic file (type eps)
- <ep_1000_it_10000_MDP3_gamma_095_re2_ini22_nts_c095_20times.png>
-File: ep_1000_it_10000_MDP3_gamma_095_nts_c095_abate_20times.png Graphic file (type eps)
- <ep_1000_it_10000_MDP3_gamma_095_nts_c095_abate_20times.png>
-Overfull \hbox (15.50008pt too wide) in paragraph at lines 530--543
+File: ep_1000_it_10000_MDP3_gamma_095_re2_ini22_nts_c095_20times_no2.png Graphic file (type eps)
+ <ep_1000_it_10000_MDP3_gamma_095_re2_ini22_nts_c095_20times_no2.png>
+File: ep_1000_it_10000_MDP3_gamma_095_nts_c095_ldba_20times.png Graphic file (type eps)
+ <ep_1000_it_10000_MDP3_gamma_095_nts_c095_ldba_20times.png>
+Overfull \hbox (15.50008pt too wide) in paragraph at lines 606--619
  [][][][] 
  []
 
@@ -481,11 +650,14 @@ File: proposed_policy.png Graphic file (type eps)
 <proposed_policy.png>
 File: Abate_policy.png Graphic file (type eps)
  <Abate_policy.png>
-Overfull \hbox (15.00514pt too wide) in paragraph at lines 549--560
+Overfull \hbox (15.00514pt too wide) in paragraph at lines 625--636
  [][][][] 
  []
 
-[6] 
+
+Underfull \vbox (badness 2600) has occurred while \output is active []
+
+ Excluding 'comment' comment.
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -497,20 +669,18 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the US letter (8.5in X 11in) paper size.
 
-[7
-
-] (./main_ieee_all_revised.aux)
+[6] (./main_ieee_all_revised.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 4195 strings out of 493215
- 57326 string characters out of 6145921
- 149277 words of memory out of 5000000
- 8120 multiletter control sequences out of 15000+600000
- 46140 words of font info for 137 fonts, out of 8000000 for 9000
+ 14166 strings out of 493215
+ 256517 string characters out of 6145921
+ 487907 words of memory out of 5000000
+ 18066 multiletter control sequences out of 15000+600000
+ 574838 words of font info for 147 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
- 27i,18n,32p,1108b,437s stack positions out of 5000i,500n,10000p,500000b,80000s
+ 32i,18n,32p,1252b,437s stack positions out of 5000i,500n,10000p,500000b,80000s
 
-Output written on main_ieee_all_revised.dvi (7 pages, 67488 bytes).
+Output written on main_ieee_all_revised.dvi (6 pages, 64780 bytes).

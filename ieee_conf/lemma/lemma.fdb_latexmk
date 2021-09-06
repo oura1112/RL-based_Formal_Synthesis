@@ -1,9 +1,9 @@
 # Fdb version 3
-["dvipdf"] 1579453065 "lemma.dvi" "lemma.pdf" "lemma" 1579453066
-  "lemma.dvi" 1579453065 1688 5c3f4d76d1dbfe78e3fd80b7347e5f3a "latex"
+["dvipdf"] 1579485694 "lemma.dvi" "lemma.pdf" "lemma" 1579485695
+  "lemma.dvi" 1579485694 1840 e31ae10e0d5c320cde2cd543633b48a8 "latex"
   (generated)
   "lemma.pdf"
-["latex"] 1579453063 "lemma.tex" "lemma.dvi" "lemma" 1579453066
+["latex"] 1579485693 "lemma.tex" "lemma.dvi" "lemma" 1579485695
   "c:/w32tex/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy5.tfm" 1233951848 1120 1e8878807317373affa7f7bba4cf2f6a ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy7.tfm" 1233951848 1120 7f9f170e8aa57527ad6c49feafd45d54 ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
@@ -53,9 +53,9 @@
   "c:/w32tex/share/texmf-dist/tex/latex/tools/bm.sty" 1524537978 12626 7d9d99d0bbe65f44cc0bb90f67262000 ""
   "c:/w32tex/share/texmf-dist/web2c/eptex/platex.fmt" 1524714577 4473763 7bc72e65b5b4d9fa2d2b248e6ab8b8ec ""
   "c:/w32tex/share/texmf-dist/web2c/texmf.cnf" 1518859120 32699 6adc13c376251eb7d184d2675f4e7970 ""
-  "lemma.aux" 1579453065 8 a94a2480d3289e625eea47cd1b285758 ""
-  "lemma.tex" 1579453063 1845 8c9b9ac8b9d4ea3953f841519c480ab6 ""
+  "lemma.aux" 1579485694 8 a94a2480d3289e625eea47cd1b285758 ""
+  "lemma.tex" 1579485692 2007 de56e179b4c05b8abc40e2af3f4c613c ""
   (generated)
-  "lemma.dvi"
   "lemma.aux"
   "lemma.log"
+  "lemma.dvi"

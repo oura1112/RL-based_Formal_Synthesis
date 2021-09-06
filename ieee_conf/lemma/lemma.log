@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.0-180226-2.6 (utf8.sjis) (TeX Live 2018/W32TeX) (preloaded format=platex 2018.4.26)  20 JAN 2020 01:57
+This is e-pTeX, Version 3.14159265-p3.8.0-180226-2.6 (utf8.sjis) (TeX Live 2018/W32TeX) (preloaded format=platex 2018.4.26)  20 JAN 2020 11:01
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -237,6 +237,6 @@ Here is how much of TeX's memory you used:
  7306 multiletter control sequences out of 15000+600000
  12313 words of font info for 49 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
- 27i,5n,32p,430b,217s stack positions out of 5000i,500n,10000p,500000b,80000s
+ 27i,5n,32p,511b,217s stack positions out of 5000i,500n,10000p,500000b,80000s
 
-Output written on lemma.dvi (1 page, 1688 bytes).
+Output written on lemma.dvi (1 page, 1840 bytes).

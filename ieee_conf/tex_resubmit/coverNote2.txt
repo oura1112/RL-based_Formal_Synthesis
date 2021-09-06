@@ -1,0 +1,18 @@
+Dear Professor Martin Guay,
+
+I, along with my coauthors, would like to thank you for reviewing our manuscript, and giving us the opportunity to resubmit the revised version of an original research article entitled “Reinforcement Learning of Control Policy for Linear Temporal Logic Specifications Using Limit-Deterministic Generalized Büchi Automata” (submission no. 19-0421) for publication in IEEE Control Systems Letters. 
+
+We have addressed the concerns mentioned by the reviewers. The main differences from the previous submission are as follows:  
+1) We changed the terminology used in the manuscript to distinguish a generalized Büchi automaton (GBA), which has multiple accepting sets, from a Büchi automaton (BA) with a single accepting set. Accordingly, the title of the manuscript was also changed to use the term "Limit-Deterministid Generalized Büchi Automata", instead of "Limit-Deterministic Büchi Automata".
+2) In Section IV, we conducted an additional experiment for the case using a tLDBA to compare with our method. We also added deeper discussions on the comparison with an existing method. 
+3) We added several intuitive explanations and discussions of our proposed method. Instead, we made Introduction concise to focus on the research direction of this letter. Due to lack of space in the manuscript, we discarded the explanation of the general backgrounds of our work and consequently, the references were also rearranged. 
+
+Please find attached a detailed point-by-point response to the reviewers. We hope that you will be pleased with the revision and that the manuscript is now acceptable for publication.
+
+Our main contributions remain unchanged from the previous submission. We believe that the findings of this study are still relevant to the scope of your journal and will be of interest to its readership.
+
+Thank you for your consideration.  
+I look forward to hearing from you. 
+
+Best regards, 
+Ryohei Oura

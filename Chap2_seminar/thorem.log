@@ -1,0 +1,430 @@
+This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.sjis) (TeX Live 2019/W32TeX) (preloaded format=platex 2019.9.9)  19 FEB 2020 20:24
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**thorem.tex
+(./thorem.tex
+pLaTeX2e <2019-04-06> (based on LaTeX2e <2018-12-01>)
+(c:/w32tex/share/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
+(c:/w32tex/share/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2018/09/03 v1.4i Standard LaTeX file (size option)
+)
+\c@part=\count83
+\c@section=\count84
+\c@subsection=\count85
+\c@subsubsection=\count86
+\c@paragraph=\count87
+\c@subparagraph=\count88
+\c@figure=\count89
+\c@table=\count90
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen118
+) (c:/w32tex/share/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\@emptytoks=\toks15
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+) (c:/w32tex/share/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2018/12/01 v2.17b AMS math features
+\@mathmargin=\skip43
+
+For additional information on amsmath, use the `?' option.
+(c:/w32tex/share/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+ (c:/w32tex/share/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks16
+\ex@=\dimen119
+)) (c:/w32tex/share/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen120
+) (c:/w32tex/share/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count91
+LaTeX Info: Redefining \frac on input line 223.
+\uproot@=\count92
+\leftroot@=\count93
+LaTeX Info: Redefining \overline on input line 385.
+\classnum@=\count94
+\DOTSCASE@=\count95
+LaTeX Info: Redefining \ldots on input line 482.
+LaTeX Info: Redefining \dots on input line 485.
+LaTeX Info: Redefining \cdots on input line 606.
+\Mathstrutbox@=\box43
+\strutbox@=\box44
+\big@size=\dimen121
+LaTeX Font Info:    Redeclaring font encoding OML on input line 729.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 730.
+\macc@depth=\count96
+\c@MaxMatrixCols=\count97
+\dotsspace@=\muskip10
+\c@parentequation=\count98
+\dspbrk@lvl=\count99
+\tag@help=\toks17
+\row@=\count100
+\column@=\count101
+\maxfields@=\count102
+\andhelp@=\toks18
+\eqnshift@=\dimen122
+\alignsep@=\dimen123
+\tagshift@=\dimen124
+\tagwidth@=\dimen125
+\totwidth@=\dimen126
+\lineht@=\dimen127
+\@envbody=\toks19
+\multlinegap=\skip44
+\multlinetaggap=\skip45
+\mathdisplay@stack=\toks20
+LaTeX Info: Redefining \[ on input line 2844.
+LaTeX Info: Redefining \] on input line 2845.
+) (c:/w32tex/share/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+) (c:/w32tex/share/texmf-dist/tex/latex/amscls/amsthm.sty
+Package: amsthm 2017/10/31 v2.20.4
+\thm@style=\toks21
+\thm@bodyfont=\toks22
+\thm@headfont=\toks23
+\thm@notefont=\toks24
+\thm@headpunct=\toks25
+\thm@preskip=\skip46
+\thm@postskip=\skip47
+\thm@headsep=\skip48
+\dth@everypar=\toks26
+) (c:/w32tex/share/texmf-dist/tex/latex/tools/bm.sty
+Package: bm 2017/01/16 v1.2c Bold Symbol Support (DPC/FMi)
+\symboldoperators=\mathgroup6
+\symboldletters=\mathgroup7
+\symboldsymbols=\mathgroup8
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 141.
+LaTeX Info: Redefining \bm on input line 207.
+) (c:/w32tex/share/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count103
+\float@exts=\toks27
+\float@box=\box45
+\@float@everytoks=\toks28
+\@floatcapt=\box46
+) (c:/w32tex/share/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
+ (c:/w32tex/share/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks29
+) (c:/w32tex/share/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
+ (c:/w32tex/share/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+) (c:/w32tex/share/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: dvips.def on input line 99.
+ (c:/w32tex/share/texmf-dist/tex/latex/graphics-def/dvips.def
+File: dvips.def 2017/06/20 v3.1d Graphics/color driver for dvips
+))
+\Gin@req@height=\dimen128
+\Gin@req@width=\dimen129
+) (c:/w32tex/share/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
+ (c:/w32tex/share/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: dvips.def on input line 147.
+
+(c:/w32tex/share/texmf-dist/tex/latex/graphics/dvipsnam.def
+File: dvipsnam.def 2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
+)) (c:/w32tex/share/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2019/09/12 v6.88i Hypertext links for LaTeX
+ (c:/w32tex/share/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+Package: hobsub-hyperref 2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
+ (c:/w32tex/share/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
+Package: hobsub-generic 2016/05/16 v1.14 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2016/05/16 v1.14 Construct package bundles (HO)
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+Package: intcalc 2016/05/16 v1.2 Expandable calculations with integers (HO)
+Package: ifpdf 2018/09/07 v3.3 Provides the ifpdf switch
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+Package: pdftexcmds 2019/07/25 v0.30 Utility functions of pdfTeX for LuaTeX (HO)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: pdfTeX >= 1.30 not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode not found.
+Package: pdfescape 2016/05/16 v1.14 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2016/05/16 v1.4 Expandable calculations on big integers (HO)
+Package: bitset 2016/05/16 v1.2 Handle bit-vector datatype (HO)
+Package: uniquecounter 2016/05/16 v1.3 Provide unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2016/05/16 v1.5 Let assignment for LaTeX macros (HO)
+Package: hopatch 2016/05/16 v1.3 Wrapper for package hooks (HO)
+Package: xcolor-patch 2016/05/16 xcolor patch
+Package: atveryend 2016/05/16 v1.9 Hooks at the very end of document (HO)
+Package atveryend Info: \enddocument detected (standard20110627).
+Package: atbegshi 2016/06/09 v1.18 At begin shipout hook (HO)
+Package: refcount 2016/05/16 v3.5 Data extraction from label references (HO)
+Package: hycolor 2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
+) (c:/w32tex/share/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+) (c:/w32tex/share/texmf-dist/tex/latex/oberdiek/auxhook.sty
+Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
+) (c:/w32tex/share/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+)
+\@linkdim=\dimen130
+\Hy@linkcounter=\count104
+\Hy@pagecounter=\count105
+ (c:/w32tex/share/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2019/09/12 v6.88i Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+\Hy@SavedSpaceFactor=\count106
+ (c:/w32tex/share/texmf-dist/tex/latex/config/hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Hyper figures OFF on input line 4550.
+Package hyperref Info: Link nesting OFF on input line 4555.
+Package hyperref Info: Hyper index ON on input line 4558.
+Package hyperref Info: Plain pages OFF on input line 4565.
+Package hyperref Info: Backreferencing OFF on input line 4570.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4803.
+\c@Hy@tempcnt=\count107
+ (c:/w32tex/share/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip11
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 5156.
+\XeTeXLinkMargin=\dimen131
+\Fld@menulength=\count108
+\Field@Width=\dimen132
+\Fld@charsize=\dimen133
+Package hyperref Info: Hyper figures OFF on input line 6411.
+Package hyperref Info: Link nesting OFF on input line 6416.
+Package hyperref Info: Hyper index ON on input line 6419.
+Package hyperref Info: backreferencing OFF on input line 6426.
+Package hyperref Info: Link coloring OFF on input line 6431.
+Package hyperref Info: Link coloring with OCG OFF on input line 6436.
+Package hyperref Info: PDF/A mode OFF on input line 6441.
+LaTeX Info: Redefining \ref on input line 6481.
+LaTeX Info: Redefining \pageref on input line 6485.
+\Hy@abspage=\count109
+\c@Item=\count110
+\c@Hfootnote=\count111
+)
+Package hyperref Info: Driver: hdvipdfm.
+ (c:/w32tex/share/texmf-dist/tex/latex/hyperref/hdvipdfm.def
+File: hdvipdfm.def 2019/09/12 v6.88i Hyperref driver for dvipdfm
+\pdfm@box=\box47
+\c@Hy@AnnotLevel=\count112
+\HyField@AnnotCount=\count113
+\Fld@listcount=\count114
+\c@bookmark@seq@number=\count115
+ (c:/w32tex/share/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
+Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 282.
+)
+\Hy@SectionHShift=\skip49
+) (c:/w32tex/share/texmf-dist/tex/latex/algorithms/algorithm.sty
+Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating environment
+ (c:/w32tex/share/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\@float@every@algorithm=\toks30
+\c@algorithm=\count116
+) (c:/w32tex/share/texmf-dist/tex/latex/algorithms/algorithmic.sty
+Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
+\c@ALC@unique=\count117
+\c@ALC@line=\count118
+\c@ALC@rem=\count119
+\c@ALC@depth=\count120
+\ALC@tlm=\skip50
+\algorithmicindent=\skip51
+) (c:/w32tex/share/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count121
+\lst@gtempboxa=\box48
+\lst@token=\toks31
+\lst@length=\count122
+\lst@currlwidth=\dimen134
+\lst@column=\count123
+\lst@pos=\count124
+\lst@lostspace=\dimen135
+\lst@width=\dimen136
+\lst@newlines=\count125
+\lst@lineno=\count126
+\lst@maxwidth=\dimen137
+
+(c:/w32tex/share/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2019/09/10 1.8c (Carsten Heinz)
+\c@lstnumber=\count127
+\lst@skipnumbers=\count128
+\lst@framebox=\box49
+) (c:/w32tex/share/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2019/09/10 1.8c listings configuration
+))
+Package: listings 2019/09/10 1.8c (Carsten Heinz)
+ (c:/w32tex/share/texmf-dist/tex/latex/comment/comment.sty
+\CommentStream=\write3
+ Excluding comment 'comment')
+\c@theorem=\count129
+\c@corollary=\count130
+\c@lemma=\count131
+\c@prop=\count132
+\c@definition=\count133
+ (./thorem.aux
+
+LaTeX Warning: Label `ineq_VSVbar2' multiply defined.
+
+)
+\openout1 = `thorem.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for JY1/mc/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for JT1/mc/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+\AtBeginShipoutBox=\box50
+Package hyperref Info: Link coloring OFF on input line 42.
+ (c:/w32tex/share/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2019/09/12 v2.45 Cross-referencing by name of section
+ (c:/w32tex/share/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
+Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
+)
+\c@section@level=\count134
+)
+LaTeX Info: Redefining \ref on input line 42.
+LaTeX Info: Redefining \pageref on input line 42.
+LaTeX Info: Redefining \nameref on input line 42.
+ (./thorem.out) (./thorem.out)
+\@outlinefile=\write4
+\openout4 = `thorem.out'.
+
+\c@lstlisting=\count135
+LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <10> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 45.
+LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <10> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 45.
+LaTeX Font Info:    Try loading font information for U+msa on input line 45.
+ (c:/w32tex/share/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 45.
+ (c:/w32tex/share/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+
+LaTeX Font Warning: Font shape `JT1/mc/m/it' undefined
+(Font)              using `JT1/mc/m/n' instead on input line 74.
+
+
+LaTeX Font Warning: Font shape `JY1/mc/m/it' undefined
+(Font)              using `JY1/mc/m/n' instead on input line 74.
+
+[1
+
+]
+Overfull \hbox (98.37534pt too wide) detected at line 115
+[]
+ []
+
+[2]
+Overfull \hbox (60.75182pt too wide) detected at line 126
+[]
+ []
+
+
+Overfull \hbox (0.53905pt too wide) in paragraph at lines 126--129
+\OT1/cmr/m/n/10 where $[](\OML/cmm/m/it/10 r[]\OT1/cmr/m/n/10 )$ is a con-stant mul-ti-ple of $\OML/cmm/m/it/10 r[]$ \OT1/cmr/m/n/10 such that $[](\OML/cmm/m/it/10 r[]\OT1/cmr/m/n/10 ) \OML/cmm/m/it/10 > Pr[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s[] \OMS/cmsy/m/n/10 6j[]\OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (25.3433pt too wide) detected at line 161
+[]
+ []
+
+[3]
+Overfull \hbox (10.83199pt too wide) in paragraph at lines 161--165
+\OML/cmm/m/it/10 m\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 r[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^M[]; \OMS/cmsy/m/n/10 R[]\OT1/cmr/m/n/10 ))$, where $\OML/cmm/m/it/10 m\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 r[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^M[]; \OMS/cmsy/m/n/10 R[]\OT1/cmr/m/n/10 )) = []\OMS/cmsy/m/n/10 f[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 r[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^M[]; \OMS/cmsy/m/n/10 R[]\OT1/cmr/m/n/10 ))\OML/cmm/m/it/10 ; []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 r[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^M[]; \OMS/cmsy/m/n/10 R[]\OT1/cmr/m/n/10 ))\OMS/cmsy/m/n/10 g$\OT1/cmr/m/n/10 .
+ []
+
+[4] Excluding 'comment' comment.
+Overfull \hbox (31.27658pt too wide) in paragraph at lines 190--192
+[]\OT1/cmr/m/n/10 Assume that the ini-tial state $\OML/cmm/m/it/10 s[]$ \OT1/cmr/m/n/10 is in the set of tran-sient states $\OML/cmm/m/it/10 T[]$\OT1/cmr/m/n/10 .$\OML/cmm/m/it/10 P[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s[] \OMS/cmsy/m/n/10 j[]\OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (12.32579pt too wide) detected at line 213
+[]
+ []
+
+
+Overfull \hbox (15.49643pt too wide) in paragraph at lines 219--223
+[]\OMS/cmsy/m/n/10 f[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 r[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^M[]; \OMS/cmsy/m/n/10 R[]\OT1/cmr/m/n/10 ))\OML/cmm/m/it/10 ; []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 r[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^M[]; \OMS/cmsy/m/n/10 R[]\OT1/cmr/m/n/10 ))\OMS/cmsy/m/n/10 g$\OT1/cmr/m/n/10 . For any pos-i-tive re-ward $\OML/cmm/m/it/10 r[] > []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^M[]; \OMS/cmsy/m/n/10 R[]\OT1/cmr/m/n/10 )$
+ []
+
+
+Overfull \hbox (10.83098pt too wide) in paragraph at lines 219--223
+\OT1/cmr/m/n/10 tor $\OML/cmm/m/it/10 ^^M \OMS/cmsy/m/n/10 2 \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^M[]; \OT1/cmr/m/n/10 1)$. Then, we have $\OML/cmm/m/it/10 r[] > []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^M; \OMS/cmsy/m/n/10 R[]\OT1/cmr/m/n/10 ) = [][]\OMS/cmsy/m/n/10 jjR[]jj[] \OT1/cmr/m/n/10 +
+ []
+
+[5]
+Overfull \hbox (114.37106pt too wide) detected at line 231
+[]
+ []
+
+LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <14.4> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 238.
+LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <14.4> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 238.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 251.
+[6]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 251.
+ (./thorem.aux)
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 251.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 251.
+Package rerunfilecheck Info: File `thorem.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 251.
+ ) 
+Here is how much of TeX's memory you used:
+ 7331 strings out of 493215
+ 103576 string characters out of 6145921
+ 214569 words of memory out of 5000000
+ 11248 multiletter control sequences out of 15000+600000
+ 13844 words of font info for 55 fonts, out of 8000000 for 9000
+ 929 hyphenation exceptions out of 8191
+ 28i,21n,32p,1104b,513s stack positions out of 5000i,500n,10000p,500000b,80000s
+
+Output written on thorem.dvi (6 pages, 41172 bytes).
